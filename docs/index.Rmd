@@ -6,4 +6,6 @@ site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
 link-citations: yes
+github-repo: bcow/ED.Hydro.Documentation
+url: https\://bcow.github.io/ED.Hydro.Documentation/
 ---
