@@ -308,7 +308,7 @@ prior_in[,stats]</code></pre></div>
 <pre><code>## # A tibble: 1 x 7
 ##   theor.min low.025 low.25  mean upp.75 upp.975 theor.max
 ##       &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;
-## 1 0.0000001    121.   432.  688.  1020.   1876.      2000</code></pre>
+## 1 0.0000001    121.   432.  686.  1014.   1866.      2000</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">myfit &lt;-<span class="st">  </span><span class="kw">prior_get_fit</span>(prior_in, accepted_dists, <span class="dt">plot =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <p><img src="Final_Book_files/figure-html/calc%20leaf_density_sample-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">myfit<span class="op">$</span>score<span class="op">$</span>dist[<span class="kw">which.min</span>(myfit<span class="op">$</span>score<span class="op">$</span>RMSE)]</code></pre></div>
@@ -326,7 +326,7 @@ leaf_density_id &lt;-<span class="st"> </span><span class="kw">prior_input</span
                                <span class="dt">parama.in =</span> best.fit.dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(params <span class="op">==</span><span class="st"> &quot;Para1&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(value), 
                                <span class="dt">paramb.in =</span> best.fit.dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(params <span class="op">==</span><span class="st"> &quot;Para2&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(value), 
                                <span class="dt">paramc.in =</span> best.fit.dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(params <span class="op">==</span><span class="st"> &quot;Para3&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(value))</code></pre></div>
-<pre><code>## [1] &quot;Entry with id = 1000000396 already exists. Parameters look different. Old: weibull(1.8300, 845.8900) New: weibull(1.8200, 849.5100)&quot;</code></pre>
+<pre><code>## [1] &quot;Entry with id = 1000000396 already exists. Parameters look different. Old: weibull(1.8300, 845.8900) New: weibull(1.8300, 845.6800)&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">leaf_density_fit &lt;-<span class="st"> </span><span class="kw">tbl</span>(bety, <span class="st">&quot;priors&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(id <span class="op">==</span><span class="st"> </span>leaf_density_id) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">collect</span>()
 leaf_density_prior &lt;-<span class="st"> </span><span class="kw">rdistn</span>(leaf_density_fit)
 
@@ -408,7 +408,7 @@ prior_in_1_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="
 myfit_1_<span class="dv">2</span> &lt;-<span class="st">  </span><span class="kw">prior_get_fit</span>(prior_in_1_<span class="dv">2</span>, accepted_dists, <span class="dt">plot =</span> <span class="ot">FALSE</span>)</code></pre></div>
 <pre><code>## Warning: Unknown columns: `theor.min`, `theor.max`</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">myfit_1_<span class="dv">2</span><span class="op">$</span>score<span class="op">$</span>dist[<span class="kw">which.min</span>(myfit_1_<span class="dv">2</span><span class="op">$</span>score<span class="op">$</span>RMSE)]</code></pre></div>
-<pre><code>## [1] &quot;lnorm&quot;</code></pre>
+<pre><code>## [1] &quot;gamma&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># I&#39;m skipping steps here just for the sake of time &amp; sanity</span>
 leaf_water_sat_prior_1_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw">rlnorm</span>(<span class="dv">1000</span>, myfit_1_<span class="dv">2</span><span class="op">$</span>dists<span class="op">$</span>lnorm[<span class="dv">1</span>], myfit_1_<span class="dv">2</span><span class="op">$</span>dists<span class="op">$</span>lnorm[<span class="dv">2</span>])
 
@@ -475,7 +475,7 @@ df2 &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span><span class="
 <span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> leaf_water_sat_density)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> .<span class="dv">03</span>, <span class="dt">y =</span> <span class="dv">0</span>)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="fl">1.5</span>, <span class="dt">y =</span> <span class="dv">0</span>)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="dv">2</span>, <span class="dt">y =</span> <span class="dv">0</span>)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">xlim</span>(<span class="op">-</span>.<span class="dv">25</span>, <span class="dv">4</span>)</code></pre></div>
-<pre><code>## Warning: Removed 37 rows containing non-finite values (stat_density).</code></pre>
+<pre><code>## Warning: Removed 44 rows containing non-finite values (stat_density).</code></pre>
 <p><img src="Final_Book_files/figure-html/test%20calc%20leaf_water_sat-1.png" width="672" /></p>
 <p>From this point, we can see that just using the equations in the ED code makes the distributions predict low values which is definitely a problem given that these values should not be zero and that the distribution underpredicts both in relation to the default value and the values that Felicien gave me.</p>
 <p>Thus I would create the prior using the data provided by Brad. I am also comfortable with chooseing the best fit distribution for leaf_density which is the weibull distribution instead of trying to come up with a reason why we should make leaf density log normal instead. The log normal was the best if I didn’t include the lower bound.</p>
@@ -540,15 +540,19 @@ leaf_water_sat_density &lt;-<span class="st"> </span><span class="kw">get_ED_def
 <span class="st">  </span>(leaf_psi_osmotic_prior <span class="op">+</span><span class="st"> </span>(leaf_elastic_mod_prior <span class="op">*</span><span class="st"> </span>MPa2m))
 
 <span class="kw">summary</span>(leaf_psi_tlp_samp)</code></pre></div>
-<pre><code>##         Min.      1st Qu.       Median         Mean      3rd Qu.         Max. 
-## -790169.0357    -325.7870    -231.3441    -271.1684    -154.0938  234417.6517</code></pre>
+<pre><code>##          Min.       1st Qu.        Median          Mean       3rd Qu. 
+## -1094468.5195     -326.0738     -231.8347     -250.0977     -154.4872 
+##          Max. 
+##  1700074.9278</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Add in the max an min from the priors table</span>
 i &lt;-<span class="st"> </span><span class="kw">which</span>(priors<span class="op">$</span>ED_name <span class="op">==</span><span class="st"> &quot;leaf_psi_tlp&quot;</span>)
 prior_in &lt;-<span class="st"> </span>priors[i,stats] <span class="op">*</span><span class="st"> </span>MPa2m <span class="co"># Convert from MPa to m</span>
 prior_in &lt;-<span class="st"> </span><span class="kw">prior_add_samp_data</span>(prior_in, <span class="dt">samp =</span> <span class="op">-</span>leaf_psi_tlp_samp)
 prior_in[,stats]</code></pre></div>
-<pre><code>##     theor.min low.025      low.25        mean      upp.75     upp.975   theor.max
-## 1 50.98581065      NA 154.0938116 231.3441026 325.7869722 608.7159733 611.8297278</code></pre>
+<pre><code>##     theor.min low.025      low.25        mean      upp.75 upp.975
+## 1 50.98581065      NA 154.4871889 231.8346524 326.0737972      NA
+##     theor.max
+## 1 611.8297278</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">myfit &lt;-<span class="st"> </span><span class="kw">prior_get_fit</span>(prior_in, accepted_dists, <span class="dt">plot =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <p><img src="Final_Book_files/figure-html/calc%20leaf_psi_tlp-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">variable_id.in &lt;-<span class="st"> </span><span class="kw">tbl</span>(bety, <span class="st">&quot;variables&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(name <span class="op">==</span><span class="st"> &quot;leaf_psi_tlp&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(id)
@@ -562,7 +566,7 @@ leaf_psi_tlp_prior_id &lt;-<span class="st"> </span><span class="kw">prior_input
                                      <span class="dt">parama.in =</span> best.fit.dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(params <span class="op">==</span><span class="st"> &quot;Para1&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(value), 
                                      <span class="dt">paramb.in =</span> best.fit.dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(params <span class="op">==</span><span class="st"> &quot;Para2&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(value), 
                                      <span class="dt">paramc.in =</span> best.fit.dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(params <span class="op">==</span><span class="st"> &quot;Para3&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(value))</code></pre></div>
-<pre><code>## [1] &quot;Entry with id = 1000000384 already exists. Parameters look the same. Old: lnorm(5.4200, 0.5300) New: lnorm(5.4200, 0.5300)&quot;</code></pre>
+<pre><code>## [1] &quot;Entry with id = 1000000384 already exists. Parameters look different. Old: lnorm(5.4200, 0.5300) New: lnorm(5.4300, 0.5300)&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">leaf_psi_tlp_fit &lt;-<span class="st"> </span><span class="kw">tbl</span>(bety, <span class="st">&quot;priors&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(id <span class="op">==</span><span class="st"> </span>leaf_psi_tlp_prior_id) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">collect</span>()
 leaf_psi_tlp_prior &lt;-<span class="st"> </span><span class="op">-</span><span class="kw">rdistn</span>(leaf_psi_tlp_fit) <span class="co"># Remember to flip back over for psi</span>
 leaf_psi_tlp_default &lt;-<span class="st"> </span><span class="kw">get_ED_default</span>(<span class="st">&quot;/fs/data3/ecowdery/ED.Hydro/parameters/pft3_defaults_history.xml&quot;</span>, <span class="st">&quot;leaf_psi_tlp&quot;</span>)
@@ -610,7 +614,7 @@ prior_in[,stats]</code></pre></div>
 <pre><code>## # A tibble: 1 x 7
 ##   theor.min low.025 low.25  mean upp.75 upp.975 theor.max
 ##   &lt;lgl&gt;       &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;
-## 1 NA          0.163  0.448 0.747   1.24    3.25        NA</code></pre>
+## 1 NA          0.164  0.448 0.748   1.24    3.27        NA</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># prior_in &lt;- data.frame(theor.min = 1e-10,</span>
 <span class="co">#                        # low.025 =  quantile(leaf_water_cap_samp, c(.025), na.rm = TRUE),</span>
 <span class="co">#                        low.25  =  quantile(leaf_water_cap_samp, c(.25), na.rm = TRUE),</span>
@@ -660,8 +664,8 @@ i &lt;-<span class="st"> </span><span class="kw">which</span>(priors<span class=
 prior_in &lt;-<span class="st"> </span>priors[i,stats] <span class="op">*</span><span class="st"> </span>MPa2m <span class="co"># Convert from MPa to m</span>
 prior_in &lt;-<span class="st"> </span><span class="kw">prior_add_samp_data</span>(prior_in, <span class="dt">samp =</span> <span class="op">-</span>leaf_psi_min_samp)
 prior_in[,stats]</code></pre></div>
-<pre><code>##     theor.min     low.025      low.25        mean      upp.75     upp.975
-## 1 10.19716213 99.94918393 390.3005947 782.4895696 1536.200384 5762.160322
+<pre><code>##     theor.min     low.025      low.25      mean      upp.75    upp.975
+## 1 10.19716213 103.0145916 391.7194382 787.22138 1567.292892 5807.95387
 ##     theor.max
 ## 1 71380.13491</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">myfit &lt;-<span class="st"> </span><span class="kw">prior_get_fit</span>(prior_in, accepted_dists, <span class="dt">plot =</span> <span class="ot">TRUE</span>)</code></pre></div>
@@ -677,7 +681,7 @@ leaf_psi_min_prior_id &lt;-<span class="st"> </span><span class="kw">prior_input
                                      <span class="dt">parama.in =</span> best.fit.dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(params <span class="op">==</span><span class="st"> &quot;Para1&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(value), 
                                      <span class="dt">paramb.in =</span> best.fit.dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(params <span class="op">==</span><span class="st"> &quot;Para2&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(value), 
                                      <span class="dt">paramc.in =</span> best.fit.dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(params <span class="op">==</span><span class="st"> &quot;Para3&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(value))</code></pre></div>
-<pre><code>## [1] &quot;Entry with id = 1000000392 already exists. Parameters look different. Old: lnorm(6.6500, 1.0200) New: lnorm(6.6600, 1.0200)&quot;</code></pre>
+<pre><code>## [1] &quot;Entry with id = 1000000392 already exists. Parameters look different. Old: lnorm(6.6500, 1.0200) New: lnorm(6.6700, 1.0300)&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">leaf_psi_min_fit &lt;-<span class="st"> </span><span class="kw">tbl</span>(bety, <span class="st">&quot;priors&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(id <span class="op">==</span><span class="st"> </span>leaf_psi_min_prior_id) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">collect</span>()
 leaf_psi_min_prior &lt;-<span class="st"> </span><span class="op">-</span><span class="kw">rdistn</span>(leaf_psi_min_fit) <span class="co"># Remember to flip psi</span>
 default_leaf_psi_min &lt;-<span class="st"> </span><span class="kw">get_ED_default</span>(<span class="st">&quot;/fs/data3/ecowdery/ED.Hydro/parameters/pft3_defaults_history.xml&quot;</span>, <span class="st">&quot;leaf_psi_min&quot;</span>)
@@ -738,7 +742,7 @@ gitbook.start({
 },
 "download": null,
 "toc": {
-"collapse": "section"
+"collapse": "subsection"
 }
 });
 });
