@@ -21,6 +21,8 @@ Negative units in BETY so we can fit a distribution!
 ### Conversion
 `MPa to m`
 
+### Calcuation
+
 ```{r calc wood_psi_osmotic}
 i <- which(priors$ED_name == "wood_psi_osmotic")
 prior_in <- priors[i, stats] * MPa2m
@@ -65,6 +67,8 @@ prior_plot(prior = wood_psi_osmotic_prior,
 ### Conversion
 
 None!
+
+### Calcuation
 
 ```{r calc wood_elastic_mod}
 i <- which(priors$ED_name == "wood_elastic_mod")
@@ -111,6 +115,8 @@ prior_plot(prior = wood_elastic_mod_prior,
 ### Conversion 
 
 multiply by the density of water over wood density
+
+### Calcuation
 
 ```{r calc wood_water_sat}
 i <- which(priors$ED_name == "wood_water_sat")
@@ -165,7 +171,7 @@ Negative units in BETY so we can fit a distribution!
 
 - BETY varaible units: `-m`
 
-## Prior data?
+### Prior data?
 
 There is a FATES parameter but it is calculated from other parameters
 
@@ -175,11 +181,13 @@ There is a FATES parameter but it is calculated from other parameters
 Constraints we added
 - `wood_psi_tlp > .1 MPa` (this was given as a boundary for other psi variables)
 
-### Calculation and conversion 
+### Conversion 
 
 - Calculated from other parameters: `wood_psi_osmotic` and `wood_elastic_mod`
 
 - Remember that `wood_elastic_mod` is `MPa`, where everything else is `m`! 
+
+### Calcuation
 
 ```
 wood_psi_tlp_samp = 
@@ -306,7 +314,7 @@ Negative units in BETY so we can fit a distribution!
 
 - BETY varaible units: `-m`
 
-## Prior data?
+### Prior data?
 
 There are no FATES parameters 
 
@@ -370,6 +378,8 @@ prior_plot(prior = wood_psi_min_prior,
 ### Conversion
 
 I don't think we need to multiply by the density of water  ... which is confusing. 
+
+### Calcuation
 
 ```{r calc wood_Kmax}
 i <- which(priors$ED_name == "wood_Kmax")
