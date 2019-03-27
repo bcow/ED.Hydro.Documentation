@@ -1,6 +1,6 @@
 ---
-  title: "05-Data_Compare"
-  output: html_document
+title: "05-Data_Compare"
+output: html_document
 ---
 
 # Comparing Data to Priors
@@ -13,7 +13,7 @@ the variables that are multiplied by 1000.
 ```{r}
 bety <- betyConnect("/fs/data3/ecowdery/pecan/web/config.php")
 
-pftid <- 1000000132
+pftid <- 1000000131
 
 tropical_species <- tbl(bety, "pfts") %>% dplyr::rename(pft_id = id) %>% filter(pft_id == pftid) %>%
   inner_join(., tbl(bety, "pfts_species"), by = "pft_id") %>% 
@@ -119,7 +119,7 @@ wood_psi50_fit <- tbl(bety, "priors") %>% filter(id == wood_psi50_prior_id) %>% 
 wood_psi50_prior <- -rdistn(wood_psi50_fit) # NOTE: Need to convert to m from -m 
 
 # Calculating default by hand because it is calculated wrong in ED! 
-wood_psi50_default <- (-1.09 - (3.57 * default_wood_density ^ 1.73)) * MPa2m
+wood_psi50_default <- (-1.09 - (3.57 * wood_density_default ^ 1.73)) * MPa2m
 wrong_wood_psi50_default <- get_ED_default(PFT3_defaults_history, "wood_psi50")
 
 p <- prior_plot(prior = wood_psi50_prior, 

@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>[SLA]: Specific Leaf Area (SLA) | Calculating ED Hydro Parameter Priors</title>
+  <meta name="description" content="Boooooook">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+
+  <meta property="og:title" content="[SLA]: Specific Leaf Area (SLA) | Calculating ED Hydro Parameter Priors" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="https://bcow.github.io/ED.Hydro.Documentation/" />
+  
+  <meta property="og:description" content="Boooooook" />
+  <meta name="github-repo" content="bcow/ED.Hydro.Documentation" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="[SLA]: Specific Leaf Area (SLA) | Calculating ED Hydro Parameter Priors" />
+  
+  <meta name="twitter:description" content="Boooooook" />
+  
+
+<meta name="author" content="Betsy Cowdery">
+
+
+<meta name="date" content="2019-03-27">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="wood-density-wood-density.html">
+<link rel="next" href="leaf-psi-osmotic-leaf-osmotic-water-potential-at-saturation.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Documentation</a></li>
+<li class="chapter" data-level="" data-path="setup.html"><a href="setup.html"><i class="fa fa-check"></i>Setup</a></li>
+<li class="part"><span><b>I Starting Parameters</b></span></li>
+<li><a href="wdns-liquid-water-density.html#wdns-liquid-water-density"><code>[wdns]:</code> Liquid water density</a></li>
+<li><a href="grav-gravity.html#grav-gravity"><code>[grav]:</code> Gravity</a></li>
+<li><a href="mpa2m-conversion-from-mpa-to-m.html#mpa2m-conversion-from-mpa-to-m"><code>[MPa2m]:</code> Conversion from MPa to m</a></li>
+<li><a href="wood-density-wood-density.html#wood_density-wood-density"><code>[wood_density]:</code> Wood density</a></li>
+<li><a href="sla-specific-leaf-area-sla.html#sla-specific-leaf-area-sla"><code>[SLA]:</code> Specific Leaf Area (SLA)</a></li>
+<li class="part"><span><b>II Key Leaf Traits</b></span></li>
+<li class="chapter" data-level="1" data-path="leaf-psi-osmotic-leaf-osmotic-water-potential-at-saturation.html"><a href="leaf-psi-osmotic-leaf-osmotic-water-potential-at-saturation.html"><i class="fa fa-check"></i><b>1</b> <code>[leaf_psi_osmotic]:</code> Leaf osmotic water potential at saturation</a><ul>
+<li class="chapter" data-level="1.1" data-path="leaf-psi-osmotic-leaf-osmotic-water-potential-at-saturation.html"><a href="leaf-psi-osmotic-leaf-osmotic-water-potential-at-saturation.html#ed"><i class="fa fa-check"></i><b>1.1</b> ED</a></li>
+<li class="chapter" data-level="1.2" data-path="leaf-psi-osmotic-leaf-osmotic-water-potential-at-saturation.html"><a href="leaf-psi-osmotic-leaf-osmotic-water-potential-at-saturation.html#bety"><i class="fa fa-check"></i><b>1.2</b> BETY</a></li>
+<li class="chapter" data-level="1.3" data-path="leaf-psi-osmotic-leaf-osmotic-water-potential-at-saturation.html"><a href="leaf-psi-osmotic-leaf-osmotic-water-potential-at-saturation.html#calculation"><i class="fa fa-check"></i><b>1.3</b> Calculation</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="leaf-psi-osmotic-leaf-osmotic-water-potential-at-saturation.html"><a href="leaf-psi-osmotic-leaf-osmotic-water-potential-at-saturation.html#expert-elicitation"><i class="fa fa-check"></i><b>1.3.1</b> Expert elicitation</a></li>
+<li class="chapter" data-level="1.3.2" data-path="leaf-psi-osmotic-leaf-osmotic-water-potential-at-saturation.html"><a href="leaf-psi-osmotic-leaf-osmotic-water-potential-at-saturation.html#conversion"><i class="fa fa-check"></i><b>1.3.2</b> Conversion</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="leaf-psi-osmotic-leaf-osmotic-water-potential-at-saturation.html"><a href="leaf-psi-osmotic-leaf-osmotic-water-potential-at-saturation.html#code"><i class="fa fa-check"></i><b>1.4</b> Code</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="leaf-elastic-mod-leaf-bulk-elastic-modulus.html"><a href="leaf-elastic-mod-leaf-bulk-elastic-modulus.html"><i class="fa fa-check"></i><b>2</b> <code>[leaf_elastic_mod]</code>: Leaf bulk elastic modulus</a><ul>
+<li class="chapter" data-level="2.1" data-path="leaf-elastic-mod-leaf-bulk-elastic-modulus.html"><a href="leaf-elastic-mod-leaf-bulk-elastic-modulus.html#ed-1"><i class="fa fa-check"></i><b>2.1</b> ED</a></li>
+<li class="chapter" data-level="2.2" data-path="leaf-elastic-mod-leaf-bulk-elastic-modulus.html"><a href="leaf-elastic-mod-leaf-bulk-elastic-modulus.html#bety-1"><i class="fa fa-check"></i><b>2.2</b> BETY</a></li>
+<li class="chapter" data-level="2.3" data-path="leaf-elastic-mod-leaf-bulk-elastic-modulus.html"><a href="leaf-elastic-mod-leaf-bulk-elastic-modulus.html#calculation-1"><i class="fa fa-check"></i><b>2.3</b> Calculation</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="leaf-elastic-mod-leaf-bulk-elastic-modulus.html"><a href="leaf-elastic-mod-leaf-bulk-elastic-modulus.html#expert-elicitation-1"><i class="fa fa-check"></i><b>2.3.1</b> Expert elicitation</a></li>
+<li class="chapter" data-level="2.3.2" data-path="leaf-elastic-mod-leaf-bulk-elastic-modulus.html"><a href="leaf-elastic-mod-leaf-bulk-elastic-modulus.html#conversion-1"><i class="fa fa-check"></i><b>2.3.2</b> Conversion</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="leaf-elastic-mod-leaf-bulk-elastic-modulus.html"><a href="leaf-elastic-mod-leaf-bulk-elastic-modulus.html#code-1"><i class="fa fa-check"></i><b>2.4</b> Code</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="leaf-density-density-of-leaf-tissue.html"><a href="leaf-density-density-of-leaf-tissue.html"><i class="fa fa-check"></i><b>3</b> <code>[leaf_density]:</code> Density of leaf tissue</a><ul>
+<li class="chapter" data-level="3.1" data-path="leaf-density-density-of-leaf-tissue.html"><a href="leaf-density-density-of-leaf-tissue.html#ed-2"><i class="fa fa-check"></i><b>3.1</b> ED</a></li>
+<li class="chapter" data-level="3.2" data-path="leaf-density-density-of-leaf-tissue.html"><a href="leaf-density-density-of-leaf-tissue.html#bety-2"><i class="fa fa-check"></i><b>3.2</b> BETY</a></li>
+<li class="chapter" data-level="3.3" data-path="leaf-density-density-of-leaf-tissue.html"><a href="leaf-density-density-of-leaf-tissue.html#calculation-2"><i class="fa fa-check"></i><b>3.3</b> Calculation</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="leaf-density-density-of-leaf-tissue.html"><a href="leaf-density-density-of-leaf-tissue.html#expert-elicitation-2"><i class="fa fa-check"></i><b>3.3.1</b> Expert elicitation</a></li>
+<li class="chapter" data-level="3.3.2" data-path="leaf-density-density-of-leaf-tissue.html"><a href="leaf-density-density-of-leaf-tissue.html#conversion-2"><i class="fa fa-check"></i><b>3.3.2</b> Conversion</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="leaf-density-density-of-leaf-tissue.html"><a href="leaf-density-density-of-leaf-tissue.html#code-2"><i class="fa fa-check"></i><b>3.4</b> Code</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="leaf-water-sat-leaf-water-content-at-saturation.html"><a href="leaf-water-sat-leaf-water-content-at-saturation.html"><i class="fa fa-check"></i><b>4</b> <code>[leaf_water_sat]:</code> Leaf water content at saturation</a><ul>
+<li class="chapter" data-level="4.1" data-path="leaf-water-sat-leaf-water-content-at-saturation.html"><a href="leaf-water-sat-leaf-water-content-at-saturation.html#ed-3"><i class="fa fa-check"></i><b>4.1</b> ED</a></li>
+<li class="chapter" data-level="4.2" data-path="leaf-water-sat-leaf-water-content-at-saturation.html"><a href="leaf-water-sat-leaf-water-content-at-saturation.html#bety-3"><i class="fa fa-check"></i><b>4.2</b> BETY</a></li>
+<li class="chapter" data-level="4.3" data-path="leaf-water-sat-leaf-water-content-at-saturation.html"><a href="leaf-water-sat-leaf-water-content-at-saturation.html#calculation-3"><i class="fa fa-check"></i><b>4.3</b> Calculation</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="leaf-water-sat-leaf-water-content-at-saturation.html"><a href="leaf-water-sat-leaf-water-content-at-saturation.html#expert-elicitation-3"><i class="fa fa-check"></i><b>4.3.1</b> Expert elicitation</a></li>
+<li class="chapter" data-level="4.3.2" data-path="leaf-water-sat-leaf-water-content-at-saturation.html"><a href="leaf-water-sat-leaf-water-content-at-saturation.html#conversion-3"><i class="fa fa-check"></i><b>4.3.2</b> Conversion</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="leaf-water-sat-leaf-water-content-at-saturation.html"><a href="leaf-water-sat-leaf-water-content-at-saturation.html#code-3"><i class="fa fa-check"></i><b>4.4</b> Code</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="leaf-water-sat-leaf-water-content-at-saturation.html"><a href="leaf-water-sat-leaf-water-content-at-saturation.html#initial-testing-code"><i class="fa fa-check"></i><b>4.4.1</b> Initial testing code</a></li>
+<li class="chapter" data-level="4.4.2" data-path="leaf-water-sat-leaf-water-content-at-saturation.html"><a href="leaf-water-sat-leaf-water-content-at-saturation.html#actual-code"><i class="fa fa-check"></i><b>4.4.2</b> Actual code</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="leaf-psi-tlp-leaf-water-potential-at-turgor-loss-point.html"><a href="leaf-psi-tlp-leaf-water-potential-at-turgor-loss-point.html"><i class="fa fa-check"></i><b>5</b> <code>[leaf_psi_tlp]:</code> Leaf water potential at turgor loss point</a><ul>
+<li class="chapter" data-level="5.1" data-path="leaf-psi-tlp-leaf-water-potential-at-turgor-loss-point.html"><a href="leaf-psi-tlp-leaf-water-potential-at-turgor-loss-point.html#ed-4"><i class="fa fa-check"></i><b>5.1</b> ED</a></li>
+<li class="chapter" data-level="5.2" data-path="leaf-psi-tlp-leaf-water-potential-at-turgor-loss-point.html"><a href="leaf-psi-tlp-leaf-water-potential-at-turgor-loss-point.html#bety-4"><i class="fa fa-check"></i><b>5.2</b> BETY</a></li>
+<li class="chapter" data-level="5.3" data-path="leaf-psi-tlp-leaf-water-potential-at-turgor-loss-point.html"><a href="leaf-psi-tlp-leaf-water-potential-at-turgor-loss-point.html#calculation-4"><i class="fa fa-check"></i><b>5.3</b> Calculation</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="leaf-psi-tlp-leaf-water-potential-at-turgor-loss-point.html"><a href="leaf-psi-tlp-leaf-water-potential-at-turgor-loss-point.html#expert-elicitation-4"><i class="fa fa-check"></i><b>5.3.1</b> Expert elicitation</a></li>
+<li class="chapter" data-level="5.3.2" data-path="leaf-psi-tlp-leaf-water-potential-at-turgor-loss-point.html"><a href="leaf-psi-tlp-leaf-water-potential-at-turgor-loss-point.html#conversion-4"><i class="fa fa-check"></i><b>5.3.2</b> Conversion</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="leaf-psi-tlp-leaf-water-potential-at-turgor-loss-point.html"><a href="leaf-psi-tlp-leaf-water-potential-at-turgor-loss-point.html#code-4"><i class="fa fa-check"></i><b>5.4</b> Code</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="leaf-water-cap-leaf-hydaulic-capacitance-.html"><a href="leaf-water-cap-leaf-hydaulic-capacitance-.html"><i class="fa fa-check"></i><b>6</b> <code>[leaf_water_cap]:</code> Leaf hydaulic capacitance.</a><ul>
+<li class="chapter" data-level="6.1" data-path="leaf-water-cap-leaf-hydaulic-capacitance-.html"><a href="leaf-water-cap-leaf-hydaulic-capacitance-.html#ed-5"><i class="fa fa-check"></i><b>6.1</b> ED</a></li>
+<li class="chapter" data-level="6.2" data-path="leaf-water-cap-leaf-hydaulic-capacitance-.html"><a href="leaf-water-cap-leaf-hydaulic-capacitance-.html#bety-5"><i class="fa fa-check"></i><b>6.2</b> BETY</a></li>
+<li class="chapter" data-level="6.3" data-path="leaf-water-cap-leaf-hydaulic-capacitance-.html"><a href="leaf-water-cap-leaf-hydaulic-capacitance-.html#calculation-5"><i class="fa fa-check"></i><b>6.3</b> Calculation</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="leaf-water-cap-leaf-hydaulic-capacitance-.html"><a href="leaf-water-cap-leaf-hydaulic-capacitance-.html#expert-elicitation-5"><i class="fa fa-check"></i><b>6.3.1</b> Expert elicitation</a></li>
+<li class="chapter" data-level="6.3.2" data-path="leaf-water-cap-leaf-hydaulic-capacitance-.html"><a href="leaf-water-cap-leaf-hydaulic-capacitance-.html#conversion-5"><i class="fa fa-check"></i><b>6.3.2</b> Conversion</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="leaf-water-cap-leaf-hydaulic-capacitance-.html"><a href="leaf-water-cap-leaf-hydaulic-capacitance-.html#code-5"><i class="fa fa-check"></i><b>6.4</b> Code</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="leaf-psi-min-leaf-minimum-water-potential.html"><a href="leaf-psi-min-leaf-minimum-water-potential.html"><i class="fa fa-check"></i><b>7</b> <code>[leaf_psi_min]:</code> Leaf minimum water potential</a><ul>
+<li class="chapter" data-level="7.1" data-path="leaf-psi-min-leaf-minimum-water-potential.html"><a href="leaf-psi-min-leaf-minimum-water-potential.html#ed-6"><i class="fa fa-check"></i><b>7.1</b> ED</a></li>
+<li class="chapter" data-level="7.2" data-path="leaf-psi-min-leaf-minimum-water-potential.html"><a href="leaf-psi-min-leaf-minimum-water-potential.html#bety-6"><i class="fa fa-check"></i><b>7.2</b> BETY</a></li>
+<li class="chapter" data-level="7.3" data-path="leaf-psi-min-leaf-minimum-water-potential.html"><a href="leaf-psi-min-leaf-minimum-water-potential.html#calculation-6"><i class="fa fa-check"></i><b>7.3</b> Calculation</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="leaf-psi-min-leaf-minimum-water-potential.html"><a href="leaf-psi-min-leaf-minimum-water-potential.html#expert-elicitation-6"><i class="fa fa-check"></i><b>7.3.1</b> Expert elicitation</a></li>
+<li class="chapter" data-level="7.3.2" data-path="leaf-psi-min-leaf-minimum-water-potential.html"><a href="leaf-psi-min-leaf-minimum-water-potential.html#conversion-6"><i class="fa fa-check"></i><b>7.3.2</b> Conversion</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="leaf-psi-min-leaf-minimum-water-potential.html"><a href="leaf-psi-min-leaf-minimum-water-potential.html#code-6"><i class="fa fa-check"></i><b>7.4</b> Code</a></li>
+</ul></li>
+<li class="part"><span><b>III Key Wood Traits</b></span></li>
+<li class="chapter" data-level="8" data-path="wood-psi-osmotic-sapwood-osmotic-water-potential-at-saturation.html"><a href="wood-psi-osmotic-sapwood-osmotic-water-potential-at-saturation.html"><i class="fa fa-check"></i><b>8</b> <code>[wood_psi_osmotic]:</code> Sapwood osmotic water potential at saturation</a><ul>
+<li class="chapter" data-level="8.1" data-path="wood-psi-osmotic-sapwood-osmotic-water-potential-at-saturation.html"><a href="wood-psi-osmotic-sapwood-osmotic-water-potential-at-saturation.html#ed-7"><i class="fa fa-check"></i><b>8.1</b> ED</a></li>
+<li class="chapter" data-level="8.2" data-path="wood-psi-osmotic-sapwood-osmotic-water-potential-at-saturation.html"><a href="wood-psi-osmotic-sapwood-osmotic-water-potential-at-saturation.html#bety-7"><i class="fa fa-check"></i><b>8.2</b> BETY</a></li>
+<li class="chapter" data-level="8.3" data-path="wood-psi-osmotic-sapwood-osmotic-water-potential-at-saturation.html"><a href="wood-psi-osmotic-sapwood-osmotic-water-potential-at-saturation.html#calculation-7"><i class="fa fa-check"></i><b>8.3</b> Calculation</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="wood-psi-osmotic-sapwood-osmotic-water-potential-at-saturation.html"><a href="wood-psi-osmotic-sapwood-osmotic-water-potential-at-saturation.html#expert-elicitation-7"><i class="fa fa-check"></i><b>8.3.1</b> Expert elicitation</a></li>
+<li class="chapter" data-level="8.3.2" data-path="wood-psi-osmotic-sapwood-osmotic-water-potential-at-saturation.html"><a href="wood-psi-osmotic-sapwood-osmotic-water-potential-at-saturation.html#conversion-7"><i class="fa fa-check"></i><b>8.3.2</b> Conversion</a></li>
+<li class="chapter" data-level="8.3.3" data-path="wood-psi-osmotic-sapwood-osmotic-water-potential-at-saturation.html"><a href="wood-psi-osmotic-sapwood-osmotic-water-potential-at-saturation.html#code-7"><i class="fa fa-check"></i><b>8.3.3</b> Code</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="wood-elastic-mod-sapwood-bulk-elastic-modulus.html"><a href="wood-elastic-mod-sapwood-bulk-elastic-modulus.html"><i class="fa fa-check"></i><b>9</b> <code>[wood_elastic_mod]:</code> Sapwood bulk elastic modulus</a><ul>
+<li class="chapter" data-level="9.1" data-path="wood-elastic-mod-sapwood-bulk-elastic-modulus.html"><a href="wood-elastic-mod-sapwood-bulk-elastic-modulus.html#ed-8"><i class="fa fa-check"></i><b>9.1</b> ED</a></li>
+<li class="chapter" data-level="9.2" data-path="wood-elastic-mod-sapwood-bulk-elastic-modulus.html"><a href="wood-elastic-mod-sapwood-bulk-elastic-modulus.html#bety-8"><i class="fa fa-check"></i><b>9.2</b> BETY</a></li>
+<li class="chapter" data-level="9.3" data-path="wood-elastic-mod-sapwood-bulk-elastic-modulus.html"><a href="wood-elastic-mod-sapwood-bulk-elastic-modulus.html#calculation-8"><i class="fa fa-check"></i><b>9.3</b> Calculation</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="wood-elastic-mod-sapwood-bulk-elastic-modulus.html"><a href="wood-elastic-mod-sapwood-bulk-elastic-modulus.html#expert-elicitation-8"><i class="fa fa-check"></i><b>9.3.1</b> Expert elicitation</a></li>
+<li class="chapter" data-level="9.3.2" data-path="wood-elastic-mod-sapwood-bulk-elastic-modulus.html"><a href="wood-elastic-mod-sapwood-bulk-elastic-modulus.html#conversion-8"><i class="fa fa-check"></i><b>9.3.2</b> Conversion</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="wood-elastic-mod-sapwood-bulk-elastic-modulus.html"><a href="wood-elastic-mod-sapwood-bulk-elastic-modulus.html#code-8"><i class="fa fa-check"></i><b>9.4</b> Code</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="wood-psi-tlp-sapwood-water-potential-at-turgor-loss-point.html"><a href="wood-psi-tlp-sapwood-water-potential-at-turgor-loss-point.html"><i class="fa fa-check"></i><b>10</b> <code>[wood_psi_tlp]:</code> Sapwood water potential at turgor loss point</a><ul>
+<li class="chapter" data-level="10.1" data-path="wood-psi-tlp-sapwood-water-potential-at-turgor-loss-point.html"><a href="wood-psi-tlp-sapwood-water-potential-at-turgor-loss-point.html#ed-9"><i class="fa fa-check"></i><b>10.1</b> ED</a></li>
+<li class="chapter" data-level="10.2" data-path="wood-psi-tlp-sapwood-water-potential-at-turgor-loss-point.html"><a href="wood-psi-tlp-sapwood-water-potential-at-turgor-loss-point.html#bety-9"><i class="fa fa-check"></i><b>10.2</b> BETY</a></li>
+<li class="chapter" data-level="10.3" data-path="wood-psi-tlp-sapwood-water-potential-at-turgor-loss-point.html"><a href="wood-psi-tlp-sapwood-water-potential-at-turgor-loss-point.html#calculation-9"><i class="fa fa-check"></i><b>10.3</b> Calculation</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="wood-psi-tlp-sapwood-water-potential-at-turgor-loss-point.html"><a href="wood-psi-tlp-sapwood-water-potential-at-turgor-loss-point.html#expert-elicitation-9"><i class="fa fa-check"></i><b>10.3.1</b> Expert elicitation</a></li>
+<li class="chapter" data-level="10.3.2" data-path="wood-psi-tlp-sapwood-water-potential-at-turgor-loss-point.html"><a href="wood-psi-tlp-sapwood-water-potential-at-turgor-loss-point.html#conversion-9"><i class="fa fa-check"></i><b>10.3.2</b> Conversion</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="wood-psi-tlp-sapwood-water-potential-at-turgor-loss-point.html"><a href="wood-psi-tlp-sapwood-water-potential-at-turgor-loss-point.html#code-9"><i class="fa fa-check"></i><b>10.4</b> Code</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="wood-water-cap-wood-hydaulic-capacitance.html"><a href="wood-water-cap-wood-hydaulic-capacitance.html"><i class="fa fa-check"></i><b>11</b> <code>[wood_water_cap]:</code> Wood hydaulic capacitance</a><ul>
+<li class="chapter" data-level="11.1" data-path="wood-water-cap-wood-hydaulic-capacitance.html"><a href="wood-water-cap-wood-hydaulic-capacitance.html#ed-10"><i class="fa fa-check"></i><b>11.1</b> ED</a></li>
+<li class="chapter" data-level="11.2" data-path="wood-water-cap-wood-hydaulic-capacitance.html"><a href="wood-water-cap-wood-hydaulic-capacitance.html#bety-10"><i class="fa fa-check"></i><b>11.2</b> BETY</a></li>
+<li class="chapter" data-level="11.3" data-path="wood-water-cap-wood-hydaulic-capacitance.html"><a href="wood-water-cap-wood-hydaulic-capacitance.html#calculation-10"><i class="fa fa-check"></i><b>11.3</b> Calculation</a><ul>
+<li class="chapter" data-level="11.3.1" data-path="wood-water-cap-wood-hydaulic-capacitance.html"><a href="wood-water-cap-wood-hydaulic-capacitance.html#expert-elicitation-10"><i class="fa fa-check"></i><b>11.3.1</b> Expert elicitation</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="wood-water-cap-wood-hydaulic-capacitance.html"><a href="wood-water-cap-wood-hydaulic-capacitance.html#code-10"><i class="fa fa-check"></i><b>11.4</b> Code</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="wood-psi-min-sapwood-minimum-relative-water-content-or-sapwood-residual-fraction.html"><a href="wood-psi-min-sapwood-minimum-relative-water-content-or-sapwood-residual-fraction.html"><i class="fa fa-check"></i><b>12</b> <code>[wood_psi_min]:</code> Sapwood minimum relative water content or Sapwood residual fraction</a><ul>
+<li class="chapter" data-level="12.1" data-path="wood-psi-min-sapwood-minimum-relative-water-content-or-sapwood-residual-fraction.html"><a href="wood-psi-min-sapwood-minimum-relative-water-content-or-sapwood-residual-fraction.html#ed-11"><i class="fa fa-check"></i><b>12.1</b> ED</a></li>
+<li class="chapter" data-level="12.2" data-path="wood-psi-min-sapwood-minimum-relative-water-content-or-sapwood-residual-fraction.html"><a href="wood-psi-min-sapwood-minimum-relative-water-content-or-sapwood-residual-fraction.html#bety-11"><i class="fa fa-check"></i><b>12.2</b> BETY</a></li>
+<li class="chapter" data-level="12.3" data-path="wood-psi-min-sapwood-minimum-relative-water-content-or-sapwood-residual-fraction.html"><a href="wood-psi-min-sapwood-minimum-relative-water-content-or-sapwood-residual-fraction.html#calculation-11"><i class="fa fa-check"></i><b>12.3</b> Calculation</a><ul>
+<li class="chapter" data-level="12.3.1" data-path="wood-psi-min-sapwood-minimum-relative-water-content-or-sapwood-residual-fraction.html"><a href="wood-psi-min-sapwood-minimum-relative-water-content-or-sapwood-residual-fraction.html#expert-elicitation-11"><i class="fa fa-check"></i><b>12.3.1</b> Expert elicitation</a></li>
+</ul></li>
+<li class="chapter" data-level="12.4" data-path="wood-psi-min-sapwood-minimum-relative-water-content-or-sapwood-residual-fraction.html"><a href="wood-psi-min-sapwood-minimum-relative-water-content-or-sapwood-residual-fraction.html#code-11"><i class="fa fa-check"></i><b>12.4</b> Code</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="wood-kmax-maximum-hydraulic-conductivity-of-the-stem.html"><a href="wood-kmax-maximum-hydraulic-conductivity-of-the-stem.html"><i class="fa fa-check"></i><b>13</b> <code>[wood_Kmax]:</code> Maximum hydraulic conductivity of the stem</a><ul>
+<li class="chapter" data-level="13.1" data-path="wood-kmax-maximum-hydraulic-conductivity-of-the-stem.html"><a href="wood-kmax-maximum-hydraulic-conductivity-of-the-stem.html#ed-12"><i class="fa fa-check"></i><b>13.1</b> ED</a></li>
+<li class="chapter" data-level="13.2" data-path="wood-kmax-maximum-hydraulic-conductivity-of-the-stem.html"><a href="wood-kmax-maximum-hydraulic-conductivity-of-the-stem.html#bety-12"><i class="fa fa-check"></i><b>13.2</b> BETY</a></li>
+<li class="chapter" data-level="13.3" data-path="wood-kmax-maximum-hydraulic-conductivity-of-the-stem.html"><a href="wood-kmax-maximum-hydraulic-conductivity-of-the-stem.html#calculation-12"><i class="fa fa-check"></i><b>13.3</b> Calculation</a><ul>
+<li class="chapter" data-level="13.3.1" data-path="wood-kmax-maximum-hydraulic-conductivity-of-the-stem.html"><a href="wood-kmax-maximum-hydraulic-conductivity-of-the-stem.html#expert-elicitation-12"><i class="fa fa-check"></i><b>13.3.1</b> Expert elicitation</a></li>
+<li class="chapter" data-level="13.3.2" data-path="wood-kmax-maximum-hydraulic-conductivity-of-the-stem.html"><a href="wood-kmax-maximum-hydraulic-conductivity-of-the-stem.html#conversion-10"><i class="fa fa-check"></i><b>13.3.2</b> Conversion</a></li>
+</ul></li>
+<li class="chapter" data-level="13.4" data-path="wood-kmax-maximum-hydraulic-conductivity-of-the-stem.html"><a href="wood-kmax-maximum-hydraulic-conductivity-of-the-stem.html#code-12"><i class="fa fa-check"></i><b>13.4</b> Code</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="wood-psi50-water-potential-at-which-50-of-stem-conductivity-is-lost.html"><a href="wood-psi50-water-potential-at-which-50-of-stem-conductivity-is-lost.html"><i class="fa fa-check"></i><b>14</b> <code>[wood_psi50]:</code> Water potential at which 50% of stem conductivity is lost</a><ul>
+<li class="chapter" data-level="14.1" data-path="wood-psi50-water-potential-at-which-50-of-stem-conductivity-is-lost.html"><a href="wood-psi50-water-potential-at-which-50-of-stem-conductivity-is-lost.html#ed-13"><i class="fa fa-check"></i><b>14.1</b> ED</a></li>
+<li class="chapter" data-level="14.2" data-path="wood-psi50-water-potential-at-which-50-of-stem-conductivity-is-lost.html"><a href="wood-psi50-water-potential-at-which-50-of-stem-conductivity-is-lost.html#bety-13"><i class="fa fa-check"></i><b>14.2</b> BETY</a></li>
+<li class="chapter" data-level="14.3" data-path="wood-psi50-water-potential-at-which-50-of-stem-conductivity-is-lost.html"><a href="wood-psi50-water-potential-at-which-50-of-stem-conductivity-is-lost.html#calculation-13"><i class="fa fa-check"></i><b>14.3</b> Calculation</a><ul>
+<li class="chapter" data-level="14.3.1" data-path="wood-psi50-water-potential-at-which-50-of-stem-conductivity-is-lost.html"><a href="wood-psi50-water-potential-at-which-50-of-stem-conductivity-is-lost.html#expert-elicitation-13"><i class="fa fa-check"></i><b>14.3.1</b> Expert elicitation</a></li>
+<li class="chapter" data-level="14.3.2" data-path="wood-psi50-water-potential-at-which-50-of-stem-conductivity-is-lost.html"><a href="wood-psi50-water-potential-at-which-50-of-stem-conductivity-is-lost.html#conversion-11"><i class="fa fa-check"></i><b>14.3.2</b> Conversion</a></li>
+</ul></li>
+<li class="chapter" data-level="14.4" data-path="wood-psi50-water-potential-at-which-50-of-stem-conductivity-is-lost.html"><a href="wood-psi50-water-potential-at-which-50-of-stem-conductivity-is-lost.html#code-13"><i class="fa fa-check"></i><b>14.4</b> Code</a><ul>
+<li class="chapter" data-level="14.4.1" data-path="wood-psi50-water-potential-at-which-50-of-stem-conductivity-is-lost.html"><a href="wood-psi50-water-potential-at-which-50-of-stem-conductivity-is-lost.html#using-the-best-fit-norm"><i class="fa fa-check"></i><b>14.4.1</b> Using the best fit norm</a></li>
+<li class="chapter" data-level="14.4.2" data-path="wood-psi50-water-potential-at-which-50-of-stem-conductivity-is-lost.html"><a href="wood-psi50-water-potential-at-which-50-of-stem-conductivity-is-lost.html#using-more-realistic-lnorm"><i class="fa fa-check"></i><b>14.4.2</b> Using more realistic lnorm</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="wood-kexp-exponent-for-the-hydraulic-vulnerability-curve-of-stem-conductivity.html"><a href="wood-kexp-exponent-for-the-hydraulic-vulnerability-curve-of-stem-conductivity.html"><i class="fa fa-check"></i><b>15</b> <code>[wood_Kexp]:</code> Exponent for the hydraulic vulnerability curve of stem conductivity</a><ul>
+<li class="chapter" data-level="15.1" data-path="wood-kexp-exponent-for-the-hydraulic-vulnerability-curve-of-stem-conductivity.html"><a href="wood-kexp-exponent-for-the-hydraulic-vulnerability-curve-of-stem-conductivity.html#ed-14"><i class="fa fa-check"></i><b>15.1</b> ED</a></li>
+<li class="chapter" data-level="15.2" data-path="wood-kexp-exponent-for-the-hydraulic-vulnerability-curve-of-stem-conductivity.html"><a href="wood-kexp-exponent-for-the-hydraulic-vulnerability-curve-of-stem-conductivity.html#bety-14"><i class="fa fa-check"></i><b>15.2</b> BETY</a></li>
+<li class="chapter" data-level="15.3" data-path="wood-kexp-exponent-for-the-hydraulic-vulnerability-curve-of-stem-conductivity.html"><a href="wood-kexp-exponent-for-the-hydraulic-vulnerability-curve-of-stem-conductivity.html#calculation-14"><i class="fa fa-check"></i><b>15.3</b> Calculation</a><ul>
+<li class="chapter" data-level="15.3.1" data-path="wood-kexp-exponent-for-the-hydraulic-vulnerability-curve-of-stem-conductivity.html"><a href="wood-kexp-exponent-for-the-hydraulic-vulnerability-curve-of-stem-conductivity.html#expert-elicitation-14"><i class="fa fa-check"></i><b>15.3.1</b> Expert elicitation</a></li>
+<li class="chapter" data-level="15.3.2" data-path="wood-kexp-exponent-for-the-hydraulic-vulnerability-curve-of-stem-conductivity.html"><a href="wood-kexp-exponent-for-the-hydraulic-vulnerability-curve-of-stem-conductivity.html#conversion-12"><i class="fa fa-check"></i><b>15.3.2</b> Conversion</a></li>
+</ul></li>
+<li class="chapter" data-level="15.4" data-path="wood-kexp-exponent-for-the-hydraulic-vulnerability-curve-of-stem-conductivity.html"><a href="wood-kexp-exponent-for-the-hydraulic-vulnerability-curve-of-stem-conductivity.html#code-14"><i class="fa fa-check"></i><b>15.4</b> Code</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="comparing-data-to-priors.html"><a href="comparing-data-to-priors.html"><i class="fa fa-check"></i><b>16</b> Comparing Data to Priors</a><ul>
+<li class="chapter" data-level="16.1" data-path="comparing-data-to-priors.html"><a href="comparing-data-to-priors.html#wood-density"><i class="fa fa-check"></i><b>16.1</b> Wood Density</a></li>
+<li class="chapter" data-level="16.2" data-path="comparing-data-to-priors.html"><a href="comparing-data-to-priors.html#sla"><i class="fa fa-check"></i><b>16.2</b> SLA</a></li>
+<li class="chapter" data-level="16.3" data-path="comparing-data-to-priors.html"><a href="comparing-data-to-priors.html#kmax"><i class="fa fa-check"></i><b>16.3</b> Kmax</a></li>
+<li class="chapter" data-level="16.4" data-path="comparing-data-to-priors.html"><a href="comparing-data-to-priors.html#psi50"><i class="fa fa-check"></i><b>16.4</b> Psi50</a></li>
+<li class="chapter" data-level="16.5" data-path="comparing-data-to-priors.html"><a href="comparing-data-to-priors.html#kexp"><i class="fa fa-check"></i><b>16.5</b> Kexp</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Calculating ED Hydro Parameter Priors</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="sla-specific-leaf-area-sla" class="section level1 unnumbered">
+<h1><code>[SLA]:</code> Specific Leaf Area (SLA)</h1>
+<p>And subsequently <span class="math inline">\(LMA = (1/SLA)\)</span></p>
+<ul>
+<li>ED variable name : <code>SLA</code></li>
+<li>ED variable id: 15</li>
+</ul>
+<p>There are multiple priors available for SLA so we are explicitly choosing prior <code>142</code> (this was chosen by someone else when the PFT was created.)</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">SLA_id &lt;-<span class="st"> </span><span class="kw">tbl</span>(bety, <span class="st">&quot;variables&quot;</span>) %&gt;%<span class="st"> </span><span class="kw">filter</span>(name ==<span class="st"> &quot;SLA&quot;</span>) %&gt;%<span class="st"> </span><span class="kw">pull</span>(id)
+SLA_fit &lt;-<span class="st"> </span><span class="kw">tbl</span>(bety, <span class="st">&quot;priors&quot;</span>) %&gt;%<span class="st"> </span><span class="kw">filter</span>(variable_id ==<span class="st"> </span>SLA_id) %&gt;%<span class="st"> </span><span class="kw">filter</span>(id ==<span class="st"> </span><span class="dv">142</span>) %&gt;%<span class="st"> </span><span class="kw">collect</span>()
+SLA_prior &lt;-<span class="st"> </span><span class="kw">rdistn</span>(SLA_fit)
+SLA_default &lt;-<span class="st"> </span><span class="kw">get_ED_default</span>(<span class="st">&quot;/fs/data3/ecowdery/ED.Hydro/parameters/pft3_defaults_history.xml&quot;</span>, <span class="st">&quot;SLA&quot;</span>)
+
+<span class="kw">prior_plot</span>(<span class="dt">prior =</span> SLA_prior, 
+           <span class="dt">plot_default =</span> SLA_default,
+           <span class="dt">title =</span> <span class="kw">sprintf</span>(<span class="st">&quot;(SLA): %s&quot;</span>, SLA_fit$distn),
+           <span class="dt">type =</span> <span class="st">&quot;prior&quot;</span>)</code></pre></div>
+<p><img src="Final_Book_files/figure-html/SLA-1.png" width="768" /></p>
+
+</div>
+
+
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="wood-density-wood-density.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="leaf-psi-osmotic-leaf-osmotic-water-potential-at-saturation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

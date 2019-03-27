@@ -1,5 +1,5 @@
 book_filename: "Final_Book"
-chapter_name: "Chapter "
+chapter_name: ""
 repo: https://github.com/bcow/ED.Hydro.Documentation
 output_dir: docs
 rmd_files: [
