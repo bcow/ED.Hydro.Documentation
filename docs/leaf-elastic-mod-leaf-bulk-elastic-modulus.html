@@ -25,7 +25,7 @@
 <meta name="author" content="Betsy Cowdery">
 
 
-<meta name="date" content="2019-03-27">
+<meta name="date" content="2019-04-08">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -48,6 +48,7 @@
 
 
 
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
 
 
 <style type="text/css">
@@ -256,6 +257,18 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="16.4" data-path="comparing-data-to-priors.html"><a href="comparing-data-to-priors.html#psi50"><i class="fa fa-check"></i><b>16.4</b> Psi50</a></li>
 <li class="chapter" data-level="16.5" data-path="comparing-data-to-priors.html"><a href="comparing-data-to-priors.html#kexp"><i class="fa fa-check"></i><b>16.5</b> Kexp</a></li>
 </ul></li>
+<li class="chapter" data-level="17" data-path="taxonomic-name-resolution-when-importing-data-in-to-bety.html"><a href="taxonomic-name-resolution-when-importing-data-in-to-bety.html"><i class="fa fa-check"></i><b>17</b> Taxonomic Name Resolution when Importing Data in to BETY</a><ul>
+<li class="chapter" data-level="17.1" data-path="taxonomic-name-resolution-when-importing-data-in-to-bety.html"><a href="taxonomic-name-resolution-when-importing-data-in-to-bety.html#name-resolution"><i class="fa fa-check"></i><b>17.1</b> Name Resolution</a></li>
+<li class="chapter" data-level="17.2" data-path="taxonomic-name-resolution-when-importing-data-in-to-bety.html"><a href="taxonomic-name-resolution-when-importing-data-in-to-bety.html#building-a-tropical-pft"><i class="fa fa-check"></i><b>17.2</b> Building a Tropical PFT</a></li>
+<li class="chapter" data-level="17.3" data-path="taxonomic-name-resolution-when-importing-data-in-to-bety.html"><a href="taxonomic-name-resolution-when-importing-data-in-to-bety.html#the-point-of-all-this"><i class="fa fa-check"></i><b>17.3</b> The point of all this</a></li>
+<li class="chapter" data-level="17.4" data-path="taxonomic-name-resolution-when-importing-data-in-to-bety.html"><a href="taxonomic-name-resolution-when-importing-data-in-to-bety.html#cases"><i class="fa fa-check"></i><b>17.4</b> Cases</a><ul>
+<li class="chapter" data-level="17.4.1" data-path="taxonomic-name-resolution-when-importing-data-in-to-bety.html"><a href="taxonomic-name-resolution-when-importing-data-in-to-bety.html#neither-in-bety"><i class="fa fa-check"></i><b>17.4.1</b> Neither in bety</a></li>
+<li class="chapter" data-level="17.4.2" data-path="taxonomic-name-resolution-when-importing-data-in-to-bety.html"><a href="taxonomic-name-resolution-when-importing-data-in-to-bety.html#submit-not-in-bety-accept-in-bety"><i class="fa fa-check"></i><b>17.4.2</b> Submit not in bety, accept in bety</a></li>
+<li class="chapter" data-level="17.4.3" data-path="taxonomic-name-resolution-when-importing-data-in-to-bety.html"><a href="taxonomic-name-resolution-when-importing-data-in-to-bety.html#submit-in-bety-accept-not-in-bety"><i class="fa fa-check"></i><b>17.4.3</b> Submit in bety, accept not in bety</a></li>
+<li class="chapter" data-level="17.4.4" data-path="taxonomic-name-resolution-when-importing-data-in-to-bety.html"><a href="taxonomic-name-resolution-when-importing-data-in-to-bety.html#both-in-bety-and-they-equal-each-other"><i class="fa fa-check"></i><b>17.4.4</b> Both in bety and they equal each other</a></li>
+<li class="chapter" data-level="17.4.5" data-path="taxonomic-name-resolution-when-importing-data-in-to-bety.html"><a href="taxonomic-name-resolution-when-importing-data-in-to-bety.html#both-in-bety-and-they-dont-equal-one-another"><i class="fa fa-check"></i><b>17.4.5</b> Both in BETY and they don’t equal one another</a></li>
+</ul></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -306,31 +319,31 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <div id="code-1" class="section level2">
 <h2><span class="header-section-number">2.4</span> Code</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">i &lt;-<span class="st"> </span><span class="kw">which</span>(priors$ED_name ==<span class="st"> &quot;leaf_elastic_mod&quot;</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">i &lt;-<span class="st"> </span><span class="kw">which</span>(priors<span class="op">$</span>ED_name <span class="op">==</span><span class="st"> &quot;leaf_elastic_mod&quot;</span>)
 prior_in &lt;-<span class="st"> </span>priors[i,]
 myfit &lt;-<span class="st"> </span><span class="kw">prior_get_fit</span>(prior_in, accepted_dists, <span class="dt">plot =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <p><img src="Final_Book_files/figure-html/calc%20leaf_elastic_mod-1.png" width="768" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">
-variable_id.in &lt;-<span class="st"> </span><span class="kw">tbl</span>(bety,<span class="st">&quot;variables&quot;</span>) %&gt;%<span class="st"> </span><span class="kw">filter</span>(name ==<span class="st"> </span>priors$ED_name[i]) %&gt;%<span class="st"> </span><span class="kw">pull</span>(id)
+variable_id.in &lt;-<span class="st"> </span><span class="kw">tbl</span>(bety,<span class="st">&quot;variables&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(name <span class="op">==</span><span class="st"> </span>priors<span class="op">$</span>ED_name[i]) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(id)
 phylogeny.in &lt;-<span class="st"> &quot;plants&quot;</span>
 
-best.fit.name &lt;-<span class="st"> </span>myfit$score$dist[<span class="kw">which.min</span>(myfit$score$RMSE)]
-best.fit.dat &lt;-<span class="st"> </span>myfit$dists %&gt;%<span class="st"> </span><span class="kw">select</span>(<span class="kw">one_of</span>(<span class="st">&quot;Name&quot;</span>, best.fit.name)) %&gt;%<span class="st"> </span><span class="kw">rename</span>(value :<span class="er">=</span><span class="st"> </span>!!best.fit.name, <span class="dt">params =</span> Name)
+best.fit.name &lt;-<span class="st"> </span>myfit<span class="op">$</span>score<span class="op">$</span>dist[<span class="kw">which.min</span>(myfit<span class="op">$</span>score<span class="op">$</span>RMSE)]
+best.fit.dat &lt;-<span class="st"> </span>myfit<span class="op">$</span>dists <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="kw">one_of</span>(<span class="st">&quot;Name&quot;</span>, best.fit.name)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">rename</span>(value <span class="op">:</span><span class="er">=</span><span class="st"> </span><span class="op">!!</span>best.fit.name, <span class="dt">params =</span> Name)
 
 leaf_elastic_mod_id &lt;-<span class="st"> </span><span class="kw">prior_input</span>(bety, variable_id.in, phylogeny.in, 
                                    <span class="dt">dist.name.in =</span> best.fit.name, 
-                                   <span class="dt">parama.in =</span> best.fit.dat %&gt;%<span class="st"> </span><span class="kw">filter</span>(params ==<span class="st"> &quot;Para1&quot;</span>) %&gt;%<span class="st"> </span><span class="kw">pull</span>(value), 
-                                   <span class="dt">paramb.in =</span> best.fit.dat %&gt;%<span class="st"> </span><span class="kw">filter</span>(params ==<span class="st"> &quot;Para2&quot;</span>) %&gt;%<span class="st"> </span><span class="kw">pull</span>(value), 
-                                   <span class="dt">paramc.in =</span> best.fit.dat %&gt;%<span class="st"> </span><span class="kw">filter</span>(params ==<span class="st"> &quot;Para3&quot;</span>) %&gt;%<span class="st"> </span><span class="kw">pull</span>(value))
+                                   <span class="dt">parama.in =</span> best.fit.dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(params <span class="op">==</span><span class="st"> &quot;Para1&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(value), 
+                                   <span class="dt">paramb.in =</span> best.fit.dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(params <span class="op">==</span><span class="st"> &quot;Para2&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(value), 
+                                   <span class="dt">paramc.in =</span> best.fit.dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(params <span class="op">==</span><span class="st"> &quot;Para3&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(value))
 ## [1] &quot;Entry with id = 1000000387 already exists. Parameters look the same. Old: gamma(3.4400, 0.1600) New: gamma(3.4400, 0.1600)&quot;</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">leaf_elastic_mod_fit &lt;-<span class="st"> </span><span class="kw">tbl</span>(bety, <span class="st">&quot;priors&quot;</span>) %&gt;%<span class="st"> </span><span class="kw">filter</span>(id ==<span class="st"> </span>leaf_elastic_mod_id) %&gt;%<span class="st"> </span><span class="kw">collect</span>()
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">leaf_elastic_mod_fit &lt;-<span class="st"> </span><span class="kw">tbl</span>(bety, <span class="st">&quot;priors&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(id <span class="op">==</span><span class="st"> </span>leaf_elastic_mod_id) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">collect</span>()
 leaf_elastic_mod_prior &lt;-<span class="st"> </span><span class="kw">rdistn</span>(leaf_elastic_mod_fit)
 leaf_elastic_mod_default &lt;-<span class="st"> </span><span class="kw">get_ED_default</span>(<span class="st">&quot;/fs/data3/ecowdery/ED.Hydro/parameters/pft3_defaults_history.xml&quot;</span>, <span class="st">&quot;leaf_elastic_mod&quot;</span>)
 
 <span class="kw">prior_plot</span>(<span class="dt">prior =</span> leaf_elastic_mod_prior, 
            <span class="dt">q =</span> <span class="kw">c</span>(<span class="dv">0</span>,.<span class="dv">995</span>), 
            <span class="dt">plot_default =</span> leaf_elastic_mod_default,
-           <span class="dt">title =</span> <span class="kw">sprintf</span>(<span class="st">&quot;Leaf bulk elastic modulus (leaf_elastic_mod): %s&quot;</span>, leaf_elastic_mod_fit$distn),
+           <span class="dt">title =</span> <span class="kw">sprintf</span>(<span class="st">&quot;Leaf bulk elastic modulus (leaf_elastic_mod): %s&quot;</span>, leaf_elastic_mod_fit<span class="op">$</span>distn),
            <span class="dt">type =</span> <span class="st">&quot;data&quot;</span>)
 ## Warning: Removed 500 rows containing non-finite values (stat_density).</code></pre></div>
 <p><img src="Final_Book_files/figure-html/plot%20leaf_elastic_mod-1.png" width="768" /></p>

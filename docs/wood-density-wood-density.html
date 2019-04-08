@@ -25,7 +25,7 @@
 <meta name="author" content="Betsy Cowdery">
 
 
-<meta name="date" content="2019-03-27">
+<meta name="date" content="2019-04-08">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -48,6 +48,7 @@
 
 
 
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
 
 
 <style type="text/css">
@@ -256,6 +257,18 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="16.4" data-path="comparing-data-to-priors.html"><a href="comparing-data-to-priors.html#psi50"><i class="fa fa-check"></i><b>16.4</b> Psi50</a></li>
 <li class="chapter" data-level="16.5" data-path="comparing-data-to-priors.html"><a href="comparing-data-to-priors.html#kexp"><i class="fa fa-check"></i><b>16.5</b> Kexp</a></li>
 </ul></li>
+<li class="chapter" data-level="17" data-path="taxonomic-name-resolution-when-importing-data-in-to-bety.html"><a href="taxonomic-name-resolution-when-importing-data-in-to-bety.html"><i class="fa fa-check"></i><b>17</b> Taxonomic Name Resolution when Importing Data in to BETY</a><ul>
+<li class="chapter" data-level="17.1" data-path="taxonomic-name-resolution-when-importing-data-in-to-bety.html"><a href="taxonomic-name-resolution-when-importing-data-in-to-bety.html#name-resolution"><i class="fa fa-check"></i><b>17.1</b> Name Resolution</a></li>
+<li class="chapter" data-level="17.2" data-path="taxonomic-name-resolution-when-importing-data-in-to-bety.html"><a href="taxonomic-name-resolution-when-importing-data-in-to-bety.html#building-a-tropical-pft"><i class="fa fa-check"></i><b>17.2</b> Building a Tropical PFT</a></li>
+<li class="chapter" data-level="17.3" data-path="taxonomic-name-resolution-when-importing-data-in-to-bety.html"><a href="taxonomic-name-resolution-when-importing-data-in-to-bety.html#the-point-of-all-this"><i class="fa fa-check"></i><b>17.3</b> The point of all this</a></li>
+<li class="chapter" data-level="17.4" data-path="taxonomic-name-resolution-when-importing-data-in-to-bety.html"><a href="taxonomic-name-resolution-when-importing-data-in-to-bety.html#cases"><i class="fa fa-check"></i><b>17.4</b> Cases</a><ul>
+<li class="chapter" data-level="17.4.1" data-path="taxonomic-name-resolution-when-importing-data-in-to-bety.html"><a href="taxonomic-name-resolution-when-importing-data-in-to-bety.html#neither-in-bety"><i class="fa fa-check"></i><b>17.4.1</b> Neither in bety</a></li>
+<li class="chapter" data-level="17.4.2" data-path="taxonomic-name-resolution-when-importing-data-in-to-bety.html"><a href="taxonomic-name-resolution-when-importing-data-in-to-bety.html#submit-not-in-bety-accept-in-bety"><i class="fa fa-check"></i><b>17.4.2</b> Submit not in bety, accept in bety</a></li>
+<li class="chapter" data-level="17.4.3" data-path="taxonomic-name-resolution-when-importing-data-in-to-bety.html"><a href="taxonomic-name-resolution-when-importing-data-in-to-bety.html#submit-in-bety-accept-not-in-bety"><i class="fa fa-check"></i><b>17.4.3</b> Submit in bety, accept not in bety</a></li>
+<li class="chapter" data-level="17.4.4" data-path="taxonomic-name-resolution-when-importing-data-in-to-bety.html"><a href="taxonomic-name-resolution-when-importing-data-in-to-bety.html#both-in-bety-and-they-equal-each-other"><i class="fa fa-check"></i><b>17.4.4</b> Both in bety and they equal each other</a></li>
+<li class="chapter" data-level="17.4.5" data-path="taxonomic-name-resolution-when-importing-data-in-to-bety.html"><a href="taxonomic-name-resolution-when-importing-data-in-to-bety.html#both-in-bety-and-they-dont-equal-one-another"><i class="fa fa-check"></i><b>17.4.5</b> Both in BETY and they don’t equal one another</a></li>
+</ul></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -283,14 +296,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul>
 <p>In the database, wood_density is unitless. So I’m assuming it can be directly mapped to our <code>wood_density</code> as such:</p>
 <p><span class="math display">\[\frac{WD (gcm^{-2})}{\rho_w(gcm^{-2})} * \rho_w(gcm^{-2}) =  \frac{WD (gcm^{-2})}{1(gcm^{-2})} * 1(gcm^{-2})\]</span> There are multiple priors available for wood density so we are explicitly choosing prior <code>1000000281</code> (this was chosen by someone else when the PFT was created.)</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wood_density_id &lt;-<span class="st"> </span><span class="kw">tbl</span>(bety, <span class="st">&quot;variables&quot;</span>) %&gt;%<span class="st"> </span><span class="kw">filter</span>(name ==<span class="st"> &quot;wood_density&quot;</span>) %&gt;%<span class="st"> </span><span class="kw">pull</span>(id)
-wood_density_fit &lt;-<span class="st"> </span><span class="kw">tbl</span>(bety, <span class="st">&quot;priors&quot;</span>) %&gt;%<span class="st"> </span><span class="kw">filter</span>(variable_id ==<span class="st"> </span>wood_density_id) %&gt;%<span class="st"> </span><span class="kw">filter</span>(id ==<span class="st"> </span><span class="dv">1000000281</span>) %&gt;%<span class="st"> </span><span class="kw">collect</span>()
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wood_density_id &lt;-<span class="st"> </span><span class="kw">tbl</span>(bety, <span class="st">&quot;variables&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(name <span class="op">==</span><span class="st"> &quot;wood_density&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(id)
+wood_density_fit &lt;-<span class="st"> </span><span class="kw">tbl</span>(bety, <span class="st">&quot;priors&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(variable_id <span class="op">==</span><span class="st"> </span>wood_density_id) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(id <span class="op">==</span><span class="st"> </span><span class="dv">1000000281</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">collect</span>()
 wood_density_prior &lt;-<span class="st"> </span><span class="kw">rdistn</span>(wood_density_fit)
 wood_density_default &lt;-<span class="st"> </span><span class="kw">get_ED_default</span>(PFT3_defaults_history, <span class="st">&quot;rho&quot;</span>) 
 
 <span class="kw">prior_plot</span>(<span class="dt">prior =</span> wood_density_prior, 
            <span class="dt">plot_default =</span> wood_density_default,
-           <span class="dt">title =</span> <span class="kw">sprintf</span>(<span class="st">&quot;(wood_density): %s&quot;</span>, wood_density_fit$distn),
+           <span class="dt">title =</span> <span class="kw">sprintf</span>(<span class="st">&quot;(wood_density): %s&quot;</span>, wood_density_fit<span class="op">$</span>distn),
            <span class="dt">type =</span> <span class="st">&quot;prior&quot;</span>)</code></pre></div>
 <p><img src="Final_Book_files/figure-html/wood_density-1.png" width="768" /></p>
 </div>
