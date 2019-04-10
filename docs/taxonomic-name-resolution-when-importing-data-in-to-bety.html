@@ -5,11 +5,11 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>17 Taxonomic Name Resolution when Importing Data in to BETY | Calculating ED Hydro Parameter Priors</title>
+  <title>18 Taxonomic Name Resolution when Importing Data in to BETY | Calculating ED Hydro Parameter Priors</title>
   <meta name="description" content="Boooooook">
   <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
-  <meta property="og:title" content="17 Taxonomic Name Resolution when Importing Data in to BETY | Calculating ED Hydro Parameter Priors" />
+  <meta property="og:title" content="18 Taxonomic Name Resolution when Importing Data in to BETY | Calculating ED Hydro Parameter Priors" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://bcow.github.io/ED.Hydro.Documentation/" />
   
@@ -17,7 +17,7 @@
   <meta name="github-repo" content="bcow/ED.Hydro.Documentation" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="17 Taxonomic Name Resolution when Importing Data in to BETY | Calculating ED Hydro Parameter Priors" />
+  <meta name="twitter:title" content="18 Taxonomic Name Resolution when Importing Data in to BETY | Calculating ED Hydro Parameter Priors" />
   
   <meta name="twitter:description" content="Boooooook" />
   
@@ -25,7 +25,7 @@
 <meta name="author" content="Betsy Cowdery">
 
 
-<meta name="date" content="2019-04-08">
+<meta name="date" content="2019-04-10">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -52,41 +52,67 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 </head>
@@ -102,7 +128,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <ul class="summary">
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Documentation</a></li>
-<li class="chapter" data-level="" data-path="setup.html"><a href="setup.html"><i class="fa fa-check"></i>Setup</a></li>
+<li class="chapter" data-level="1" data-path="setup.html"><a href="setup.html"><i class="fa fa-check"></i><b>1</b> Setup</a></li>
 <li class="part"><span><b>I Starting Parameters</b></span></li>
 <li><a href="wdns-liquid-water-density.html#wdns-liquid-water-density"><code>[wdns]:</code> Liquid water density</a></li>
 <li><a href="grav-gravity.html#grav-gravity"><code>[grav]:</code> Gravity</a></li>
@@ -110,163 +136,164 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><a href="wood-density-wood-density.html#wood_density-wood-density"><code>[wood_density]:</code> Wood density</a></li>
 <li><a href="sla-specific-leaf-area-sla.html#sla-specific-leaf-area-sla"><code>[SLA]:</code> Specific Leaf Area (SLA)</a></li>
 <li class="part"><span><b>II Key Leaf Traits</b></span></li>
-<li class="chapter" data-level="1" data-path="leaf-psi-osmotic-leaf-osmotic-water-potential-at-saturation.html"><a href="leaf-psi-osmotic-leaf-osmotic-water-potential-at-saturation.html"><i class="fa fa-check"></i><b>1</b> <code>[leaf_psi_osmotic]:</code> Leaf osmotic water potential at saturation</a><ul>
-<li class="chapter" data-level="1.1" data-path="leaf-psi-osmotic-leaf-osmotic-water-potential-at-saturation.html"><a href="leaf-psi-osmotic-leaf-osmotic-water-potential-at-saturation.html#ed"><i class="fa fa-check"></i><b>1.1</b> ED</a></li>
-<li class="chapter" data-level="1.2" data-path="leaf-psi-osmotic-leaf-osmotic-water-potential-at-saturation.html"><a href="leaf-psi-osmotic-leaf-osmotic-water-potential-at-saturation.html#bety"><i class="fa fa-check"></i><b>1.2</b> BETY</a></li>
-<li class="chapter" data-level="1.3" data-path="leaf-psi-osmotic-leaf-osmotic-water-potential-at-saturation.html"><a href="leaf-psi-osmotic-leaf-osmotic-water-potential-at-saturation.html#calculation"><i class="fa fa-check"></i><b>1.3</b> Calculation</a><ul>
-<li class="chapter" data-level="1.3.1" data-path="leaf-psi-osmotic-leaf-osmotic-water-potential-at-saturation.html"><a href="leaf-psi-osmotic-leaf-osmotic-water-potential-at-saturation.html#expert-elicitation"><i class="fa fa-check"></i><b>1.3.1</b> Expert elicitation</a></li>
-<li class="chapter" data-level="1.3.2" data-path="leaf-psi-osmotic-leaf-osmotic-water-potential-at-saturation.html"><a href="leaf-psi-osmotic-leaf-osmotic-water-potential-at-saturation.html#conversion"><i class="fa fa-check"></i><b>1.3.2</b> Conversion</a></li>
+<li class="chapter" data-level="2" data-path="leaf-psi-osmotic-leaf-osmotic-water-potential-at-saturation.html"><a href="leaf-psi-osmotic-leaf-osmotic-water-potential-at-saturation.html"><i class="fa fa-check"></i><b>2</b> <code>[leaf_psi_osmotic]:</code> Leaf osmotic water potential at saturation</a><ul>
+<li class="chapter" data-level="2.1" data-path="leaf-psi-osmotic-leaf-osmotic-water-potential-at-saturation.html"><a href="leaf-psi-osmotic-leaf-osmotic-water-potential-at-saturation.html#ed"><i class="fa fa-check"></i><b>2.1</b> ED</a></li>
+<li class="chapter" data-level="2.2" data-path="leaf-psi-osmotic-leaf-osmotic-water-potential-at-saturation.html"><a href="leaf-psi-osmotic-leaf-osmotic-water-potential-at-saturation.html#bety"><i class="fa fa-check"></i><b>2.2</b> BETY</a></li>
+<li class="chapter" data-level="2.3" data-path="leaf-psi-osmotic-leaf-osmotic-water-potential-at-saturation.html"><a href="leaf-psi-osmotic-leaf-osmotic-water-potential-at-saturation.html#calculation"><i class="fa fa-check"></i><b>2.3</b> Calculation</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="leaf-psi-osmotic-leaf-osmotic-water-potential-at-saturation.html"><a href="leaf-psi-osmotic-leaf-osmotic-water-potential-at-saturation.html#expert-elicitation"><i class="fa fa-check"></i><b>2.3.1</b> Expert elicitation</a></li>
+<li class="chapter" data-level="2.3.2" data-path="leaf-psi-osmotic-leaf-osmotic-water-potential-at-saturation.html"><a href="leaf-psi-osmotic-leaf-osmotic-water-potential-at-saturation.html#conversion"><i class="fa fa-check"></i><b>2.3.2</b> Conversion</a></li>
 </ul></li>
-<li class="chapter" data-level="1.4" data-path="leaf-psi-osmotic-leaf-osmotic-water-potential-at-saturation.html"><a href="leaf-psi-osmotic-leaf-osmotic-water-potential-at-saturation.html#code"><i class="fa fa-check"></i><b>1.4</b> Code</a></li>
+<li class="chapter" data-level="2.4" data-path="leaf-psi-osmotic-leaf-osmotic-water-potential-at-saturation.html"><a href="leaf-psi-osmotic-leaf-osmotic-water-potential-at-saturation.html#code"><i class="fa fa-check"></i><b>2.4</b> Code</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="leaf-elastic-mod-leaf-bulk-elastic-modulus.html"><a href="leaf-elastic-mod-leaf-bulk-elastic-modulus.html"><i class="fa fa-check"></i><b>2</b> <code>[leaf_elastic_mod]</code>: Leaf bulk elastic modulus</a><ul>
-<li class="chapter" data-level="2.1" data-path="leaf-elastic-mod-leaf-bulk-elastic-modulus.html"><a href="leaf-elastic-mod-leaf-bulk-elastic-modulus.html#ed-1"><i class="fa fa-check"></i><b>2.1</b> ED</a></li>
-<li class="chapter" data-level="2.2" data-path="leaf-elastic-mod-leaf-bulk-elastic-modulus.html"><a href="leaf-elastic-mod-leaf-bulk-elastic-modulus.html#bety-1"><i class="fa fa-check"></i><b>2.2</b> BETY</a></li>
-<li class="chapter" data-level="2.3" data-path="leaf-elastic-mod-leaf-bulk-elastic-modulus.html"><a href="leaf-elastic-mod-leaf-bulk-elastic-modulus.html#calculation-1"><i class="fa fa-check"></i><b>2.3</b> Calculation</a><ul>
-<li class="chapter" data-level="2.3.1" data-path="leaf-elastic-mod-leaf-bulk-elastic-modulus.html"><a href="leaf-elastic-mod-leaf-bulk-elastic-modulus.html#expert-elicitation-1"><i class="fa fa-check"></i><b>2.3.1</b> Expert elicitation</a></li>
-<li class="chapter" data-level="2.3.2" data-path="leaf-elastic-mod-leaf-bulk-elastic-modulus.html"><a href="leaf-elastic-mod-leaf-bulk-elastic-modulus.html#conversion-1"><i class="fa fa-check"></i><b>2.3.2</b> Conversion</a></li>
+<li class="chapter" data-level="3" data-path="leaf-elastic-mod-leaf-bulk-elastic-modulus.html"><a href="leaf-elastic-mod-leaf-bulk-elastic-modulus.html"><i class="fa fa-check"></i><b>3</b> <code>[leaf_elastic_mod]</code>: Leaf bulk elastic modulus</a><ul>
+<li class="chapter" data-level="3.1" data-path="leaf-elastic-mod-leaf-bulk-elastic-modulus.html"><a href="leaf-elastic-mod-leaf-bulk-elastic-modulus.html#ed-1"><i class="fa fa-check"></i><b>3.1</b> ED</a></li>
+<li class="chapter" data-level="3.2" data-path="leaf-elastic-mod-leaf-bulk-elastic-modulus.html"><a href="leaf-elastic-mod-leaf-bulk-elastic-modulus.html#bety-1"><i class="fa fa-check"></i><b>3.2</b> BETY</a></li>
+<li class="chapter" data-level="3.3" data-path="leaf-elastic-mod-leaf-bulk-elastic-modulus.html"><a href="leaf-elastic-mod-leaf-bulk-elastic-modulus.html#calculation-1"><i class="fa fa-check"></i><b>3.3</b> Calculation</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="leaf-elastic-mod-leaf-bulk-elastic-modulus.html"><a href="leaf-elastic-mod-leaf-bulk-elastic-modulus.html#expert-elicitation-1"><i class="fa fa-check"></i><b>3.3.1</b> Expert elicitation</a></li>
+<li class="chapter" data-level="3.3.2" data-path="leaf-elastic-mod-leaf-bulk-elastic-modulus.html"><a href="leaf-elastic-mod-leaf-bulk-elastic-modulus.html#conversion-1"><i class="fa fa-check"></i><b>3.3.2</b> Conversion</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="leaf-elastic-mod-leaf-bulk-elastic-modulus.html"><a href="leaf-elastic-mod-leaf-bulk-elastic-modulus.html#code-1"><i class="fa fa-check"></i><b>2.4</b> Code</a></li>
+<li class="chapter" data-level="3.4" data-path="leaf-elastic-mod-leaf-bulk-elastic-modulus.html"><a href="leaf-elastic-mod-leaf-bulk-elastic-modulus.html#code-1"><i class="fa fa-check"></i><b>3.4</b> Code</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="leaf-density-density-of-leaf-tissue.html"><a href="leaf-density-density-of-leaf-tissue.html"><i class="fa fa-check"></i><b>3</b> <code>[leaf_density]:</code> Density of leaf tissue</a><ul>
-<li class="chapter" data-level="3.1" data-path="leaf-density-density-of-leaf-tissue.html"><a href="leaf-density-density-of-leaf-tissue.html#ed-2"><i class="fa fa-check"></i><b>3.1</b> ED</a></li>
-<li class="chapter" data-level="3.2" data-path="leaf-density-density-of-leaf-tissue.html"><a href="leaf-density-density-of-leaf-tissue.html#bety-2"><i class="fa fa-check"></i><b>3.2</b> BETY</a></li>
-<li class="chapter" data-level="3.3" data-path="leaf-density-density-of-leaf-tissue.html"><a href="leaf-density-density-of-leaf-tissue.html#calculation-2"><i class="fa fa-check"></i><b>3.3</b> Calculation</a><ul>
-<li class="chapter" data-level="3.3.1" data-path="leaf-density-density-of-leaf-tissue.html"><a href="leaf-density-density-of-leaf-tissue.html#expert-elicitation-2"><i class="fa fa-check"></i><b>3.3.1</b> Expert elicitation</a></li>
-<li class="chapter" data-level="3.3.2" data-path="leaf-density-density-of-leaf-tissue.html"><a href="leaf-density-density-of-leaf-tissue.html#conversion-2"><i class="fa fa-check"></i><b>3.3.2</b> Conversion</a></li>
+<li class="chapter" data-level="4" data-path="leaf-density-density-of-leaf-tissue.html"><a href="leaf-density-density-of-leaf-tissue.html"><i class="fa fa-check"></i><b>4</b> <code>[leaf_density]:</code> Density of leaf tissue</a><ul>
+<li class="chapter" data-level="4.1" data-path="leaf-density-density-of-leaf-tissue.html"><a href="leaf-density-density-of-leaf-tissue.html#ed-2"><i class="fa fa-check"></i><b>4.1</b> ED</a></li>
+<li class="chapter" data-level="4.2" data-path="leaf-density-density-of-leaf-tissue.html"><a href="leaf-density-density-of-leaf-tissue.html#bety-2"><i class="fa fa-check"></i><b>4.2</b> BETY</a></li>
+<li class="chapter" data-level="4.3" data-path="leaf-density-density-of-leaf-tissue.html"><a href="leaf-density-density-of-leaf-tissue.html#calculation-2"><i class="fa fa-check"></i><b>4.3</b> Calculation</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="leaf-density-density-of-leaf-tissue.html"><a href="leaf-density-density-of-leaf-tissue.html#expert-elicitation-2"><i class="fa fa-check"></i><b>4.3.1</b> Expert elicitation</a></li>
+<li class="chapter" data-level="4.3.2" data-path="leaf-density-density-of-leaf-tissue.html"><a href="leaf-density-density-of-leaf-tissue.html#conversion-2"><i class="fa fa-check"></i><b>4.3.2</b> Conversion</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="leaf-density-density-of-leaf-tissue.html"><a href="leaf-density-density-of-leaf-tissue.html#code-2"><i class="fa fa-check"></i><b>3.4</b> Code</a></li>
+<li class="chapter" data-level="4.4" data-path="leaf-density-density-of-leaf-tissue.html"><a href="leaf-density-density-of-leaf-tissue.html#code-2"><i class="fa fa-check"></i><b>4.4</b> Code</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="leaf-water-sat-leaf-water-content-at-saturation.html"><a href="leaf-water-sat-leaf-water-content-at-saturation.html"><i class="fa fa-check"></i><b>4</b> <code>[leaf_water_sat]:</code> Leaf water content at saturation</a><ul>
-<li class="chapter" data-level="4.1" data-path="leaf-water-sat-leaf-water-content-at-saturation.html"><a href="leaf-water-sat-leaf-water-content-at-saturation.html#ed-3"><i class="fa fa-check"></i><b>4.1</b> ED</a></li>
-<li class="chapter" data-level="4.2" data-path="leaf-water-sat-leaf-water-content-at-saturation.html"><a href="leaf-water-sat-leaf-water-content-at-saturation.html#bety-3"><i class="fa fa-check"></i><b>4.2</b> BETY</a></li>
-<li class="chapter" data-level="4.3" data-path="leaf-water-sat-leaf-water-content-at-saturation.html"><a href="leaf-water-sat-leaf-water-content-at-saturation.html#calculation-3"><i class="fa fa-check"></i><b>4.3</b> Calculation</a><ul>
-<li class="chapter" data-level="4.3.1" data-path="leaf-water-sat-leaf-water-content-at-saturation.html"><a href="leaf-water-sat-leaf-water-content-at-saturation.html#expert-elicitation-3"><i class="fa fa-check"></i><b>4.3.1</b> Expert elicitation</a></li>
-<li class="chapter" data-level="4.3.2" data-path="leaf-water-sat-leaf-water-content-at-saturation.html"><a href="leaf-water-sat-leaf-water-content-at-saturation.html#conversion-3"><i class="fa fa-check"></i><b>4.3.2</b> Conversion</a></li>
+<li class="chapter" data-level="5" data-path="leaf-water-sat-leaf-water-content-at-saturation.html"><a href="leaf-water-sat-leaf-water-content-at-saturation.html"><i class="fa fa-check"></i><b>5</b> <code>[leaf_water_sat]:</code> Leaf water content at saturation</a><ul>
+<li class="chapter" data-level="5.1" data-path="leaf-water-sat-leaf-water-content-at-saturation.html"><a href="leaf-water-sat-leaf-water-content-at-saturation.html#ed-3"><i class="fa fa-check"></i><b>5.1</b> ED</a></li>
+<li class="chapter" data-level="5.2" data-path="leaf-water-sat-leaf-water-content-at-saturation.html"><a href="leaf-water-sat-leaf-water-content-at-saturation.html#bety-3"><i class="fa fa-check"></i><b>5.2</b> BETY</a></li>
+<li class="chapter" data-level="5.3" data-path="leaf-water-sat-leaf-water-content-at-saturation.html"><a href="leaf-water-sat-leaf-water-content-at-saturation.html#calculation-3"><i class="fa fa-check"></i><b>5.3</b> Calculation</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="leaf-water-sat-leaf-water-content-at-saturation.html"><a href="leaf-water-sat-leaf-water-content-at-saturation.html#expert-elicitation-3"><i class="fa fa-check"></i><b>5.3.1</b> Expert elicitation</a></li>
+<li class="chapter" data-level="5.3.2" data-path="leaf-water-sat-leaf-water-content-at-saturation.html"><a href="leaf-water-sat-leaf-water-content-at-saturation.html#conversion-3"><i class="fa fa-check"></i><b>5.3.2</b> Conversion</a></li>
 </ul></li>
-<li class="chapter" data-level="4.4" data-path="leaf-water-sat-leaf-water-content-at-saturation.html"><a href="leaf-water-sat-leaf-water-content-at-saturation.html#code-3"><i class="fa fa-check"></i><b>4.4</b> Code</a><ul>
-<li class="chapter" data-level="4.4.1" data-path="leaf-water-sat-leaf-water-content-at-saturation.html"><a href="leaf-water-sat-leaf-water-content-at-saturation.html#initial-testing-code"><i class="fa fa-check"></i><b>4.4.1</b> Initial testing code</a></li>
-<li class="chapter" data-level="4.4.2" data-path="leaf-water-sat-leaf-water-content-at-saturation.html"><a href="leaf-water-sat-leaf-water-content-at-saturation.html#actual-code"><i class="fa fa-check"></i><b>4.4.2</b> Actual code</a></li>
+<li class="chapter" data-level="5.4" data-path="leaf-water-sat-leaf-water-content-at-saturation.html"><a href="leaf-water-sat-leaf-water-content-at-saturation.html#code-3"><i class="fa fa-check"></i><b>5.4</b> Code</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="leaf-water-sat-leaf-water-content-at-saturation.html"><a href="leaf-water-sat-leaf-water-content-at-saturation.html#initial-testing-code"><i class="fa fa-check"></i><b>5.4.1</b> Initial testing code</a></li>
+<li class="chapter" data-level="5.4.2" data-path="leaf-water-sat-leaf-water-content-at-saturation.html"><a href="leaf-water-sat-leaf-water-content-at-saturation.html#actual-code"><i class="fa fa-check"></i><b>5.4.2</b> Actual code</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="leaf-psi-tlp-leaf-water-potential-at-turgor-loss-point.html"><a href="leaf-psi-tlp-leaf-water-potential-at-turgor-loss-point.html"><i class="fa fa-check"></i><b>5</b> <code>[leaf_psi_tlp]:</code> Leaf water potential at turgor loss point</a><ul>
-<li class="chapter" data-level="5.1" data-path="leaf-psi-tlp-leaf-water-potential-at-turgor-loss-point.html"><a href="leaf-psi-tlp-leaf-water-potential-at-turgor-loss-point.html#ed-4"><i class="fa fa-check"></i><b>5.1</b> ED</a></li>
-<li class="chapter" data-level="5.2" data-path="leaf-psi-tlp-leaf-water-potential-at-turgor-loss-point.html"><a href="leaf-psi-tlp-leaf-water-potential-at-turgor-loss-point.html#bety-4"><i class="fa fa-check"></i><b>5.2</b> BETY</a></li>
-<li class="chapter" data-level="5.3" data-path="leaf-psi-tlp-leaf-water-potential-at-turgor-loss-point.html"><a href="leaf-psi-tlp-leaf-water-potential-at-turgor-loss-point.html#calculation-4"><i class="fa fa-check"></i><b>5.3</b> Calculation</a><ul>
-<li class="chapter" data-level="5.3.1" data-path="leaf-psi-tlp-leaf-water-potential-at-turgor-loss-point.html"><a href="leaf-psi-tlp-leaf-water-potential-at-turgor-loss-point.html#expert-elicitation-4"><i class="fa fa-check"></i><b>5.3.1</b> Expert elicitation</a></li>
-<li class="chapter" data-level="5.3.2" data-path="leaf-psi-tlp-leaf-water-potential-at-turgor-loss-point.html"><a href="leaf-psi-tlp-leaf-water-potential-at-turgor-loss-point.html#conversion-4"><i class="fa fa-check"></i><b>5.3.2</b> Conversion</a></li>
+<li class="chapter" data-level="6" data-path="leaf-psi-tlp-leaf-water-potential-at-turgor-loss-point.html"><a href="leaf-psi-tlp-leaf-water-potential-at-turgor-loss-point.html"><i class="fa fa-check"></i><b>6</b> <code>[leaf_psi_tlp]:</code> Leaf water potential at turgor loss point</a><ul>
+<li class="chapter" data-level="6.1" data-path="leaf-psi-tlp-leaf-water-potential-at-turgor-loss-point.html"><a href="leaf-psi-tlp-leaf-water-potential-at-turgor-loss-point.html#ed-4"><i class="fa fa-check"></i><b>6.1</b> ED</a></li>
+<li class="chapter" data-level="6.2" data-path="leaf-psi-tlp-leaf-water-potential-at-turgor-loss-point.html"><a href="leaf-psi-tlp-leaf-water-potential-at-turgor-loss-point.html#bety-4"><i class="fa fa-check"></i><b>6.2</b> BETY</a></li>
+<li class="chapter" data-level="6.3" data-path="leaf-psi-tlp-leaf-water-potential-at-turgor-loss-point.html"><a href="leaf-psi-tlp-leaf-water-potential-at-turgor-loss-point.html#calculation-4"><i class="fa fa-check"></i><b>6.3</b> Calculation</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="leaf-psi-tlp-leaf-water-potential-at-turgor-loss-point.html"><a href="leaf-psi-tlp-leaf-water-potential-at-turgor-loss-point.html#expert-elicitation-4"><i class="fa fa-check"></i><b>6.3.1</b> Expert elicitation</a></li>
+<li class="chapter" data-level="6.3.2" data-path="leaf-psi-tlp-leaf-water-potential-at-turgor-loss-point.html"><a href="leaf-psi-tlp-leaf-water-potential-at-turgor-loss-point.html#conversion-4"><i class="fa fa-check"></i><b>6.3.2</b> Conversion</a></li>
 </ul></li>
-<li class="chapter" data-level="5.4" data-path="leaf-psi-tlp-leaf-water-potential-at-turgor-loss-point.html"><a href="leaf-psi-tlp-leaf-water-potential-at-turgor-loss-point.html#code-4"><i class="fa fa-check"></i><b>5.4</b> Code</a></li>
+<li class="chapter" data-level="6.4" data-path="leaf-psi-tlp-leaf-water-potential-at-turgor-loss-point.html"><a href="leaf-psi-tlp-leaf-water-potential-at-turgor-loss-point.html#code-4"><i class="fa fa-check"></i><b>6.4</b> Code</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="leaf-water-cap-leaf-hydaulic-capacitance-.html"><a href="leaf-water-cap-leaf-hydaulic-capacitance-.html"><i class="fa fa-check"></i><b>6</b> <code>[leaf_water_cap]:</code> Leaf hydaulic capacitance.</a><ul>
-<li class="chapter" data-level="6.1" data-path="leaf-water-cap-leaf-hydaulic-capacitance-.html"><a href="leaf-water-cap-leaf-hydaulic-capacitance-.html#ed-5"><i class="fa fa-check"></i><b>6.1</b> ED</a></li>
-<li class="chapter" data-level="6.2" data-path="leaf-water-cap-leaf-hydaulic-capacitance-.html"><a href="leaf-water-cap-leaf-hydaulic-capacitance-.html#bety-5"><i class="fa fa-check"></i><b>6.2</b> BETY</a></li>
-<li class="chapter" data-level="6.3" data-path="leaf-water-cap-leaf-hydaulic-capacitance-.html"><a href="leaf-water-cap-leaf-hydaulic-capacitance-.html#calculation-5"><i class="fa fa-check"></i><b>6.3</b> Calculation</a><ul>
-<li class="chapter" data-level="6.3.1" data-path="leaf-water-cap-leaf-hydaulic-capacitance-.html"><a href="leaf-water-cap-leaf-hydaulic-capacitance-.html#expert-elicitation-5"><i class="fa fa-check"></i><b>6.3.1</b> Expert elicitation</a></li>
-<li class="chapter" data-level="6.3.2" data-path="leaf-water-cap-leaf-hydaulic-capacitance-.html"><a href="leaf-water-cap-leaf-hydaulic-capacitance-.html#conversion-5"><i class="fa fa-check"></i><b>6.3.2</b> Conversion</a></li>
+<li class="chapter" data-level="7" data-path="leaf-water-cap-leaf-hydaulic-capacitance-.html"><a href="leaf-water-cap-leaf-hydaulic-capacitance-.html"><i class="fa fa-check"></i><b>7</b> <code>[leaf_water_cap]:</code> Leaf hydaulic capacitance.</a><ul>
+<li class="chapter" data-level="7.1" data-path="leaf-water-cap-leaf-hydaulic-capacitance-.html"><a href="leaf-water-cap-leaf-hydaulic-capacitance-.html#ed-5"><i class="fa fa-check"></i><b>7.1</b> ED</a></li>
+<li class="chapter" data-level="7.2" data-path="leaf-water-cap-leaf-hydaulic-capacitance-.html"><a href="leaf-water-cap-leaf-hydaulic-capacitance-.html#bety-5"><i class="fa fa-check"></i><b>7.2</b> BETY</a></li>
+<li class="chapter" data-level="7.3" data-path="leaf-water-cap-leaf-hydaulic-capacitance-.html"><a href="leaf-water-cap-leaf-hydaulic-capacitance-.html#calculation-5"><i class="fa fa-check"></i><b>7.3</b> Calculation</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="leaf-water-cap-leaf-hydaulic-capacitance-.html"><a href="leaf-water-cap-leaf-hydaulic-capacitance-.html#expert-elicitation-5"><i class="fa fa-check"></i><b>7.3.1</b> Expert elicitation</a></li>
+<li class="chapter" data-level="7.3.2" data-path="leaf-water-cap-leaf-hydaulic-capacitance-.html"><a href="leaf-water-cap-leaf-hydaulic-capacitance-.html#conversion-5"><i class="fa fa-check"></i><b>7.3.2</b> Conversion</a></li>
 </ul></li>
-<li class="chapter" data-level="6.4" data-path="leaf-water-cap-leaf-hydaulic-capacitance-.html"><a href="leaf-water-cap-leaf-hydaulic-capacitance-.html#code-5"><i class="fa fa-check"></i><b>6.4</b> Code</a></li>
+<li class="chapter" data-level="7.4" data-path="leaf-water-cap-leaf-hydaulic-capacitance-.html"><a href="leaf-water-cap-leaf-hydaulic-capacitance-.html#code-5"><i class="fa fa-check"></i><b>7.4</b> Code</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="leaf-psi-min-leaf-minimum-water-potential.html"><a href="leaf-psi-min-leaf-minimum-water-potential.html"><i class="fa fa-check"></i><b>7</b> <code>[leaf_psi_min]:</code> Leaf minimum water potential</a><ul>
-<li class="chapter" data-level="7.1" data-path="leaf-psi-min-leaf-minimum-water-potential.html"><a href="leaf-psi-min-leaf-minimum-water-potential.html#ed-6"><i class="fa fa-check"></i><b>7.1</b> ED</a></li>
-<li class="chapter" data-level="7.2" data-path="leaf-psi-min-leaf-minimum-water-potential.html"><a href="leaf-psi-min-leaf-minimum-water-potential.html#bety-6"><i class="fa fa-check"></i><b>7.2</b> BETY</a></li>
-<li class="chapter" data-level="7.3" data-path="leaf-psi-min-leaf-minimum-water-potential.html"><a href="leaf-psi-min-leaf-minimum-water-potential.html#calculation-6"><i class="fa fa-check"></i><b>7.3</b> Calculation</a><ul>
-<li class="chapter" data-level="7.3.1" data-path="leaf-psi-min-leaf-minimum-water-potential.html"><a href="leaf-psi-min-leaf-minimum-water-potential.html#expert-elicitation-6"><i class="fa fa-check"></i><b>7.3.1</b> Expert elicitation</a></li>
-<li class="chapter" data-level="7.3.2" data-path="leaf-psi-min-leaf-minimum-water-potential.html"><a href="leaf-psi-min-leaf-minimum-water-potential.html#conversion-6"><i class="fa fa-check"></i><b>7.3.2</b> Conversion</a></li>
+<li class="chapter" data-level="8" data-path="leaf-psi-min-leaf-minimum-water-potential.html"><a href="leaf-psi-min-leaf-minimum-water-potential.html"><i class="fa fa-check"></i><b>8</b> <code>[leaf_psi_min]:</code> Leaf minimum water potential</a><ul>
+<li class="chapter" data-level="8.1" data-path="leaf-psi-min-leaf-minimum-water-potential.html"><a href="leaf-psi-min-leaf-minimum-water-potential.html#ed-6"><i class="fa fa-check"></i><b>8.1</b> ED</a></li>
+<li class="chapter" data-level="8.2" data-path="leaf-psi-min-leaf-minimum-water-potential.html"><a href="leaf-psi-min-leaf-minimum-water-potential.html#bety-6"><i class="fa fa-check"></i><b>8.2</b> BETY</a></li>
+<li class="chapter" data-level="8.3" data-path="leaf-psi-min-leaf-minimum-water-potential.html"><a href="leaf-psi-min-leaf-minimum-water-potential.html#calculation-6"><i class="fa fa-check"></i><b>8.3</b> Calculation</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="leaf-psi-min-leaf-minimum-water-potential.html"><a href="leaf-psi-min-leaf-minimum-water-potential.html#expert-elicitation-6"><i class="fa fa-check"></i><b>8.3.1</b> Expert elicitation</a></li>
+<li class="chapter" data-level="8.3.2" data-path="leaf-psi-min-leaf-minimum-water-potential.html"><a href="leaf-psi-min-leaf-minimum-water-potential.html#conversion-6"><i class="fa fa-check"></i><b>8.3.2</b> Conversion</a></li>
 </ul></li>
-<li class="chapter" data-level="7.4" data-path="leaf-psi-min-leaf-minimum-water-potential.html"><a href="leaf-psi-min-leaf-minimum-water-potential.html#code-6"><i class="fa fa-check"></i><b>7.4</b> Code</a></li>
+<li class="chapter" data-level="8.4" data-path="leaf-psi-min-leaf-minimum-water-potential.html"><a href="leaf-psi-min-leaf-minimum-water-potential.html#code-6"><i class="fa fa-check"></i><b>8.4</b> Code</a></li>
 </ul></li>
 <li class="part"><span><b>III Key Wood Traits</b></span></li>
-<li class="chapter" data-level="8" data-path="wood-psi-osmotic-sapwood-osmotic-water-potential-at-saturation.html"><a href="wood-psi-osmotic-sapwood-osmotic-water-potential-at-saturation.html"><i class="fa fa-check"></i><b>8</b> <code>[wood_psi_osmotic]:</code> Sapwood osmotic water potential at saturation</a><ul>
-<li class="chapter" data-level="8.1" data-path="wood-psi-osmotic-sapwood-osmotic-water-potential-at-saturation.html"><a href="wood-psi-osmotic-sapwood-osmotic-water-potential-at-saturation.html#ed-7"><i class="fa fa-check"></i><b>8.1</b> ED</a></li>
-<li class="chapter" data-level="8.2" data-path="wood-psi-osmotic-sapwood-osmotic-water-potential-at-saturation.html"><a href="wood-psi-osmotic-sapwood-osmotic-water-potential-at-saturation.html#bety-7"><i class="fa fa-check"></i><b>8.2</b> BETY</a></li>
-<li class="chapter" data-level="8.3" data-path="wood-psi-osmotic-sapwood-osmotic-water-potential-at-saturation.html"><a href="wood-psi-osmotic-sapwood-osmotic-water-potential-at-saturation.html#calculation-7"><i class="fa fa-check"></i><b>8.3</b> Calculation</a><ul>
-<li class="chapter" data-level="8.3.1" data-path="wood-psi-osmotic-sapwood-osmotic-water-potential-at-saturation.html"><a href="wood-psi-osmotic-sapwood-osmotic-water-potential-at-saturation.html#expert-elicitation-7"><i class="fa fa-check"></i><b>8.3.1</b> Expert elicitation</a></li>
-<li class="chapter" data-level="8.3.2" data-path="wood-psi-osmotic-sapwood-osmotic-water-potential-at-saturation.html"><a href="wood-psi-osmotic-sapwood-osmotic-water-potential-at-saturation.html#conversion-7"><i class="fa fa-check"></i><b>8.3.2</b> Conversion</a></li>
-<li class="chapter" data-level="8.3.3" data-path="wood-psi-osmotic-sapwood-osmotic-water-potential-at-saturation.html"><a href="wood-psi-osmotic-sapwood-osmotic-water-potential-at-saturation.html#code-7"><i class="fa fa-check"></i><b>8.3.3</b> Code</a></li>
+<li class="chapter" data-level="9" data-path="wood-psi-osmotic-sapwood-osmotic-water-potential-at-saturation.html"><a href="wood-psi-osmotic-sapwood-osmotic-water-potential-at-saturation.html"><i class="fa fa-check"></i><b>9</b> <code>[wood_psi_osmotic]:</code> Sapwood osmotic water potential at saturation</a><ul>
+<li class="chapter" data-level="9.1" data-path="wood-psi-osmotic-sapwood-osmotic-water-potential-at-saturation.html"><a href="wood-psi-osmotic-sapwood-osmotic-water-potential-at-saturation.html#ed-7"><i class="fa fa-check"></i><b>9.1</b> ED</a></li>
+<li class="chapter" data-level="9.2" data-path="wood-psi-osmotic-sapwood-osmotic-water-potential-at-saturation.html"><a href="wood-psi-osmotic-sapwood-osmotic-water-potential-at-saturation.html#bety-7"><i class="fa fa-check"></i><b>9.2</b> BETY</a></li>
+<li class="chapter" data-level="9.3" data-path="wood-psi-osmotic-sapwood-osmotic-water-potential-at-saturation.html"><a href="wood-psi-osmotic-sapwood-osmotic-water-potential-at-saturation.html#calculation-7"><i class="fa fa-check"></i><b>9.3</b> Calculation</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="wood-psi-osmotic-sapwood-osmotic-water-potential-at-saturation.html"><a href="wood-psi-osmotic-sapwood-osmotic-water-potential-at-saturation.html#expert-elicitation-7"><i class="fa fa-check"></i><b>9.3.1</b> Expert elicitation</a></li>
+<li class="chapter" data-level="9.3.2" data-path="wood-psi-osmotic-sapwood-osmotic-water-potential-at-saturation.html"><a href="wood-psi-osmotic-sapwood-osmotic-water-potential-at-saturation.html#conversion-7"><i class="fa fa-check"></i><b>9.3.2</b> Conversion</a></li>
+<li class="chapter" data-level="9.3.3" data-path="wood-psi-osmotic-sapwood-osmotic-water-potential-at-saturation.html"><a href="wood-psi-osmotic-sapwood-osmotic-water-potential-at-saturation.html#code-7"><i class="fa fa-check"></i><b>9.3.3</b> Code</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="wood-elastic-mod-sapwood-bulk-elastic-modulus.html"><a href="wood-elastic-mod-sapwood-bulk-elastic-modulus.html"><i class="fa fa-check"></i><b>9</b> <code>[wood_elastic_mod]:</code> Sapwood bulk elastic modulus</a><ul>
-<li class="chapter" data-level="9.1" data-path="wood-elastic-mod-sapwood-bulk-elastic-modulus.html"><a href="wood-elastic-mod-sapwood-bulk-elastic-modulus.html#ed-8"><i class="fa fa-check"></i><b>9.1</b> ED</a></li>
-<li class="chapter" data-level="9.2" data-path="wood-elastic-mod-sapwood-bulk-elastic-modulus.html"><a href="wood-elastic-mod-sapwood-bulk-elastic-modulus.html#bety-8"><i class="fa fa-check"></i><b>9.2</b> BETY</a></li>
-<li class="chapter" data-level="9.3" data-path="wood-elastic-mod-sapwood-bulk-elastic-modulus.html"><a href="wood-elastic-mod-sapwood-bulk-elastic-modulus.html#calculation-8"><i class="fa fa-check"></i><b>9.3</b> Calculation</a><ul>
-<li class="chapter" data-level="9.3.1" data-path="wood-elastic-mod-sapwood-bulk-elastic-modulus.html"><a href="wood-elastic-mod-sapwood-bulk-elastic-modulus.html#expert-elicitation-8"><i class="fa fa-check"></i><b>9.3.1</b> Expert elicitation</a></li>
-<li class="chapter" data-level="9.3.2" data-path="wood-elastic-mod-sapwood-bulk-elastic-modulus.html"><a href="wood-elastic-mod-sapwood-bulk-elastic-modulus.html#conversion-8"><i class="fa fa-check"></i><b>9.3.2</b> Conversion</a></li>
+<li class="chapter" data-level="10" data-path="wood-elastic-mod-sapwood-bulk-elastic-modulus.html"><a href="wood-elastic-mod-sapwood-bulk-elastic-modulus.html"><i class="fa fa-check"></i><b>10</b> <code>[wood_elastic_mod]:</code> Sapwood bulk elastic modulus</a><ul>
+<li class="chapter" data-level="10.1" data-path="wood-elastic-mod-sapwood-bulk-elastic-modulus.html"><a href="wood-elastic-mod-sapwood-bulk-elastic-modulus.html#ed-8"><i class="fa fa-check"></i><b>10.1</b> ED</a></li>
+<li class="chapter" data-level="10.2" data-path="wood-elastic-mod-sapwood-bulk-elastic-modulus.html"><a href="wood-elastic-mod-sapwood-bulk-elastic-modulus.html#bety-8"><i class="fa fa-check"></i><b>10.2</b> BETY</a></li>
+<li class="chapter" data-level="10.3" data-path="wood-elastic-mod-sapwood-bulk-elastic-modulus.html"><a href="wood-elastic-mod-sapwood-bulk-elastic-modulus.html#calculation-8"><i class="fa fa-check"></i><b>10.3</b> Calculation</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="wood-elastic-mod-sapwood-bulk-elastic-modulus.html"><a href="wood-elastic-mod-sapwood-bulk-elastic-modulus.html#expert-elicitation-8"><i class="fa fa-check"></i><b>10.3.1</b> Expert elicitation</a></li>
+<li class="chapter" data-level="10.3.2" data-path="wood-elastic-mod-sapwood-bulk-elastic-modulus.html"><a href="wood-elastic-mod-sapwood-bulk-elastic-modulus.html#conversion-8"><i class="fa fa-check"></i><b>10.3.2</b> Conversion</a></li>
 </ul></li>
-<li class="chapter" data-level="9.4" data-path="wood-elastic-mod-sapwood-bulk-elastic-modulus.html"><a href="wood-elastic-mod-sapwood-bulk-elastic-modulus.html#code-8"><i class="fa fa-check"></i><b>9.4</b> Code</a></li>
+<li class="chapter" data-level="10.4" data-path="wood-elastic-mod-sapwood-bulk-elastic-modulus.html"><a href="wood-elastic-mod-sapwood-bulk-elastic-modulus.html#code-8"><i class="fa fa-check"></i><b>10.4</b> Code</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="wood-psi-tlp-sapwood-water-potential-at-turgor-loss-point.html"><a href="wood-psi-tlp-sapwood-water-potential-at-turgor-loss-point.html"><i class="fa fa-check"></i><b>10</b> <code>[wood_psi_tlp]:</code> Sapwood water potential at turgor loss point</a><ul>
-<li class="chapter" data-level="10.1" data-path="wood-psi-tlp-sapwood-water-potential-at-turgor-loss-point.html"><a href="wood-psi-tlp-sapwood-water-potential-at-turgor-loss-point.html#ed-9"><i class="fa fa-check"></i><b>10.1</b> ED</a></li>
-<li class="chapter" data-level="10.2" data-path="wood-psi-tlp-sapwood-water-potential-at-turgor-loss-point.html"><a href="wood-psi-tlp-sapwood-water-potential-at-turgor-loss-point.html#bety-9"><i class="fa fa-check"></i><b>10.2</b> BETY</a></li>
-<li class="chapter" data-level="10.3" data-path="wood-psi-tlp-sapwood-water-potential-at-turgor-loss-point.html"><a href="wood-psi-tlp-sapwood-water-potential-at-turgor-loss-point.html#calculation-9"><i class="fa fa-check"></i><b>10.3</b> Calculation</a><ul>
-<li class="chapter" data-level="10.3.1" data-path="wood-psi-tlp-sapwood-water-potential-at-turgor-loss-point.html"><a href="wood-psi-tlp-sapwood-water-potential-at-turgor-loss-point.html#expert-elicitation-9"><i class="fa fa-check"></i><b>10.3.1</b> Expert elicitation</a></li>
-<li class="chapter" data-level="10.3.2" data-path="wood-psi-tlp-sapwood-water-potential-at-turgor-loss-point.html"><a href="wood-psi-tlp-sapwood-water-potential-at-turgor-loss-point.html#conversion-9"><i class="fa fa-check"></i><b>10.3.2</b> Conversion</a></li>
+<li class="chapter" data-level="11" data-path="wood-psi-tlp-sapwood-water-potential-at-turgor-loss-point.html"><a href="wood-psi-tlp-sapwood-water-potential-at-turgor-loss-point.html"><i class="fa fa-check"></i><b>11</b> <code>[wood_psi_tlp]:</code> Sapwood water potential at turgor loss point</a><ul>
+<li class="chapter" data-level="11.1" data-path="wood-psi-tlp-sapwood-water-potential-at-turgor-loss-point.html"><a href="wood-psi-tlp-sapwood-water-potential-at-turgor-loss-point.html#ed-9"><i class="fa fa-check"></i><b>11.1</b> ED</a></li>
+<li class="chapter" data-level="11.2" data-path="wood-psi-tlp-sapwood-water-potential-at-turgor-loss-point.html"><a href="wood-psi-tlp-sapwood-water-potential-at-turgor-loss-point.html#bety-9"><i class="fa fa-check"></i><b>11.2</b> BETY</a></li>
+<li class="chapter" data-level="11.3" data-path="wood-psi-tlp-sapwood-water-potential-at-turgor-loss-point.html"><a href="wood-psi-tlp-sapwood-water-potential-at-turgor-loss-point.html#calculation-9"><i class="fa fa-check"></i><b>11.3</b> Calculation</a><ul>
+<li class="chapter" data-level="11.3.1" data-path="wood-psi-tlp-sapwood-water-potential-at-turgor-loss-point.html"><a href="wood-psi-tlp-sapwood-water-potential-at-turgor-loss-point.html#expert-elicitation-9"><i class="fa fa-check"></i><b>11.3.1</b> Expert elicitation</a></li>
+<li class="chapter" data-level="11.3.2" data-path="wood-psi-tlp-sapwood-water-potential-at-turgor-loss-point.html"><a href="wood-psi-tlp-sapwood-water-potential-at-turgor-loss-point.html#conversion-9"><i class="fa fa-check"></i><b>11.3.2</b> Conversion</a></li>
 </ul></li>
-<li class="chapter" data-level="10.4" data-path="wood-psi-tlp-sapwood-water-potential-at-turgor-loss-point.html"><a href="wood-psi-tlp-sapwood-water-potential-at-turgor-loss-point.html#code-9"><i class="fa fa-check"></i><b>10.4</b> Code</a></li>
+<li class="chapter" data-level="11.4" data-path="wood-psi-tlp-sapwood-water-potential-at-turgor-loss-point.html"><a href="wood-psi-tlp-sapwood-water-potential-at-turgor-loss-point.html#code-9"><i class="fa fa-check"></i><b>11.4</b> Code</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="wood-water-cap-wood-hydaulic-capacitance.html"><a href="wood-water-cap-wood-hydaulic-capacitance.html"><i class="fa fa-check"></i><b>11</b> <code>[wood_water_cap]:</code> Wood hydaulic capacitance</a><ul>
-<li class="chapter" data-level="11.1" data-path="wood-water-cap-wood-hydaulic-capacitance.html"><a href="wood-water-cap-wood-hydaulic-capacitance.html#ed-10"><i class="fa fa-check"></i><b>11.1</b> ED</a></li>
-<li class="chapter" data-level="11.2" data-path="wood-water-cap-wood-hydaulic-capacitance.html"><a href="wood-water-cap-wood-hydaulic-capacitance.html#bety-10"><i class="fa fa-check"></i><b>11.2</b> BETY</a></li>
-<li class="chapter" data-level="11.3" data-path="wood-water-cap-wood-hydaulic-capacitance.html"><a href="wood-water-cap-wood-hydaulic-capacitance.html#calculation-10"><i class="fa fa-check"></i><b>11.3</b> Calculation</a><ul>
-<li class="chapter" data-level="11.3.1" data-path="wood-water-cap-wood-hydaulic-capacitance.html"><a href="wood-water-cap-wood-hydaulic-capacitance.html#expert-elicitation-10"><i class="fa fa-check"></i><b>11.3.1</b> Expert elicitation</a></li>
+<li class="chapter" data-level="12" data-path="wood-water-cap-wood-hydaulic-capacitance.html"><a href="wood-water-cap-wood-hydaulic-capacitance.html"><i class="fa fa-check"></i><b>12</b> <code>[wood_water_cap]:</code> Wood hydaulic capacitance</a><ul>
+<li class="chapter" data-level="12.1" data-path="wood-water-cap-wood-hydaulic-capacitance.html"><a href="wood-water-cap-wood-hydaulic-capacitance.html#ed-10"><i class="fa fa-check"></i><b>12.1</b> ED</a></li>
+<li class="chapter" data-level="12.2" data-path="wood-water-cap-wood-hydaulic-capacitance.html"><a href="wood-water-cap-wood-hydaulic-capacitance.html#bety-10"><i class="fa fa-check"></i><b>12.2</b> BETY</a></li>
+<li class="chapter" data-level="12.3" data-path="wood-water-cap-wood-hydaulic-capacitance.html"><a href="wood-water-cap-wood-hydaulic-capacitance.html#calculation-10"><i class="fa fa-check"></i><b>12.3</b> Calculation</a><ul>
+<li class="chapter" data-level="12.3.1" data-path="wood-water-cap-wood-hydaulic-capacitance.html"><a href="wood-water-cap-wood-hydaulic-capacitance.html#expert-elicitation-10"><i class="fa fa-check"></i><b>12.3.1</b> Expert elicitation</a></li>
 </ul></li>
-<li class="chapter" data-level="11.4" data-path="wood-water-cap-wood-hydaulic-capacitance.html"><a href="wood-water-cap-wood-hydaulic-capacitance.html#code-10"><i class="fa fa-check"></i><b>11.4</b> Code</a></li>
+<li class="chapter" data-level="12.4" data-path="wood-water-cap-wood-hydaulic-capacitance.html"><a href="wood-water-cap-wood-hydaulic-capacitance.html#code-10"><i class="fa fa-check"></i><b>12.4</b> Code</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="wood-psi-min-sapwood-minimum-relative-water-content-or-sapwood-residual-fraction.html"><a href="wood-psi-min-sapwood-minimum-relative-water-content-or-sapwood-residual-fraction.html"><i class="fa fa-check"></i><b>12</b> <code>[wood_psi_min]:</code> Sapwood minimum relative water content or Sapwood residual fraction</a><ul>
-<li class="chapter" data-level="12.1" data-path="wood-psi-min-sapwood-minimum-relative-water-content-or-sapwood-residual-fraction.html"><a href="wood-psi-min-sapwood-minimum-relative-water-content-or-sapwood-residual-fraction.html#ed-11"><i class="fa fa-check"></i><b>12.1</b> ED</a></li>
-<li class="chapter" data-level="12.2" data-path="wood-psi-min-sapwood-minimum-relative-water-content-or-sapwood-residual-fraction.html"><a href="wood-psi-min-sapwood-minimum-relative-water-content-or-sapwood-residual-fraction.html#bety-11"><i class="fa fa-check"></i><b>12.2</b> BETY</a></li>
-<li class="chapter" data-level="12.3" data-path="wood-psi-min-sapwood-minimum-relative-water-content-or-sapwood-residual-fraction.html"><a href="wood-psi-min-sapwood-minimum-relative-water-content-or-sapwood-residual-fraction.html#calculation-11"><i class="fa fa-check"></i><b>12.3</b> Calculation</a><ul>
-<li class="chapter" data-level="12.3.1" data-path="wood-psi-min-sapwood-minimum-relative-water-content-or-sapwood-residual-fraction.html"><a href="wood-psi-min-sapwood-minimum-relative-water-content-or-sapwood-residual-fraction.html#expert-elicitation-11"><i class="fa fa-check"></i><b>12.3.1</b> Expert elicitation</a></li>
+<li class="chapter" data-level="13" data-path="wood-psi-min-sapwood-minimum-relative-water-content-or-sapwood-residual-fraction.html"><a href="wood-psi-min-sapwood-minimum-relative-water-content-or-sapwood-residual-fraction.html"><i class="fa fa-check"></i><b>13</b> <code>[wood_psi_min]:</code> Sapwood minimum relative water content or Sapwood residual fraction</a><ul>
+<li class="chapter" data-level="13.1" data-path="wood-psi-min-sapwood-minimum-relative-water-content-or-sapwood-residual-fraction.html"><a href="wood-psi-min-sapwood-minimum-relative-water-content-or-sapwood-residual-fraction.html#ed-11"><i class="fa fa-check"></i><b>13.1</b> ED</a></li>
+<li class="chapter" data-level="13.2" data-path="wood-psi-min-sapwood-minimum-relative-water-content-or-sapwood-residual-fraction.html"><a href="wood-psi-min-sapwood-minimum-relative-water-content-or-sapwood-residual-fraction.html#bety-11"><i class="fa fa-check"></i><b>13.2</b> BETY</a></li>
+<li class="chapter" data-level="13.3" data-path="wood-psi-min-sapwood-minimum-relative-water-content-or-sapwood-residual-fraction.html"><a href="wood-psi-min-sapwood-minimum-relative-water-content-or-sapwood-residual-fraction.html#calculation-11"><i class="fa fa-check"></i><b>13.3</b> Calculation</a><ul>
+<li class="chapter" data-level="13.3.1" data-path="wood-psi-min-sapwood-minimum-relative-water-content-or-sapwood-residual-fraction.html"><a href="wood-psi-min-sapwood-minimum-relative-water-content-or-sapwood-residual-fraction.html#expert-elicitation-11"><i class="fa fa-check"></i><b>13.3.1</b> Expert elicitation</a></li>
 </ul></li>
-<li class="chapter" data-level="12.4" data-path="wood-psi-min-sapwood-minimum-relative-water-content-or-sapwood-residual-fraction.html"><a href="wood-psi-min-sapwood-minimum-relative-water-content-or-sapwood-residual-fraction.html#code-11"><i class="fa fa-check"></i><b>12.4</b> Code</a></li>
+<li class="chapter" data-level="13.4" data-path="wood-psi-min-sapwood-minimum-relative-water-content-or-sapwood-residual-fraction.html"><a href="wood-psi-min-sapwood-minimum-relative-water-content-or-sapwood-residual-fraction.html#code-11"><i class="fa fa-check"></i><b>13.4</b> Code</a></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="wood-kmax-maximum-hydraulic-conductivity-of-the-stem.html"><a href="wood-kmax-maximum-hydraulic-conductivity-of-the-stem.html"><i class="fa fa-check"></i><b>13</b> <code>[wood_Kmax]:</code> Maximum hydraulic conductivity of the stem</a><ul>
-<li class="chapter" data-level="13.1" data-path="wood-kmax-maximum-hydraulic-conductivity-of-the-stem.html"><a href="wood-kmax-maximum-hydraulic-conductivity-of-the-stem.html#ed-12"><i class="fa fa-check"></i><b>13.1</b> ED</a></li>
-<li class="chapter" data-level="13.2" data-path="wood-kmax-maximum-hydraulic-conductivity-of-the-stem.html"><a href="wood-kmax-maximum-hydraulic-conductivity-of-the-stem.html#bety-12"><i class="fa fa-check"></i><b>13.2</b> BETY</a></li>
-<li class="chapter" data-level="13.3" data-path="wood-kmax-maximum-hydraulic-conductivity-of-the-stem.html"><a href="wood-kmax-maximum-hydraulic-conductivity-of-the-stem.html#calculation-12"><i class="fa fa-check"></i><b>13.3</b> Calculation</a><ul>
-<li class="chapter" data-level="13.3.1" data-path="wood-kmax-maximum-hydraulic-conductivity-of-the-stem.html"><a href="wood-kmax-maximum-hydraulic-conductivity-of-the-stem.html#expert-elicitation-12"><i class="fa fa-check"></i><b>13.3.1</b> Expert elicitation</a></li>
-<li class="chapter" data-level="13.3.2" data-path="wood-kmax-maximum-hydraulic-conductivity-of-the-stem.html"><a href="wood-kmax-maximum-hydraulic-conductivity-of-the-stem.html#conversion-10"><i class="fa fa-check"></i><b>13.3.2</b> Conversion</a></li>
+<li class="chapter" data-level="14" data-path="wood-kmax-maximum-hydraulic-conductivity-of-the-stem.html"><a href="wood-kmax-maximum-hydraulic-conductivity-of-the-stem.html"><i class="fa fa-check"></i><b>14</b> <code>[wood_Kmax]:</code> Maximum hydraulic conductivity of the stem</a><ul>
+<li class="chapter" data-level="14.1" data-path="wood-kmax-maximum-hydraulic-conductivity-of-the-stem.html"><a href="wood-kmax-maximum-hydraulic-conductivity-of-the-stem.html#ed-12"><i class="fa fa-check"></i><b>14.1</b> ED</a></li>
+<li class="chapter" data-level="14.2" data-path="wood-kmax-maximum-hydraulic-conductivity-of-the-stem.html"><a href="wood-kmax-maximum-hydraulic-conductivity-of-the-stem.html#bety-12"><i class="fa fa-check"></i><b>14.2</b> BETY</a></li>
+<li class="chapter" data-level="14.3" data-path="wood-kmax-maximum-hydraulic-conductivity-of-the-stem.html"><a href="wood-kmax-maximum-hydraulic-conductivity-of-the-stem.html#calculation-12"><i class="fa fa-check"></i><b>14.3</b> Calculation</a><ul>
+<li class="chapter" data-level="14.3.1" data-path="wood-kmax-maximum-hydraulic-conductivity-of-the-stem.html"><a href="wood-kmax-maximum-hydraulic-conductivity-of-the-stem.html#expert-elicitation-12"><i class="fa fa-check"></i><b>14.3.1</b> Expert elicitation</a></li>
+<li class="chapter" data-level="14.3.2" data-path="wood-kmax-maximum-hydraulic-conductivity-of-the-stem.html"><a href="wood-kmax-maximum-hydraulic-conductivity-of-the-stem.html#conversion-10"><i class="fa fa-check"></i><b>14.3.2</b> Conversion</a></li>
 </ul></li>
-<li class="chapter" data-level="13.4" data-path="wood-kmax-maximum-hydraulic-conductivity-of-the-stem.html"><a href="wood-kmax-maximum-hydraulic-conductivity-of-the-stem.html#code-12"><i class="fa fa-check"></i><b>13.4</b> Code</a></li>
+<li class="chapter" data-level="14.4" data-path="wood-kmax-maximum-hydraulic-conductivity-of-the-stem.html"><a href="wood-kmax-maximum-hydraulic-conductivity-of-the-stem.html#code-12"><i class="fa fa-check"></i><b>14.4</b> Code</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="wood-psi50-water-potential-at-which-50-of-stem-conductivity-is-lost.html"><a href="wood-psi50-water-potential-at-which-50-of-stem-conductivity-is-lost.html"><i class="fa fa-check"></i><b>14</b> <code>[wood_psi50]:</code> Water potential at which 50% of stem conductivity is lost</a><ul>
-<li class="chapter" data-level="14.1" data-path="wood-psi50-water-potential-at-which-50-of-stem-conductivity-is-lost.html"><a href="wood-psi50-water-potential-at-which-50-of-stem-conductivity-is-lost.html#ed-13"><i class="fa fa-check"></i><b>14.1</b> ED</a></li>
-<li class="chapter" data-level="14.2" data-path="wood-psi50-water-potential-at-which-50-of-stem-conductivity-is-lost.html"><a href="wood-psi50-water-potential-at-which-50-of-stem-conductivity-is-lost.html#bety-13"><i class="fa fa-check"></i><b>14.2</b> BETY</a></li>
-<li class="chapter" data-level="14.3" data-path="wood-psi50-water-potential-at-which-50-of-stem-conductivity-is-lost.html"><a href="wood-psi50-water-potential-at-which-50-of-stem-conductivity-is-lost.html#calculation-13"><i class="fa fa-check"></i><b>14.3</b> Calculation</a><ul>
-<li class="chapter" data-level="14.3.1" data-path="wood-psi50-water-potential-at-which-50-of-stem-conductivity-is-lost.html"><a href="wood-psi50-water-potential-at-which-50-of-stem-conductivity-is-lost.html#expert-elicitation-13"><i class="fa fa-check"></i><b>14.3.1</b> Expert elicitation</a></li>
-<li class="chapter" data-level="14.3.2" data-path="wood-psi50-water-potential-at-which-50-of-stem-conductivity-is-lost.html"><a href="wood-psi50-water-potential-at-which-50-of-stem-conductivity-is-lost.html#conversion-11"><i class="fa fa-check"></i><b>14.3.2</b> Conversion</a></li>
+<li class="chapter" data-level="15" data-path="wood-psi50-water-potential-at-which-50-of-stem-conductivity-is-lost.html"><a href="wood-psi50-water-potential-at-which-50-of-stem-conductivity-is-lost.html"><i class="fa fa-check"></i><b>15</b> <code>[wood_psi50]:</code> Water potential at which 50% of stem conductivity is lost</a><ul>
+<li class="chapter" data-level="15.1" data-path="wood-psi50-water-potential-at-which-50-of-stem-conductivity-is-lost.html"><a href="wood-psi50-water-potential-at-which-50-of-stem-conductivity-is-lost.html#ed-13"><i class="fa fa-check"></i><b>15.1</b> ED</a></li>
+<li class="chapter" data-level="15.2" data-path="wood-psi50-water-potential-at-which-50-of-stem-conductivity-is-lost.html"><a href="wood-psi50-water-potential-at-which-50-of-stem-conductivity-is-lost.html#bety-13"><i class="fa fa-check"></i><b>15.2</b> BETY</a></li>
+<li class="chapter" data-level="15.3" data-path="wood-psi50-water-potential-at-which-50-of-stem-conductivity-is-lost.html"><a href="wood-psi50-water-potential-at-which-50-of-stem-conductivity-is-lost.html#calculation-13"><i class="fa fa-check"></i><b>15.3</b> Calculation</a><ul>
+<li class="chapter" data-level="15.3.1" data-path="wood-psi50-water-potential-at-which-50-of-stem-conductivity-is-lost.html"><a href="wood-psi50-water-potential-at-which-50-of-stem-conductivity-is-lost.html#expert-elicitation-13"><i class="fa fa-check"></i><b>15.3.1</b> Expert elicitation</a></li>
+<li class="chapter" data-level="15.3.2" data-path="wood-psi50-water-potential-at-which-50-of-stem-conductivity-is-lost.html"><a href="wood-psi50-water-potential-at-which-50-of-stem-conductivity-is-lost.html#conversion-11"><i class="fa fa-check"></i><b>15.3.2</b> Conversion</a></li>
 </ul></li>
-<li class="chapter" data-level="14.4" data-path="wood-psi50-water-potential-at-which-50-of-stem-conductivity-is-lost.html"><a href="wood-psi50-water-potential-at-which-50-of-stem-conductivity-is-lost.html#code-13"><i class="fa fa-check"></i><b>14.4</b> Code</a><ul>
-<li class="chapter" data-level="14.4.1" data-path="wood-psi50-water-potential-at-which-50-of-stem-conductivity-is-lost.html"><a href="wood-psi50-water-potential-at-which-50-of-stem-conductivity-is-lost.html#using-the-best-fit-norm"><i class="fa fa-check"></i><b>14.4.1</b> Using the best fit norm</a></li>
-<li class="chapter" data-level="14.4.2" data-path="wood-psi50-water-potential-at-which-50-of-stem-conductivity-is-lost.html"><a href="wood-psi50-water-potential-at-which-50-of-stem-conductivity-is-lost.html#using-more-realistic-lnorm"><i class="fa fa-check"></i><b>14.4.2</b> Using more realistic lnorm</a></li>
+<li class="chapter" data-level="15.4" data-path="wood-psi50-water-potential-at-which-50-of-stem-conductivity-is-lost.html"><a href="wood-psi50-water-potential-at-which-50-of-stem-conductivity-is-lost.html#code-13"><i class="fa fa-check"></i><b>15.4</b> Code</a><ul>
+<li class="chapter" data-level="15.4.1" data-path="wood-psi50-water-potential-at-which-50-of-stem-conductivity-is-lost.html"><a href="wood-psi50-water-potential-at-which-50-of-stem-conductivity-is-lost.html#using-the-best-fit-norm"><i class="fa fa-check"></i><b>15.4.1</b> Using the best fit norm</a></li>
+<li class="chapter" data-level="15.4.2" data-path="wood-psi50-water-potential-at-which-50-of-stem-conductivity-is-lost.html"><a href="wood-psi50-water-potential-at-which-50-of-stem-conductivity-is-lost.html#using-more-realistic-lnorm"><i class="fa fa-check"></i><b>15.4.2</b> Using more realistic lnorm</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="15" data-path="wood-kexp-exponent-for-the-hydraulic-vulnerability-curve-of-stem-conductivity.html"><a href="wood-kexp-exponent-for-the-hydraulic-vulnerability-curve-of-stem-conductivity.html"><i class="fa fa-check"></i><b>15</b> <code>[wood_Kexp]:</code> Exponent for the hydraulic vulnerability curve of stem conductivity</a><ul>
-<li class="chapter" data-level="15.1" data-path="wood-kexp-exponent-for-the-hydraulic-vulnerability-curve-of-stem-conductivity.html"><a href="wood-kexp-exponent-for-the-hydraulic-vulnerability-curve-of-stem-conductivity.html#ed-14"><i class="fa fa-check"></i><b>15.1</b> ED</a></li>
-<li class="chapter" data-level="15.2" data-path="wood-kexp-exponent-for-the-hydraulic-vulnerability-curve-of-stem-conductivity.html"><a href="wood-kexp-exponent-for-the-hydraulic-vulnerability-curve-of-stem-conductivity.html#bety-14"><i class="fa fa-check"></i><b>15.2</b> BETY</a></li>
-<li class="chapter" data-level="15.3" data-path="wood-kexp-exponent-for-the-hydraulic-vulnerability-curve-of-stem-conductivity.html"><a href="wood-kexp-exponent-for-the-hydraulic-vulnerability-curve-of-stem-conductivity.html#calculation-14"><i class="fa fa-check"></i><b>15.3</b> Calculation</a><ul>
-<li class="chapter" data-level="15.3.1" data-path="wood-kexp-exponent-for-the-hydraulic-vulnerability-curve-of-stem-conductivity.html"><a href="wood-kexp-exponent-for-the-hydraulic-vulnerability-curve-of-stem-conductivity.html#expert-elicitation-14"><i class="fa fa-check"></i><b>15.3.1</b> Expert elicitation</a></li>
-<li class="chapter" data-level="15.3.2" data-path="wood-kexp-exponent-for-the-hydraulic-vulnerability-curve-of-stem-conductivity.html"><a href="wood-kexp-exponent-for-the-hydraulic-vulnerability-curve-of-stem-conductivity.html#conversion-12"><i class="fa fa-check"></i><b>15.3.2</b> Conversion</a></li>
+<li class="chapter" data-level="16" data-path="wood-kexp-exponent-for-the-hydraulic-vulnerability-curve-of-stem-conductivity.html"><a href="wood-kexp-exponent-for-the-hydraulic-vulnerability-curve-of-stem-conductivity.html"><i class="fa fa-check"></i><b>16</b> <code>[wood_Kexp]:</code> Exponent for the hydraulic vulnerability curve of stem conductivity</a><ul>
+<li class="chapter" data-level="16.1" data-path="wood-kexp-exponent-for-the-hydraulic-vulnerability-curve-of-stem-conductivity.html"><a href="wood-kexp-exponent-for-the-hydraulic-vulnerability-curve-of-stem-conductivity.html#ed-14"><i class="fa fa-check"></i><b>16.1</b> ED</a></li>
+<li class="chapter" data-level="16.2" data-path="wood-kexp-exponent-for-the-hydraulic-vulnerability-curve-of-stem-conductivity.html"><a href="wood-kexp-exponent-for-the-hydraulic-vulnerability-curve-of-stem-conductivity.html#bety-14"><i class="fa fa-check"></i><b>16.2</b> BETY</a></li>
+<li class="chapter" data-level="16.3" data-path="wood-kexp-exponent-for-the-hydraulic-vulnerability-curve-of-stem-conductivity.html"><a href="wood-kexp-exponent-for-the-hydraulic-vulnerability-curve-of-stem-conductivity.html#calculation-14"><i class="fa fa-check"></i><b>16.3</b> Calculation</a><ul>
+<li class="chapter" data-level="16.3.1" data-path="wood-kexp-exponent-for-the-hydraulic-vulnerability-curve-of-stem-conductivity.html"><a href="wood-kexp-exponent-for-the-hydraulic-vulnerability-curve-of-stem-conductivity.html#expert-elicitation-14"><i class="fa fa-check"></i><b>16.3.1</b> Expert elicitation</a></li>
+<li class="chapter" data-level="16.3.2" data-path="wood-kexp-exponent-for-the-hydraulic-vulnerability-curve-of-stem-conductivity.html"><a href="wood-kexp-exponent-for-the-hydraulic-vulnerability-curve-of-stem-conductivity.html#conversion-12"><i class="fa fa-check"></i><b>16.3.2</b> Conversion</a></li>
 </ul></li>
-<li class="chapter" data-level="15.4" data-path="wood-kexp-exponent-for-the-hydraulic-vulnerability-curve-of-stem-conductivity.html"><a href="wood-kexp-exponent-for-the-hydraulic-vulnerability-curve-of-stem-conductivity.html#code-14"><i class="fa fa-check"></i><b>15.4</b> Code</a></li>
+<li class="chapter" data-level="16.4" data-path="wood-kexp-exponent-for-the-hydraulic-vulnerability-curve-of-stem-conductivity.html"><a href="wood-kexp-exponent-for-the-hydraulic-vulnerability-curve-of-stem-conductivity.html#code-14"><i class="fa fa-check"></i><b>16.4</b> Code</a></li>
 </ul></li>
-<li class="chapter" data-level="16" data-path="comparing-data-to-priors.html"><a href="comparing-data-to-priors.html"><i class="fa fa-check"></i><b>16</b> Comparing Data to Priors</a><ul>
-<li class="chapter" data-level="16.1" data-path="comparing-data-to-priors.html"><a href="comparing-data-to-priors.html#wood-density"><i class="fa fa-check"></i><b>16.1</b> Wood Density</a></li>
-<li class="chapter" data-level="16.2" data-path="comparing-data-to-priors.html"><a href="comparing-data-to-priors.html#sla"><i class="fa fa-check"></i><b>16.2</b> SLA</a></li>
-<li class="chapter" data-level="16.3" data-path="comparing-data-to-priors.html"><a href="comparing-data-to-priors.html#kmax"><i class="fa fa-check"></i><b>16.3</b> Kmax</a></li>
-<li class="chapter" data-level="16.4" data-path="comparing-data-to-priors.html"><a href="comparing-data-to-priors.html#psi50"><i class="fa fa-check"></i><b>16.4</b> Psi50</a></li>
-<li class="chapter" data-level="16.5" data-path="comparing-data-to-priors.html"><a href="comparing-data-to-priors.html#kexp"><i class="fa fa-check"></i><b>16.5</b> Kexp</a></li>
+<li class="chapter" data-level="17" data-path="comparing-data-to-priors.html"><a href="comparing-data-to-priors.html"><i class="fa fa-check"></i><b>17</b> Comparing Data to Priors</a><ul>
+<li class="chapter" data-level="17.1" data-path="comparing-data-to-priors.html"><a href="comparing-data-to-priors.html#wood-density"><i class="fa fa-check"></i><b>17.1</b> Wood Density</a></li>
+<li class="chapter" data-level="17.2" data-path="comparing-data-to-priors.html"><a href="comparing-data-to-priors.html#sla"><i class="fa fa-check"></i><b>17.2</b> SLA</a></li>
+<li class="chapter" data-level="17.3" data-path="comparing-data-to-priors.html"><a href="comparing-data-to-priors.html#kmax"><i class="fa fa-check"></i><b>17.3</b> Kmax</a></li>
+<li class="chapter" data-level="17.4" data-path="comparing-data-to-priors.html"><a href="comparing-data-to-priors.html#psi50"><i class="fa fa-check"></i><b>17.4</b> Psi50</a></li>
+<li class="chapter" data-level="17.5" data-path="comparing-data-to-priors.html"><a href="comparing-data-to-priors.html#kexp"><i class="fa fa-check"></i><b>17.5</b> Kexp</a></li>
 </ul></li>
-<li class="chapter" data-level="17" data-path="taxonomic-name-resolution-when-importing-data-in-to-bety.html"><a href="taxonomic-name-resolution-when-importing-data-in-to-bety.html"><i class="fa fa-check"></i><b>17</b> Taxonomic Name Resolution when Importing Data in to BETY</a><ul>
-<li class="chapter" data-level="17.1" data-path="taxonomic-name-resolution-when-importing-data-in-to-bety.html"><a href="taxonomic-name-resolution-when-importing-data-in-to-bety.html#name-resolution"><i class="fa fa-check"></i><b>17.1</b> Name Resolution</a></li>
-<li class="chapter" data-level="17.2" data-path="taxonomic-name-resolution-when-importing-data-in-to-bety.html"><a href="taxonomic-name-resolution-when-importing-data-in-to-bety.html#building-a-tropical-pft"><i class="fa fa-check"></i><b>17.2</b> Building a Tropical PFT</a></li>
-<li class="chapter" data-level="17.3" data-path="taxonomic-name-resolution-when-importing-data-in-to-bety.html"><a href="taxonomic-name-resolution-when-importing-data-in-to-bety.html#the-point-of-all-this"><i class="fa fa-check"></i><b>17.3</b> The point of all this</a></li>
-<li class="chapter" data-level="17.4" data-path="taxonomic-name-resolution-when-importing-data-in-to-bety.html"><a href="taxonomic-name-resolution-when-importing-data-in-to-bety.html#cases"><i class="fa fa-check"></i><b>17.4</b> Cases</a><ul>
-<li class="chapter" data-level="17.4.1" data-path="taxonomic-name-resolution-when-importing-data-in-to-bety.html"><a href="taxonomic-name-resolution-when-importing-data-in-to-bety.html#neither-in-bety"><i class="fa fa-check"></i><b>17.4.1</b> Neither in bety</a></li>
-<li class="chapter" data-level="17.4.2" data-path="taxonomic-name-resolution-when-importing-data-in-to-bety.html"><a href="taxonomic-name-resolution-when-importing-data-in-to-bety.html#submit-not-in-bety-accept-in-bety"><i class="fa fa-check"></i><b>17.4.2</b> Submit not in bety, accept in bety</a></li>
-<li class="chapter" data-level="17.4.3" data-path="taxonomic-name-resolution-when-importing-data-in-to-bety.html"><a href="taxonomic-name-resolution-when-importing-data-in-to-bety.html#submit-in-bety-accept-not-in-bety"><i class="fa fa-check"></i><b>17.4.3</b> Submit in bety, accept not in bety</a></li>
-<li class="chapter" data-level="17.4.4" data-path="taxonomic-name-resolution-when-importing-data-in-to-bety.html"><a href="taxonomic-name-resolution-when-importing-data-in-to-bety.html#both-in-bety-and-they-equal-each-other"><i class="fa fa-check"></i><b>17.4.4</b> Both in bety and they equal each other</a></li>
-<li class="chapter" data-level="17.4.5" data-path="taxonomic-name-resolution-when-importing-data-in-to-bety.html"><a href="taxonomic-name-resolution-when-importing-data-in-to-bety.html#both-in-bety-and-they-dont-equal-one-another"><i class="fa fa-check"></i><b>17.4.5</b> Both in BETY and they don’t equal one another</a></li>
+<li class="chapter" data-level="18" data-path="taxonomic-name-resolution-when-importing-data-in-to-bety.html"><a href="taxonomic-name-resolution-when-importing-data-in-to-bety.html"><i class="fa fa-check"></i><b>18</b> Taxonomic Name Resolution when Importing Data in to BETY</a><ul>
+<li class="chapter" data-level="18.1" data-path="taxonomic-name-resolution-when-importing-data-in-to-bety.html"><a href="taxonomic-name-resolution-when-importing-data-in-to-bety.html#name-resolution"><i class="fa fa-check"></i><b>18.1</b> Name Resolution</a></li>
+<li class="chapter" data-level="18.2" data-path="taxonomic-name-resolution-when-importing-data-in-to-bety.html"><a href="taxonomic-name-resolution-when-importing-data-in-to-bety.html#building-a-tropical-pft"><i class="fa fa-check"></i><b>18.2</b> Building a Tropical PFT</a></li>
+<li class="chapter" data-level="18.3" data-path="taxonomic-name-resolution-when-importing-data-in-to-bety.html"><a href="taxonomic-name-resolution-when-importing-data-in-to-bety.html#what-i-need-help-with"><i class="fa fa-check"></i><b>18.3</b> What I need help with</a></li>
+<li class="chapter" data-level="18.4" data-path="taxonomic-name-resolution-when-importing-data-in-to-bety.html"><a href="taxonomic-name-resolution-when-importing-data-in-to-bety.html#cases"><i class="fa fa-check"></i><b>18.4</b> Cases</a><ul>
+<li class="chapter" data-level="18.4.1" data-path="taxonomic-name-resolution-when-importing-data-in-to-bety.html"><a href="taxonomic-name-resolution-when-importing-data-in-to-bety.html#both-the-submitted-and-accepted-names-in-bety-and-they-are-the-same"><i class="fa fa-check"></i><b>18.4.1</b> Both the submitted and accepted names in BETY and they are the same</a></li>
+<li class="chapter" data-level="18.4.2" data-path="taxonomic-name-resolution-when-importing-data-in-to-bety.html"><a href="taxonomic-name-resolution-when-importing-data-in-to-bety.html#both-the-submitted-and-accepted-names-in-bety-and-they-are-not-the-same"><i class="fa fa-check"></i><b>18.4.2</b> Both the submitted and accepted names in BETY and they are NOT the same</a></li>
+<li class="chapter" data-level="18.4.3" data-path="taxonomic-name-resolution-when-importing-data-in-to-bety.html"><a href="taxonomic-name-resolution-when-importing-data-in-to-bety.html#only-the-accepted-name-is-in-in-bety"><i class="fa fa-check"></i><b>18.4.3</b> Only the accepted name is in in BETY</a></li>
+<li class="chapter" data-level="18.4.4" data-path="taxonomic-name-resolution-when-importing-data-in-to-bety.html"><a href="taxonomic-name-resolution-when-importing-data-in-to-bety.html#only-the-submitted-name-is-in-in-bety"><i class="fa fa-check"></i><b>18.4.4</b> Only the submitted name is in in BETY</a></li>
+<li class="chapter" data-level="18.4.5" data-path="taxonomic-name-resolution-when-importing-data-in-to-bety.html"><a href="taxonomic-name-resolution-when-importing-data-in-to-bety.html#none-of-the-names-are-in-bety"><i class="fa fa-check"></i><b>18.4.5</b> None of the names are in BETY</a></li>
+<li class="chapter" data-level="18.4.6" data-path="taxonomic-name-resolution-when-importing-data-in-to-bety.html"><a href="taxonomic-name-resolution-when-importing-data-in-to-bety.html#tnrs-didnt-work"><i class="fa fa-check"></i><b>18.4.6</b> TNRS didn’t work</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -287,12 +314,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
             <section class="normal" id="section-">
 <div id="taxonomic-name-resolution-when-importing-data-in-to-bety" class="section level1">
-<h1><span class="header-section-number">17</span> Taxonomic Name Resolution when Importing Data in to BETY</h1>
+<h1><span class="header-section-number">18</span> Taxonomic Name Resolution when Importing Data in to BETY</h1>
 <div id="name-resolution" class="section level2">
-<h2><span class="header-section-number">17.1</span> Name Resolution</h2>
-<p>When users have plant trait data that they want to enter in to the database, the data needs to attributed to a specific species database entry. When the user has no other information (such as ID codes such as the USDA and FIA codes) the only way to match the species in the data with species entry in the database is through matching of scientific names.</p>
+<h2><span class="header-section-number">18.1</span> Name Resolution</h2>
+<p>When users have plant trait data that they want to enter in to the database, the data needs to attributed to a specific species database record. When the user has no other information (such as ID codes like the USDA and FIA codes) the only way to match the species in the data with species entry in the database is through matching of scientific names.</p>
 <p>But it may be the case that the accepted scientific name has changed since the data was collected (and/or published), or that the data itself contains errors (typos or otherwise) such that the names in the data are not matching with anything that has already been entered in to BETY. It is also the case that BETY does not have a complete record.</p>
-<p>At this point we need to employ additional tools to help us in resolving taxonomic names. Already in the PEcAn code there exists</p>
+<p>At this point we need to employ additional tools to help us in resolving taxonomic names.
+Already in the PEcAn code there exists</p>
 <ul>
 <li><a href="https://github.com/PecanProject/pecan/blob/develop/modules/data.land/R/match_species_id.R"><code>match_species_id</code></a>: But this cannot account for fuzzy matching of names (ie spelling errors) and synonyms.</li>
 <li><a href="https://github.com/PecanProject/pecan/blob/297087787cfec6129428e1e334297ed2b6030a06/base/db/inst/import-try/94.match.species.R"><code>94.match.species</code></a>: This code is specific to importing data from thr TRY database and experiments with some partial matching through grep statements, but again does not account for synonyms.</li>
@@ -302,12 +330,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>I recommend checking out their <a href="https://cran.r-project.org/web/packages/taxize/vignettes/">vignettes</a> - you can also just access them on their <a href="https://github.com/ropensci/taxize">github</a>.</p>
 </div>
 <div id="building-a-tropical-pft" class="section level2">
-<h2><span class="header-section-number">17.2</span> Building a Tropical PFT</h2>
-<p>the goal of all of this is not only to import trait data, but to build a PFT that I can used to do runs in the tropics. <strong>(How general should this PFT be? That’s a good question!)</strong></p>
+<h2><span class="header-section-number">18.2</span> Building a Tropical PFT</h2>
+<p>My goal is not only to import trait data, but to build a PFT that I can used to do runs in the tropics. <strong>(How general should this PFT be? That’s a good question!)</strong></p>
 <p>Right now I’m using a clone of the tropical PFT that was made to be used with FATES. Thus it contains all the imported BETY entries from the ForestGEO Neotropical tree database (<a href="http://ctfs.si.edu/webatlas/neotropicaltree/" class="uri">http://ctfs.si.edu/webatlas/neotropicaltree/</a>) and more. There are currently 22286 species linked to the PFT, 20811 of which are the ForestGEO entries.</p>
-<p>If I’m importing data with species that are not in the existing PFT, I need to decide if they should be added. And I suppose I should also make sure there aren’t any species in the PFT that shouldn’t be there. This is something that I have no expertise in so I would like advice.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">
-pftid &lt;-<span class="st"> </span><span class="dv">1000000131</span>
+<p>If I’m importing data with species that are not in the existing PFT, I need to decide if they should be added. And I suppose I should also make sure there aren’t any species in the PFT that shouldn’t be there. This is something that I have no expertise in so I would like advice.
+Below I’m loading in all the spcies names from my PFT (id = 1000000131)</p>
+<pre class="sourceCode r"><code class="sourceCode r">pftid &lt;-<span class="st"> </span><span class="dv">1000000131</span>
 PFT_species &lt;-<span class="st"> </span><span class="kw">tbl</span>(bety, <span class="st">&quot;pfts&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">rename</span>(<span class="dt">pft_id =</span> id) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(pft_id <span class="op">==</span><span class="st"> </span>pftid) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">inner_join</span>(., <span class="kw">tbl</span>(bety, <span class="st">&quot;pfts_species&quot;</span>), <span class="dt">by =</span> <span class="st">&quot;pft_id&quot;</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">inner_join</span>(., <span class="kw">tbl</span>(bety, <span class="st">&quot;species&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">rename</span>(<span class="dt">specie_id =</span> id), <span class="dt">by =</span> <span class="st">&quot;specie_id&quot;</span>) <span class="op">%&gt;%</span>
@@ -316,122 +344,130 @@ PFT_species &lt;-<span class="st"> </span><span class="kw">tbl</span>(bety, <spa
 
 <span class="co"># Check that all the ForestGEO species are in the PFT (they are)</span>
 nForestGEO &lt;-<span class="st"> </span><span class="kw">tbl</span>(bety, <span class="st">&quot;species&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(<span class="kw">str_detect</span>(notes, <span class="st">&quot;ForestGEO&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">collect</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">nrow</span>()
-PFT_species <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(<span class="kw">str_detect</span>(PFT_species<span class="op">$</span>notes, <span class="st">&quot;ForestGEO&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">nrow</span>() <span class="op">==</span><span class="st"> </span>nForestGEO
-## [1] TRUE
-
-PFT_species<span class="op">$</span>notes &lt;-<span class="st"> </span><span class="ot">NULL</span></code></pre></div>
+PFT_species <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(<span class="kw">str_detect</span>(PFT_species<span class="op">$</span>notes, <span class="st">&quot;ForestGEO&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">nrow</span>() <span class="op">==</span><span class="st"> </span>nForestGEO</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">PFT_species<span class="op">$</span>notes &lt;-<span class="st"> </span><span class="ot">NULL</span></code></pre>
 </div>
-<div id="the-point-of-all-this" class="section level2">
-<h2><span class="header-section-number">17.3</span> The point of all this</h2>
-<p>I’m running four tests:</p>
-<p>I’ll refer to the species name in the data set as “submitted name” and the name returned throught the TNRS (that is specifically classified as an accepted name) as “accepted name.”</p>
-<ol style="list-style-type: decimal">
-<li>Does the submitted name have an exact match in the database (ie return a species entry id)? If yes, <code>submit_bety = TRUE</code>.</li>
-<li>If <code>submit_bety = TRUE</code>, is the resulting species id in the PFT? If yes, <code>submit_PFT = TRUE</code></li>
-</ol>
-<p>Then feed the submitted name through the TNRS and (hopefully) recieve an accepted name:</p>
-<ol start="3" style="list-style-type: decimal">
-<li>Does the accepted name have an exact match in the database (ie return a species entry id)? If yes, <code>accept_bety = TRUE</code>.</li>
-<li>If <code>accept_bety = TRUE</code>, is the resulting species id in the PFT? If yes, <code>accept_PFT = TRUE</code></li>
-</ol>
-<p>From this we can come up with the following cases:</p>
-<p>For a list of 131 species from trait data that needs to be imported in to BETY (from various sources), I determined the case for each species in a separate script. The result of this analysis are in the file <code>/fs/data3/ecowdery/ED.Hydro/parameters/constraint_calculations/constraint_data/species_out.csv</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">species_out =<span class="st"> </span><span class="kw">read.csv</span>(<span class="dt">file =</span> <span class="st">&quot;/fs/data3/ecowdery/ED.Hydro/parameters/constraint_calculations/constraint_data/species_out.csv&quot;</span>,
-                       <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)
+<div id="what-i-need-help-with" class="section level2">
+<h2><span class="header-section-number">18.3</span> What I need help with</h2>
+<p>I need to import trait data in to the database and I need to match the species names in the data to the records in BETY. Furthermore, I need to decide if I need to add records or change existing records in BETY.</p>
+<p>I’ll refer to the species name in the data set as “submitted name” -
+I run these names through the TNRS to see if returns spelling corrections or
+a different “accepted name.”</p>
+<p>For example:</p>
+<p>If my submitted name is <code>&quot;Simaroubu glauca&quot;</code> (which I misspelled from Simarouba glauca)</p>
+<pre class="sourceCode r"><code class="sourceCode r">submit_name &lt;-<span class="st"> &quot;Simaroubu glauca&quot;</span>
+<span class="kw">tnrs</span>(<span class="dt">query =</span> submit_name)</code></pre>
+<pre><code>## Calling http://taxosaurus.org/retrieve/e5fa96aade0c55dcb3df29421562de0b</code></pre>
+<pre><code>##      submittedname    acceptedname    sourceid score      matchedname
+## 1 Simaroubu glauca Simarouba amara iPlant_TNRS  0.98 Simarouba glauca
+##   authority                                   uri
+## 1     Aubl. http://www.tropicos.org/Name/29400090</code></pre>
+<p>The iPlant TNRS matches the name Simarouba glauca but then provides an <strong>accepted</strong> name of Simarouba amara.</p>
+<p>When I use the name resolving tools, and try to match the submitted and accepted names to BETY I come up with 13 different cases that can potentially arrise. I’ll go through each one in detail below:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#------------------------------------------------------------------------------#</span>
+<span class="co"># Both the submitted and accepted names in BETY</span>
 
-<span class="co"># Special case for which the TNRS did not work, I&#39;ll get to this later</span>
-species_special &lt;-<span class="st"> </span>species_out <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(<span class="kw">is.na</span>(accept_name) <span class="op">|</span><span class="st"> </span>accept_name <span class="op">==</span><span class="st"> &quot;&quot;</span> <span class="op">|</span><span class="st"> </span>accept_name <span class="op">==</span><span class="st"> &quot; &quot;</span>)
+<span class="co"># Check if they equal each other</span>
+submit_accept &lt;-<span class="st"> </span>sp<span class="op">$</span>submit_bety_id[i] <span class="op">==</span><span class="st"> </span>sp<span class="op">$</span>accept_bety_id[i] 
 
-<span class="co"># Entries for which the TNRS did work</span>
-species_case &lt;-<span class="st"> </span>species_out <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(accept_name))
-<span class="co"># dim(species_case)</span>
+<span class="co"># They equal each other</span>
+case01 &lt;-<span class="st"> </span>submit_bety <span class="op">&amp;</span><span class="st"> </span>accept_bety <span class="op">&amp;</span><span class="st"> </span>submit_accept <span class="op">&amp;</span><span class="st"> </span>accept_PFT <span class="co"># Best case, don&#39;t need to do anything.</span>
+case02 &lt;-<span class="st"> </span>submit_bety <span class="op">&amp;</span><span class="st"> </span>accept_bety <span class="op">&amp;</span><span class="st"> </span>submit_accept <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span>accept_PFT
+
+<span class="co"># They don&#39;t equal one another</span>
+case03 &lt;-<span class="st"> </span>submit_bety <span class="op">&amp;</span><span class="st"> </span>accept_bety <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span>submit_accept <span class="op">&amp;</span><span class="st"> </span>submit_PFT <span class="op">&amp;</span><span class="st"> </span>accept_PFT
+case04 &lt;-<span class="st"> </span>submit_bety <span class="op">&amp;</span><span class="st"> </span>accept_bety <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span>submit_accept <span class="op">&amp;</span><span class="st"> </span>submit_PFT <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span>accept_PFT
+case05 &lt;-<span class="st"> </span>submit_bety <span class="op">&amp;</span><span class="st"> </span>accept_bety <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span>submit_accept <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span>submit_PFT <span class="op">&amp;</span><span class="st"> </span>accept_PFT
+case06 &lt;-<span class="st"> </span>submit_bety <span class="op">&amp;</span><span class="st"> </span>accept_bety <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span>submit_accept <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span>submit_PFT <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span>accept_PFT
+
+<span class="co">#------------------------------------------------------------------------------#</span>
+<span class="co"># Only one name in BETY</span>
+
+<span class="co"># Submitted name not in bety, accepted name in BETY</span>
+case07 &lt;-<span class="st"> </span><span class="op">!</span>submit_bety <span class="op">&amp;</span><span class="st"> </span>accept_bety <span class="op">&amp;</span><span class="st"> </span>accept_PFT
+case08 &lt;-<span class="st"> </span><span class="op">!</span>submit_bety <span class="op">&amp;</span><span class="st"> </span>accept_bety <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span>accept_PFT
+
+<span class="co"># Submitted name in bety, accepted name not in BETY</span>
+case09 &lt;-<span class="st"> </span>submit_bety <span class="op">&amp;</span><span class="st"> </span>submit_PFT <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span>accept_bety
+case10 &lt;-<span class="st"> </span>submit_bety <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span>submit_PFT <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span>accept_bety
+
+<span class="co">#------------------------------------------------------------------------------#</span>
+<span class="co"># None of the names are in BETY</span>
+case11 &lt;-<span class="st"> </span><span class="op">!</span>submit_bety <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span>accept_bety <span class="op">&amp;</span><span class="st"> </span><span class="kw">toupper</span>(sp<span class="op">$</span>submit_name[i]) <span class="op">==</span><span class="st"> </span><span class="kw">toupper</span>(sp<span class="op">$</span>accept_name[i])
+case12 &lt;-<span class="st"> </span><span class="op">!</span>submit_bety <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span>accept_bety <span class="op">&amp;</span><span class="st"> </span><span class="kw">toupper</span>(sp<span class="op">$</span>submit_name[i]) <span class="op">!=</span><span class="st"> </span><span class="kw">toupper</span>(sp<span class="op">$</span>accept_name[i])
+
+<span class="co">#------------------------------------------------------------------------------#</span>
+<span class="co"># Special unlucky number 13 case that the TNRS could not find an accepted name.</span>
+<span class="co"># Or TNRS returned a blank which is super lame and confusing.</span>
+<span class="co"># These will need to be resolved by hand.</span>
+case13 &lt;-<span class="st"> </span><span class="op">!</span>accept_name_exists
+<span class="cf">if</span>(case13){
+  case01 =<span class="st"> </span>case02 =<span class="st"> </span>case03 =<span class="st"> </span>case04 =<span class="st"> </span>case05 =<span class="st"> </span>case06 =<span class="st"> </span>case07 =<span class="st"> </span>case08 =
+<span class="st">    </span>case09 =<span class="st"> </span>case10 =<span class="st"> </span>case11 =<span class="st"> </span>case12 =<span class="st"> </span><span class="ot">FALSE</span>
+}</code></pre>
+<p>Using a list of 131 species from trait data that I need to import in to BETY (from various sources), I determined the case for each name in a separate script. The result of this analysis are in the file <code>/fs/data3/ecowdery/ED.Hydro/parameters/constraint_calculations/constraint_data/species_out.csv</code>.</p>
+<pre class="sourceCode r"><code class="sourceCode r">species_out =<span class="st"> </span><span class="kw">read.csv</span>(<span class="dt">file =</span> <span class="st">&quot;/fs/data3/ecowdery/ED.Hydro/parameters/constraint_calculations/constraint_data/species_out.csv&quot;</span>,
+                       <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(<span class="op">-</span><span class="kw">one_of</span>(<span class="kw">c</span>(<span class="st">&quot;X&quot;</span>, <span class="st">&quot;X.1&quot;</span>)))
+
+species_out &lt;-<span class="st"> </span>species_out <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">category =</span> <span class="kw">case_when</span>(case <span class="op">&lt;=</span><span class="st"> </span><span class="dv">6</span> <span class="op">~</span><span class="st"> &quot;both&quot;</span>, 
+                              <span class="dv">6</span> <span class="op">&lt;</span><span class="st"> </span>case <span class="op">&amp;</span><span class="st"> </span>case <span class="op">&lt;=</span><span class="st"> </span><span class="dv">10</span> <span class="op">~</span><span class="st"> &quot;one&quot;</span>, 
+                              <span class="dv">10</span> <span class="op">&lt;</span><span class="st"> </span>case <span class="op">&amp;</span><span class="st"> </span>case <span class="op">&lt;=</span><span class="st"> </span><span class="dv">12</span> <span class="op">~</span><span class="st"> &quot;none&quot;</span>,
+                              case <span class="op">==</span><span class="st"> </span><span class="dv">13</span> <span class="op">~</span><span class="st"> &quot;by hand&quot;</span>))
+species_out<span class="op">$</span>category &lt;-<span class="st"> </span><span class="kw">factor</span>(species_out<span class="op">$</span>category, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;both&quot;</span>, <span class="st">&quot;one&quot;</span>, <span class="st">&quot;none&quot;</span>, <span class="st">&quot;by hand&quot;</span>))
 
 <span class="co"># Here I color the entries by &quot;score&quot; which is just how &quot;close&quot; the match is</span>
 <span class="co"># So the score would go down for a spelling error for example</span>
-<span class="kw">ggplot</span>(<span class="dt">data =</span> species_case) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_bar</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">as.factor</span>(case), <span class="dt">fill =</span> <span class="kw">as.factor</span>(score)))</code></pre></div>
-<p><img src="Final_Book_files/figure-html/unnamed-chunk-15-1.png" width="768" /></p>
-<p>Luckily, case 6, the once in which the submitted name and accepted name agree and are in BETY and in the tropical PFT is the predominant case. However, there are a lot of other cases that need sorting through. This is where I need help.</p>
+<span class="kw">ggplot</span>(<span class="dt">data =</span> species_out) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_bar</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">as.factor</span>(case), <span class="dt">fill =</span> <span class="kw">as.factor</span>(score))) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">facet_grid</span>(<span class="kw">aes</span>(<span class="dt">cols =</span> category), <span class="dt">scales =</span> <span class="st">&quot;free&quot;</span>, <span class="dt">space =</span> <span class="st">&quot;free&quot;</span>)</code></pre>
+<p><img src="Final_Book_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Special case for which the TNRS did not work, I&#39;ll get to this later</span>
+species_special &lt;-<span class="st"> </span>species_out <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(case <span class="op">==</span><span class="st"> </span><span class="dv">13</span>)
+
+<span class="co"># Entries for which the TNRS did work</span>
+species_case &lt;-<span class="st"> </span>species_out <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(case <span class="op">!=</span><span class="st"> </span><span class="dv">13</span>)
+<span class="co"># dim(species_case)</span>
+
+<span class="kw">ggplot</span>(<span class="dt">data =</span> species_case <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(case <span class="op">!=</span><span class="st"> </span><span class="dv">1</span>)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_bar</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">as.factor</span>(case), <span class="dt">fill =</span> <span class="kw">as.factor</span>(score))) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Cases I need help with&quot;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">facet_grid</span>(<span class="kw">aes</span>(<span class="dt">cols =</span> category), <span class="dt">scales =</span> <span class="st">&quot;free&quot;</span>, <span class="dt">space =</span> <span class="st">&quot;free&quot;</span>)</code></pre>
+<p><img src="Final_Book_files/figure-html/unnamed-chunk-15-2.png" width="672" /></p>
+<p>Luckily, case 1, the one in which the submitted name and accepted name agree and are in BETY and in the tropical PFT is the predominant case. However, there are a lot of other cases that need sorting through. This is where I need help!</p>
+<p><strong>Specific places I would love opinions: case 3-6 &amp; 9-10</strong></p>
 </div>
 <div id="cases" class="section level2">
-<h2><span class="header-section-number">17.4</span> Cases</h2>
-<div id="neither-in-bety" class="section level3">
-<h3><span class="header-section-number">17.4.1</span> Neither in bety</h3>
+<h2><span class="header-section-number">18.4</span> Cases</h2>
+<div id="both-the-submitted-and-accepted-names-in-bety-and-they-are-the-same" class="section level3">
+<h3><span class="header-section-number">18.4.1</span> Both the submitted and accepted names in BETY and they are the same</h3>
 <div id="case-1" class="section level4">
-<h4><span class="header-section-number">17.4.1.1</span> Case 1</h4>
-<p><code>case01 &lt;- !submit_bety &amp; !accept_bety</code></p>
-<p><strong>My opinion:</strong> - Add the accepted name to the databse and to the PFT. - Enter the</p>
-<table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;">
-<thead>
-<tr>
-<th style="text-align:right;">
-X.1
-</th>
-<th style="text-align:right;">
-X
-</th>
-<th style="text-align:left;">
-submit_name
-</th>
-<th style="text-align:right;">
-submit_bety_id
-</th>
-<th style="text-align:left;">
-submit_in_PFT
-</th>
-<th style="text-align:left;">
-accept_name
-</th>
-<th style="text-align:left;">
-accept_bety_id
-</th>
-<th style="text-align:left;">
-accept_in_PFT
-</th>
-<th style="text-align:left;">
-sourceid
-</th>
-<th style="text-align:left;">
-score
-</th>
-<th style="text-align:left;">
-authority
-</th>
-<th style="text-align:left;">
-uri
-</th>
-<th style="text-align:right;">
-case
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-</tr>
-</tbody>
-</table>
-<pre><code>## [1] NA
-##  [1] X.1            X              submit_name    submit_bety_id
-##  [5] submit_in_PFT  accept_name    accept_bety_id accept_in_PFT 
-##  [9] sourceid       score          authority      uri           
-## [13] case          
-## &lt;0 rows&gt; (or 0-length row.names)</code></pre>
+<h4><span class="header-section-number">18.4.1.1</span> Case 1</h4>
+<ul>
+<li>Submit name <strong>is</strong> in BETY</li>
+<li><p>Accept name <strong>is</strong> in BETY</p></li>
+<li><p>Submit name = Accept name</p></li>
+<li>Submit name <strong>is</strong> in PFT</li>
+<li><p>Accept name <strong>is</strong> in PFT</p></li>
+</ul>
+<p>This is the best case, we don’t need to do anything!</p>
 </div>
-</div>
-<div id="submit-not-in-bety-accept-in-bety" class="section level3">
-<h3><span class="header-section-number">17.4.2</span> Submit not in bety, accept in bety</h3>
 <div id="case-2" class="section level4">
-<h4><span class="header-section-number">17.4.2.1</span> Case 2</h4>
-<p><code>case02 &lt;- !submit_bety &amp; accept_bety &amp; accept_PFT</code></p>
+<h4><span class="header-section-number">18.4.1.2</span> Case 2</h4>
+<ul>
+<li>Submit name <strong>is</strong> in BETY</li>
+<li><p>Accept name <strong>is</strong> in BETY</p></li>
+<li><p>Submit name = Accept name</p></li>
+<li>Submit name <strong>is not</strong> in PFT</li>
+<li><p>Accept name <strong>is not</strong> in PFT</p></li>
+</ul>
+<p>This seems pretty straightforward. We don’t need to add anything to the species table.
+Do we add the name to the PFT?</p>
 <table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
-<th style="text-align:right;">
-X.1
-</th>
-<th style="text-align:right;">
-X
-</th>
 <th style="text-align:left;">
 submit_name
 </th>
@@ -444,7 +480,7 @@ submit_in_PFT
 <th style="text-align:left;">
 accept_name
 </th>
-<th style="text-align:left;">
+<th style="text-align:right;">
 accept_bety_id
 </th>
 <th style="text-align:left;">
@@ -453,7 +489,7 @@ accept_in_PFT
 <th style="text-align:left;">
 sourceid
 </th>
-<th style="text-align:left;">
+<th style="text-align:right;">
 score
 </th>
 <th style="text-align:left;">
@@ -465,26 +501,79 @@ uri
 <th style="text-align:right;">
 case
 </th>
+<th style="text-align:left;">
+category
+</th>
 </tr>
 </thead>
 <tbody>
 <tr>
+<td style="text-align:left;">
+KIELMEYERA CORIACEA
+</td>
+<td style="text-align:right;">
+50498
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+Kielmeyera coriacea
+</td>
+<td style="text-align:right;">
+50498
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+iPlant_TNRS
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="http://www.tropicos.org/Name/7801213" class="uri">http://www.tropicos.org/Name/7801213</a>
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+both
+</td>
 </tr>
 </tbody>
 </table>
 </div>
+</div>
+<div id="both-the-submitted-and-accepted-names-in-bety-and-they-are-not-the-same" class="section level3">
+<h3><span class="header-section-number">18.4.2</span> Both the submitted and accepted names in BETY and they are NOT the same</h3>
+<ul>
+<li>This is complicated!</li>
+<li>If the submitted names in BETY are out of date, should they be replaced by the new accepted names?</li>
+<li>If we keep the submitted name species record in BETY
+<ul>
+<li>How does this decision affect trait records linked to that species record?</li>
+<li>How does this decision affect whether or not the submitted name stays in the PFT?</li>
+</ul></li>
+<li>Should the trait data that hasn’t been entered yet be linked to the submitted name species record or the accepted name species record?</li>
+</ul>
+<p>Keep these questions in mind when looking through not only cases 3-6 but also 9-10</p>
 <div id="case-3" class="section level4">
-<h4><span class="header-section-number">17.4.2.2</span> Case 3</h4>
-<p><code>case03 &lt;- !submit_bety &amp; accept_bety &amp; !accept_PFT</code></p>
+<h4><span class="header-section-number">18.4.2.1</span> Case 3</h4>
+<ul>
+<li>Submit name <strong>is</strong> in BETY</li>
+<li><p>Accept name <strong>is</strong> in BETY</p></li>
+<li><p>Submit name != Accept name</p></li>
+<li>Submit name <strong>is</strong> in PFT</li>
+<li><p>Accept name <strong>is</strong> in PFT</p></li>
+</ul>
 <table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
-<th style="text-align:right;">
-X.1
-</th>
-<th style="text-align:right;">
-X
-</th>
 <th style="text-align:left;">
 submit_name
 </th>
@@ -497,7 +586,7 @@ submit_in_PFT
 <th style="text-align:left;">
 accept_name
 </th>
-<th style="text-align:left;">
+<th style="text-align:right;">
 accept_bety_id
 </th>
 <th style="text-align:left;">
@@ -506,7 +595,7 @@ accept_in_PFT
 <th style="text-align:left;">
 sourceid
 </th>
-<th style="text-align:left;">
+<th style="text-align:right;">
 score
 </th>
 <th style="text-align:left;">
@@ -517,6 +606,9 @@ uri
 </th>
 <th style="text-align:right;">
 case
+</th>
+<th style="text-align:left;">
+category
 </th>
 </tr>
 </thead>
@@ -526,21 +618,18 @@ case
 </tbody>
 </table>
 </div>
-</div>
-<div id="submit-in-bety-accept-not-in-bety" class="section level3">
-<h3><span class="header-section-number">17.4.3</span> Submit in bety, accept not in bety</h3>
 <div id="case-4" class="section level4">
-<h4><span class="header-section-number">17.4.3.1</span> Case 4</h4>
-<p><code>case04 &lt;- submit_bety &amp; submit_PFT &amp; !accept_bety</code></p>
+<h4><span class="header-section-number">18.4.2.2</span> Case 4</h4>
+<ul>
+<li>Submit name <strong>is</strong> in BETY</li>
+<li><p>Accept name <strong>is</strong> in BETY</p></li>
+<li><p>Submit name != Accept name</p></li>
+<li>Submit name <strong>is</strong> in PFT</li>
+<li><p>Accept name <strong>is not</strong> in PFT</p></li>
+</ul>
 <table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
-<th style="text-align:right;">
-X.1
-</th>
-<th style="text-align:right;">
-X
-</th>
 <th style="text-align:left;">
 submit_name
 </th>
@@ -553,7 +642,7 @@ submit_in_PFT
 <th style="text-align:left;">
 accept_name
 </th>
-<th style="text-align:left;">
+<th style="text-align:right;">
 accept_bety_id
 </th>
 <th style="text-align:left;">
@@ -562,7 +651,7 @@ accept_in_PFT
 <th style="text-align:left;">
 sourceid
 </th>
-<th style="text-align:left;">
+<th style="text-align:right;">
 score
 </th>
 <th style="text-align:left;">
@@ -573,6 +662,9 @@ uri
 </th>
 <th style="text-align:right;">
 case
+</th>
+<th style="text-align:left;">
+category
 </th>
 </tr>
 </thead>
@@ -583,17 +675,17 @@ case
 </table>
 </div>
 <div id="case-5" class="section level4">
-<h4><span class="header-section-number">17.4.3.2</span> Case 5</h4>
-<p><code>case05 &lt;- submit_bety &amp; !submit_PFT &amp; !accept_bety</code></p>
+<h4><span class="header-section-number">18.4.2.3</span> Case 5</h4>
+<ul>
+<li>Submit name <strong>is</strong> in BETY</li>
+<li><p>Accept name <strong>is</strong> in BETY</p></li>
+<li><p>Submit name != Accept name</p></li>
+<li>Submit name <strong>is not</strong> in PFT</li>
+<li><p>Accept name <strong>is</strong> in PFT</p></li>
+</ul>
 <table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
-<th style="text-align:right;">
-X.1
-</th>
-<th style="text-align:right;">
-X
-</th>
 <th style="text-align:left;">
 submit_name
 </th>
@@ -606,7 +698,7 @@ submit_in_PFT
 <th style="text-align:left;">
 accept_name
 </th>
-<th style="text-align:left;">
+<th style="text-align:right;">
 accept_bety_id
 </th>
 <th style="text-align:left;">
@@ -615,7 +707,7 @@ accept_in_PFT
 <th style="text-align:left;">
 sourceid
 </th>
-<th style="text-align:left;">
+<th style="text-align:right;">
 score
 </th>
 <th style="text-align:left;">
@@ -627,6 +719,101 @@ uri
 <th style="text-align:right;">
 case
 </th>
+<th style="text-align:left;">
+category
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+SIMAROUBA GLAUCA
+</td>
+<td style="text-align:right;">
+13388
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+Simarouba amara
+</td>
+<td style="text-align:right;">
+50962
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+iPlant_TNRS
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="http://www.tropicos.org/Name/29400090" class="uri">http://www.tropicos.org/Name/29400090</a>
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+both
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="case-6" class="section level4">
+<h4><span class="header-section-number">18.4.2.4</span> Case 6</h4>
+<ul>
+<li>Submit name <strong>is</strong> in BETY</li>
+<li><p>Accept name <strong>is</strong> in BETY</p></li>
+<li><p>Submit name != Accept name</p></li>
+<li>Submit name <strong>is not</strong> in PFT</li>
+<li><p>Accept name <strong>is not</strong> in PFT</p></li>
+</ul>
+<table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+submit_name
+</th>
+<th style="text-align:right;">
+submit_bety_id
+</th>
+<th style="text-align:left;">
+submit_in_PFT
+</th>
+<th style="text-align:left;">
+accept_name
+</th>
+<th style="text-align:right;">
+accept_bety_id
+</th>
+<th style="text-align:left;">
+accept_in_PFT
+</th>
+<th style="text-align:left;">
+sourceid
+</th>
+<th style="text-align:right;">
+score
+</th>
+<th style="text-align:left;">
+authority
+</th>
+<th style="text-align:left;">
+uri
+</th>
+<th style="text-align:right;">
+case
+</th>
+<th style="text-align:left;">
+category
+</th>
 </tr>
 </thead>
 <tbody>
@@ -636,28 +823,1478 @@ case
 </table>
 </div>
 </div>
-<div id="both-in-bety-and-they-equal-each-other" class="section level3">
-<h3><span class="header-section-number">17.4.4</span> Both in bety and they equal each other</h3>
-<div id="case06---submit_bety-accept_bety-submit_accept-accept_pft" class="section level4">
-<h4><span class="header-section-number">17.4.4.1</span> case06 &lt;- submit_bety &amp; accept_bety &amp; submit_accept &amp; accept_PFT</h4>
+<div id="only-the-accepted-name-is-in-in-bety" class="section level3">
+<h3><span class="header-section-number">18.4.3</span> Only the accepted name is in in BETY</h3>
+<p>Here there aren’t too many questions, as long as we are ok with entering the trait data under the accepted name (and potentially adding the accepted name to the PFT.)</p>
+<div id="case-7" class="section level4">
+<h4><span class="header-section-number">18.4.3.1</span> Case 7</h4>
+<ul>
+<li><p>Submitted name <strong>is not</strong> in BETY</p></li>
+<li>Accepted name <strong>is</strong> in BETY</li>
+<li><p>Accepted name <strong>is</strong> in PFT</p></li>
+</ul>
+<table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+submit_name
+</th>
+<th style="text-align:right;">
+submit_bety_id
+</th>
+<th style="text-align:left;">
+submit_in_PFT
+</th>
+<th style="text-align:left;">
+accept_name
+</th>
+<th style="text-align:right;">
+accept_bety_id
+</th>
+<th style="text-align:left;">
+accept_in_PFT
+</th>
+<th style="text-align:left;">
+sourceid
+</th>
+<th style="text-align:right;">
+score
+</th>
+<th style="text-align:left;">
+authority
+</th>
+<th style="text-align:left;">
+uri
+</th>
+<th style="text-align:right;">
+case
+</th>
+<th style="text-align:left;">
+category
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+ANTIRRHEA TRICHANTHA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+Pittoniotis trichantha
+</td>
+<td style="text-align:right;">
+1000011255
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+iPlant_TNRS
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="http://www.tropicos.org/Name/27903746" class="uri">http://www.tropicos.org/Name/27903746</a>
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:left;">
+one
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ASPIDOSPERMA CRUENTA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+Aspidosperma desmanthum
+</td>
+<td style="text-align:right;">
+1000000969
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+iPlant_TNRS
+</td>
+<td style="text-align:right;">
+0.94
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="http://www.tropicos.org/Name/1800106" class="uri">http://www.tropicos.org/Name/1800106</a>
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:left;">
+one
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CHRYSOPHLLUM CAINITO
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+Chrysophyllum cainito
+</td>
+<td style="text-align:right;">
+28944
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+iPlant_TNRS
+</td>
+<td style="text-align:right;">
+0.99
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="http://www.tropicos.org/Name/28700679" class="uri">http://www.tropicos.org/Name/28700679</a>
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:left;">
+one
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HYMENEA COURBARIL
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+Hymenaea courbaril
+</td>
+<td style="text-align:right;">
+27020
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+iPlant_TNRS
+</td>
+<td style="text-align:right;">
+0.98
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="http://www.tropicos.org/Name/13005950" class="uri">http://www.tropicos.org/Name/13005950</a>
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:left;">
+one
+</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div id="case07---submit_bety-accept_bety-submit_accept-accept_pft" class="section level4">
-<h4><span class="header-section-number">17.4.4.2</span> case07 &lt;- submit_bety &amp; accept_bety &amp; submit_accept &amp; !accept_PFT</h4>
+<div id="case-8" class="section level4">
+<h4><span class="header-section-number">18.4.3.2</span> Case 8</h4>
+<ul>
+<li><p>Submitted name <strong>is not</strong> in BETY</p></li>
+<li>Accepted name <strong>is</strong> in BETY</li>
+<li><p>Accepteed name <strong>is not</strong> in PFT</p></li>
+</ul>
+<table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+submit_name
+</th>
+<th style="text-align:right;">
+submit_bety_id
+</th>
+<th style="text-align:left;">
+submit_in_PFT
+</th>
+<th style="text-align:left;">
+accept_name
+</th>
+<th style="text-align:right;">
+accept_bety_id
+</th>
+<th style="text-align:left;">
+accept_in_PFT
+</th>
+<th style="text-align:left;">
+sourceid
+</th>
+<th style="text-align:right;">
+score
+</th>
+<th style="text-align:left;">
+authority
+</th>
+<th style="text-align:left;">
+uri
+</th>
+<th style="text-align:right;">
+case
+</th>
+<th style="text-align:left;">
+category
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+BURSERA SIMAROUBA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+Simarouba
+</td>
+<td style="text-align:right;">
+13376
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+NCBI
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/taxonomy/43728" class="uri">https://www.ncbi.nlm.nih.gov/taxonomy/43728</a>
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:left;">
+one
+</td>
+</tr>
+</tbody>
+</table>
+<p>Also, looking specifically at the resuilt for BURSERA SIMAROUBA, I’m not confident in that result and I may double check it by hand.</p>
 </div>
 </div>
-<div id="both-in-bety-and-they-dont-equal-one-another" class="section level3">
-<h3><span class="header-section-number">17.4.5</span> Both in BETY and they don’t equal one another</h3>
-<div id="case08---submit_bety-accept_bety-submit_accept-submit_pft-accept_pft" class="section level4">
-<h4><span class="header-section-number">17.4.5.1</span> case08 &lt;- submit_bety &amp; accept_bety &amp; !submit_accept &amp; submit_PFT &amp; accept_PFT</h4>
+<div id="only-the-submitted-name-is-in-in-bety" class="section level3">
+<h3><span class="header-section-number">18.4.4</span> Only the submitted name is in in BETY</h3>
+<p>Decisions about how to handle cases 9 and 10 depend on how we choose to handle cases 3-6.</p>
+<div id="case-9" class="section level4">
+<h4><span class="header-section-number">18.4.4.1</span> Case 9</h4>
+<ul>
+<li>Submitted name <strong>is</strong> in BETY</li>
+<li><p>Submitted name <strong>is</strong> in PFT</p></li>
+<li><p>Accepted name <strong>is not</strong> in BETY</p></li>
+</ul>
+<p>Questions:</p>
+<ul>
+<li>Should I add the new accepted names to the database? Should the trait data that I haven’t entered yet be entered under the submitted names or the accepted names?</li>
+</ul>
+<table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+submit_name
+</th>
+<th style="text-align:right;">
+submit_bety_id
+</th>
+<th style="text-align:left;">
+submit_in_PFT
+</th>
+<th style="text-align:left;">
+accept_name
+</th>
+<th style="text-align:right;">
+accept_bety_id
+</th>
+<th style="text-align:left;">
+accept_in_PFT
+</th>
+<th style="text-align:left;">
+sourceid
+</th>
+<th style="text-align:right;">
+score
+</th>
+<th style="text-align:left;">
+authority
+</th>
+<th style="text-align:left;">
+uri
+</th>
+<th style="text-align:right;">
+case
+</th>
+<th style="text-align:left;">
+category
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+CAESALPINIA ERIOSTACHYS
+</td>
+<td style="text-align:right;">
+1000001917
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Poincianella eriostachys
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+iPlant_TNRS
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="http://www.tropicos.org/Name/13015217" class="uri">http://www.tropicos.org/Name/13015217</a>
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:left;">
+one
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SCLEROLOBIUM PANICULATUM
+</td>
+<td style="text-align:right;">
+1000013036
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Tachigali vulgaris
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+iPlant_TNRS
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="http://www.tropicos.org/Name/50317942" class="uri">http://www.tropicos.org/Name/50317942</a>
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:left;">
+one
+</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div id="case09---submit_bety-accept_bety-submit_accept-submit_pft-accept_pft" class="section level4">
-<h4><span class="header-section-number">17.4.5.2</span> case09 &lt;- submit_bety &amp; accept_bety &amp; !submit_accept &amp; submit_PFT &amp; !accept_PFT</h4>
+<div id="case-10" class="section level4">
+<h4><span class="header-section-number">18.4.4.2</span> Case 10</h4>
+<ul>
+<li>Submitted name <strong>is</strong> in BETY</li>
+<li><p>Submitted name <strong>is not</strong> in PFT</p></li>
+<li><p>Accepted name <strong>is not</strong> in BETY</p></li>
+</ul>
+<p>Questions:</p>
+<ul>
+<li>See all the questions associated with case 9.</li>
+<li>The answers to case 9 questions affects whether or not the submitted names in case 10 should be added to the PFT.</li>
+</ul>
+<table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+submit_name
+</th>
+<th style="text-align:right;">
+submit_bety_id
+</th>
+<th style="text-align:left;">
+submit_in_PFT
+</th>
+<th style="text-align:left;">
+accept_name
+</th>
+<th style="text-align:right;">
+accept_bety_id
+</th>
+<th style="text-align:left;">
+accept_in_PFT
+</th>
+<th style="text-align:left;">
+sourceid
+</th>
+<th style="text-align:right;">
+score
+</th>
+<th style="text-align:left;">
+authority
+</th>
+<th style="text-align:left;">
+uri
+</th>
+<th style="text-align:right;">
+case
+</th>
+<th style="text-align:left;">
+category
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+AEGIPHILA LHOTZKIANA
+</td>
+<td style="text-align:right;">
+49913
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+Aegiphila verticillata
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+iPlant_TNRS
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="http://www.tropicos.org/Name/50214172" class="uri">http://www.tropicos.org/Name/50214172</a>
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:left;">
+one
+</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div id="case10---submit_bety-accept_bety-submit_accept-submit_pft-accept_pft" class="section level4">
-<h4><span class="header-section-number">17.4.5.3</span> case10 &lt;- submit_bety &amp; accept_bety &amp; !submit_accept &amp; !submit_PFT &amp; accept_PFT</h4>
 </div>
-<div id="case11---submit_bety-accept_bety-submit_accept-submit_pft-accept_pft" class="section level4">
-<h4><span class="header-section-number">17.4.5.4</span> case11 &lt;- submit_bety &amp; accept_bety &amp; !submit_accept &amp; !submit_PFT &amp; !accept_PFT</h4>
+<div id="none-of-the-names-are-in-bety" class="section level3">
+<h3><span class="header-section-number">18.4.5</span> None of the names are in BETY</h3>
+<div id="case-11" class="section level4">
+<h4><span class="header-section-number">18.4.5.1</span> Case 11</h4>
+<p>Submitted and Accepted name is the same and is not in BETY - do we add it?</p>
+<table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+submit_name
+</th>
+<th style="text-align:right;">
+submit_bety_id
+</th>
+<th style="text-align:left;">
+submit_in_PFT
+</th>
+<th style="text-align:left;">
+accept_name
+</th>
+<th style="text-align:right;">
+accept_bety_id
+</th>
+<th style="text-align:left;">
+accept_in_PFT
+</th>
+<th style="text-align:left;">
+sourceid
+</th>
+<th style="text-align:right;">
+score
+</th>
+<th style="text-align:left;">
+authority
+</th>
+<th style="text-align:left;">
+uri
+</th>
+<th style="text-align:right;">
+case
+</th>
+<th style="text-align:left;">
+category
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+ALBIZIA GUACHAPELE
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+Albizia guachapele
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+iPlant_TNRS
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="http://www.tropicos.org/Name/13002026" class="uri">http://www.tropicos.org/Name/13002026</a>
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:left;">
+none
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BALFOURODENDRON RIEDELIANUM
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+Balfourodendron riedelianum
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+NCBI
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/taxonomy/549412" class="uri">https://www.ncbi.nlm.nih.gov/taxonomy/549412</a>
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:left;">
+none
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CEIBA SPECIOSA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+Ceiba speciosa
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+NCBI
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/taxonomy/82382" class="uri">https://www.ncbi.nlm.nih.gov/taxonomy/82382</a>
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:left;">
+none
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CORDIA TRICHOTOMA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+Cordia trichotoma
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+NCBI
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/taxonomy/181186" class="uri">https://www.ncbi.nlm.nih.gov/taxonomy/181186</a>
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:left;">
+none
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HOLOCALYX BALANSAE
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+Holocalyx balansae
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+iPlant_TNRS
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="http://www.tropicos.org/Name/13020477" class="uri">http://www.tropicos.org/Name/13020477</a>
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:left;">
+none
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HYMENAEA MARTIANA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+Hymenaea martiana
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+NCBI
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/taxonomy/1902340" class="uri">https://www.ncbi.nlm.nih.gov/taxonomy/1902340</a>
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:left;">
+none
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MYRSINE FERRUGINEA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+Myrsine ferruginea
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+NCBI
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/taxonomy/85893" class="uri">https://www.ncbi.nlm.nih.gov/taxonomy/85893</a>
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:left;">
+none
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OCOTEA DIOSPYRIFOLIA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+Ocotea diospyrifolia
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+NCBI
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/taxonomy/881600" class="uri">https://www.ncbi.nlm.nih.gov/taxonomy/881600</a>
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:left;">
+none
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PARAPIPTADENIA RIGIDA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+Parapiptadenia rigida
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+NCBI
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/taxonomy/148713" class="uri">https://www.ncbi.nlm.nih.gov/taxonomy/148713</a>
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:left;">
+none
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SCHEFFLERA MACROCARPA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+Schefflera macrocarpa
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+NCBI
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/taxonomy/859572" class="uri">https://www.ncbi.nlm.nih.gov/taxonomy/859572</a>
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:left;">
+none
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SEMIALARIUM MEXICANUM
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+Semialarium mexicanum
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+NCBI
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/taxonomy/123477" class="uri">https://www.ncbi.nlm.nih.gov/taxonomy/123477</a>
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:left;">
+none
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+STYRAX FERRUGINEUS
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+Styrax ferrugineus
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+NCBI
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/taxonomy/153532" class="uri">https://www.ncbi.nlm.nih.gov/taxonomy/153532</a>
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:left;">
+none
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+STYRAX POHLII
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+Styrax pohlii
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+iPlant_TNRS
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="http://www.tropicos.org/Name/30800040" class="uri">http://www.tropicos.org/Name/30800040</a>
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:left;">
+none
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SYMPLOCOS LANCEOLATA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+Symplocos lanceolata
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+NCBI
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/taxonomy/251584" class="uri">https://www.ncbi.nlm.nih.gov/taxonomy/251584</a>
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:left;">
+none
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+VOCHYSIA THYRSOIDEA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+Vochysia thyrsoidea
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+iPlant_TNRS
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="http://www.tropicos.org/Name/50184812" class="uri">http://www.tropicos.org/Name/50184812</a>
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:left;">
+none
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="case-12" class="section level4">
+<h4><span class="header-section-number">18.4.5.2</span> Case 12</h4>
+<p>Submitted and Accepted names are not the same and are not in BETY - which do we add? (See case 3-6,9-10)</p>
+<table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+submit_name
+</th>
+<th style="text-align:right;">
+submit_bety_id
+</th>
+<th style="text-align:left;">
+submit_in_PFT
+</th>
+<th style="text-align:left;">
+accept_name
+</th>
+<th style="text-align:right;">
+accept_bety_id
+</th>
+<th style="text-align:left;">
+accept_in_PFT
+</th>
+<th style="text-align:left;">
+sourceid
+</th>
+<th style="text-align:right;">
+score
+</th>
+<th style="text-align:left;">
+authority
+</th>
+<th style="text-align:left;">
+uri
+</th>
+<th style="text-align:right;">
+case
+</th>
+<th style="text-align:left;">
+category
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+HYMENAEA STIGNOCARPA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+Hymenaea stigonocarpa
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+iPlant_TNRS
+</td>
+<td style="text-align:right;">
+0.99
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="http://www.tropicos.org/Name/13020524" class="uri">http://www.tropicos.org/Name/13020524</a>
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:left;">
+none
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+LONCHOCARPUS MUEHLBERGIANUS
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+Dahlstedtia muehlbergiana
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+NCBI
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/taxonomy/185720" class="uri">https://www.ncbi.nlm.nih.gov/taxonomy/185720</a>
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:left;">
+none
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MICONIA POHLIANA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+Miconia leucocarpa
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+iPlant_TNRS
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="http://www.tropicos.org/Name/20301140" class="uri">http://www.tropicos.org/Name/20301140</a>
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:left;">
+none
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="tnrs-didnt-work" class="section level3">
+<h3><span class="header-section-number">18.4.6</span> TNRS didn’t work</h3>
+<div id="case-13" class="section level4">
+<h4><span class="header-section-number">18.4.6.1</span> Case 13</h4>
+<p>These I’m going to need to go through by hand to figure out why the queries didn’t work.</p>
+<table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+submit_name
+</th>
+<th style="text-align:right;">
+submit_bety_id
+</th>
+<th style="text-align:left;">
+submit_in_PFT
+</th>
+<th style="text-align:left;">
+accept_name
+</th>
+<th style="text-align:right;">
+accept_bety_id
+</th>
+<th style="text-align:left;">
+accept_in_PFT
+</th>
+<th style="text-align:left;">
+sourceid
+</th>
+<th style="text-align:right;">
+score
+</th>
+<th style="text-align:left;">
+authority
+</th>
+<th style="text-align:left;">
+uri
+</th>
+<th style="text-align:right;">
+case
+</th>
+<th style="text-align:left;">
+category
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+BYRSONIMA CRASSA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:left;">
+by hand
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SYMPLOCOS MOSENII
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+iPlant_TNRS
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:left;">
+by hand
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+TACHIGALIA VERSICOLOR
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+iPlant_TNRS
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:left;">
+by hand
+</td>
+</tr>
+</tbody>
+</table>
 
 </div>
 </div>
@@ -719,7 +2356,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
+    var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(src))
       src = src.replace(/^https?:/, '');

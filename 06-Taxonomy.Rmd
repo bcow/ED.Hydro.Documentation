@@ -1,15 +1,15 @@
 ---
 title: "06-Taxonomy"
 output:
-  html_document: default
   html_notebook: default
+  html_document: default
 ---
 
 # Taxonomic Name Resolution when Importing Data in to BETY
 
 ## Name Resolution {}
 
-When users have plant trait data that they want to enter in to the database, the data needs to attributed to a specific species database entry. When the user has no other information (such as ID codes such as the USDA and FIA codes) the only way to match the species in the data with species entry in the database is through matching of scientific names.
+When users have plant trait data that they want to enter in to the database, the data needs to attributed to a specific species database record. When the user has no other information (such as ID codes like the USDA and FIA codes) the only way to match the species in the data with species entry in the database is through matching of scientific names.
 
 But it may be the case that the accepted scientific name has changed since the data was collected (and/or published), or that the data itself contains errors (typos or otherwise) such that the names in the data are not matching with anything that has already been entered in to BETY. It is also the case that BETY does not have a complete record. 
 
@@ -27,15 +27,17 @@ I recommend checking out their [vignettes](https://cran.r-project.org/web/packag
 
 ## Building a Tropical PFT {}
 
-the goal of all of this is not only to import trait data, but to build a PFT that I can used to do runs in the tropics. __(How general should this PFT be? That's a good question!)__
+My goal is not only to import trait data, but to build a PFT that I can used to do runs in the tropics. __(How general should this PFT be? That's a good question!)__
 
 Right now I'm using a clone of the tropical PFT that was made to be used with FATES. Thus it contains all the imported BETY entries from the ForestGEO Neotropical tree database (http://ctfs.si.edu/webatlas/neotropicaltree/) and more. There are currently 22286 species linked to the PFT, 20811 of which are the ForestGEO entries. 
 
 If I'm importing data with species that are not in the existing PFT, I need to decide if they should be added. And I suppose I should also make sure there aren't any species in the PFT that shouldn't be there. This is something that I have no expertise in so I would like advice. 
+Below I'm loading in all the spcies names from my PFT (id = 1000000131)
 
 ```{r, include=FALSE, message=FALSE}
 suppressPackageStartupMessages(library(ED.Hydro.Helpers))
 suppressPackageStartupMessages(library(kableExtra))
+suppressPackageStartupMessages(library(taxize))
 bety <- betyConnect("/fs/data3/ecowdery/pecan/web/config.php")
 ```
 
@@ -57,138 +59,313 @@ PFT_species$notes <- NULL
 
 ```
 
-## The point of all this
+## What I need help with
 
-I'm running four tests:
+I need to import trait data in to the database and I need to match the species names in the data to the records in BETY. Furthermore, I need to decide if I need to add records or change existing records in BETY.  
 
-I'll refer to the species name in the data set as "submitted name" 
-and the name returned throught the TNRS 
-(that is specifically classified as an accepted name) as "accepted name."
+I'll refer to the species name in the data set as "submitted name" - 
+I run these names through the TNRS to see if returns spelling corrections or 
+a different "accepted name."
 
-1) Does the submitted name have an exact match in the database (ie return a species entry id)? If yes, `submit_bety = TRUE`.
-2) If `submit_bety = TRUE`, is the resulting species id in the PFT? If yes, `submit_PFT = TRUE`
+For example:
 
-Then feed the submitted name through the TNRS and (hopefully) recieve an accepted name:
+If my submitted name is `"Simaroubu glauca"` (which I misspelled from Simarouba glauca)
 
-3) Does the accepted name have an exact match in the database (ie return a species entry id)? If yes, `accept_bety = TRUE`.
-4) If `accept_bety = TRUE`, is the resulting species id in the PFT? If yes, `accept_PFT = TRUE`
+```{r}
+submit_name <- "Simaroubu glauca"
+tnrs(query = submit_name)
+```
 
-From this we can come up with the following cases:
+The iPlant TNRS matches the name Simarouba glauca	but then provides an __accepted__ name of Simarouba amara.
+
+When I use the name resolving tools, and try to match the submitted and accepted names to BETY I come up with 13 different cases that can potentially arrise. I'll go through each one in detail below:
 
 ```{r, eval = FALSE}
 
+#------------------------------------------------------------------------------#
+# Both the submitted and accepted names in BETY
+
+# Check if they equal each other
+submit_accept <- sp$submit_bety_id[i] == sp$accept_bety_id[i] 
+
+# They equal each other
+case01 <- submit_bety & accept_bety & submit_accept & accept_PFT # Best case, don't need to do anything.
+case02 <- submit_bety & accept_bety & submit_accept & !accept_PFT
+
+# They don't equal one another
+case03 <- submit_bety & accept_bety & !submit_accept & submit_PFT & accept_PFT
+case04 <- submit_bety & accept_bety & !submit_accept & submit_PFT & !accept_PFT
+case05 <- submit_bety & accept_bety & !submit_accept & !submit_PFT & accept_PFT
+case06 <- submit_bety & accept_bety & !submit_accept & !submit_PFT & !accept_PFT
+
+#------------------------------------------------------------------------------#
+# Only one name in BETY
+
+# Submitted name not in bety, accepted name in BETY
+case07 <- !submit_bety & accept_bety & accept_PFT
+case08 <- !submit_bety & accept_bety & !accept_PFT
+
+# Submitted name in bety, accepted name not in BETY
+case09 <- submit_bety & submit_PFT & !accept_bety
+case10 <- submit_bety & !submit_PFT & !accept_bety
+
+#------------------------------------------------------------------------------#
+# None of the names are in BETY
+case11 <- !submit_bety & !accept_bety & toupper(sp$submit_name[i]) == toupper(sp$accept_name[i])
+case12 <- !submit_bety & !accept_bety & toupper(sp$submit_name[i]) != toupper(sp$accept_name[i])
+
+#------------------------------------------------------------------------------#
+# Special unlucky number 13 case that the TNRS could not find an accepted name.
+# Or TNRS returned a blank which is super lame and confusing.
+# These will need to be resolved by hand.
+case13 <- !accept_name_exists
+if(case13){
+  case01 = case02 = case03 = case04 = case05 = case06 = case07 = case08 =
+    case09 = case10 = case11 = case12 = FALSE
+}
 
 ```
 
-For a list of 131 species from trait data that needs to be imported in to BETY (from various sources), I determined the case for each species in a separate script. The result of this analysis are in the file `/fs/data3/ecowdery/ED.Hydro/parameters/constraint_calculations/constraint_data/species_out.csv`.
+Using a list of 131 species from trait data that I need to import in to BETY (from various sources), I determined the case for each name in a separate script. The result of this analysis are in the file `/fs/data3/ecowdery/ED.Hydro/parameters/constraint_calculations/constraint_data/species_out.csv`.
 
 ```{r}
 species_out = read.csv(file = "/fs/data3/ecowdery/ED.Hydro/parameters/constraint_calculations/constraint_data/species_out.csv",
-                       stringsAsFactors = FALSE)
+                       stringsAsFactors = FALSE) %>% 
+  select(-one_of(c("X", "X.1")))
 
-# Special case for which the TNRS did not work, I'll get to this later
-species_special <- species_out %>% filter(is.na(accept_name) | accept_name == "" | accept_name == " ")
-
-# Entries for which the TNRS did work
-species_case <- species_out %>% filter(!is.na(accept_name))
-# dim(species_case)
+species_out <- species_out %>% 
+  mutate(category = case_when(case <= 6 ~ "both", 
+                              6 < case & case <= 10 ~ "one", 
+                              10 < case & case <= 12 ~ "none",
+                              case == 13 ~ "by hand"))
+species_out$category <- factor(species_out$category, levels = c("both", "one", "none", "by hand"))
 
 # Here I color the entries by "score" which is just how "close" the match is
 # So the score would go down for a spelling error for example
-ggplot(data = species_case) + 
-  geom_bar(aes(x = as.factor(case), fill = as.factor(score)))
+ggplot(data = species_out) + 
+  geom_bar(aes(x = as.factor(case), fill = as.factor(score))) + 
+  facet_grid(aes(cols = category), scales = "free", space = "free")
+
+# Special case for which the TNRS did not work, I'll get to this later
+species_special <- species_out %>% filter(case == 13)
+
+# Entries for which the TNRS did work
+species_case <- species_out %>% filter(case != 13)
+# dim(species_case)
+
+ggplot(data = species_case %>% filter(case != 1)) + 
+  geom_bar(aes(x = as.factor(case), fill = as.factor(score))) + 
+  ggtitle("Cases I need help with") + 
+  facet_grid(aes(cols = category), scales = "free", space = "free")
 
 ```
 
-Luckily, case 6, the once in which the submitted name and accepted name agree and are in BETY and in the tropical PFT is the predominant case. However, there are a lot of other cases that need sorting through. This is where I need help. 
+Luckily, case 1, the one in which the submitted name and accepted name agree and are in BETY and in the tropical PFT is the predominant case. However, there are a lot of other cases that need sorting through. This is where I need help!
+
+__Specific places I would love opinions: case 3-6 & 9-10__
 
 
 ## Cases {}
 
-### Neither in bety {}
+### Both the submitted and accepted names in BETY and they are the same {}
 
 #### Case 1 {}
 
-`case01 <- !submit_bety & !accept_bety`
+- Submit name __is__ in BETY
+- Accept name __is__ in BETY
 
-__My opinion:__ 
-- Add the accepted name to the databse and to the PFT.
-- Enter the 
+- Submit name = Accept name
 
-```{r, echo = FALSE}
-library(kableExtra)
-c1 <- species_case %>% filter(case == 1)
-kable(c1) %>%
-  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+- Submit name __is__ in PFT
+- Accept name __is__ in PFT
 
-# Check if any the submitted name and accepted names are different 
-UGH <- apply(c1, 1, function(x) toupper(x[3]) != toupper(x[6])) %>% which()
-
-c1[19,"accept_name"] == ""
-
-c1[UGH,]
-
-```
-
-
-### Submit not in bety, accept in bety {}
+This is the best case, we don't need to do anything!
 
 #### Case 2 {}
 
-`case02 <- !submit_bety & accept_bety & accept_PFT`
+- Submit name __is__ in BETY
+- Accept name __is__ in BETY
+
+- Submit name = Accept name
+
+- Submit name __is not__ in PFT
+- Accept name __is not__ in PFT
+
+This seems pretty straightforward. We don't need to add anything to the species table.
+Do we add the name to the PFT?
 
 ```{r, echo = FALSE}
-library(kableExtra)
 kable(species_case %>% filter(case == 2)) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
 ```
 
+### Both the submitted and accepted names in BETY and they are NOT the same {}
+
+- This is complicated!
+- If the submitted names in BETY are out of date, should they be replaced by the new accepted names?
+- If we keep the submitted name species record in BETY
+    - How does this decision affect trait records linked to that species record?
+    - How does this decision affect whether or not the submitted name stays in the PFT?
+- Should the trait data that hasn't been entered yet be linked to the submitted name species record or the accepted name species record?
+
+Keep these questions in mind when looking through not only cases 3-6 but also 9-10
+
 #### Case 3 {}
 
-`case03 <- !submit_bety & accept_bety & !accept_PFT`
+- Submit name __is__ in BETY
+- Accept name __is__ in BETY
+
+- Submit name != Accept name
+
+- Submit name __is__ in PFT
+- Accept name __is__ in PFT
 
 ```{r, echo = FALSE}
-library(kableExtra)
 kable(species_case %>% filter(case == 3)) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
 ```
 
-### Submit in bety, accept not in bety {}
-
 #### Case 4 {}
 
-`case04 <- submit_bety & submit_PFT & !accept_bety`
+- Submit name __is__ in BETY
+- Accept name __is__ in BETY
+
+- Submit name != Accept name
+
+- Submit name __is__ in PFT
+- Accept name __is not__ in PFT
 
 ```{r, echo = FALSE}
-library(kableExtra)
 kable(species_case %>% filter(case == 4)) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
 ```
 
-#### Case 5  {}
+#### Case 5 {}
 
-`case05 <- submit_bety & !submit_PFT & !accept_bety`
+- Submit name __is__ in BETY
+- Accept name __is__ in BETY
+
+- Submit name != Accept name
+
+- Submit name __is not__ in PFT
+- Accept name __is__ in PFT
 
 ```{r, echo = FALSE}
-library(kableExtra)
 kable(species_case %>% filter(case == 5)) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
 ```
 
-### Both in bety and they equal each other {}
+#### Case 6 {}
 
-#### case06 <- submit_bety & accept_bety & submit_accept & accept_PFT {}
+- Submit name __is__ in BETY
+- Accept name __is__ in BETY
+
+- Submit name != Accept name
+
+- Submit name __is not__ in PFT
+- Accept name __is not__ in PFT
+
+```{r, echo = FALSE}
+kable(species_case %>% filter(case == 6)) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+```
+
+### Only the accepted name is in in BETY {}
+
+Here there aren't too many questions, as long as we are ok with entering the trait data under the accepted name (and potentially adding the accepted name to the PFT.)
+
+#### Case 7 {}
+
+- Submitted name __is not__ in BETY
+
+- Accepted name __is__ in BETY
+- Accepted name __is__ in PFT
+
+```{r, echo = FALSE}
+kable(species_case %>% filter(case == 7)) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+```
+
+#### Case 8 {}
+
+- Submitted name __is not__ in BETY
+
+- Accepted name __is__ in BETY
+- Accepteed name __is not__ in PFT
+
+```{r, echo = FALSE}
+kable(species_case %>% filter(case == 8)) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+```
+
+Also, looking specifically at the resuilt for BURSERA SIMAROUBA, I'm not confident in that result and I may double check it by hand. 
 
 
+### Only the submitted name is in in BETY {}
 
-#### case07 <- submit_bety & accept_bety & submit_accept & !accept_PFT {}
+Decisions about how to handle cases 9 and 10 depend on how we choose to handle cases 3-6.
 
-### Both in BETY and they don't equal one another {}
+#### Case 9 {}
 
-#### case08 <- submit_bety & accept_bety & !submit_accept & submit_PFT & accept_PFT {}
+- Submitted name __is__ in BETY
+- Submitted name __is__ in PFT
 
-#### case09 <- submit_bety & accept_bety & !submit_accept & submit_PFT & !accept_PFT {}
+- Accepted name __is not__ in BETY
 
-#### case10 <- submit_bety & accept_bety & !submit_accept & !submit_PFT & accept_PFT {}
+Questions:
 
-#### case11 <- submit_bety & accept_bety & !submit_accept & !submit_PFT & !accept_PFT {}
+- Should I add the new accepted names to the database? Should the trait data that I haven't entered yet be entered under the submitted names or the accepted names?
+
+
+```{r, echo = FALSE}
+kable(species_case %>% filter(case == 9)) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+
+```
+
+#### Case 10 {}
+
+- Submitted name __is__ in BETY
+- Submitted name __is not__ in PFT
+
+- Accepted name __is not__ in BETY
+
+Questions: 
+
+- See all the questions associated with case 9. 
+- The answers to case 9 questions affects whether or not the submitted names in case 10 should be added to the PFT. 
+
+```{r, echo = FALSE}
+kable(species_case %>% filter(case == 10)) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+```
+### None of the names are in BETY {}
+
+#### Case 11 {}
+
+Submitted and Accepted name is the same and is not in BETY - do we add it?
+
+```{r, echo = FALSE}
+kable(species_case %>% filter(case == 11)) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+```
+
+#### Case 12 {} 
+
+Submitted and Accepted names are not the same and are not in BETY - which do we add? (See case 3-6,9-10)
+
+```{r, echo = FALSE}
+kable(species_case %>% filter(case == 12)) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+```
+
+### TNRS didn't work {}
+
+#### Case 13 {}
+
+These I'm going to need to go through by hand to figure out why the queries didn't work. 
+
+```{r, echo = FALSE}
+kable(species_special) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+```
