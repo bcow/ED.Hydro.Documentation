@@ -5,11 +5,11 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>6 [leaf_psi_tlp]: Leaf water potential at turgor loss point | Calculating ED Hydro Parameter Priors</title>
+  <title>19 &lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD | Calculating ED Hydro Parameter Priors</title>
   <meta name="description" content="Boooooook">
   <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
-  <meta property="og:title" content="6 [leaf_psi_tlp]: Leaf water potential at turgor loss point | Calculating ED Hydro Parameter Priors" />
+  <meta property="og:title" content="19 &lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD | Calculating ED Hydro Parameter Priors" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://bcow.github.io/ED.Hydro.Documentation/" />
   
@@ -17,7 +17,7 @@
   <meta name="github-repo" content="bcow/ED.Hydro.Documentation" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="6 [leaf_psi_tlp]: Leaf water potential at turgor loss point | Calculating ED Hydro Parameter Priors" />
+  <meta name="twitter:title" content="19 &lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD | Calculating ED Hydro Parameter Priors" />
   
   <meta name="twitter:description" content="Boooooook" />
   
@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="leaf-water-sat-leaf-water-content-at-saturation.html">
-<link rel="next" href="leaf-water-cap-leaf-hydaulic-capacitance-.html">
+<link rel="prev" href="taxonomic-name-resolution-when-importing-data-in-to-bety.html">
+<link rel="next" href="case-7.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -316,98 +316,484 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="leaf_psi_tlp-leaf-water-potential-at-turgor-loss-point" class="section level1">
-<h1><span class="header-section-number">6</span> <code>[leaf_psi_tlp]:</code> Leaf water potential at turgor loss point</h1>
-<div id="ed-4" class="section level2">
-<h2><span class="header-section-number">6.1</span> ED</h2>
+<div id="head" class="section level1">
+<h1><span class="header-section-number">19</span> &lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</h1>
+<div id="both-the-submitted-and-accepted-names-in-bety-and-they-are-the-same" class="section level3">
+<h3><span class="header-section-number">19.0.1</span> Both the submitted and accepted names in BETY and they are the same</h3>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>587bb33986f478aaf8a807d85da197600f645a08</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</div>
+<div id="cases" class="section level2 unnumbered">
+<h2>Cases</h2>
+<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+### Both the submitted and accepted names in BETY and they are the same {-}</p>
+<div id="case-1" class="section level4 unnumbered">
+<h4>Case 1</h4>
+<p>=======
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; 587bb33986f478aaf8a807d85da197600f645a08
+- Submit name <strong>is</strong> in BETY
+- Accept name <strong>is</strong> in BETY</p>
 <ul>
-<li>ED variable name : <code>leaf_psi_tlp</code></li>
-<li>ED variable units: <code>m</code></li>
+<li><p>Submit name = Accept name</p></li>
+<li>Submit name <strong>is</strong> in PFT</li>
+<li><p>Accept name <strong>is</strong> in PFT</p></li>
 </ul>
-</div>
-<div id="bety-4" class="section level2">
-<h2><span class="header-section-number">6.2</span> BETY</h2>
+<p>This is the best case, we don’t need to do anything!</p>
+<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+#### Case 2 {-}
+=======
+#### Case 2 {}
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; 587bb33986f478aaf8a807d85da197600f645a08</p>
 <ul>
-<li>Variable id: <code>1000000284</code></li>
-<li>Prior id: <code>1000000384</code></li>
+<li>Submit name <strong>is</strong> in BETY</li>
+<li><p>Accept name <strong>is</strong> in BETY</p></li>
+<li><p>Submit name = Accept name</p></li>
+<li>Submit name <strong>is not</strong> in PFT</li>
+<li><p>Accept name <strong>is not</strong> in PFT</p></li>
 </ul>
-<p>NOTE!! The units are NEGATIVE in the database
-so we can calculate a distribution that is entirely negative.</p>
+<p>This seems pretty straightforward. We don’t need to add anything to the species table.
+Do we add the name to the PFT?</p>
+<table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+submit_name
+</th>
+<th style="text-align:right;">
+submit_bety_id
+</th>
+<th style="text-align:left;">
+submit_in_PFT
+</th>
+<th style="text-align:left;">
+accept_name
+</th>
+<th style="text-align:right;">
+accept_bety_id
+</th>
+<th style="text-align:left;">
+accept_in_PFT
+</th>
+<th style="text-align:left;">
+sourceid
+</th>
+<th style="text-align:right;">
+score
+</th>
+<th style="text-align:left;">
+authority
+</th>
+<th style="text-align:left;">
+uri
+</th>
+<th style="text-align:right;">
+case
+</th>
+<th style="text-align:left;">
+category
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+KIELMEYERA CORIACEA
+</td>
+<td style="text-align:right;">
+50498
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+Kielmeyera coriacea
+</td>
+<td style="text-align:right;">
+50498
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+iPlant_TNRS
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="http://www.tropicos.org/Name/7801213" class="uri">http://www.tropicos.org/Name/7801213</a>
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+both
+</td>
+</tr>
+</tbody>
+</table>
+<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+### Both the submitted and accepted names in BETY and they are NOT the same {-}
+=======
+### Both the submitted and accepted names in BETY and they are NOT the same {}
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; 587bb33986f478aaf8a807d85da197600f645a08</p>
+<ul>
+<li>This is complicated!</li>
+<li>If the submitted names in BETY are out of date, should they be replaced by the new accepted names?</li>
+<li>If we keep the submitted name species record in BETY
+<ul>
+<li>How does this decision affect trait records linked to that species record?</li>
+<li>How does this decision affect whether or not the submitted name stays in the PFT?</li>
+</ul></li>
+<li>Should the trait data that hasn’t been entered yet be linked to the submitted name species record or the accepted name species record?</li>
+</ul>
+<p>Keep these questions in mind when looking through not only cases 3-6 but also 9-10</p>
+<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+#### Case 3 {-}</p>
+<ul>
+<li>Submit name <strong>is</strong> in BETY</li>
+<li><p>Accept name <strong>is</strong> in BETY</p></li>
+<li><p>Submit name != Accept name</p></li>
+</ul>
+<p>=======
+#### Case 3 {}</p>
+<ul>
+<li>Submit name <strong>is</strong> in BETY</li>
+<li><p>Accept name <strong>is</strong> in BETY</p></li>
+<li><p>Submit name != Accept name</p></li>
+</ul>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>587bb33986f478aaf8a807d85da197600f645a08
+- Submit name <strong>is</strong> in PFT
+- Accept name <strong>is</strong> in PFT</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+<table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+submit_name
+</th>
+<th style="text-align:right;">
+submit_bety_id
+</th>
+<th style="text-align:left;">
+submit_in_PFT
+</th>
+<th style="text-align:left;">
+accept_name
+</th>
+<th style="text-align:right;">
+accept_bety_id
+</th>
+<th style="text-align:left;">
+accept_in_PFT
+</th>
+<th style="text-align:left;">
+sourceid
+</th>
+<th style="text-align:right;">
+score
+</th>
+<th style="text-align:left;">
+authority
+</th>
+<th style="text-align:left;">
+uri
+</th>
+<th style="text-align:right;">
+case
+</th>
+<th style="text-align:left;">
+category
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+</tr>
+</tbody>
+</table>
+<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+#### Case 4 {-}</p>
+<ul>
+<li>Submit name <strong>is</strong> in BETY</li>
+<li>Accept name <strong>is</strong> in BETY</li>
+</ul>
+<p>=======
+#### Case 4 {}</p>
+<ul>
+<li>Submit name <strong>is</strong> in BETY</li>
+<li>Accept name <strong>is</strong> in BETY</li>
+</ul>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>587bb33986f478aaf8a807d85da197600f645a08
+- Submit name != Accept name</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+<ul>
+<li>Submit name <strong>is</strong> in PFT</li>
+<li>Accept name <strong>is not</strong> in PFT</li>
+</ul>
+<table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+submit_name
+</th>
+<th style="text-align:right;">
+submit_bety_id
+</th>
+<th style="text-align:left;">
+submit_in_PFT
+</th>
+<th style="text-align:left;">
+accept_name
+</th>
+<th style="text-align:right;">
+accept_bety_id
+</th>
+<th style="text-align:left;">
+accept_in_PFT
+</th>
+<th style="text-align:left;">
+sourceid
+</th>
+<th style="text-align:right;">
+score
+</th>
+<th style="text-align:left;">
+authority
+</th>
+<th style="text-align:left;">
+uri
+</th>
+<th style="text-align:right;">
+case
+</th>
+<th style="text-align:left;">
+category
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+</tr>
+</tbody>
+</table>
+<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+#### Case 5 {-}</p>
+<ul>
+<li>Submit name <strong>is</strong> in BETY</li>
+<li><p>Accept name <strong>is</strong> in BETY</p></li>
+<li><p>Submit name != Accept name</p></li>
+</ul>
+<p>=======
+#### Case 5 {}</p>
+<ul>
+<li>Submit name <strong>is</strong> in BETY</li>
+<li><p>Accept name <strong>is</strong> in BETY</p></li>
+<li><p>Submit name != Accept name</p></li>
+</ul>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>587bb33986f478aaf8a807d85da197600f645a08
+- Submit name <strong>is not</strong> in PFT
+- Accept name <strong>is</strong> in PFT</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+<table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+submit_name
+</th>
+<th style="text-align:right;">
+submit_bety_id
+</th>
+<th style="text-align:left;">
+submit_in_PFT
+</th>
+<th style="text-align:left;">
+accept_name
+</th>
+<th style="text-align:right;">
+accept_bety_id
+</th>
+<th style="text-align:left;">
+accept_in_PFT
+</th>
+<th style="text-align:left;">
+sourceid
+</th>
+<th style="text-align:right;">
+score
+</th>
+<th style="text-align:left;">
+authority
+</th>
+<th style="text-align:left;">
+uri
+</th>
+<th style="text-align:right;">
+case
+</th>
+<th style="text-align:left;">
+category
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+SIMAROUBA GLAUCA
+</td>
+<td style="text-align:right;">
+13388
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+Simarouba amara
+</td>
+<td style="text-align:right;">
+50962
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+iPlant_TNRS
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+<a href="http://www.tropicos.org/Name/29400090" class="uri">http://www.tropicos.org/Name/29400090</a>
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+both
+</td>
+</tr>
+</tbody>
+</table>
+<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+#### Case 6 {-}
+=======
+#### Case 6 {}
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; 587bb33986f478aaf8a807d85da197600f645a08</p>
+<ul>
+<li>Submit name <strong>is</strong> in BETY</li>
+<li><p>Accept name <strong>is</strong> in BETY</p></li>
+<li><p>Submit name != Accept name</p></li>
+<li>Submit name <strong>is not</strong> in PFT</li>
+<li><p>Accept name <strong>is not</strong> in PFT</p></li>
+</ul>
+<table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+submit_name
+</th>
+<th style="text-align:right;">
+submit_bety_id
+</th>
+<th style="text-align:left;">
+submit_in_PFT
+</th>
+<th style="text-align:left;">
+accept_name
+</th>
+<th style="text-align:right;">
+accept_bety_id
+</th>
+<th style="text-align:left;">
+accept_in_PFT
+</th>
+<th style="text-align:left;">
+sourceid
+</th>
+<th style="text-align:right;">
+score
+</th>
+<th style="text-align:left;">
+authority
+</th>
+<th style="text-align:left;">
+uri
+</th>
+<th style="text-align:right;">
+case
+</th>
+<th style="text-align:left;">
+category
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+</tr>
+</tbody>
+</table>
+<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+### Only the accepted name is in in BETY {-}</p>
+<p>Here there aren’t too many questions, as long as we are ok with entering the trait data under the accepted name (and potentially adding the accepted name to the PFT.)</p>
 </div>
-<div id="calculation-4" class="section level2">
-<h2><span class="header-section-number">6.3</span> Calculation</h2>
-<div id="expert-elicitation-4" class="section level3">
-<h3><span class="header-section-number">6.3.1</span> Expert elicitation</h3>
-<p>No expert elicitation provided by Brad Christoffersen.</p>
-<p>I will use the equation in ED to calcualte the prior and
-add min and max values to make sure the distribution
-does not predict values that are not biologically possible.</p>
-<p>Values added by Betsy and Felicien:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Leaf_psi_tlp</span>
-priors[<span class="kw">which</span>(priors<span class="op">$</span>ED_name <span class="op">==</span><span class="st"> &quot;leaf_psi_tlp&quot;</span>),
-       <span class="kw">c</span>(<span class="st">&quot;theor.min&quot;</span>, <span class="st">&quot;theor.max&quot;</span>)] &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">6</span>, <span class="fl">-0.5</span>)</code></pre>
-<p>Code directly from ED: <code>leaf_elastic_mod(ipft)  * (leaf_psi_osmotic(ipft) / MPa2m) / (leaf_elastic_mod(ipft) + leaf_psi_osmotic(ipft) / MPa2m) * MPa2m</code></p>
-<p>Thus, <code>leaf_psi_tlp</code> is calculated purely from other parameters: <code>leaf_psi_osmotic</code> and <code>leaf_elastic_mod</code></p>
-<pre class="sourceCode r"><code class="sourceCode r">leaf_psi_tlp_samp &lt;-<span class="st"> </span>
-<span class="st">  </span>(leaf_psi_osmotic_prior <span class="op">*</span><span class="st"> </span>(leaf_elastic_mod_prior <span class="op">*</span><span class="st"> </span>MPa2m))<span class="op">/</span>
-<span class="st">  </span>(leaf_psi_osmotic_prior <span class="op">+</span><span class="st"> </span>(leaf_elastic_mod_prior <span class="op">*</span><span class="st"> </span>MPa2m))</code></pre>
-</div>
-<div id="conversion-4" class="section level3">
-<h3><span class="header-section-number">6.3.2</span> Conversion</h3>
-<p>Remember that <code>leaf_elastic_mod</code> is <code>MPa</code>, where everything else is <code>m</code>!</p>
-</div>
-</div>
-<div id="code-4" class="section level2">
-<h2><span class="header-section-number">6.4</span> Code</h2>
-<pre class="sourceCode r"><code class="sourceCode r">leaf_psi_tlp_samp &lt;-<span class="st"> </span>
-<span class="st">  </span>(leaf_psi_osmotic_prior <span class="op">*</span><span class="st"> </span>(leaf_elastic_mod_prior <span class="op">*</span><span class="st"> </span>MPa2m))<span class="op">/</span>
-<span class="st">  </span>(leaf_psi_osmotic_prior <span class="op">+</span><span class="st"> </span>(leaf_elastic_mod_prior <span class="op">*</span><span class="st"> </span>MPa2m))
-
-<span class="kw">summary</span>(leaf_psi_tlp_samp)</code></pre>
-<pre><code>##          Min.       1st Qu.        Median          Mean       3rd Qu. 
-## -2502835.7088     -326.1165     -231.0866     -294.3654     -153.5426 
-##          Max. 
-##   195244.3675</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Add in the max an min from the priors table</span>
-i &lt;-<span class="st"> </span><span class="kw">which</span>(priors<span class="op">$</span>ED_name <span class="op">==</span><span class="st"> &quot;leaf_psi_tlp&quot;</span>)
-prior_in &lt;-<span class="st"> </span>priors[i,stats] <span class="op">*</span><span class="st"> </span>MPa2m <span class="co"># Convert from MPa to m</span>
-prior_in &lt;-<span class="st"> </span><span class="kw">prior_add_samp_data</span>(prior_in, <span class="dt">samp =</span> <span class="op">-</span>leaf_psi_tlp_samp)
-prior_in[,stats]</code></pre>
-<pre><code>##     theor.min     low.025      low.25        mean      upp.75 upp.975
-## 1 50.98581065 51.02596779 153.5425583 231.0866196 326.1164781      NA
-##     theor.max
-## 1 611.8297278</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">myfit &lt;-<span class="st"> </span><span class="kw">prior_get_fit</span>(prior_in, accepted_dists, <span class="dt">plot =</span> <span class="ot">TRUE</span>)</code></pre>
-<p><img src="Final_Book_files/figure-html/calc%20leaf_psi_tlp-1.png" width="672" /></p>
-<pre class="sourceCode r"><code class="sourceCode r">variable_id.in &lt;-<span class="st"> </span><span class="kw">tbl</span>(bety, <span class="st">&quot;variables&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(name <span class="op">==</span><span class="st"> &quot;leaf_psi_tlp&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(id)
-phylogeny.in &lt;-<span class="st"> &quot;plants&quot;</span>
-
-best.fit.name &lt;-<span class="st"> </span>myfit<span class="op">$</span>score<span class="op">$</span>dist[<span class="kw">which.min</span>(myfit<span class="op">$</span>score<span class="op">$</span>RMSE)]
-best.fit.dat &lt;-<span class="st"> </span>myfit<span class="op">$</span>dists <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="kw">one_of</span>(<span class="st">&quot;Name&quot;</span>, best.fit.name)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">rename</span>(value <span class="op">:</span><span class="er">=</span><span class="st"> </span><span class="op">!!</span>best.fit.name, <span class="dt">params =</span> Name)
-
-leaf_psi_tlp_prior_id &lt;-<span class="st"> </span><span class="kw">prior_input</span>(bety, variable_id.in, phylogeny.in, 
-                                     <span class="dt">dist.name.in =</span> best.fit.name, 
-                                     <span class="dt">parama.in =</span> best.fit.dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(params <span class="op">==</span><span class="st"> &quot;Para1&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(value), 
-                                     <span class="dt">paramb.in =</span> best.fit.dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(params <span class="op">==</span><span class="st"> &quot;Para2&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(value), 
-                                     <span class="dt">paramc.in =</span> best.fit.dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(params <span class="op">==</span><span class="st"> &quot;Para3&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(value))</code></pre>
-<pre><code>## [1] &quot;Entry with id = 1000000384 already exists. Parameters look the same. Old: lnorm(5.4200, 0.5400) New: lnorm(5.4200, 0.5400)&quot;</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">leaf_psi_tlp_fit &lt;-<span class="st"> </span><span class="kw">tbl</span>(bety, <span class="st">&quot;priors&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(id <span class="op">==</span><span class="st"> </span>leaf_psi_tlp_prior_id) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">collect</span>()
-leaf_psi_tlp_prior &lt;-<span class="st"> </span><span class="op">-</span><span class="kw">rdistn</span>(leaf_psi_tlp_fit) <span class="co"># Remember to flip back over for psi</span>
-leaf_psi_tlp_default &lt;-<span class="st"> </span><span class="kw">get_ED_default</span>(<span class="st">&quot;/fs/data3/ecowdery/ED.Hydro/parameters/pft3_defaults_history.xml&quot;</span>, <span class="st">&quot;leaf_psi_tlp&quot;</span>)
-
-<span class="co"># plot(density(leaf_psi_tlp_prior), main = &quot;leaf_psi_tlp prior&quot;)</span>
-<span class="co"># abline(v = get_ED_default(&quot;/fs/data3/ecowdery/ED.Hydro/parameters/pft3_defaults_history.xml&quot;, &quot;leaf_psi_tlp&quot;), col = &quot;blue&quot;, lwd = 2)</span>
-<span class="co"># abline(v = quantile(leaf_psi_osmotic_prior, c(.025, .975)), lty = 2)</span>
-<span class="co"># legend(&quot;topleft&quot;,legend=c(&quot;Prior&quot;, &quot;95% CI&quot;, &quot;ED PFT 3 Default&quot;), col=c(&quot;black&quot;, &quot;black&quot;,&quot;blue&quot;), lwd = c(2,1,2), lty = c(1,2,1))</span>
-
-<span class="kw">prior_plot</span>(<span class="dt">prior =</span> leaf_psi_tlp_prior, 
-           <span class="dt">q =</span> <span class="kw">c</span>(.<span class="dv">005</span>,<span class="dv">1</span>),
-           <span class="dt">plot_default =</span> leaf_psi_tlp_default,
-           <span class="dt">title =</span> <span class="kw">sprintf</span>(<span class="st">&quot;(leaf_psi_tlp): %s&quot;</span>, leaf_psi_tlp_fit<span class="op">$</span>distn),
-           <span class="dt">type =</span> <span class="st">&quot;equation&quot;</span>)</code></pre>
-<pre><code>## Warning: Removed 500 rows containing non-finite values (stat_density).</code></pre>
-<p><img src="Final_Book_files/figure-html/plot%20leaf_psi_tlp-1.png" width="672" /></p>
-<hr />
 </div>
 </div>
             </section>
@@ -415,8 +801,8 @@ leaf_psi_tlp_default &lt;-<span class="st"> </span><span class="kw">get_ED_defau
           </div>
         </div>
       </div>
-<a href="leaf-water-sat-leaf-water-content-at-saturation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="leaf-water-cap-leaf-hydaulic-capacitance-.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="taxonomic-name-resolution-when-importing-data-in-to-bety.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="case-7.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
