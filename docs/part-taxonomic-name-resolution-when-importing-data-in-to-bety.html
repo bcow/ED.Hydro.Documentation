@@ -5,11 +5,11 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Taxonomic Name Resolution when Importing Data in to BETY | Calculating ED Hydro Parameter Priors</title>
+  <title>6 (PART) Taxonomic Name Resolution when Importing Data in to BETY | Calculating ED Hydro Parameter Priors</title>
   <meta name="description" content="Boooooook">
   <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
-  <meta property="og:title" content="Taxonomic Name Resolution when Importing Data in to BETY | Calculating ED Hydro Parameter Priors" />
+  <meta property="og:title" content="6 (PART) Taxonomic Name Resolution when Importing Data in to BETY | Calculating ED Hydro Parameter Priors" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://bcow.github.io/ED.Hydro.Documentation/" />
   
@@ -17,7 +17,7 @@
   <meta name="github-repo" content="bcow/ED.Hydro.Documentation" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Taxonomic Name Resolution when Importing Data in to BETY | Calculating ED Hydro Parameter Priors" />
+  <meta name="twitter:title" content="6 (PART) Taxonomic Name Resolution when Importing Data in to BETY | Calculating ED Hydro Parameter Priors" />
   
   <meta name="twitter:description" content="Boooooook" />
   
@@ -32,7 +32,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="wood-kexp-exponent-for-the-hydraulic-vulnerability-curve-of-stem-conductivity.html">
+<link rel="prev" href="part-comparing-data-to-priors.html">
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -128,14 +128,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <ul class="summary">
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Documentation</a></li>
-<li class="part"><span><b>I Setup</b></span></li>
-<li class="part"><span><b>II Starting Parameters</b></span></li>
+<li class="chapter" data-level="1" data-path="part-setup.html"><a href="part-setup.html"><i class="fa fa-check"></i><b>1</b> (PART) Setup</a></li>
+<li class="chapter" data-level="2" data-path="part-starting-parameters.html"><a href="part-starting-parameters.html"><i class="fa fa-check"></i><b>2</b> (PART) Starting Parameters</a></li>
 <li><a href="wdns-liquid-water-density.html#wdns-liquid-water-density"><code>[wdns]:</code> Liquid water density</a></li>
 <li><a href="grav-gravity.html#grav-gravity"><code>[grav]:</code> Gravity</a></li>
 <li><a href="mpa2m-conversion-from-mpa-to-m.html#mpa2m-conversion-from-mpa-to-m"><code>[MPa2m]:</code> Conversion from MPa to m</a></li>
 <li><a href="wood-density-wood-density.html#wood_density-wood-density"><code>[wood_density]:</code> Wood density</a></li>
 <li><a href="sla-specific-leaf-area-sla.html#sla-specific-leaf-area-sla"><code>[SLA]:</code> Specific Leaf Area (SLA)</a></li>
-<li class="part"><span><b>III Key Leaf Traits</b></span></li>
+<li class="chapter" data-level="3" data-path="part-key-leaf-traits.html"><a href="part-key-leaf-traits.html"><i class="fa fa-check"></i><b>3</b> (PART) Key Leaf Traits</a></li>
 <li><a href="leaf-psi-osmotic-leaf-osmotic-water-potential-at-saturation.html#leaf_psi_osmotic-leaf-osmotic-water-potential-at-saturation"><code>[leaf_psi_osmotic]:</code> Leaf osmotic water potential at saturation</a><ul>
 <li class="chapter" data-level="" data-path="leaf-psi-osmotic-leaf-osmotic-water-potential-at-saturation.html"><a href="leaf-psi-osmotic-leaf-osmotic-water-potential-at-saturation.html"><i class="fa fa-check"></i>ED</a></li>
 <li class="chapter" data-level="" data-path="leaf-psi-osmotic-leaf-osmotic-water-potential-at-saturation.html"><a href="leaf-psi-osmotic-leaf-osmotic-water-potential-at-saturation.html#bety"><i class="fa fa-check"></i>BETY</a></li>
@@ -202,7 +202,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="" data-path="leaf-psi-min-leaf-minimum-water-potential.html"><a href="leaf-psi-min-leaf-minimum-water-potential.html#code-6"><i class="fa fa-check"></i>Code</a></li>
 </ul></li>
-<li class="part"><span><b>IV Key Wood Traits</b></span></li>
+<li class="chapter" data-level="4" data-path="part-key-wood-traits.html"><a href="part-key-wood-traits.html"><i class="fa fa-check"></i><b>4</b> (PART) Key Wood Traits</a></li>
 <li><a href="wood-psi-osmotic-sapwood-osmotic-water-potential-at-saturation.html#wood_psi_osmotic-sapwood-osmotic-water-potential-at-saturation"><code>[wood_psi_osmotic]:</code> Sapwood osmotic water potential at saturation</a><ul>
 <li class="chapter" data-level="" data-path="wood-psi-osmotic-sapwood-osmotic-water-potential-at-saturation.html"><a href="wood-psi-osmotic-sapwood-osmotic-water-potential-at-saturation.html"><i class="fa fa-check"></i>ED</a></li>
 <li class="chapter" data-level="" data-path="wood-psi-osmotic-sapwood-osmotic-water-potential-at-saturation.html"><a href="wood-psi-osmotic-sapwood-osmotic-water-potential-at-saturation.html#bety-7"><i class="fa fa-check"></i>BETY</a></li>
@@ -276,25 +276,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="" data-path="wood-kexp-exponent-for-the-hydraulic-vulnerability-curve-of-stem-conductivity.html"><a href="wood-kexp-exponent-for-the-hydraulic-vulnerability-curve-of-stem-conductivity.html#code-14"><i class="fa fa-check"></i>Code</a></li>
 </ul></li>
-<li class="part"><span><b>V Comparing Data to Priors</b></span><ul>
-<li class="chapter" data-level="" data-path="wood-kexp-exponent-for-the-hydraulic-vulnerability-curve-of-stem-conductivity.html"><a href="wood-kexp-exponent-for-the-hydraulic-vulnerability-curve-of-stem-conductivity.html#wood-density"><i class="fa fa-check"></i>Wood Density</a></li>
-<li class="chapter" data-level="" data-path="wood-kexp-exponent-for-the-hydraulic-vulnerability-curve-of-stem-conductivity.html"><a href="wood-kexp-exponent-for-the-hydraulic-vulnerability-curve-of-stem-conductivity.html#sla"><i class="fa fa-check"></i>SLA</a></li>
-<li class="chapter" data-level="" data-path="wood-kexp-exponent-for-the-hydraulic-vulnerability-curve-of-stem-conductivity.html"><a href="wood-kexp-exponent-for-the-hydraulic-vulnerability-curve-of-stem-conductivity.html#kmax"><i class="fa fa-check"></i>Kmax</a></li>
-<li class="chapter" data-level="" data-path="wood-kexp-exponent-for-the-hydraulic-vulnerability-curve-of-stem-conductivity.html"><a href="wood-kexp-exponent-for-the-hydraulic-vulnerability-curve-of-stem-conductivity.html#psi50"><i class="fa fa-check"></i>Psi50</a></li>
-<li class="chapter" data-level="" data-path="wood-kexp-exponent-for-the-hydraulic-vulnerability-curve-of-stem-conductivity.html"><a href="wood-kexp-exponent-for-the-hydraulic-vulnerability-curve-of-stem-conductivity.html#kexp"><i class="fa fa-check"></i>Kexp</a></li>
+<li class="chapter" data-level="5" data-path="part-comparing-data-to-priors.html"><a href="part-comparing-data-to-priors.html"><i class="fa fa-check"></i><b>5</b> (PART) Comparing Data to Priors</a><ul>
+<li class="chapter" data-level="" data-path="part-comparing-data-to-priors.html"><a href="part-comparing-data-to-priors.html#wood-density"><i class="fa fa-check"></i>Wood Density</a></li>
+<li class="chapter" data-level="" data-path="part-comparing-data-to-priors.html"><a href="part-comparing-data-to-priors.html#sla"><i class="fa fa-check"></i>SLA</a></li>
+<li class="chapter" data-level="" data-path="part-comparing-data-to-priors.html"><a href="part-comparing-data-to-priors.html#kmax"><i class="fa fa-check"></i>Kmax</a></li>
+<li class="chapter" data-level="" data-path="part-comparing-data-to-priors.html"><a href="part-comparing-data-to-priors.html#psi50"><i class="fa fa-check"></i>Psi50</a></li>
+<li class="chapter" data-level="" data-path="part-comparing-data-to-priors.html"><a href="part-comparing-data-to-priors.html#kexp"><i class="fa fa-check"></i>Kexp</a></li>
 </ul></li>
-<li class="part"><span><b>VI Other things</b></span></li>
-<li class="chapter" data-level="" data-path="taxonomic-name-resolution-when-importing-data-in-to-bety.html"><a href="taxonomic-name-resolution-when-importing-data-in-to-bety.html"><i class="fa fa-check"></i>Taxonomic Name Resolution when Importing Data in to BETY</a><ul>
-<li class="chapter" data-level="" data-path="taxonomic-name-resolution-when-importing-data-in-to-bety.html"><a href="taxonomic-name-resolution-when-importing-data-in-to-bety.html#name-resolution"><i class="fa fa-check"></i>Name Resolution</a></li>
-<li class="chapter" data-level="" data-path="taxonomic-name-resolution-when-importing-data-in-to-bety.html"><a href="taxonomic-name-resolution-when-importing-data-in-to-bety.html#building-a-tropical-pft"><i class="fa fa-check"></i>Building a Tropical PFT</a></li>
-<li class="chapter" data-level="" data-path="taxonomic-name-resolution-when-importing-data-in-to-bety.html"><a href="taxonomic-name-resolution-when-importing-data-in-to-bety.html#what-i-need-help-with"><i class="fa fa-check"></i>What I need help with</a></li>
-<li class="chapter" data-level="" data-path="taxonomic-name-resolution-when-importing-data-in-to-bety.html"><a href="taxonomic-name-resolution-when-importing-data-in-to-bety.html#cases"><i class="fa fa-check"></i>Cases</a><ul>
-<li class="chapter" data-level="" data-path="taxonomic-name-resolution-when-importing-data-in-to-bety.html"><a href="taxonomic-name-resolution-when-importing-data-in-to-bety.html#both-the-submitted-and-accepted-names-in-bety-and-they-are-the-same"><i class="fa fa-check"></i>Both the submitted and accepted names in BETY and they are the same</a></li>
-<li class="chapter" data-level="" data-path="taxonomic-name-resolution-when-importing-data-in-to-bety.html"><a href="taxonomic-name-resolution-when-importing-data-in-to-bety.html#both-the-submitted-and-accepted-names-in-bety-and-they-are-not-the-same"><i class="fa fa-check"></i>Both the submitted and accepted names in BETY and they are NOT the same</a></li>
-<li class="chapter" data-level="" data-path="taxonomic-name-resolution-when-importing-data-in-to-bety.html"><a href="taxonomic-name-resolution-when-importing-data-in-to-bety.html#only-the-accepted-name-is-in-in-bety"><i class="fa fa-check"></i>Only the accepted name is in in BETY</a></li>
-<li class="chapter" data-level="" data-path="taxonomic-name-resolution-when-importing-data-in-to-bety.html"><a href="taxonomic-name-resolution-when-importing-data-in-to-bety.html#only-the-submitted-name-is-in-in-bety"><i class="fa fa-check"></i>Only the submitted name is in in BETY</a></li>
-<li class="chapter" data-level="" data-path="taxonomic-name-resolution-when-importing-data-in-to-bety.html"><a href="taxonomic-name-resolution-when-importing-data-in-to-bety.html#none-of-the-names-are-in-bety"><i class="fa fa-check"></i>None of the names are in BETY</a></li>
-<li class="chapter" data-level="" data-path="taxonomic-name-resolution-when-importing-data-in-to-bety.html"><a href="taxonomic-name-resolution-when-importing-data-in-to-bety.html#tnrs-didnt-work"><i class="fa fa-check"></i>TNRS didn’t work</a></li>
+<li class="chapter" data-level="6" data-path="part-taxonomic-name-resolution-when-importing-data-in-to-bety.html"><a href="part-taxonomic-name-resolution-when-importing-data-in-to-bety.html"><i class="fa fa-check"></i><b>6</b> (PART) Taxonomic Name Resolution when Importing Data in to BETY</a><ul>
+<li class="chapter" data-level="" data-path="part-taxonomic-name-resolution-when-importing-data-in-to-bety.html"><a href="part-taxonomic-name-resolution-when-importing-data-in-to-bety.html#name-resolution"><i class="fa fa-check"></i>Name Resolution</a></li>
+<li class="chapter" data-level="" data-path="part-taxonomic-name-resolution-when-importing-data-in-to-bety.html"><a href="part-taxonomic-name-resolution-when-importing-data-in-to-bety.html#building-a-tropical-pft"><i class="fa fa-check"></i>Building a Tropical PFT</a></li>
+<li class="chapter" data-level="" data-path="part-taxonomic-name-resolution-when-importing-data-in-to-bety.html"><a href="part-taxonomic-name-resolution-when-importing-data-in-to-bety.html#what-i-need-help-with"><i class="fa fa-check"></i>What I need help with</a></li>
+<li class="chapter" data-level="" data-path="part-taxonomic-name-resolution-when-importing-data-in-to-bety.html"><a href="part-taxonomic-name-resolution-when-importing-data-in-to-bety.html#cases"><i class="fa fa-check"></i>Cases</a><ul>
+<li class="chapter" data-level="" data-path="part-taxonomic-name-resolution-when-importing-data-in-to-bety.html"><a href="part-taxonomic-name-resolution-when-importing-data-in-to-bety.html#both-the-submitted-and-accepted-names-in-bety-and-they-are-the-same"><i class="fa fa-check"></i>Both the submitted and accepted names in BETY and they are the same</a></li>
+<li class="chapter" data-level="" data-path="part-taxonomic-name-resolution-when-importing-data-in-to-bety.html"><a href="part-taxonomic-name-resolution-when-importing-data-in-to-bety.html#both-the-submitted-and-accepted-names-in-bety-and-they-are-not-the-same"><i class="fa fa-check"></i>Both the submitted and accepted names in BETY and they are NOT the same</a></li>
+<li class="chapter" data-level="" data-path="part-taxonomic-name-resolution-when-importing-data-in-to-bety.html"><a href="part-taxonomic-name-resolution-when-importing-data-in-to-bety.html#only-the-accepted-name-is-in-in-bety"><i class="fa fa-check"></i>Only the accepted name is in in BETY</a></li>
+<li class="chapter" data-level="" data-path="part-taxonomic-name-resolution-when-importing-data-in-to-bety.html"><a href="part-taxonomic-name-resolution-when-importing-data-in-to-bety.html#only-the-submitted-name-is-in-in-bety"><i class="fa fa-check"></i>Only the submitted name is in in BETY</a></li>
+<li class="chapter" data-level="" data-path="part-taxonomic-name-resolution-when-importing-data-in-to-bety.html"><a href="part-taxonomic-name-resolution-when-importing-data-in-to-bety.html#none-of-the-names-are-in-bety"><i class="fa fa-check"></i>None of the names are in BETY</a></li>
+<li class="chapter" data-level="" data-path="part-taxonomic-name-resolution-when-importing-data-in-to-bety.html"><a href="part-taxonomic-name-resolution-when-importing-data-in-to-bety.html#tnrs-didnt-work"><i class="fa fa-check"></i>TNRS didn’t work</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -314,8 +313,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="taxonomic-name-resolution-when-importing-data-in-to-bety" class="section level1 unnumbered">
-<h1>Taxonomic Name Resolution when Importing Data in to BETY</h1>
+<div id="part-taxonomic-name-resolution-when-importing-data-in-to-bety" class="section level1">
+<h1><span class="header-section-number">6</span> (PART) Taxonomic Name Resolution when Importing Data in to BETY</h1>
 <div id="name-resolution" class="section level2 unnumbered">
 <h2>Name Resolution</h2>
 <p>When users have plant trait data that they want to enter in to the database, the data needs to attributed to a specific species database record. When the user has no other information (such as ID codes like the USDA and FIA codes) the only way to match the species in the data with species entry in the database is through matching of scientific names.</p>
@@ -359,7 +358,7 @@ a different “accepted name.”</p>
 <p>If my submitted name is <code>&quot;Simaroubu glauca&quot;</code> (which I misspelled from Simarouba glauca)</p>
 <pre class="sourceCode r"><code class="sourceCode r">submit_name &lt;-<span class="st"> &quot;Simaroubu glauca&quot;</span>
 <span class="kw">tnrs</span>(<span class="dt">query =</span> submit_name)</code></pre>
-<pre><code>## Calling http://taxosaurus.org/retrieve/ba11e51a0bbae3b08c52914d3275afe0</code></pre>
+<pre><code>## Calling http://taxosaurus.org/retrieve/77ee2d66cb522f25f28029dbfe220e96</code></pre>
 <pre><code>##      submittedname    acceptedname    sourceid score      matchedname
 ## 1 Simaroubu glauca Simarouba amara iPlant_TNRS  0.98 Simarouba glauca
 ##   authority                                   uri
@@ -2306,7 +2305,7 @@ by hand
           </div>
         </div>
       </div>
-<a href="wood-kexp-exponent-for-the-hydraulic-vulnerability-curve-of-stem-conductivity.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="part-comparing-data-to-priors.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
     </div>
   </div>

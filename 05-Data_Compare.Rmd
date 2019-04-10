@@ -3,7 +3,7 @@ title: "05-Data_Compare"
 output: html_document
 ---
 
-# Comparing Data to Priors
+# (PART) Comparing Data to Priors {-}
 
 To do this section, I really should just use the "get trait data" function 
 that is used in pecan because that will show me where/how to deal with the changes
@@ -46,7 +46,7 @@ trait_data <- tbl(bety, "traits") %>% filter(specie_id %in% species_ids) %>%
 
 ```
 
-## Wood Density
+## Wood Density {-}
 ```{r plot with data wood_density}
 v_id <- v_df %>% filter(variables == "wood_density") %>% pull(variables_ids)
 wood_density_fit <- tbl(bety, "priors") %>% filter(variable_id == v_id) %>% filter(id == 1000000281) %>% collect()
@@ -69,7 +69,7 @@ p
 
 
 
-## SLA 
+## SLA  {-}
 ```{r plot with data SLA}
 v_id <- v_df %>% filter(variables == "SLA") %>% pull(variables_ids)
 SLA_fit <- tbl(bety, "priors") %>% filter(variable_id == v_id) %>% filter(id == 142) %>% collect()
@@ -92,7 +92,7 @@ p + geom_density(data = obs, aes(x = mean, fill = "obs"), alpha = .3, color = NA
 
 
 
-## Kmax
+## Kmax {-}
 
 ```{r plot with data wood_Kmax}
 wood_Kmax_fit <- tbl(bety, "priors") %>% filter(id == wood_Kmax_prior_id) %>% collect()
@@ -112,7 +112,7 @@ p + geom_density(data = obs, aes(x = mean, fill = "obs"), alpha = .3, color = NA
 ```
 
 
-## Psi50
+## Psi50 {-}
 
 ```{r plot with data wood_psi50}
 wood_psi50_fit <- tbl(bety, "priors") %>% filter(id == wood_psi50_prior_id) %>% collect()
@@ -135,7 +135,7 @@ p + geom_density(data = obs, aes(x = mean, fill = "obs"), alpha = .3, color = NA
 
 ```
 
-## Kexp
+## Kexp {-}
 
 ```{r plot with data Kexp}
 wood_Kexp_fit <- tbl(bety, "priors") %>% filter(id == wood_Kexp_prior_id) %>% collect()

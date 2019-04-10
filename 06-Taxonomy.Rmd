@@ -4,8 +4,9 @@ output:
   html_notebook: default
   html_document: default
 ---
+# (PART) Other things {-}
 
-# Taxonomic Name Resolution when Importing Data in to BETY
+# Taxonomic Name Resolution when Importing Data in to BETY {-}
 
 ## Name Resolution {-}
 
@@ -59,7 +60,7 @@ PFT_species$notes <- NULL
 
 ```
 
-## What I need help with
+## What I need help with {-}
 
 I need to import trait data in to the database and I need to match the species names in the data to the records in BETY. Furthermore, I need to decide if I need to add records or change existing records in BETY.  
 

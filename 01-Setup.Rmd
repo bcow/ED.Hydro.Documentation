@@ -1,4 +1,4 @@
-# Setup
+# (PART) Setup {-}
 
 ```{r setup}
 suppressPackageStartupMessages(library(ED.Hydro.Helpers))
