@@ -288,6 +288,8 @@ Here there aren't too many questions, as long as we are ok with entering the tra
 
 #### Case 7 {-}
 
+This is where a lot of the spelling errors live. 
+
 - Submitted name __is not__ in BETY
 
 - Accepted name __is__ in BETY
@@ -307,9 +309,6 @@ my_table(species_case, 7)
 ```{r, echo = FALSE}
 my_table(species_case, 8)
 ```
-
-Also, looking specifically at the resuilt for BURSERA SIMAROUBA, I'm not confident in that result and I may double check it by hand. 
-
 
 ### Only the submitted name is in in BETY {-}
 
