@@ -25,7 +25,7 @@
 <meta name="author" content="Betsy Cowdery">
 
 
-<meta name="date" content="2019-04-10">
+<meta name="date" content="2019-04-11">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -49,6 +49,7 @@
 
 
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
 
 
 <style type="text/css">
@@ -353,7 +354,7 @@ prior_in &lt;-<span class="st"> </span>priors[i,stats] <span class="op">*</span>
 prior_in &lt;-<span class="st"> </span><span class="kw">prior_add_samp_data</span>(prior_in, <span class="dt">samp =</span> <span class="op">-</span>wood_psi_min_samp)
 prior_in[,stats]</code></pre>
 <pre><code>##     theor.min     low.025      low.25        mean      upp.75     upp.975
-## 1 10.19716213 212.1271815 775.0141856 1488.756535 2873.285716 10841.28765
+## 1 10.19716213 215.5399748 770.6386382 1489.531533 2867.615677 10897.91462
 ##   theor.max
 ## 1        NA</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">myfit &lt;-<span class="st"> </span><span class="kw">prior_get_fit</span>(prior_in, accepted_dists, <span class="dt">plot =</span> <span class="ot">TRUE</span>)</code></pre>

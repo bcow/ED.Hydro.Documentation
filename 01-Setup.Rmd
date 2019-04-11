@@ -1,9 +1,11 @@
 # (PART) Setup {-}
 
-```{r setup}
+```{r setup, echo = FALSE}
 suppressPackageStartupMessages(library(ED.Hydro.Helpers))
 suppressPackageStartupMessages(library(rlang))
 suppressPackageStartupMessages(library(knitr))
+suppressPackageStartupMessages(library(kableExtra))
+options(kableExtra.html.bsTable = T)
 options(digits = 10)
 
 knitr::include_graphics("ED_HYDRO.png")

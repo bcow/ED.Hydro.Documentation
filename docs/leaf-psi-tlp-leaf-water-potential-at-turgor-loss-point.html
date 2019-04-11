@@ -25,7 +25,7 @@
 <meta name="author" content="Betsy Cowdery">
 
 
-<meta name="date" content="2019-04-10">
+<meta name="date" content="2019-04-11">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -49,6 +49,7 @@
 
 
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
 
 
 <style type="text/css">
@@ -362,17 +363,17 @@ priors[<span class="kw">which</span>(priors<span class="op">$</span>ED_name <spa
 <span class="st">  </span>(leaf_psi_osmotic_prior <span class="op">+</span><span class="st"> </span>(leaf_elastic_mod_prior <span class="op">*</span><span class="st"> </span>MPa2m))
 
 <span class="kw">summary</span>(leaf_psi_tlp_samp)</code></pre>
-<pre><code>##         Min.      1st Qu.       Median         Mean      3rd Qu. 
-## -716102.2354    -326.0546    -232.1219    -271.9373    -154.1866 
-##         Max. 
-##  103350.7472</code></pre>
+<pre><code>##          Min.       1st Qu.        Median          Mean       3rd Qu. 
+## -14313937.573      -326.392      -232.629      -405.459      -154.598 
+##          Max. 
+##   1392604.490</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Add in the max an min from the priors table</span>
 i &lt;-<span class="st"> </span><span class="kw">which</span>(priors<span class="op">$</span>ED_name <span class="op">==</span><span class="st"> &quot;leaf_psi_tlp&quot;</span>)
 prior_in &lt;-<span class="st"> </span>priors[i,stats] <span class="op">*</span><span class="st"> </span>MPa2m <span class="co"># Convert from MPa to m</span>
 prior_in &lt;-<span class="st"> </span><span class="kw">prior_add_samp_data</span>(prior_in, <span class="dt">samp =</span> <span class="op">-</span>leaf_psi_tlp_samp)
 prior_in[,stats]</code></pre>
-<pre><code>##     theor.min     low.025      low.25        mean      upp.75 upp.975
-## 1 50.98581065 51.56776251 154.1865535 232.1219346 326.0545721      NA
+<pre><code>##     theor.min low.025      low.25        mean      upp.75 upp.975
+## 1 50.98581065      NA 154.5976961 232.6289352 326.3921637      NA
 ##     theor.max
 ## 1 611.8297278</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">myfit &lt;-<span class="st"> </span><span class="kw">prior_get_fit</span>(prior_in, accepted_dists, <span class="dt">plot =</span> <span class="ot">TRUE</span>)</code></pre>
@@ -388,7 +389,7 @@ leaf_psi_tlp_prior_id &lt;-<span class="st"> </span><span class="kw">prior_input
                                      <span class="dt">parama.in =</span> best.fit.dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(params <span class="op">==</span><span class="st"> &quot;Para1&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(value), 
                                      <span class="dt">paramb.in =</span> best.fit.dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(params <span class="op">==</span><span class="st"> &quot;Para2&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(value), 
                                      <span class="dt">paramc.in =</span> best.fit.dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(params <span class="op">==</span><span class="st"> &quot;Para3&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(value))</code></pre>
-<pre><code>## [1] &quot;Entry with id = 1000000384 already exists. Parameters look the same. Old: lnorm(5.4200, 0.5400) New: lnorm(5.4200, 0.5400)&quot;</code></pre>
+<pre><code>## [1] &quot;Entry with id = 1000000384 already exists. Parameters look different. Old: lnorm(5.4200, 0.5400) New: lnorm(5.4300, 0.5300)&quot;</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">leaf_psi_tlp_fit &lt;-<span class="st"> </span><span class="kw">tbl</span>(bety, <span class="st">&quot;priors&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(id <span class="op">==</span><span class="st"> </span>leaf_psi_tlp_prior_id) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">collect</span>()
 leaf_psi_tlp_prior &lt;-<span class="st"> </span><span class="op">-</span><span class="kw">rdistn</span>(leaf_psi_tlp_fit) <span class="co"># Remember to flip back over for psi</span>
 leaf_psi_tlp_default &lt;-<span class="st"> </span><span class="kw">get_ED_default</span>(<span class="st">&quot;/fs/data3/ecowdery/ED.Hydro/parameters/pft3_defaults_history.xml&quot;</span>, <span class="st">&quot;leaf_psi_tlp&quot;</span>)

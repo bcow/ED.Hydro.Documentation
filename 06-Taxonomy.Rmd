@@ -40,6 +40,18 @@ suppressPackageStartupMessages(library(ED.Hydro.Helpers))
 suppressPackageStartupMessages(library(kableExtra))
 suppressPackageStartupMessages(library(taxize))
 bety <- betyConnect("/fs/data3/ecowdery/pecan/web/config.php")
+
+
+my_table <- function(df, filter_case){
+  out <- 
+    kable(df %>% filter(case == filter_case) %>%
+            select(one_of(c("submit_name", "submit_bety_id", 
+                            "submit_in_PFT", "accept_name", 
+                            "accept_bety_id", "accept_in_PFT", "uri")))) %>%
+    kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive")) %>% 
+    scroll_box(width = "100%")
+  return(out)
+}
 ```
 
 
@@ -182,6 +194,10 @@ __Specific places I would love opinions: case 3-6 & 9-10__
 
 This is the best case, we don't need to do anything!
 
+```{r}
+my_table(species_case, 1) %>% scroll_box(height = "200px")
+```
+
 #### Case 2 {-}
 
 - Submit name __is__ in BETY
@@ -196,8 +212,7 @@ This seems pretty straightforward. We don't need to add anything to the species 
 Do we add the name to the PFT?
 
 ```{r, echo = FALSE}
-kable(species_case %>% filter(case == 2)) %>%
-  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+my_table(species_case, 2)
 ```
 
 ### Both the submitted and accepted names in BETY and they are NOT the same {-}
@@ -205,8 +220,8 @@ kable(species_case %>% filter(case == 2)) %>%
 - This is complicated!
 - If the submitted names in BETY are out of date, should they be replaced by the new accepted names?
 - If we keep the submitted name species record in BETY
-    - How does this decision affect trait records linked to that species record?
-    - How does this decision affect whether or not the submitted name stays in the PFT?
+- How does this decision affect trait records linked to that species record?
+- How does this decision affect whether or not the submitted name stays in the PFT?
 - Should the trait data that hasn't been entered yet be linked to the submitted name species record or the accepted name species record?
 
 Keep these questions in mind when looking through not only cases 3-6 but also 9-10
@@ -222,8 +237,7 @@ Keep these questions in mind when looking through not only cases 3-6 but also 9-
 - Accept name __is__ in PFT
 
 ```{r, echo = FALSE}
-kable(species_case %>% filter(case == 3)) %>%
-  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+my_table(species_case, 3)
 ```
 
 #### Case 4 {-}
@@ -237,8 +251,7 @@ kable(species_case %>% filter(case == 3)) %>%
 - Accept name __is not__ in PFT
 
 ```{r, echo = FALSE}
-kable(species_case %>% filter(case == 4)) %>%
-  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+my_table(species_case, 4)
 ```
 
 #### Case 5 {-}
@@ -252,8 +265,7 @@ kable(species_case %>% filter(case == 4)) %>%
 - Accept name __is__ in PFT
 
 ```{r, echo = FALSE}
-kable(species_case %>% filter(case == 5)) %>%
-  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+my_table(species_case, 5)
 ```
 
 #### Case 6 {-}
@@ -267,8 +279,7 @@ kable(species_case %>% filter(case == 5)) %>%
 - Accept name __is not__ in PFT
 
 ```{r, echo = FALSE}
-kable(species_case %>% filter(case == 6)) %>%
-  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+my_table(species_case, 6)
 ```
 
 ### Only the accepted name is in in BETY {-}
@@ -283,8 +294,7 @@ Here there aren't too many questions, as long as we are ok with entering the tra
 - Accepted name __is__ in PFT
 
 ```{r, echo = FALSE}
-kable(species_case %>% filter(case == 7)) %>%
-  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+my_table(species_case, 7)
 ```
 
 #### Case 8 {-}
@@ -295,8 +305,7 @@ kable(species_case %>% filter(case == 7)) %>%
 - Accepteed name __is not__ in PFT
 
 ```{r, echo = FALSE}
-kable(species_case %>% filter(case == 8)) %>%
-  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+my_table(species_case, 8)
 ```
 
 Also, looking specifically at the resuilt for BURSERA SIMAROUBA, I'm not confident in that result and I may double check it by hand. 
@@ -319,8 +328,7 @@ Questions:
 
 
 ```{r, echo = FALSE}
-kable(species_case %>% filter(case == 9)) %>%
-  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+my_table(species_case, 9)
 
 ```
 
@@ -337,8 +345,7 @@ Questions:
 - The answers to case 9 questions affects whether or not the submitted names in case 10 should be added to the PFT. 
 
 ```{r, echo = FALSE}
-kable(species_case %>% filter(case == 10)) %>%
-  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+my_table(species_case, 10)
 ```
 ### None of the names are in BETY {-}
 
@@ -347,8 +354,7 @@ kable(species_case %>% filter(case == 10)) %>%
 Submitted and Accepted name is the same and is not in BETY - do we add it?
 
 ```{r, echo = FALSE}
-kable(species_case %>% filter(case == 11)) %>%
-  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+my_table(species_case, 11)
 ```
 
 #### Case 12 {-} 
@@ -356,8 +362,7 @@ kable(species_case %>% filter(case == 11)) %>%
 Submitted and Accepted names are not the same and are not in BETY - which do we add? (See case 3-6,9-10)
 
 ```{r, echo = FALSE}
-kable(species_case %>% filter(case == 12)) %>%
-  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+my_table(species_case, 12)
 ```
 
 ### TNRS didn't work {-}
@@ -367,6 +372,5 @@ kable(species_case %>% filter(case == 12)) %>%
 These I'm going to need to go through by hand to figure out why the queries didn't work. 
 
 ```{r, echo = FALSE}
-kable(species_special) %>%
-  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+my_table(species_out, 13)
 ```

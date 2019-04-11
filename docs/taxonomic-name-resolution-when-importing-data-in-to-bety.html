@@ -25,7 +25,7 @@
 <meta name="author" content="Betsy Cowdery">
 
 
-<meta name="date" content="2019-04-10">
+<meta name="date" content="2019-04-11">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -49,6 +49,7 @@
 
 
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
 
 
 <style type="text/css">
@@ -359,7 +360,7 @@ a different “accepted name.”</p>
 <p>If my submitted name is <code>&quot;Simaroubu glauca&quot;</code> (which I misspelled from Simarouba glauca)</p>
 <pre class="sourceCode r"><code class="sourceCode r">submit_name &lt;-<span class="st"> &quot;Simaroubu glauca&quot;</span>
 <span class="kw">tnrs</span>(<span class="dt">query =</span> submit_name)</code></pre>
-<pre><code>## Calling http://taxosaurus.org/retrieve/ba11e51a0bbae3b08c52914d3275afe0</code></pre>
+<pre><code>## Calling http://taxosaurus.org/retrieve/1d3563f9b7cd054c0cde6b366c406bfe</code></pre>
 <pre><code>##      submittedname    acceptedname    sourceid score      matchedname
 ## 1 Simaroubu glauca Simarouba amara iPlant_TNRS  0.98 Simarouba glauca
 ##   authority                                   uri
@@ -454,6 +455,2340 @@ species_case &lt;-<span class="st"> </span>species_out <span class="op">%&gt;%</
 <li><p>Accept name <strong>is</strong> in PFT</p></li>
 </ul>
 <p>This is the best case, we don’t need to do anything!</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">my_table</span>(species_case, <span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">scroll_box</span>(<span class="dt">height =</span> <span class="st">&quot;200px&quot;</span>)</code></pre>
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:200px; ">
+<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; ">
+<table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+submit_name
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+submit_bety_id
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+submit_in_PFT
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+accept_name
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+accept_bety_id
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+accept_in_PFT
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+uri
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+AEGIPHILA SELLOWIANA
+</td>
+<td style="text-align:right;">
+1000000238
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Aegiphila sellowiana
+</td>
+<td style="text-align:right;">
+1000000238
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/taxonomy/1171844" class="uri">https://www.ncbi.nlm.nih.gov/taxonomy/1171844</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ALSEIS BLACKIANA
+</td>
+<td style="text-align:right;">
+49937
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Alseis blackiana
+</td>
+<td style="text-align:right;">
+49937
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/taxonomy/681405" class="uri">https://www.ncbi.nlm.nih.gov/taxonomy/681405</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ANACARDIUM EXCELSUM
+</td>
+<td style="text-align:right;">
+49943
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Anacardium excelsum
+</td>
+<td style="text-align:right;">
+49943
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="http://www.tropicos.org/Name/1300302" class="uri">http://www.tropicos.org/Name/1300302</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ANNONA GLABRA
+</td>
+<td style="text-align:right;">
+30111
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Annona glabra
+</td>
+<td style="text-align:right;">
+30111
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/taxonomy/301703" class="uri">https://www.ncbi.nlm.nih.gov/taxonomy/301703</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ANNONA SPRAGUEI
+</td>
+<td style="text-align:right;">
+49953
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Annona spraguei
+</td>
+<td style="text-align:right;">
+49953
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/taxonomy/681407" class="uri">https://www.ncbi.nlm.nih.gov/taxonomy/681407</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ARDISIA PALMANA
+</td>
+<td style="text-align:right;">
+1000000871
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Ardisia palmana
+</td>
+<td style="text-align:right;">
+1000000871
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="http://www.tropicos.org/Name/22000607" class="uri">http://www.tropicos.org/Name/22000607</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ASTRONIUM GRAVEOLENS
+</td>
+<td style="text-align:right;">
+49993
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Astronium graveolens
+</td>
+<td style="text-align:right;">
+49993
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="http://www.tropicos.org/Name/1300086" class="uri">http://www.tropicos.org/Name/1300086</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BAUHINIA PURPUREA
+</td>
+<td style="text-align:right;">
+19215
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Bauhinia purpurea
+</td>
+<td style="text-align:right;">
+19215
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="http://www.tropicos.org/Name/13047080" class="uri">http://www.tropicos.org/Name/13047080</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BLEPHAROCALYX SALICIFOLIUS
+</td>
+<td style="text-align:right;">
+1000001544
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Blepharocalyx salicifolius
+</td>
+<td style="text-align:right;">
+1000001544
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="http://www.tropicos.org/Name/22102059" class="uri">http://www.tropicos.org/Name/22102059</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BROSIMUM UTILE
+</td>
+<td style="text-align:right;">
+30553
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Brosimum utile
+</td>
+<td style="text-align:right;">
+30553
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/taxonomy/241871" class="uri">https://www.ncbi.nlm.nih.gov/taxonomy/241871</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BURSERA SIMARUBA
+</td>
+<td style="text-align:right;">
+227
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Bursera simaruba
+</td>
+<td style="text-align:right;">
+227
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="http://www.tropicos.org/Name/4700231" class="uri">http://www.tropicos.org/Name/4700231</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BYRSONIMA CRASSIFOLIA
+</td>
+<td style="text-align:right;">
+35029
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Byrsonima crassifolia
+</td>
+<td style="text-align:right;">
+35029
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="http://www.tropicos.org/Name/19500795" class="uri">http://www.tropicos.org/Name/19500795</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CABRALEA CANJERANA
+</td>
+<td style="text-align:right;">
+1000001911
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Cabralea canjerana
+</td>
+<td style="text-align:right;">
+1000001911
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/taxonomy/356269" class="uri">https://www.ncbi.nlm.nih.gov/taxonomy/356269</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CALYCOPHYLLUM CANDIDISSIMUM
+</td>
+<td style="text-align:right;">
+41267
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Calycophyllum candidissimum
+</td>
+<td style="text-align:right;">
+41267
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="http://www.tropicos.org/Name/27903157" class="uri">http://www.tropicos.org/Name/27903157</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CAPPARIS INDICA
+</td>
+<td style="text-align:right;">
+46256
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Capparis indica
+</td>
+<td style="text-align:right;">
+46256
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/taxonomy/511499" class="uri">https://www.ncbi.nlm.nih.gov/taxonomy/511499</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CARAPA GUIANENSIS
+</td>
+<td style="text-align:right;">
+46649
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Carapa guianensis
+</td>
+<td style="text-align:right;">
+46649
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="http://www.tropicos.org/Name/20400362" class="uri">http://www.tropicos.org/Name/20400362</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CARYOCAR BRASILIENSE
+</td>
+<td style="text-align:right;">
+10238
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Caryocar brasiliense
+</td>
+<td style="text-align:right;">
+10238
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="http://www.tropicos.org/Name/6200020" class="uri">http://www.tropicos.org/Name/6200020</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CASEARIA CORYMBOSA
+</td>
+<td style="text-align:right;">
+1000002246
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Casearia corymbosa
+</td>
+<td style="text-align:right;">
+1000002246
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="http://www.tropicos.org/Name/13200097" class="uri">http://www.tropicos.org/Name/13200097</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CASEARIA SYLVESTRIS
+</td>
+<td style="text-align:right;">
+281
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Casearia sylvestris
+</td>
+<td style="text-align:right;">
+281
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/taxonomy/112817" class="uri">https://www.ncbi.nlm.nih.gov/taxonomy/112817</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CASSIPOUREA GUIANENSIS
+</td>
+<td style="text-align:right;">
+10766
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Cassipourea guianensis
+</td>
+<td style="text-align:right;">
+10766
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/taxonomy/106621" class="uri">https://www.ncbi.nlm.nih.gov/taxonomy/106621</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CECROPIA OBTUSIFOLIA
+</td>
+<td style="text-align:right;">
+15822
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Cecropia obtusifolia
+</td>
+<td style="text-align:right;">
+15822
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="http://www.tropicos.org/Name/21300586" class="uri">http://www.tropicos.org/Name/21300586</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CEDRELA FISSILIS
+</td>
+<td style="text-align:right;">
+1000002385
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Cedrela fissilis
+</td>
+<td style="text-align:right;">
+1000002385
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/taxonomy/281395" class="uri">https://www.ncbi.nlm.nih.gov/taxonomy/281395</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CHRYSOPHYLLUM CAINITO
+</td>
+<td style="text-align:right;">
+28944
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Chrysophyllum cainito
+</td>
+<td style="text-align:right;">
+28944
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="http://www.tropicos.org/Name/28700679" class="uri">http://www.tropicos.org/Name/28700679</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CHRYSOPHYLLUM GONOCARPUM
+</td>
+<td style="text-align:right;">
+1000002727
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Chrysophyllum gonocarpum
+</td>
+<td style="text-align:right;">
+1000002727
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="http://www.tropicos.org/Name/28700706" class="uri">http://www.tropicos.org/Name/28700706</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CLUSIA STENOPHYLLA
+</td>
+<td style="text-align:right;">
+50136
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Clusia stenophylla
+</td>
+<td style="text-align:right;">
+50136
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="http://www.tropicos.org/Name/7800243" class="uri">http://www.tropicos.org/Name/7800243</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+COCHLOSPERMUM VITIFOLIUM
+</td>
+<td style="text-align:right;">
+39878
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Cochlospermum vitifolium
+</td>
+<td style="text-align:right;">
+39878
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="http://www.tropicos.org/Name/8000014" class="uri">http://www.tropicos.org/Name/8000014</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CORDIA ALLIODORA
+</td>
+<td style="text-align:right;">
+380
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Cordia alliodora
+</td>
+<td style="text-align:right;">
+380
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/taxonomy/246517" class="uri">https://www.ncbi.nlm.nih.gov/taxonomy/246517</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CORDIA CYMOSA
+</td>
+<td style="text-align:right;">
+1000003422
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Cordia cymosa
+</td>
+<td style="text-align:right;">
+1000003422
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="http://www.tropicos.org/Name/4001646" class="uri">http://www.tropicos.org/Name/4001646</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CORDIA LASIOCALYX
+</td>
+<td style="text-align:right;">
+1000003442
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Cordia lasiocalyx
+</td>
+<td style="text-align:right;">
+1000003442
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/taxonomy/681426" class="uri">https://www.ncbi.nlm.nih.gov/taxonomy/681426</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CORDIA LUCIDULA
+</td>
+<td style="text-align:right;">
+1000003446
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Cordia lucidula
+</td>
+<td style="text-align:right;">
+1000003446
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="http://www.tropicos.org/Name/4001221" class="uri">http://www.tropicos.org/Name/4001221</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CORDIA NODOSA
+</td>
+<td style="text-align:right;">
+1000003459
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Cordia nodosa
+</td>
+<td style="text-align:right;">
+1000003459
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/taxonomy/79332" class="uri">https://www.ncbi.nlm.nih.gov/taxonomy/79332</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CORDIA PANAMENSIS
+</td>
+<td style="text-align:right;">
+1000003460
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Cordia panamensis
+</td>
+<td style="text-align:right;">
+1000003460
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="http://www.tropicos.org/Name/4001223" class="uri">http://www.tropicos.org/Name/4001223</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CRESCENTIA ALATA
+</td>
+<td style="text-align:right;">
+5807
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Crescentia alata
+</td>
+<td style="text-align:right;">
+5807
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="http://www.tropicos.org/Name/3700258" class="uri">http://www.tropicos.org/Name/3700258</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CROTON BILLBERGIANUS
+</td>
+<td style="text-align:right;">
+1000003773
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Croton billbergianus
+</td>
+<td style="text-align:right;">
+1000003773
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="http://www.tropicos.org/Name/12800819" class="uri">http://www.tropicos.org/Name/12800819</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CUPANIA GUATEMALENSIS
+</td>
+<td style="text-align:right;">
+1000003887
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Cupania guatemalensis
+</td>
+<td style="text-align:right;">
+1000003887
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="http://www.tropicos.org/Name/28600609" class="uri">http://www.tropicos.org/Name/28600609</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CURATELLA AMERICANA
+</td>
+<td style="text-align:right;">
+1000003910
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Curatella americana
+</td>
+<td style="text-align:right;">
+1000003910
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="http://www.tropicos.org/Name/10900124" class="uri">http://www.tropicos.org/Name/10900124</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+DENDROPANAX LATILOBUS
+</td>
+<td style="text-align:right;">
+1000004162
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Dendropanax latilobus
+</td>
+<td style="text-align:right;">
+1000004162
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="http://www.tropicos.org/Name/2200747" class="uri">http://www.tropicos.org/Name/2200747</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+DRIMYS GRANADENSIS
+</td>
+<td style="text-align:right;">
+1000004518
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Drimys granadensis
+</td>
+<td style="text-align:right;">
+1000004518
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/taxonomy/224735" class="uri">https://www.ncbi.nlm.nih.gov/taxonomy/224735</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENTEROLOBIUM CYCLOCARPUM
+</td>
+<td style="text-align:right;">
+3762
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Enterolobium cyclocarpum
+</td>
+<td style="text-align:right;">
+3762
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/taxonomy/54878" class="uri">https://www.ncbi.nlm.nih.gov/taxonomy/54878</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ERYTHRINA COSTARICENSIS
+</td>
+<td style="text-align:right;">
+1000004822
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Erythrina costaricensis
+</td>
+<td style="text-align:right;">
+1000004822
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="http://www.tropicos.org/Name/13009263" class="uri">http://www.tropicos.org/Name/13009263</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ERYTHROXYLUM SUBEROSUM
+</td>
+<td style="text-align:right;">
+1000004882
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Erythroxylum suberosum
+</td>
+<td style="text-align:right;">
+1000004882
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="http://www.tropicos.org/Name/12500266" class="uri">http://www.tropicos.org/Name/12500266</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+EUCALYPTUS GRANDIS
+</td>
+<td style="text-align:right;">
+522
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Eucalyptus grandis
+</td>
+<td style="text-align:right;">
+522
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="http://www.tropicos.org/Name/100187894" class="uri">http://www.tropicos.org/Name/100187894</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+EUGENIA NESIOTICA
+</td>
+<td style="text-align:right;">
+1000005068
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Eugenia nesiotica
+</td>
+<td style="text-align:right;">
+1000005068
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/taxonomy/681438" class="uri">https://www.ncbi.nlm.nih.gov/taxonomy/681438</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+FARAMEA OCCIDENTALIS
+</td>
+<td style="text-align:right;">
+31837
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Faramea occidentalis
+</td>
+<td style="text-align:right;">
+31837
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="http://www.tropicos.org/Name/27902704" class="uri">http://www.tropicos.org/Name/27902704</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+FICUS CITRIFOLIA
+</td>
+<td style="text-align:right;">
+33851
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Ficus citrifolia
+</td>
+<td style="text-align:right;">
+33851
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/taxonomy/309283" class="uri">https://www.ncbi.nlm.nih.gov/taxonomy/309283</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+FICUS INSIPIDA
+</td>
+<td style="text-align:right;">
+1000005277
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Ficus insipida
+</td>
+<td style="text-align:right;">
+1000005277
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/taxonomy/100555" class="uri">https://www.ncbi.nlm.nih.gov/taxonomy/100555</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GLIRICIDIA SEPIUM
+</td>
+<td style="text-align:right;">
+605
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Gliricidia sepium
+</td>
+<td style="text-align:right;">
+605
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/taxonomy/167663" class="uri">https://www.ncbi.nlm.nih.gov/taxonomy/167663</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GUAPIRA NOXIA
+</td>
+<td style="text-align:right;">
+1000005697
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Guapira noxia
+</td>
+<td style="text-align:right;">
+1000005697
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="http://www.tropicos.org/Name/22500694" class="uri">http://www.tropicos.org/Name/22500694</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GUAREA GUIDONIA
+</td>
+<td style="text-align:right;">
+622
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Guarea guidonia
+</td>
+<td style="text-align:right;">
+622
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/taxonomy/155637" class="uri">https://www.ncbi.nlm.nih.gov/taxonomy/155637</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GUAZUMA ULMIFOLIA
+</td>
+<td style="text-align:right;">
+5630
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Guazuma ulmifolia
+</td>
+<td style="text-align:right;">
+5630
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="http://www.tropicos.org/Name/30400486" class="uri">http://www.tropicos.org/Name/30400486</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GUSTAVIA SUPERBA
+</td>
+<td style="text-align:right;">
+1000005920
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Gustavia superba
+</td>
+<td style="text-align:right;">
+1000005920
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="http://www.tropicos.org/Name/17900010" class="uri">http://www.tropicos.org/Name/17900010</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HEDYOSMUM GOUDOTIANUM
+</td>
+<td style="text-align:right;">
+1000006069
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Hedyosmum goudotianum
+</td>
+<td style="text-align:right;">
+1000006069
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/taxonomy/226676" class="uri">https://www.ncbi.nlm.nih.gov/taxonomy/226676</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HEDYOSMUM MEXICANUM
+</td>
+<td style="text-align:right;">
+1000006073
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Hedyosmum mexicanum
+</td>
+<td style="text-align:right;">
+1000006073
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="http://www.tropicos.org/Name/7300015" class="uri">http://www.tropicos.org/Name/7300015</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HEVEA BRASILIENSIS
+</td>
+<td style="text-align:right;">
+19340
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Hevea brasiliensis
+</td>
+<td style="text-align:right;">
+19340
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/taxonomy/3981" class="uri">https://www.ncbi.nlm.nih.gov/taxonomy/3981</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HYMENAEA COURBARIL
+</td>
+<td style="text-align:right;">
+27020
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Hymenaea courbaril
+</td>
+<td style="text-align:right;">
+27020
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/taxonomy/20676" class="uri">https://www.ncbi.nlm.nih.gov/taxonomy/20676</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+INGA VERA
+</td>
+<td style="text-align:right;">
+704
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Inga vera
+</td>
+<td style="text-align:right;">
+704
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="http://www.tropicos.org/Name/13021418" class="uri">http://www.tropicos.org/Name/13021418</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+IPOMOEA WOLCOTTIANA
+</td>
+<td style="text-align:right;">
+1000006740
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Ipomoea wolcottiana
+</td>
+<td style="text-align:right;">
+1000006740
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="http://www.tropicos.org/Name/8502130" class="uri">http://www.tropicos.org/Name/8502130</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+KLEINHOVIA HOSPITA
+</td>
+<td style="text-align:right;">
+44340
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Kleinhovia hospita
+</td>
+<td style="text-align:right;">
+44340
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/taxonomy/93784" class="uri">https://www.ncbi.nlm.nih.gov/taxonomy/93784</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+LAGERSTROEMIA TOMENTOSA
+</td>
+<td style="text-align:right;">
+1000007008
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Lagerstroemia tomentosa
+</td>
+<td style="text-align:right;">
+1000007008
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="http://www.tropicos.org/Name/19200388" class="uri">http://www.tropicos.org/Name/19200388</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+LAGUNCULARIA RACEMOSA
+</td>
+<td style="text-align:right;">
+746
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Laguncularia racemosa
+</td>
+<td style="text-align:right;">
+746
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="http://www.tropicos.org/Name/8200077" class="uri">http://www.tropicos.org/Name/8200077</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+LUEHEA SEEMANNII
+</td>
+<td style="text-align:right;">
+50567
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Luehea seemannii
+</td>
+<td style="text-align:right;">
+50567
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/taxonomy/45194" class="uri">https://www.ncbi.nlm.nih.gov/taxonomy/45194</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MACLURA TINCTORIA
+</td>
+<td style="text-align:right;">
+39582
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Maclura tinctoria
+</td>
+<td style="text-align:right;">
+39582
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/taxonomy/681456" class="uri">https://www.ncbi.nlm.nih.gov/taxonomy/681456</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MANILKARA BIDENTATA
+</td>
+<td style="text-align:right;">
+43171
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Manilkara bidentata
+</td>
+<td style="text-align:right;">
+43171
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/taxonomy/597317" class="uri">https://www.ncbi.nlm.nih.gov/taxonomy/597317</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MANILKARA CHICLE
+</td>
+<td style="text-align:right;">
+1000007816
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Manilkara chicle
+</td>
+<td style="text-align:right;">
+1000007816
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="http://www.tropicos.org/Name/28700413" class="uri">http://www.tropicos.org/Name/28700413</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MICONIA ARGENTEA
+</td>
+<td style="text-align:right;">
+50624
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Miconia argentea
+</td>
+<td style="text-align:right;">
+50624
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="http://www.tropicos.org/Name/20302666" class="uri">http://www.tropicos.org/Name/20302666</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MICONIA CUSPIDATA
+</td>
+<td style="text-align:right;">
+1000008327
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Miconia cuspidata
+</td>
+<td style="text-align:right;">
+1000008327
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="http://www.tropicos.org/Name/20301030" class="uri">http://www.tropicos.org/Name/20301030</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MORISONIA AMERICANA
+</td>
+<td style="text-align:right;">
+13503
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Morisonia americana
+</td>
+<td style="text-align:right;">
+13503
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/taxonomy/202639" class="uri">https://www.ncbi.nlm.nih.gov/taxonomy/202639</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MYRIOCARPA LONGIPES
+</td>
+<td style="text-align:right;">
+50648
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Myriocarpa longipes
+</td>
+<td style="text-align:right;">
+50648
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="http://www.tropicos.org/Name/33400494" class="uri">http://www.tropicos.org/Name/33400494</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MYROSPERMUM FRUTESCENS
+</td>
+<td style="text-align:right;">
+17254
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Myrospermum frutescens
+</td>
+<td style="text-align:right;">
+17254
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/taxonomy/100153" class="uri">https://www.ncbi.nlm.nih.gov/taxonomy/100153</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MYRSINE GUIANENSIS
+</td>
+<td style="text-align:right;">
+1000009201
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Myrsine guianensis
+</td>
+<td style="text-align:right;">
+1000009201
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="http://www.tropicos.org/Name/22000930" class="uri">http://www.tropicos.org/Name/22000930</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OCHROMA PYRAMIDALE
+</td>
+<td style="text-align:right;">
+25655
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Ochroma pyramidale
+</td>
+<td style="text-align:right;">
+25655
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="http://www.tropicos.org/Name/3900204" class="uri">http://www.tropicos.org/Name/3900204</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+OURATEA LUCENS
+</td>
+<td style="text-align:right;">
+1000009869
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Ouratea lucens
+</td>
+<td style="text-align:right;">
+1000009869
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/taxonomy/681473" class="uri">https://www.ncbi.nlm.nih.gov/taxonomy/681473</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PIPER RETICULATUM
+</td>
+<td style="text-align:right;">
+24509
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Piper reticulatum
+</td>
+<td style="text-align:right;">
+24509
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="http://www.tropicos.org/Name/25001139" class="uri">http://www.tropicos.org/Name/25001139</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PISCIDIA CARTHAGENENSIS
+</td>
+<td style="text-align:right;">
+25287
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Piscidia carthagenensis
+</td>
+<td style="text-align:right;">
+25287
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="http://www.tropicos.org/Name/13031807" class="uri">http://www.tropicos.org/Name/13031807</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PITHECELLOBIUM DULCE
+</td>
+<td style="text-align:right;">
+25660
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Pithecellobium dulce
+</td>
+<td style="text-align:right;">
+25660
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="http://www.tropicos.org/Name/13012638" class="uri">http://www.tropicos.org/Name/13012638</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PITTONIOTIS TRICHANTHA
+</td>
+<td style="text-align:right;">
+1000011255
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Pittoniotis trichantha
+</td>
+<td style="text-align:right;">
+1000011255
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/taxonomy/336028" class="uri">https://www.ncbi.nlm.nih.gov/taxonomy/336028</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+POUROUMA BICOLOR
+</td>
+<td style="text-align:right;">
+1000011418
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Pourouma bicolor
+</td>
+<td style="text-align:right;">
+1000011418
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="http://www.tropicos.org/Name/21301041" class="uri">http://www.tropicos.org/Name/21301041</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PRIORIA COPAIFERA
+</td>
+<td style="text-align:right;">
+50795
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Prioria copaifera
+</td>
+<td style="text-align:right;">
+50795
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="http://www.tropicos.org/Name/13044814" class="uri">http://www.tropicos.org/Name/13044814</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PROTIUM PANAMENSE
+</td>
+<td style="text-align:right;">
+1000011665
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Protium panamense
+</td>
+<td style="text-align:right;">
+1000011665
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="http://www.tropicos.org/Name/4700236" class="uri">http://www.tropicos.org/Name/4700236</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PSEUDOBOMBAX SEPTENATUM
+</td>
+<td style="text-align:right;">
+50836
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Pseudobombax septenatum
+</td>
+<td style="text-align:right;">
+50836
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="http://www.tropicos.org/Name/3900261" class="uri">http://www.tropicos.org/Name/3900261</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PSIDIUM SARTORIANUM
+</td>
+<td style="text-align:right;">
+1000011797
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Psidium sartorianum
+</td>
+<td style="text-align:right;">
+1000011797
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="http://www.tropicos.org/Name/22102112" class="uri">http://www.tropicos.org/Name/22102112</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+QUALEA PARVIFLORA
+</td>
+<td style="text-align:right;">
+1000012111
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Qualea parviflora
+</td>
+<td style="text-align:right;">
+1000012111
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="http://www.tropicos.org/Name/34100163" class="uri">http://www.tropicos.org/Name/34100163</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+RHIZOPHORA MANGLE
+</td>
+<td style="text-align:right;">
+1196
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Rhizophora mangle
+</td>
+<td style="text-align:right;">
+1196
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/taxonomy/40031" class="uri">https://www.ncbi.nlm.nih.gov/taxonomy/40031</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SCHEFFLERA MOROTOTONI
+</td>
+<td style="text-align:right;">
+51206
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Schefflera morototoni
+</td>
+<td style="text-align:right;">
+51206
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="http://www.tropicos.org/Name/2200796" class="uri">http://www.tropicos.org/Name/2200796</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SENNA DARIENSIS
+</td>
+<td style="text-align:right;">
+1000013190
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Senna dariensis
+</td>
+<td style="text-align:right;">
+1000013190
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/taxonomy/346961" class="uri">https://www.ncbi.nlm.nih.gov/taxonomy/346961</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SIMAROUBA AMARA
+</td>
+<td style="text-align:right;">
+50962
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Simarouba amara
+</td>
+<td style="text-align:right;">
+50962
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/taxonomy/101569" class="uri">https://www.ncbi.nlm.nih.gov/taxonomy/101569</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SPONDIAS PURPUREA
+</td>
+<td style="text-align:right;">
+24450
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Spondias purpurea
+</td>
+<td style="text-align:right;">
+24450
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="http://www.tropicos.org/Name/1300271" class="uri">http://www.tropicos.org/Name/1300271</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SWIETENIA MACROPHYLLA
+</td>
+<td style="text-align:right;">
+1354
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Swietenia macrophylla
+</td>
+<td style="text-align:right;">
+1354
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/taxonomy/43891" class="uri">https://www.ncbi.nlm.nih.gov/taxonomy/43891</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SYZYGIUM CUMINI
+</td>
+<td style="text-align:right;">
+36558
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Syzygium cumini
+</td>
+<td style="text-align:right;">
+36558
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/taxonomy/260142" class="uri">https://www.ncbi.nlm.nih.gov/taxonomy/260142</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+TABEBUIA ROSEA
+</td>
+<td style="text-align:right;">
+2834
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Tabebuia rosea
+</td>
+<td style="text-align:right;">
+2834
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="http://www.tropicos.org/Name/3700648" class="uri">http://www.tropicos.org/Name/3700648</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+TACHIGALI VERSICOLOR
+</td>
+<td style="text-align:right;">
+50999
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Tachigali versicolor
+</td>
+<td style="text-align:right;">
+50999
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="http://www.tropicos.org/Name/13001906" class="uri">http://www.tropicos.org/Name/13001906</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+TAPIRIRA GUIANENSIS
+</td>
+<td style="text-align:right;">
+1000014356
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Tapirira guianensis
+</td>
+<td style="text-align:right;">
+1000014356
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="http://www.tropicos.org/Name/1300281" class="uri">http://www.tropicos.org/Name/1300281</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+TERMINALIA AMAZONIA
+</td>
+<td style="text-align:right;">
+1000014401
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Terminalia amazonia
+</td>
+<td style="text-align:right;">
+1000014401
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/taxonomy/681497" class="uri">https://www.ncbi.nlm.nih.gov/taxonomy/681497</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+TRATTINNICKIA ASPERA
+</td>
+<td style="text-align:right;">
+1000014798
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Trattinnickia aspera
+</td>
+<td style="text-align:right;">
+1000014798
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="http://www.tropicos.org/Name/4700241" class="uri">http://www.tropicos.org/Name/4700241</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+VIROLA SEBIFERA
+</td>
+<td style="text-align:right;">
+25996
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Virola sebifera
+</td>
+<td style="text-align:right;">
+25996
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/taxonomy/224866" class="uri">https://www.ncbi.nlm.nih.gov/taxonomy/224866</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+VISMIA BILLBERGIANA
+</td>
+<td style="text-align:right;">
+1000015206
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Vismia billbergiana
+</td>
+<td style="text-align:right;">
+1000015206
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/taxonomy/681505" class="uri">https://www.ncbi.nlm.nih.gov/taxonomy/681505</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+VOCHYSIA FERRUGINEA
+</td>
+<td style="text-align:right;">
+1000015271
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Vochysia ferruginea
+</td>
+<td style="text-align:right;">
+1000015271
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="http://www.tropicos.org/Name/34100141" class="uri">http://www.tropicos.org/Name/34100141</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+XYLOPIA MACRANTHA
+</td>
+<td style="text-align:right;">
+1000015453
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Xylopia macrantha
+</td>
+<td style="text-align:right;">
+1000015453
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/taxonomy/681506" class="uri">https://www.ncbi.nlm.nih.gov/taxonomy/681506</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ZANTHOXYLUM PANAMENSE
+</td>
+<td style="text-align:right;">
+51088
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Zanthoxylum panamense
+</td>
+<td style="text-align:right;">
+51088
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/taxonomy/681510" class="uri">https://www.ncbi.nlm.nih.gov/taxonomy/681510</a>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ZUELANIA GUIDONIA
+</td>
+<td style="text-align:right;">
+51093
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Zuelania guidonia
+</td>
+<td style="text-align:right;">
+51093
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="https://www.ncbi.nlm.nih.gov/taxonomy/312408" class="uri">https://www.ncbi.nlm.nih.gov/taxonomy/312408</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="case-2" class="section level4 unnumbered">
 <h4>Case 2</h4>
@@ -466,6 +2801,7 @@ species_case &lt;-<span class="st"> </span>species_out <span class="op">%&gt;%</
 </ul>
 <p>This seems pretty straightforward. We don’t need to add anything to the species table.
 Do we add the name to the PFT?</p>
+<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; ">
 <table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -488,22 +2824,7 @@ accept_bety_id
 accept_in_PFT
 </th>
 <th style="text-align:left;">
-sourceid
-</th>
-<th style="text-align:right;">
-score
-</th>
-<th style="text-align:left;">
-authority
-</th>
-<th style="text-align:left;">
 uri
-</th>
-<th style="text-align:right;">
-case
-</th>
-<th style="text-align:left;">
-category
 </th>
 </tr>
 </thead>
@@ -528,26 +2849,12 @@ Kielmeyera coriacea
 FALSE
 </td>
 <td style="text-align:left;">
-iPlant_TNRS
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
 <a href="http://www.tropicos.org/Name/7801213" class="uri">http://www.tropicos.org/Name/7801213</a>
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:left;">
-both
 </td>
 </tr>
 </tbody>
 </table>
+</div>
 </div>
 </div>
 <div id="both-the-submitted-and-accepted-names-in-bety-and-they-are-not-the-same" class="section level3 unnumbered">
@@ -555,11 +2862,9 @@ both
 <ul>
 <li>This is complicated!</li>
 <li>If the submitted names in BETY are out of date, should they be replaced by the new accepted names?</li>
-<li>If we keep the submitted name species record in BETY
-<ul>
+<li>If we keep the submitted name species record in BETY</li>
 <li>How does this decision affect trait records linked to that species record?</li>
 <li>How does this decision affect whether or not the submitted name stays in the PFT?</li>
-</ul></li>
 <li>Should the trait data that hasn’t been entered yet be linked to the submitted name species record or the accepted name species record?</li>
 </ul>
 <p>Keep these questions in mind when looking through not only cases 3-6 but also 9-10</p>
@@ -572,6 +2877,7 @@ both
 <li>Submit name <strong>is</strong> in PFT</li>
 <li><p>Accept name <strong>is</strong> in PFT</p></li>
 </ul>
+<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; ">
 <table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -594,22 +2900,7 @@ accept_bety_id
 accept_in_PFT
 </th>
 <th style="text-align:left;">
-sourceid
-</th>
-<th style="text-align:right;">
-score
-</th>
-<th style="text-align:left;">
-authority
-</th>
-<th style="text-align:left;">
 uri
-</th>
-<th style="text-align:right;">
-case
-</th>
-<th style="text-align:left;">
-category
 </th>
 </tr>
 </thead>
@@ -618,6 +2909,7 @@ category
 </tr>
 </tbody>
 </table>
+</div>
 </div>
 <div id="case-4" class="section level4 unnumbered">
 <h4>Case 4</h4>
@@ -628,6 +2920,7 @@ category
 <li>Submit name <strong>is</strong> in PFT</li>
 <li><p>Accept name <strong>is not</strong> in PFT</p></li>
 </ul>
+<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; ">
 <table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -650,22 +2943,7 @@ accept_bety_id
 accept_in_PFT
 </th>
 <th style="text-align:left;">
-sourceid
-</th>
-<th style="text-align:right;">
-score
-</th>
-<th style="text-align:left;">
-authority
-</th>
-<th style="text-align:left;">
 uri
-</th>
-<th style="text-align:right;">
-case
-</th>
-<th style="text-align:left;">
-category
 </th>
 </tr>
 </thead>
@@ -674,6 +2952,7 @@ category
 </tr>
 </tbody>
 </table>
+</div>
 </div>
 <div id="case-5" class="section level4 unnumbered">
 <h4>Case 5</h4>
@@ -684,6 +2963,7 @@ category
 <li>Submit name <strong>is not</strong> in PFT</li>
 <li><p>Accept name <strong>is</strong> in PFT</p></li>
 </ul>
+<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; ">
 <table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -706,22 +2986,7 @@ accept_bety_id
 accept_in_PFT
 </th>
 <th style="text-align:left;">
-sourceid
-</th>
-<th style="text-align:right;">
-score
-</th>
-<th style="text-align:left;">
-authority
-</th>
-<th style="text-align:left;">
 uri
-</th>
-<th style="text-align:right;">
-case
-</th>
-<th style="text-align:left;">
-category
 </th>
 </tr>
 </thead>
@@ -746,26 +3011,12 @@ Simarouba amara
 TRUE
 </td>
 <td style="text-align:left;">
-iPlant_TNRS
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
 <a href="http://www.tropicos.org/Name/29400090" class="uri">http://www.tropicos.org/Name/29400090</a>
-</td>
-<td style="text-align:right;">
-5
-</td>
-<td style="text-align:left;">
-both
 </td>
 </tr>
 </tbody>
 </table>
+</div>
 </div>
 <div id="case-6" class="section level4 unnumbered">
 <h4>Case 6</h4>
@@ -776,6 +3027,7 @@ both
 <li>Submit name <strong>is not</strong> in PFT</li>
 <li><p>Accept name <strong>is not</strong> in PFT</p></li>
 </ul>
+<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; ">
 <table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -798,22 +3050,7 @@ accept_bety_id
 accept_in_PFT
 </th>
 <th style="text-align:left;">
-sourceid
-</th>
-<th style="text-align:right;">
-score
-</th>
-<th style="text-align:left;">
-authority
-</th>
-<th style="text-align:left;">
 uri
-</th>
-<th style="text-align:right;">
-case
-</th>
-<th style="text-align:left;">
-category
 </th>
 </tr>
 </thead>
@@ -822,6 +3059,7 @@ category
 </tr>
 </tbody>
 </table>
+</div>
 </div>
 </div>
 <div id="only-the-accepted-name-is-in-in-bety" class="section level3 unnumbered">
@@ -834,6 +3072,7 @@ category
 <li>Accepted name <strong>is</strong> in BETY</li>
 <li><p>Accepted name <strong>is</strong> in PFT</p></li>
 </ul>
+<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; ">
 <table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -856,22 +3095,7 @@ accept_bety_id
 accept_in_PFT
 </th>
 <th style="text-align:left;">
-sourceid
-</th>
-<th style="text-align:right;">
-score
-</th>
-<th style="text-align:left;">
-authority
-</th>
-<th style="text-align:left;">
 uri
-</th>
-<th style="text-align:right;">
-case
-</th>
-<th style="text-align:left;">
-category
 </th>
 </tr>
 </thead>
@@ -896,22 +3120,7 @@ Pittoniotis trichantha
 TRUE
 </td>
 <td style="text-align:left;">
-iPlant_TNRS
-</td>
-<td style="text-align:right;">
-0.98
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
 <a href="http://www.tropicos.org/Name/27903746" class="uri">http://www.tropicos.org/Name/27903746</a>
-</td>
-<td style="text-align:right;">
-7
-</td>
-<td style="text-align:left;">
-one
 </td>
 </tr>
 <tr>
@@ -934,22 +3143,7 @@ Aspidosperma desmanthum
 TRUE
 </td>
 <td style="text-align:left;">
-iPlant_TNRS
-</td>
-<td style="text-align:right;">
-0.94
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
 <a href="http://www.tropicos.org/Name/1800106" class="uri">http://www.tropicos.org/Name/1800106</a>
-</td>
-<td style="text-align:right;">
-7
-</td>
-<td style="text-align:left;">
-one
 </td>
 </tr>
 <tr>
@@ -972,22 +3166,7 @@ Chrysophyllum cainito
 TRUE
 </td>
 <td style="text-align:left;">
-iPlant_TNRS
-</td>
-<td style="text-align:right;">
-0.99
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
 <a href="http://www.tropicos.org/Name/28700679" class="uri">http://www.tropicos.org/Name/28700679</a>
-</td>
-<td style="text-align:right;">
-7
-</td>
-<td style="text-align:left;">
-one
 </td>
 </tr>
 <tr>
@@ -1010,26 +3189,12 @@ Hymenaea courbaril
 TRUE
 </td>
 <td style="text-align:left;">
-iPlant_TNRS
-</td>
-<td style="text-align:right;">
-0.98
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
 <a href="http://www.tropicos.org/Name/13005950" class="uri">http://www.tropicos.org/Name/13005950</a>
-</td>
-<td style="text-align:right;">
-7
-</td>
-<td style="text-align:left;">
-one
 </td>
 </tr>
 </tbody>
 </table>
+</div>
 </div>
 <div id="case-8" class="section level4 unnumbered">
 <h4>Case 8</h4>
@@ -1038,6 +3203,7 @@ one
 <li>Accepted name <strong>is</strong> in BETY</li>
 <li><p>Accepteed name <strong>is not</strong> in PFT</p></li>
 </ul>
+<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; ">
 <table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -1060,22 +3226,7 @@ accept_bety_id
 accept_in_PFT
 </th>
 <th style="text-align:left;">
-sourceid
-</th>
-<th style="text-align:right;">
-score
-</th>
-<th style="text-align:left;">
-authority
-</th>
-<th style="text-align:left;">
 uri
-</th>
-<th style="text-align:right;">
-case
-</th>
-<th style="text-align:left;">
-category
 </th>
 </tr>
 </thead>
@@ -1100,26 +3251,12 @@ Simarouba
 FALSE
 </td>
 <td style="text-align:left;">
-NCBI
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
 <a href="https://www.ncbi.nlm.nih.gov/taxonomy/43728" class="uri">https://www.ncbi.nlm.nih.gov/taxonomy/43728</a>
-</td>
-<td style="text-align:right;">
-8
-</td>
-<td style="text-align:left;">
-one
 </td>
 </tr>
 </tbody>
 </table>
+</div>
 <p>Also, looking specifically at the resuilt for BURSERA SIMAROUBA, I’m not confident in that result and I may double check it by hand.</p>
 </div>
 </div>
@@ -1137,6 +3274,7 @@ one
 <ul>
 <li>Should I add the new accepted names to the database? Should the trait data that I haven’t entered yet be entered under the submitted names or the accepted names?</li>
 </ul>
+<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; ">
 <table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -1159,22 +3297,7 @@ accept_bety_id
 accept_in_PFT
 </th>
 <th style="text-align:left;">
-sourceid
-</th>
-<th style="text-align:right;">
-score
-</th>
-<th style="text-align:left;">
-authority
-</th>
-<th style="text-align:left;">
 uri
-</th>
-<th style="text-align:right;">
-case
-</th>
-<th style="text-align:left;">
-category
 </th>
 </tr>
 </thead>
@@ -1199,22 +3322,7 @@ NA
 FALSE
 </td>
 <td style="text-align:left;">
-iPlant_TNRS
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
 <a href="http://www.tropicos.org/Name/13015217" class="uri">http://www.tropicos.org/Name/13015217</a>
-</td>
-<td style="text-align:right;">
-9
-</td>
-<td style="text-align:left;">
-one
 </td>
 </tr>
 <tr>
@@ -1237,26 +3345,12 @@ NA
 FALSE
 </td>
 <td style="text-align:left;">
-iPlant_TNRS
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
 <a href="http://www.tropicos.org/Name/50317942" class="uri">http://www.tropicos.org/Name/50317942</a>
-</td>
-<td style="text-align:right;">
-9
-</td>
-<td style="text-align:left;">
-one
 </td>
 </tr>
 </tbody>
 </table>
+</div>
 </div>
 <div id="case-10" class="section level4 unnumbered">
 <h4>Case 10</h4>
@@ -1270,6 +3364,7 @@ one
 <li>See all the questions associated with case 9.</li>
 <li>The answers to case 9 questions affects whether or not the submitted names in case 10 should be added to the PFT.</li>
 </ul>
+<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; ">
 <table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -1292,22 +3387,7 @@ accept_bety_id
 accept_in_PFT
 </th>
 <th style="text-align:left;">
-sourceid
-</th>
-<th style="text-align:right;">
-score
-</th>
-<th style="text-align:left;">
-authority
-</th>
-<th style="text-align:left;">
 uri
-</th>
-<th style="text-align:right;">
-case
-</th>
-<th style="text-align:left;">
-category
 </th>
 </tr>
 </thead>
@@ -1332,26 +3412,12 @@ NA
 FALSE
 </td>
 <td style="text-align:left;">
-iPlant_TNRS
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
 <a href="http://www.tropicos.org/Name/50214172" class="uri">http://www.tropicos.org/Name/50214172</a>
-</td>
-<td style="text-align:right;">
-10
-</td>
-<td style="text-align:left;">
-one
 </td>
 </tr>
 </tbody>
 </table>
+</div>
 </div>
 </div>
 <div id="none-of-the-names-are-in-bety" class="section level3 unnumbered">
@@ -1359,6 +3425,7 @@ one
 <div id="case-11" class="section level4 unnumbered">
 <h4>Case 11</h4>
 <p>Submitted and Accepted name is the same and is not in BETY - do we add it?</p>
+<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; ">
 <table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -1381,22 +3448,7 @@ accept_bety_id
 accept_in_PFT
 </th>
 <th style="text-align:left;">
-sourceid
-</th>
-<th style="text-align:right;">
-score
-</th>
-<th style="text-align:left;">
-authority
-</th>
-<th style="text-align:left;">
 uri
-</th>
-<th style="text-align:right;">
-case
-</th>
-<th style="text-align:left;">
-category
 </th>
 </tr>
 </thead>
@@ -1421,22 +3473,7 @@ NA
 FALSE
 </td>
 <td style="text-align:left;">
-iPlant_TNRS
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
 <a href="http://www.tropicos.org/Name/13002026" class="uri">http://www.tropicos.org/Name/13002026</a>
-</td>
-<td style="text-align:right;">
-11
-</td>
-<td style="text-align:left;">
-none
 </td>
 </tr>
 <tr>
@@ -1459,22 +3496,7 @@ NA
 FALSE
 </td>
 <td style="text-align:left;">
-NCBI
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
 <a href="https://www.ncbi.nlm.nih.gov/taxonomy/549412" class="uri">https://www.ncbi.nlm.nih.gov/taxonomy/549412</a>
-</td>
-<td style="text-align:right;">
-11
-</td>
-<td style="text-align:left;">
-none
 </td>
 </tr>
 <tr>
@@ -1497,22 +3519,7 @@ NA
 FALSE
 </td>
 <td style="text-align:left;">
-NCBI
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
 <a href="https://www.ncbi.nlm.nih.gov/taxonomy/82382" class="uri">https://www.ncbi.nlm.nih.gov/taxonomy/82382</a>
-</td>
-<td style="text-align:right;">
-11
-</td>
-<td style="text-align:left;">
-none
 </td>
 </tr>
 <tr>
@@ -1535,22 +3542,7 @@ NA
 FALSE
 </td>
 <td style="text-align:left;">
-NCBI
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
 <a href="https://www.ncbi.nlm.nih.gov/taxonomy/181186" class="uri">https://www.ncbi.nlm.nih.gov/taxonomy/181186</a>
-</td>
-<td style="text-align:right;">
-11
-</td>
-<td style="text-align:left;">
-none
 </td>
 </tr>
 <tr>
@@ -1573,22 +3565,7 @@ NA
 FALSE
 </td>
 <td style="text-align:left;">
-iPlant_TNRS
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
 <a href="http://www.tropicos.org/Name/13020477" class="uri">http://www.tropicos.org/Name/13020477</a>
-</td>
-<td style="text-align:right;">
-11
-</td>
-<td style="text-align:left;">
-none
 </td>
 </tr>
 <tr>
@@ -1611,22 +3588,7 @@ NA
 FALSE
 </td>
 <td style="text-align:left;">
-NCBI
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
 <a href="https://www.ncbi.nlm.nih.gov/taxonomy/1902340" class="uri">https://www.ncbi.nlm.nih.gov/taxonomy/1902340</a>
-</td>
-<td style="text-align:right;">
-11
-</td>
-<td style="text-align:left;">
-none
 </td>
 </tr>
 <tr>
@@ -1649,22 +3611,7 @@ NA
 FALSE
 </td>
 <td style="text-align:left;">
-NCBI
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
 <a href="https://www.ncbi.nlm.nih.gov/taxonomy/85893" class="uri">https://www.ncbi.nlm.nih.gov/taxonomy/85893</a>
-</td>
-<td style="text-align:right;">
-11
-</td>
-<td style="text-align:left;">
-none
 </td>
 </tr>
 <tr>
@@ -1687,22 +3634,7 @@ NA
 FALSE
 </td>
 <td style="text-align:left;">
-NCBI
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
 <a href="https://www.ncbi.nlm.nih.gov/taxonomy/881600" class="uri">https://www.ncbi.nlm.nih.gov/taxonomy/881600</a>
-</td>
-<td style="text-align:right;">
-11
-</td>
-<td style="text-align:left;">
-none
 </td>
 </tr>
 <tr>
@@ -1725,22 +3657,7 @@ NA
 FALSE
 </td>
 <td style="text-align:left;">
-NCBI
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
 <a href="https://www.ncbi.nlm.nih.gov/taxonomy/148713" class="uri">https://www.ncbi.nlm.nih.gov/taxonomy/148713</a>
-</td>
-<td style="text-align:right;">
-11
-</td>
-<td style="text-align:left;">
-none
 </td>
 </tr>
 <tr>
@@ -1763,22 +3680,7 @@ NA
 FALSE
 </td>
 <td style="text-align:left;">
-NCBI
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
 <a href="https://www.ncbi.nlm.nih.gov/taxonomy/859572" class="uri">https://www.ncbi.nlm.nih.gov/taxonomy/859572</a>
-</td>
-<td style="text-align:right;">
-11
-</td>
-<td style="text-align:left;">
-none
 </td>
 </tr>
 <tr>
@@ -1801,22 +3703,7 @@ NA
 FALSE
 </td>
 <td style="text-align:left;">
-NCBI
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
 <a href="https://www.ncbi.nlm.nih.gov/taxonomy/123477" class="uri">https://www.ncbi.nlm.nih.gov/taxonomy/123477</a>
-</td>
-<td style="text-align:right;">
-11
-</td>
-<td style="text-align:left;">
-none
 </td>
 </tr>
 <tr>
@@ -1839,22 +3726,7 @@ NA
 FALSE
 </td>
 <td style="text-align:left;">
-NCBI
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
 <a href="https://www.ncbi.nlm.nih.gov/taxonomy/153532" class="uri">https://www.ncbi.nlm.nih.gov/taxonomy/153532</a>
-</td>
-<td style="text-align:right;">
-11
-</td>
-<td style="text-align:left;">
-none
 </td>
 </tr>
 <tr>
@@ -1877,22 +3749,7 @@ NA
 FALSE
 </td>
 <td style="text-align:left;">
-iPlant_TNRS
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
 <a href="http://www.tropicos.org/Name/30800040" class="uri">http://www.tropicos.org/Name/30800040</a>
-</td>
-<td style="text-align:right;">
-11
-</td>
-<td style="text-align:left;">
-none
 </td>
 </tr>
 <tr>
@@ -1915,22 +3772,7 @@ NA
 FALSE
 </td>
 <td style="text-align:left;">
-NCBI
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
 <a href="https://www.ncbi.nlm.nih.gov/taxonomy/251584" class="uri">https://www.ncbi.nlm.nih.gov/taxonomy/251584</a>
-</td>
-<td style="text-align:right;">
-11
-</td>
-<td style="text-align:left;">
-none
 </td>
 </tr>
 <tr>
@@ -1953,30 +3795,17 @@ NA
 FALSE
 </td>
 <td style="text-align:left;">
-iPlant_TNRS
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
 <a href="http://www.tropicos.org/Name/50184812" class="uri">http://www.tropicos.org/Name/50184812</a>
-</td>
-<td style="text-align:right;">
-11
-</td>
-<td style="text-align:left;">
-none
 </td>
 </tr>
 </tbody>
 </table>
 </div>
+</div>
 <div id="case-12" class="section level4 unnumbered">
 <h4>Case 12</h4>
 <p>Submitted and Accepted names are not the same and are not in BETY - which do we add? (See case 3-6,9-10)</p>
+<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; ">
 <table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -1999,22 +3828,7 @@ accept_bety_id
 accept_in_PFT
 </th>
 <th style="text-align:left;">
-sourceid
-</th>
-<th style="text-align:right;">
-score
-</th>
-<th style="text-align:left;">
-authority
-</th>
-<th style="text-align:left;">
 uri
-</th>
-<th style="text-align:right;">
-case
-</th>
-<th style="text-align:left;">
-category
 </th>
 </tr>
 </thead>
@@ -2039,22 +3853,7 @@ NA
 FALSE
 </td>
 <td style="text-align:left;">
-iPlant_TNRS
-</td>
-<td style="text-align:right;">
-0.99
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
 <a href="http://www.tropicos.org/Name/13020524" class="uri">http://www.tropicos.org/Name/13020524</a>
-</td>
-<td style="text-align:right;">
-12
-</td>
-<td style="text-align:left;">
-none
 </td>
 </tr>
 <tr>
@@ -2077,22 +3876,7 @@ NA
 FALSE
 </td>
 <td style="text-align:left;">
-NCBI
-</td>
-<td style="text-align:right;">
-1.00
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
 <a href="https://www.ncbi.nlm.nih.gov/taxonomy/185720" class="uri">https://www.ncbi.nlm.nih.gov/taxonomy/185720</a>
-</td>
-<td style="text-align:right;">
-12
-</td>
-<td style="text-align:left;">
-none
 </td>
 </tr>
 <tr>
@@ -2115,26 +3899,12 @@ NA
 FALSE
 </td>
 <td style="text-align:left;">
-iPlant_TNRS
-</td>
-<td style="text-align:right;">
-1.00
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
 <a href="http://www.tropicos.org/Name/20301140" class="uri">http://www.tropicos.org/Name/20301140</a>
-</td>
-<td style="text-align:right;">
-12
-</td>
-<td style="text-align:left;">
-none
 </td>
 </tr>
 </tbody>
 </table>
+</div>
 </div>
 </div>
 <div id="tnrs-didnt-work" class="section level3 unnumbered">
@@ -2142,6 +3912,7 @@ none
 <div id="case-13" class="section level4 unnumbered">
 <h4>Case 13</h4>
 <p>These I’m going to need to go through by hand to figure out why the queries didn’t work.</p>
+<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; ">
 <table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -2164,22 +3935,7 @@ accept_bety_id
 accept_in_PFT
 </th>
 <th style="text-align:left;">
-sourceid
-</th>
-<th style="text-align:right;">
-score
-</th>
-<th style="text-align:left;">
-authority
-</th>
-<th style="text-align:left;">
 uri
-</th>
-<th style="text-align:right;">
-case
-</th>
-<th style="text-align:left;">
-category
 </th>
 </tr>
 </thead>
@@ -2206,21 +3962,6 @@ FALSE
 <td style="text-align:left;">
 NA
 </td>
-<td style="text-align:right;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:right;">
-13
-</td>
-<td style="text-align:left;">
-by hand
-</td>
 </tr>
 <tr>
 <td style="text-align:left;">
@@ -2241,21 +3982,6 @@ NA
 FALSE
 </td>
 <td style="text-align:left;">
-iPlant_TNRS
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:right;">
-13
-</td>
-<td style="text-align:left;">
-by hand
 </td>
 </tr>
 <tr>
@@ -2277,25 +4003,11 @@ NA
 FALSE
 </td>
 <td style="text-align:left;">
-iPlant_TNRS
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:right;">
-13
-</td>
-<td style="text-align:left;">
-by hand
 </td>
 </tr>
 </tbody>
 </table>
+</div>
 
 </div>
 </div>

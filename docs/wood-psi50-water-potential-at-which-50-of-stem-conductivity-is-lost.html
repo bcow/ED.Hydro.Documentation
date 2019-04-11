@@ -25,7 +25,7 @@
 <meta name="author" content="Betsy Cowdery">
 
 
-<meta name="date" content="2019-04-10">
+<meta name="date" content="2019-04-11">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -49,6 +49,7 @@
 
 
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
 
 
 <style type="text/css">
@@ -395,7 +396,7 @@ p <span class="op">+</span><span class="st"> </span>
 <p><img src="Final_Book_files/figure-html/plot%20wood_psi50-1.png" width="672" /></p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">quantile</span>(wood_psi50_prior, <span class="fl">.975</span>)</code></pre>
 <pre><code>##       97.5% 
-## 62.50580213</code></pre>
+## 62.62650083</code></pre>
 <p>A positive number is within the 95% CI of the distribution so in this case,
 I’m going to choose a log normal distriburtion even though it is not the best fit.
 Hopefully this can also be fixed given that we have data for both psi50 and Kexp…</p>
