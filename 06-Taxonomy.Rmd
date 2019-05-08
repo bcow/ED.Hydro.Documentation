@@ -266,6 +266,18 @@ my_table(species_case, 4)
 
 ```{r, echo = FALSE}
 my_table(species_case, 5)
+# 
+# name <- species_case %>% filter(case == 5) %>% pull(submit_name)
+# name <- "LONCHOCARPUS MUEHLBERGIANUS"
+# 
+# gnr_resolve(names = name, with_context = TRUE, canonical = TRUE, fields = "all") %>%
+#   kable() %>%
+#   kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive")) %>% 
+#   scroll_box(width = "100%") #, height = "200px")
+# 
+# 
+# tnrs(query= name)
+
 ```
 
 #### Case 6 {-}

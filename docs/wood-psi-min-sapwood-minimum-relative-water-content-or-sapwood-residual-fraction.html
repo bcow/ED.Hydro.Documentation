@@ -25,7 +25,7 @@
 <meta name="author" content="Betsy Cowdery">
 
 
-<meta name="date" content="2019-04-11">
+<meta name="date" content="2019-05-08">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -353,8 +353,8 @@ i &lt;-<span class="st"> </span><span class="kw">which</span>(priors<span class=
 prior_in &lt;-<span class="st"> </span>priors[i,stats] <span class="op">*</span><span class="st"> </span>MPa2m <span class="co"># Convert from MPa to m</span>
 prior_in &lt;-<span class="st"> </span><span class="kw">prior_add_samp_data</span>(prior_in, <span class="dt">samp =</span> <span class="op">-</span>wood_psi_min_samp)
 prior_in[,stats]</code></pre>
-<pre><code>##     theor.min    low.025      low.25        mean      upp.75     upp.975
-## 1 10.19716213 210.415692 769.6882118 1487.083101 2860.046949 10745.90354
+<pre><code>##     theor.min     low.025     low.25        mean      upp.75     upp.975
+## 1 10.19716213 213.8437291 770.018778 1482.242554 2862.761438 10605.60126
 ##   theor.max
 ## 1        NA</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">myfit &lt;-<span class="st"> </span><span class="kw">prior_get_fit</span>(prior_in, accepted_dists, <span class="dt">plot =</span> <span class="ot">TRUE</span>)</code></pre>
