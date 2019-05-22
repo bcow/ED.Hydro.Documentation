@@ -3,18 +3,18 @@ title: "03-Leaf_Parameters"
 output: html_document
 ---
 
-# (PART) Key Leaf Traits {-}
+# Key Leaf Traits {-}
 
 --------------------------------------------------------------------------------
 
-# `[leaf_psi_osmotic]:` Leaf osmotic water potential at saturation {-}
+## `[leaf_psi_osmotic]:` Leaf osmotic water potential at saturation {-}
 
-## ED  {-}
+### ED  {-}
 
 - ED variable name : `leaf_psi_osmotic`
 - ED variable units: `m`
 
-## BETY  {-}
+### BETY  {-}
 
 NOTE!! The units are NEGATIVE in the database 
 so we can calculate a distribution that is entirely negative. 
@@ -22,19 +22,19 @@ so we can calculate a distribution that is entirely negative.
 - Variable id: `1000000295` 
 - Prior id: `1000000388`
 
-## Calculation  {-}
+### Calculation  {-}
 
-### Expert elicitation  {-}
+#### Expert elicitation  {-}
 
 Expert elicitation provided by Brad Christoffersen 
 
 - FATES varaiable name: `pinot_node (leaf)`
 - FATES variable units: `MPa`
 
-### Conversion  {-}
+#### Conversion  {-}
 `MPa to m`
 
-## Code {-}
+### Code {-}
 
 ```{r calc leaf_psi_osmotic}
 i <- which(priors$ED_name == "leaf_psi_osmotic")
@@ -66,37 +66,37 @@ prior_plot(prior = leaf_psi_osmotic_prior,
            q = c(0,1), 
            plot_default = leaf_psi_osmotic_default,
            title = sprintf(" (leaf_psi_osmotic): %s", leaf_psi_osmotic_fit$distn),
-           type = "data")
+           type = "elic")
 ```
 
 --------------------------------------------------------------------------------
 
-# `[leaf_elastic_mod]`: Leaf bulk elastic modulus {-}
+## `[leaf_elastic_mod]`: Leaf bulk elastic modulus {-}
 
-## ED  {-}
+### ED  {-}
 
 - ED variable name : `leaf_elastic_mod`
 - ED variable units: `MPa` Note! This is the only case in which MPa is used instead of m!
 
-## BETY  {-}
+### BETY  {-}
 
 - Variable id: `1000000294`
 - Prior id: `1000000387`
 
-## Calculation  {-}
+### Calculation  {-}
 
-### Expert elicitation {-}
+#### Expert elicitation {-}
 
 Expert elicitation provided by Brad Christoffersen 
 
 - FATES varaiable name: `epsil_node (leaf)` 
 - FATES variable units: `MPa`
 
-### Conversion {-}
+#### Conversion {-}
 
 None!
 
-## Code {-}
+### Code {-}
 
 ```{r calc leaf_elastic_mod}
 i <- which(priors$ED_name == "leaf_elastic_mod")
@@ -127,26 +127,26 @@ prior_plot(prior = leaf_elastic_mod_prior,
            q = c(0,.995), 
            plot_default = leaf_elastic_mod_default,
            title = sprintf("Leaf bulk elastic modulus (leaf_elastic_mod): %s", leaf_elastic_mod_fit$distn),
-           type = "data")
+           type = "elic")
 ```
 
 --------------------------------------------------------------------------------
 
-# `[leaf_density]:` Density of leaf tissue {-}
+## `[leaf_density]:` Density of leaf tissue {-}
 
-## ED  {-}
+### ED  {-}
 
 - ED variable name : `leaf_density`
 - ED variable units: `kg m-3`
 
-## BETY  {-}
+### BETY  {-}
 
 - Variable id: `1000000304`
 - Prior id: `1000000396`
 
-## Calculation  {-}
+### Calculation  {-}
 
-### Expert elicitation {-}
+#### Expert elicitation {-}
 
 No expert elicitation provided by Brad Christoffersen. 
 
@@ -167,11 +167,11 @@ But there is a key step here that we need to think about, which is that in the E
 
 `leaf_density_sample <- (leaf_elastic_mod_prior - 2.03) / 25.4 * 1.e3`
 
-### Conversion {-}
+#### Conversion {-}
 
 None
 
-## Code {-}
+### Code {-}
 
 ```{r calc leaf_density_sample}
 leaf_density_sample <- (leaf_elastic_mod_prior - 2.03) / 25.4 * 1.e3
@@ -207,24 +207,24 @@ prior_plot(prior = leaf_density_prior,
            q = c(0,.995),
            plot_default = leaf_density_default,
            title = sprintf("Leaf density (leaf_density): %s", leaf_density_fit$distn),
-           type = "equation")
+           type = "mixed")
 ```
 
 --------------------------------------------------------------------------------
 
-# `[leaf_water_sat]:` Leaf water content at saturation {-}
+## `[leaf_water_sat]:` Leaf water content at saturation {-}
 
-## ED  {-}
+### ED  {-}
 
 - ED variable name : `leaf_water_sat`
 - ED variable units: `kg H2O/kg biomass`
 
-## BETY  {-}
+### BETY  {-}
 
 - Variable id: `1000000285`
 - Prior id: `1000000414`
 
-## Calculation  {-}
+### Calculation  {-}
 
 There are a couple ways to approach this:
 
@@ -235,21 +235,21 @@ and the prior distribution for leaf_density.
 
 I am going to try doing both just to see how they differ. 
 
-### Expert elicitation {-}
+#### Expert elicitation {-}
 
 Expert elicitation provided by Brad Christoffersen 
 
 - FATES varaiable name: `thetas_node (leaf)`
 - FATES variable units: `kg kg-1`
 
-### Conversion {-}
+#### Conversion {-}
 
 The equations between the two are identical except that to get from 
 FATES to ED, must multiply by `(water density)/(leaf density)`
 
-## Code {-}
+### Code {-}
 
-### Initial testing code {-}
+#### Initial testing code {-}
 
 ```{r test calc leaf_water_sat}
 leaf_density_prior_1 <- leaf_density_prior
@@ -364,7 +364,7 @@ which is the weibull distribution instead of trying to come up with a reason
 why we should make leaf density log normal instead. 
 The log normal was the best if I didn't include the lower bound - that's why I wanted to look at it... 
 
-### Actual code {-}
+#### Actual code {-}
 
 ```{r calc leaf_water_sat}
 
@@ -416,14 +416,14 @@ prior_plot(prior = leaf_water_sat_prior,
 
 --------------------------------------------------------------------------------
 
-# `[leaf_psi_tlp]:` Leaf water potential at turgor loss point {-}
+## `[leaf_psi_tlp]:` Leaf water potential at turgor loss point {-}
 
-## ED  {-}
+### ED  {-}
 
 - ED variable name : `leaf_psi_tlp`
 - ED variable units: `m`
 
-## BETY  {-}
+### BETY  {-}
 
 - Variable id: `1000000284`
 - Prior id: `1000000384`
@@ -431,9 +431,9 @@ prior_plot(prior = leaf_water_sat_prior,
 NOTE!! The units are NEGATIVE in the database 
 so we can calculate a distribution that is entirely negative. 
 
-## Calculation  {-}
+### Calculation  {-}
 
-### Expert elicitation {-}
+#### Expert elicitation {-}
 
 No expert elicitation provided by Brad Christoffersen. 
 
@@ -458,11 +458,11 @@ leaf_psi_tlp_samp <-
   (leaf_psi_osmotic_prior + (leaf_elastic_mod_prior * MPa2m))
 ```
 
-### Conversion {-}
+#### Conversion {-}
 
 Remember that `leaf_elastic_mod` is `MPa`, where everything else is `m`! 
 
-## Code {-}
+### Code {-}
 
 ```{r calc leaf_psi_tlp}
 
@@ -507,30 +507,30 @@ prior_plot(prior = leaf_psi_tlp_prior,
            q = c(.005,1),
            plot_default = leaf_psi_tlp_default,
            title = sprintf("(leaf_psi_tlp): %s", leaf_psi_tlp_fit$distn),
-           type = "equation")
+           type = "mixed")
 
 
 ```
 
 --------------------------------------------------------------------------------
 
-# `[leaf_water_cap]:` Leaf hydaulic capacitance. {-}
+## `[leaf_water_cap]:` Leaf hydaulic capacitance. {-}
 
-## ED  {-}
+### ED  {-}
 
 - ED variable name : `leaf_water_cap`
 - ED variable units: `kg H2O/kg biomass/m`
 
-## BETY  {-}
+### BETY  {-}
 
 - Variable id: `1000000287`
 - Prior id: `1000000405`
 
 NOTE: units in BETY are `g H2O / kg biomass / m`! This is because we needed to multiply by 1000 to get large enough values to fit the distribution.
 
-## Calculation  {-}
+### Calculation  {-}
 
-### Expert elicitation {-}
+#### Expert elicitation {-}
 
 No expert elicitation provided by Brad Christoffersen. 
 
@@ -547,11 +547,11 @@ priors[which(priors$ED_name == "leaf_water_cap"),
 
 Equation copied directly from ED: `(1. - leaf_psi_osmotic(ipft) / (4. * leaf_psi_tlp(ipft))) * leaf_water_sat(ipft) / (4. * abs(leaf_psi_tlp(ipft)))`
 
-### Conversion {-}
+#### Conversion {-}
 
 Don't forget about the switch from kg to g!
 
-## Code {-}
+### Code {-}
 
 ```{r calc leaf_water_cap}
 leaf_water_cap_samp <- 
@@ -598,22 +598,22 @@ prior_plot(prior = leaf_water_cap_prior,
            q = c(0,.975),
            plot_default = leaf_water_cap_default,
            title = sprintf("(leaf_water_cap): %s", leaf_water_cap_fit$distn),
-           type = "equation")
+           type = "mixed")
 
 ```
 
 --------------------------------------------------------------------------------
 
-# `[leaf_psi_min]:` Leaf minimum water potential  {-}
+## `[leaf_psi_min]:` Leaf minimum water potential  {-}
 
 This is calculated from `[leaf_rwc_min]:` Leaf minimum relative water content or leaf residual fraction, which I have not added to BETY. 
 
-## ED  {-}
+### ED  {-}
 
 - ED variable name : `leaf_psi_min`
 - ED variable units: `m`
 
-## BETY  {-}
+### BETY  {-}
 
 - Variable id: `1000000299`
 - Prior id: `1000000392`
@@ -621,9 +621,9 @@ This is calculated from `[leaf_rwc_min]:` Leaf minimum relative water content or
 NOTE!! The units are NEGATIVE in the database 
 so we can calculate a distribution that is entirely negative. 
 
-## Calculation  {-}
+### Calculation  {-}
 
-### Expert elicitation {-}
+#### Expert elicitation {-}
 
 No expert elicitation provided by Brad Christoffersen. 
 
@@ -645,11 +645,11 @@ leaf_rwc_min = 0.01 * leaf_elastic_mod(ipft) + 0.17
 leaf_psi_min = (leaf_rwc_min(ipft) - 1.) * leaf_water_sat(ipft) / leaf_water_cap(ipft)
 ```
 
-### Conversion {-}
+#### Conversion {-}
 
 None
 
-## Code {-}
+### Code {-}
 
 ```{r calc leaf_psi_min}
 leaf_rwc_min_samp = 0.01 * leaf_elastic_mod_prior + 0.17
@@ -686,6 +686,6 @@ prior_plot(prior = leaf_psi_min_prior,
            q = c(.025,1), 
            plot_default = default_leaf_psi_min,
            title = sprintf("leaf_psi_min: %s", leaf_psi_min_fit$distn), 
-           type = "equation")
+           type = "mixed")
 
 ```

@@ -5,35 +5,35 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>4 Key Wood Traits | Calculating ED Hydro Parameter Priors</title>
-  <meta name="description" content="Boooooook">
+  <title>Key Wood Traits | Calculating ED Hydro Parameter Priors</title>
+  <meta name="description" content="ED Hydro Documentation">
   <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
-  <meta property="og:title" content="4 Key Wood Traits | Calculating ED Hydro Parameter Priors" />
+  <meta property="og:title" content="Key Wood Traits | Calculating ED Hydro Parameter Priors" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://bcow.github.io/ED.Hydro.Documentation/" />
   
-  <meta property="og:description" content="Boooooook" />
+  <meta property="og:description" content="ED Hydro Documentation" />
   <meta name="github-repo" content="bcow/ED.Hydro.Documentation" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="4 Key Wood Traits | Calculating ED Hydro Parameter Priors" />
+  <meta name="twitter:title" content="Key Wood Traits | Calculating ED Hydro Parameter Priors" />
   
-  <meta name="twitter:description" content="Boooooook" />
+  <meta name="twitter:description" content="ED Hydro Documentation" />
   
 
 <meta name="author" content="Betsy Cowdery">
 
 
-<meta name="date" content="2019-04-10">
+<meta name="date" content="2019-05-22">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="leaf-psi-min-leaf-minimum-water-potential.html">
-<link rel="next" href="wood-psi-osmotic-sapwood-osmotic-water-potential-at-saturation.html">
+<link rel="prev" href="key-leaf-traits.html">
+
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -48,7 +48,6 @@
 
 
 
-<script src="libs/kePrint-0.0.1/kePrint.js"></script>
 
 
 <style type="text/css">
@@ -128,172 +127,111 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <ul class="summary">
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Documentation</a></li>
-<li class="chapter" data-level="1" data-path="setup.html"><a href="setup.html"><i class="fa fa-check"></i><b>1</b> Setup</a></li>
-<li class="chapter" data-level="2" data-path="starting-parameters.html"><a href="starting-parameters.html"><i class="fa fa-check"></i><b>2</b> Starting Parameters</a></li>
-<li><a href="wdns-liquid-water-density.html#wdns-liquid-water-density"><code>[wdns]:</code> Liquid water density</a></li>
-<li><a href="grav-gravity.html#grav-gravity"><code>[grav]:</code> Gravity</a></li>
-<li><a href="mpa2m-conversion-from-mpa-to-m.html#mpa2m-conversion-from-mpa-to-m"><code>[MPa2m]:</code> Conversion from MPa to m</a></li>
-<li><a href="wood-density-wood-density.html#wood_density-wood-density"><code>[wood_density]:</code> Wood density</a></li>
-<li><a href="sla-specific-leaf-area-sla.html#sla-specific-leaf-area-sla"><code>[SLA]:</code> Specific Leaf Area (SLA)</a></li>
-<li class="chapter" data-level="3" data-path="key-leaf-traits.html"><a href="key-leaf-traits.html"><i class="fa fa-check"></i><b>3</b> Key Leaf Traits</a></li>
-<li><a href="leaf-psi-osmotic-leaf-osmotic-water-potential-at-saturation.html#leaf_psi_osmotic-leaf-osmotic-water-potential-at-saturation"><code>[leaf_psi_osmotic]:</code> Leaf osmotic water potential at saturation</a><ul>
-<li class="chapter" data-level="" data-path="leaf-psi-osmotic-leaf-osmotic-water-potential-at-saturation.html"><a href="leaf-psi-osmotic-leaf-osmotic-water-potential-at-saturation.html"><i class="fa fa-check"></i>ED</a></li>
-<li class="chapter" data-level="" data-path="leaf-psi-osmotic-leaf-osmotic-water-potential-at-saturation.html"><a href="leaf-psi-osmotic-leaf-osmotic-water-potential-at-saturation.html#bety"><i class="fa fa-check"></i>BETY</a></li>
-<li class="chapter" data-level="" data-path="leaf-psi-osmotic-leaf-osmotic-water-potential-at-saturation.html"><a href="leaf-psi-osmotic-leaf-osmotic-water-potential-at-saturation.html#calculation"><i class="fa fa-check"></i>Calculation</a><ul>
-<li class="chapter" data-level="" data-path="leaf-psi-osmotic-leaf-osmotic-water-potential-at-saturation.html"><a href="leaf-psi-osmotic-leaf-osmotic-water-potential-at-saturation.html#expert-elicitation"><i class="fa fa-check"></i>Expert elicitation</a></li>
-<li class="chapter" data-level="" data-path="leaf-psi-osmotic-leaf-osmotic-water-potential-at-saturation.html"><a href="leaf-psi-osmotic-leaf-osmotic-water-potential-at-saturation.html#conversion"><i class="fa fa-check"></i>Conversion</a></li>
+<li class="chapter" data-level="" data-path="setup.html"><a href="setup.html"><i class="fa fa-check"></i>Setup</a></li>
+<li class="chapter" data-level="" data-path="starting-parameters.html"><a href="starting-parameters.html"><i class="fa fa-check"></i>Starting Parameters</a><ul>
+<li><a href="starting-parameters.html#wdns-liquid-water-density"><code>[wdns]:</code> Liquid water density</a></li>
+<li><a href="starting-parameters.html#grav-gravity"><code>[grav]:</code> Gravity</a></li>
+<li><a href="starting-parameters.html#mpa2m-conversion-from-mpa-to-m"><code>[MPa2m]:</code> Conversion from MPa to m</a></li>
+<li><a href="starting-parameters.html#wood_density-wood-density"><code>[wood_density]:</code> Wood density</a></li>
+<li><a href="starting-parameters.html#sla-specific-leaf-area-sla"><code>[SLA]:</code> Specific Leaf Area (SLA)</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="leaf-psi-osmotic-leaf-osmotic-water-potential-at-saturation.html"><a href="leaf-psi-osmotic-leaf-osmotic-water-potential-at-saturation.html#code"><i class="fa fa-check"></i>Code</a></li>
+<li class="chapter" data-level="" data-path="key-leaf-traits.html"><a href="key-leaf-traits.html"><i class="fa fa-check"></i>Key Leaf Traits</a><ul>
+<li><a href="key-leaf-traits.html#leaf_psi_osmotic-leaf-osmotic-water-potential-at-saturation"><code>[leaf_psi_osmotic]:</code> Leaf osmotic water potential at saturation</a><ul>
+<li class="chapter" data-level="" data-path="key-leaf-traits.html"><a href="key-leaf-traits.html#ed"><i class="fa fa-check"></i>ED</a></li>
+<li class="chapter" data-level="" data-path="key-leaf-traits.html"><a href="key-leaf-traits.html#bety"><i class="fa fa-check"></i>BETY</a></li>
+<li class="chapter" data-level="" data-path="key-leaf-traits.html"><a href="key-leaf-traits.html#calculation"><i class="fa fa-check"></i>Calculation</a></li>
+<li class="chapter" data-level="" data-path="key-leaf-traits.html"><a href="key-leaf-traits.html#code"><i class="fa fa-check"></i>Code</a></li>
 </ul></li>
-<li><a href="leaf-elastic-mod-leaf-bulk-elastic-modulus.html#leaf_elastic_mod-leaf-bulk-elastic-modulus"><code>[leaf_elastic_mod]</code>: Leaf bulk elastic modulus</a><ul>
-<li class="chapter" data-level="" data-path="leaf-elastic-mod-leaf-bulk-elastic-modulus.html"><a href="leaf-elastic-mod-leaf-bulk-elastic-modulus.html"><i class="fa fa-check"></i>ED</a></li>
-<li class="chapter" data-level="" data-path="leaf-elastic-mod-leaf-bulk-elastic-modulus.html"><a href="leaf-elastic-mod-leaf-bulk-elastic-modulus.html#bety-1"><i class="fa fa-check"></i>BETY</a></li>
-<li class="chapter" data-level="" data-path="leaf-elastic-mod-leaf-bulk-elastic-modulus.html"><a href="leaf-elastic-mod-leaf-bulk-elastic-modulus.html#calculation-1"><i class="fa fa-check"></i>Calculation</a><ul>
-<li class="chapter" data-level="" data-path="leaf-elastic-mod-leaf-bulk-elastic-modulus.html"><a href="leaf-elastic-mod-leaf-bulk-elastic-modulus.html#expert-elicitation-1"><i class="fa fa-check"></i>Expert elicitation</a></li>
-<li class="chapter" data-level="" data-path="leaf-elastic-mod-leaf-bulk-elastic-modulus.html"><a href="leaf-elastic-mod-leaf-bulk-elastic-modulus.html#conversion-1"><i class="fa fa-check"></i>Conversion</a></li>
+<li><a href="key-leaf-traits.html#leaf_elastic_mod-leaf-bulk-elastic-modulus"><code>[leaf_elastic_mod]</code>: Leaf bulk elastic modulus</a><ul>
+<li class="chapter" data-level="" data-path="key-leaf-traits.html"><a href="key-leaf-traits.html#ed-1"><i class="fa fa-check"></i>ED</a></li>
+<li class="chapter" data-level="" data-path="key-leaf-traits.html"><a href="key-leaf-traits.html#bety-1"><i class="fa fa-check"></i>BETY</a></li>
+<li class="chapter" data-level="" data-path="key-leaf-traits.html"><a href="key-leaf-traits.html#calculation-1"><i class="fa fa-check"></i>Calculation</a></li>
+<li class="chapter" data-level="" data-path="key-leaf-traits.html"><a href="key-leaf-traits.html#code-1"><i class="fa fa-check"></i>Code</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="leaf-elastic-mod-leaf-bulk-elastic-modulus.html"><a href="leaf-elastic-mod-leaf-bulk-elastic-modulus.html#code-1"><i class="fa fa-check"></i>Code</a></li>
+<li><a href="key-leaf-traits.html#leaf_density-density-of-leaf-tissue"><code>[leaf_density]:</code> Density of leaf tissue</a><ul>
+<li class="chapter" data-level="" data-path="key-leaf-traits.html"><a href="key-leaf-traits.html#ed-2"><i class="fa fa-check"></i>ED</a></li>
+<li class="chapter" data-level="" data-path="key-leaf-traits.html"><a href="key-leaf-traits.html#bety-2"><i class="fa fa-check"></i>BETY</a></li>
+<li class="chapter" data-level="" data-path="key-leaf-traits.html"><a href="key-leaf-traits.html#calculation-2"><i class="fa fa-check"></i>Calculation</a></li>
+<li class="chapter" data-level="" data-path="key-leaf-traits.html"><a href="key-leaf-traits.html#code-2"><i class="fa fa-check"></i>Code</a></li>
 </ul></li>
-<li><a href="leaf-density-density-of-leaf-tissue.html#leaf_density-density-of-leaf-tissue"><code>[leaf_density]:</code> Density of leaf tissue</a><ul>
-<li class="chapter" data-level="" data-path="leaf-density-density-of-leaf-tissue.html"><a href="leaf-density-density-of-leaf-tissue.html"><i class="fa fa-check"></i>ED</a></li>
-<li class="chapter" data-level="" data-path="leaf-density-density-of-leaf-tissue.html"><a href="leaf-density-density-of-leaf-tissue.html#bety-2"><i class="fa fa-check"></i>BETY</a></li>
-<li class="chapter" data-level="" data-path="leaf-density-density-of-leaf-tissue.html"><a href="leaf-density-density-of-leaf-tissue.html#calculation-2"><i class="fa fa-check"></i>Calculation</a><ul>
-<li class="chapter" data-level="" data-path="leaf-density-density-of-leaf-tissue.html"><a href="leaf-density-density-of-leaf-tissue.html#expert-elicitation-2"><i class="fa fa-check"></i>Expert elicitation</a></li>
-<li class="chapter" data-level="" data-path="leaf-density-density-of-leaf-tissue.html"><a href="leaf-density-density-of-leaf-tissue.html#conversion-2"><i class="fa fa-check"></i>Conversion</a></li>
+<li><a href="key-leaf-traits.html#leaf_water_sat-leaf-water-content-at-saturation"><code>[leaf_water_sat]:</code> Leaf water content at saturation</a><ul>
+<li class="chapter" data-level="" data-path="key-leaf-traits.html"><a href="key-leaf-traits.html#ed-3"><i class="fa fa-check"></i>ED</a></li>
+<li class="chapter" data-level="" data-path="key-leaf-traits.html"><a href="key-leaf-traits.html#bety-3"><i class="fa fa-check"></i>BETY</a></li>
+<li class="chapter" data-level="" data-path="key-leaf-traits.html"><a href="key-leaf-traits.html#calculation-3"><i class="fa fa-check"></i>Calculation</a></li>
+<li class="chapter" data-level="" data-path="key-leaf-traits.html"><a href="key-leaf-traits.html#code-3"><i class="fa fa-check"></i>Code</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="leaf-density-density-of-leaf-tissue.html"><a href="leaf-density-density-of-leaf-tissue.html#code-2"><i class="fa fa-check"></i>Code</a></li>
+<li><a href="key-leaf-traits.html#leaf_psi_tlp-leaf-water-potential-at-turgor-loss-point"><code>[leaf_psi_tlp]:</code> Leaf water potential at turgor loss point</a><ul>
+<li class="chapter" data-level="" data-path="key-leaf-traits.html"><a href="key-leaf-traits.html#ed-4"><i class="fa fa-check"></i>ED</a></li>
+<li class="chapter" data-level="" data-path="key-leaf-traits.html"><a href="key-leaf-traits.html#bety-4"><i class="fa fa-check"></i>BETY</a></li>
+<li class="chapter" data-level="" data-path="key-leaf-traits.html"><a href="key-leaf-traits.html#calculation-4"><i class="fa fa-check"></i>Calculation</a></li>
+<li class="chapter" data-level="" data-path="key-leaf-traits.html"><a href="key-leaf-traits.html#code-4"><i class="fa fa-check"></i>Code</a></li>
 </ul></li>
-<li><a href="leaf-water-sat-leaf-water-content-at-saturation.html#leaf_water_sat-leaf-water-content-at-saturation"><code>[leaf_water_sat]:</code> Leaf water content at saturation</a><ul>
-<li class="chapter" data-level="" data-path="leaf-water-sat-leaf-water-content-at-saturation.html"><a href="leaf-water-sat-leaf-water-content-at-saturation.html"><i class="fa fa-check"></i>ED</a></li>
-<li class="chapter" data-level="" data-path="leaf-water-sat-leaf-water-content-at-saturation.html"><a href="leaf-water-sat-leaf-water-content-at-saturation.html#bety-3"><i class="fa fa-check"></i>BETY</a></li>
-<li class="chapter" data-level="" data-path="leaf-water-sat-leaf-water-content-at-saturation.html"><a href="leaf-water-sat-leaf-water-content-at-saturation.html#calculation-3"><i class="fa fa-check"></i>Calculation</a><ul>
-<li class="chapter" data-level="" data-path="leaf-water-sat-leaf-water-content-at-saturation.html"><a href="leaf-water-sat-leaf-water-content-at-saturation.html#expert-elicitation-3"><i class="fa fa-check"></i>Expert elicitation</a></li>
-<li class="chapter" data-level="" data-path="leaf-water-sat-leaf-water-content-at-saturation.html"><a href="leaf-water-sat-leaf-water-content-at-saturation.html#conversion-3"><i class="fa fa-check"></i>Conversion</a></li>
+<li><a href="key-leaf-traits.html#leaf_water_cap-leaf-hydaulic-capacitance."><code>[leaf_water_cap]:</code> Leaf hydaulic capacitance.</a><ul>
+<li class="chapter" data-level="" data-path="key-leaf-traits.html"><a href="key-leaf-traits.html#ed-5"><i class="fa fa-check"></i>ED</a></li>
+<li class="chapter" data-level="" data-path="key-leaf-traits.html"><a href="key-leaf-traits.html#bety-5"><i class="fa fa-check"></i>BETY</a></li>
+<li class="chapter" data-level="" data-path="key-leaf-traits.html"><a href="key-leaf-traits.html#calculation-5"><i class="fa fa-check"></i>Calculation</a></li>
+<li class="chapter" data-level="" data-path="key-leaf-traits.html"><a href="key-leaf-traits.html#code-5"><i class="fa fa-check"></i>Code</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="leaf-water-sat-leaf-water-content-at-saturation.html"><a href="leaf-water-sat-leaf-water-content-at-saturation.html#code-3"><i class="fa fa-check"></i>Code</a><ul>
-<li class="chapter" data-level="" data-path="leaf-water-sat-leaf-water-content-at-saturation.html"><a href="leaf-water-sat-leaf-water-content-at-saturation.html#initial-testing-code"><i class="fa fa-check"></i>Initial testing code</a></li>
-<li class="chapter" data-level="" data-path="leaf-water-sat-leaf-water-content-at-saturation.html"><a href="leaf-water-sat-leaf-water-content-at-saturation.html#actual-code"><i class="fa fa-check"></i>Actual code</a></li>
-</ul></li>
-</ul></li>
-<li><a href="leaf-psi-tlp-leaf-water-potential-at-turgor-loss-point.html#leaf_psi_tlp-leaf-water-potential-at-turgor-loss-point"><code>[leaf_psi_tlp]:</code> Leaf water potential at turgor loss point</a><ul>
-<li class="chapter" data-level="" data-path="leaf-psi-tlp-leaf-water-potential-at-turgor-loss-point.html"><a href="leaf-psi-tlp-leaf-water-potential-at-turgor-loss-point.html"><i class="fa fa-check"></i>ED</a></li>
-<li class="chapter" data-level="" data-path="leaf-psi-tlp-leaf-water-potential-at-turgor-loss-point.html"><a href="leaf-psi-tlp-leaf-water-potential-at-turgor-loss-point.html#bety-4"><i class="fa fa-check"></i>BETY</a></li>
-<li class="chapter" data-level="" data-path="leaf-psi-tlp-leaf-water-potential-at-turgor-loss-point.html"><a href="leaf-psi-tlp-leaf-water-potential-at-turgor-loss-point.html#calculation-4"><i class="fa fa-check"></i>Calculation</a><ul>
-<li class="chapter" data-level="" data-path="leaf-psi-tlp-leaf-water-potential-at-turgor-loss-point.html"><a href="leaf-psi-tlp-leaf-water-potential-at-turgor-loss-point.html#expert-elicitation-4"><i class="fa fa-check"></i>Expert elicitation</a></li>
-<li class="chapter" data-level="" data-path="leaf-psi-tlp-leaf-water-potential-at-turgor-loss-point.html"><a href="leaf-psi-tlp-leaf-water-potential-at-turgor-loss-point.html#conversion-4"><i class="fa fa-check"></i>Conversion</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="leaf-psi-tlp-leaf-water-potential-at-turgor-loss-point.html"><a href="leaf-psi-tlp-leaf-water-potential-at-turgor-loss-point.html#code-4"><i class="fa fa-check"></i>Code</a></li>
-</ul></li>
-<li><a href="leaf-water-cap-leaf-hydaulic-capacitance-.html#leaf_water_cap-leaf-hydaulic-capacitance."><code>[leaf_water_cap]:</code> Leaf hydaulic capacitance.</a><ul>
-<li class="chapter" data-level="" data-path="leaf-water-cap-leaf-hydaulic-capacitance-.html"><a href="leaf-water-cap-leaf-hydaulic-capacitance-.html"><i class="fa fa-check"></i>ED</a></li>
-<li class="chapter" data-level="" data-path="leaf-water-cap-leaf-hydaulic-capacitance-.html"><a href="leaf-water-cap-leaf-hydaulic-capacitance-.html#bety-5"><i class="fa fa-check"></i>BETY</a></li>
-<li class="chapter" data-level="" data-path="leaf-water-cap-leaf-hydaulic-capacitance-.html"><a href="leaf-water-cap-leaf-hydaulic-capacitance-.html#calculation-5"><i class="fa fa-check"></i>Calculation</a><ul>
-<li class="chapter" data-level="" data-path="leaf-water-cap-leaf-hydaulic-capacitance-.html"><a href="leaf-water-cap-leaf-hydaulic-capacitance-.html#expert-elicitation-5"><i class="fa fa-check"></i>Expert elicitation</a></li>
-<li class="chapter" data-level="" data-path="leaf-water-cap-leaf-hydaulic-capacitance-.html"><a href="leaf-water-cap-leaf-hydaulic-capacitance-.html#conversion-5"><i class="fa fa-check"></i>Conversion</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="leaf-water-cap-leaf-hydaulic-capacitance-.html"><a href="leaf-water-cap-leaf-hydaulic-capacitance-.html#code-5"><i class="fa fa-check"></i>Code</a></li>
-</ul></li>
-<li><a href="leaf-psi-min-leaf-minimum-water-potential.html#leaf_psi_min-leaf-minimum-water-potential"><code>[leaf_psi_min]:</code> Leaf minimum water potential</a><ul>
-<li class="chapter" data-level="" data-path="leaf-psi-min-leaf-minimum-water-potential.html"><a href="leaf-psi-min-leaf-minimum-water-potential.html"><i class="fa fa-check"></i>ED</a></li>
-<li class="chapter" data-level="" data-path="leaf-psi-min-leaf-minimum-water-potential.html"><a href="leaf-psi-min-leaf-minimum-water-potential.html#bety-6"><i class="fa fa-check"></i>BETY</a></li>
-<li class="chapter" data-level="" data-path="leaf-psi-min-leaf-minimum-water-potential.html"><a href="leaf-psi-min-leaf-minimum-water-potential.html#calculation-6"><i class="fa fa-check"></i>Calculation</a><ul>
-<li class="chapter" data-level="" data-path="leaf-psi-min-leaf-minimum-water-potential.html"><a href="leaf-psi-min-leaf-minimum-water-potential.html#expert-elicitation-6"><i class="fa fa-check"></i>Expert elicitation</a></li>
-<li class="chapter" data-level="" data-path="leaf-psi-min-leaf-minimum-water-potential.html"><a href="leaf-psi-min-leaf-minimum-water-potential.html#conversion-6"><i class="fa fa-check"></i>Conversion</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="leaf-psi-min-leaf-minimum-water-potential.html"><a href="leaf-psi-min-leaf-minimum-water-potential.html#code-6"><i class="fa fa-check"></i>Code</a></li>
-</ul></li>
-<li class="chapter" data-level="4" data-path="key-wood-traits.html"><a href="key-wood-traits.html"><i class="fa fa-check"></i><b>4</b> Key Wood Traits</a></li>
-<li><a href="wood-psi-osmotic-sapwood-osmotic-water-potential-at-saturation.html#wood_psi_osmotic-sapwood-osmotic-water-potential-at-saturation"><code>[wood_psi_osmotic]:</code> Sapwood osmotic water potential at saturation</a><ul>
-<li class="chapter" data-level="" data-path="wood-psi-osmotic-sapwood-osmotic-water-potential-at-saturation.html"><a href="wood-psi-osmotic-sapwood-osmotic-water-potential-at-saturation.html"><i class="fa fa-check"></i>ED</a></li>
-<li class="chapter" data-level="" data-path="wood-psi-osmotic-sapwood-osmotic-water-potential-at-saturation.html"><a href="wood-psi-osmotic-sapwood-osmotic-water-potential-at-saturation.html#bety-7"><i class="fa fa-check"></i>BETY</a></li>
-<li class="chapter" data-level="" data-path="wood-psi-osmotic-sapwood-osmotic-water-potential-at-saturation.html"><a href="wood-psi-osmotic-sapwood-osmotic-water-potential-at-saturation.html#calculation-7"><i class="fa fa-check"></i>Calculation</a><ul>
-<li class="chapter" data-level="" data-path="wood-psi-osmotic-sapwood-osmotic-water-potential-at-saturation.html"><a href="wood-psi-osmotic-sapwood-osmotic-water-potential-at-saturation.html#expert-elicitation-7"><i class="fa fa-check"></i>Expert elicitation</a></li>
-<li class="chapter" data-level="" data-path="wood-psi-osmotic-sapwood-osmotic-water-potential-at-saturation.html"><a href="wood-psi-osmotic-sapwood-osmotic-water-potential-at-saturation.html#conversion-7"><i class="fa fa-check"></i>Conversion</a></li>
-<li class="chapter" data-level="" data-path="wood-psi-osmotic-sapwood-osmotic-water-potential-at-saturation.html"><a href="wood-psi-osmotic-sapwood-osmotic-water-potential-at-saturation.html#code-7"><i class="fa fa-check"></i>Code</a></li>
+<li><a href="key-leaf-traits.html#leaf_psi_min-leaf-minimum-water-potential"><code>[leaf_psi_min]:</code> Leaf minimum water potential</a><ul>
+<li class="chapter" data-level="" data-path="key-leaf-traits.html"><a href="key-leaf-traits.html#ed-6"><i class="fa fa-check"></i>ED</a></li>
+<li class="chapter" data-level="" data-path="key-leaf-traits.html"><a href="key-leaf-traits.html#bety-6"><i class="fa fa-check"></i>BETY</a></li>
+<li class="chapter" data-level="" data-path="key-leaf-traits.html"><a href="key-leaf-traits.html#calculation-6"><i class="fa fa-check"></i>Calculation</a></li>
+<li class="chapter" data-level="" data-path="key-leaf-traits.html"><a href="key-leaf-traits.html#code-6"><i class="fa fa-check"></i>Code</a></li>
 </ul></li>
 </ul></li>
-<li><a href="wood-elastic-mod-sapwood-bulk-elastic-modulus.html#wood_elastic_mod-sapwood-bulk-elastic-modulus"><code>[wood_elastic_mod]:</code> Sapwood bulk elastic modulus</a><ul>
-<li class="chapter" data-level="" data-path="wood-elastic-mod-sapwood-bulk-elastic-modulus.html"><a href="wood-elastic-mod-sapwood-bulk-elastic-modulus.html"><i class="fa fa-check"></i>ED</a></li>
-<li class="chapter" data-level="" data-path="wood-elastic-mod-sapwood-bulk-elastic-modulus.html"><a href="wood-elastic-mod-sapwood-bulk-elastic-modulus.html#bety-8"><i class="fa fa-check"></i>BETY</a></li>
-<li class="chapter" data-level="" data-path="wood-elastic-mod-sapwood-bulk-elastic-modulus.html"><a href="wood-elastic-mod-sapwood-bulk-elastic-modulus.html#calculation-8"><i class="fa fa-check"></i>Calculation</a><ul>
-<li class="chapter" data-level="" data-path="wood-elastic-mod-sapwood-bulk-elastic-modulus.html"><a href="wood-elastic-mod-sapwood-bulk-elastic-modulus.html#expert-elicitation-8"><i class="fa fa-check"></i>Expert elicitation</a></li>
-<li class="chapter" data-level="" data-path="wood-elastic-mod-sapwood-bulk-elastic-modulus.html"><a href="wood-elastic-mod-sapwood-bulk-elastic-modulus.html#conversion-8"><i class="fa fa-check"></i>Conversion</a></li>
+<li class="chapter" data-level="" data-path="key-wood-traits.html"><a href="key-wood-traits.html"><i class="fa fa-check"></i>Key Wood Traits</a><ul>
+<li><a href="key-wood-traits.html#wood_psi_osmotic-sapwood-osmotic-water-potential-at-saturation"><code>[wood_psi_osmotic]:</code> Sapwood osmotic water potential at saturation</a><ul>
+<li class="chapter" data-level="" data-path="key-wood-traits.html"><a href="key-wood-traits.html#ed-7"><i class="fa fa-check"></i>ED</a></li>
+<li class="chapter" data-level="" data-path="key-wood-traits.html"><a href="key-wood-traits.html#bety-7"><i class="fa fa-check"></i>BETY</a></li>
+<li class="chapter" data-level="" data-path="key-wood-traits.html"><a href="key-wood-traits.html#calculation-7"><i class="fa fa-check"></i>Calculation</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="wood-elastic-mod-sapwood-bulk-elastic-modulus.html"><a href="wood-elastic-mod-sapwood-bulk-elastic-modulus.html#code-8"><i class="fa fa-check"></i>Code</a></li>
+<li><a href="key-wood-traits.html#wood_elastic_mod-sapwood-bulk-elastic-modulus"><code>[wood_elastic_mod]:</code> Sapwood bulk elastic modulus</a><ul>
+<li class="chapter" data-level="" data-path="key-wood-traits.html"><a href="key-wood-traits.html#ed-8"><i class="fa fa-check"></i>ED</a></li>
+<li class="chapter" data-level="" data-path="key-wood-traits.html"><a href="key-wood-traits.html#bety-8"><i class="fa fa-check"></i>BETY</a></li>
+<li class="chapter" data-level="" data-path="key-wood-traits.html"><a href="key-wood-traits.html#calculation-8"><i class="fa fa-check"></i>Calculation</a></li>
+<li class="chapter" data-level="" data-path="key-wood-traits.html"><a href="key-wood-traits.html#code-8"><i class="fa fa-check"></i>Code</a></li>
 </ul></li>
-<li><a href="wood-psi-tlp-sapwood-water-potential-at-turgor-loss-point.html#wood_psi_tlp-sapwood-water-potential-at-turgor-loss-point"><code>[wood_psi_tlp]:</code> Sapwood water potential at turgor loss point</a><ul>
-<li class="chapter" data-level="" data-path="wood-psi-tlp-sapwood-water-potential-at-turgor-loss-point.html"><a href="wood-psi-tlp-sapwood-water-potential-at-turgor-loss-point.html"><i class="fa fa-check"></i>ED</a></li>
-<li class="chapter" data-level="" data-path="wood-psi-tlp-sapwood-water-potential-at-turgor-loss-point.html"><a href="wood-psi-tlp-sapwood-water-potential-at-turgor-loss-point.html#bety-9"><i class="fa fa-check"></i>BETY</a></li>
-<li class="chapter" data-level="" data-path="wood-psi-tlp-sapwood-water-potential-at-turgor-loss-point.html"><a href="wood-psi-tlp-sapwood-water-potential-at-turgor-loss-point.html#calculation-9"><i class="fa fa-check"></i>Calculation</a><ul>
-<li class="chapter" data-level="" data-path="wood-psi-tlp-sapwood-water-potential-at-turgor-loss-point.html"><a href="wood-psi-tlp-sapwood-water-potential-at-turgor-loss-point.html#expert-elicitation-9"><i class="fa fa-check"></i>Expert elicitation</a></li>
-<li class="chapter" data-level="" data-path="wood-psi-tlp-sapwood-water-potential-at-turgor-loss-point.html"><a href="wood-psi-tlp-sapwood-water-potential-at-turgor-loss-point.html#conversion-9"><i class="fa fa-check"></i>Conversion</a></li>
+<li><a href="key-wood-traits.html#wood_water_sat-sapwood-water-content-at-saturation"><code>[wood_water_sat]:</code> Sapwood water content at saturation</a><ul>
+<li class="chapter" data-level="" data-path="key-wood-traits.html"><a href="key-wood-traits.html#ed-9"><i class="fa fa-check"></i>ED</a></li>
+<li class="chapter" data-level="" data-path="key-wood-traits.html"><a href="key-wood-traits.html#bety-9"><i class="fa fa-check"></i>BETY</a></li>
+<li class="chapter" data-level="" data-path="key-wood-traits.html"><a href="key-wood-traits.html#calculation-9"><i class="fa fa-check"></i>Calculation</a></li>
+<li class="chapter" data-level="" data-path="key-wood-traits.html"><a href="key-wood-traits.html#code-9"><i class="fa fa-check"></i>Code</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="wood-psi-tlp-sapwood-water-potential-at-turgor-loss-point.html"><a href="wood-psi-tlp-sapwood-water-potential-at-turgor-loss-point.html#code-9"><i class="fa fa-check"></i>Code</a></li>
+<li><a href="key-wood-traits.html#wood_psi_tlp-sapwood-water-potential-at-turgor-loss-point"><code>[wood_psi_tlp]:</code> Sapwood water potential at turgor loss point</a><ul>
+<li class="chapter" data-level="" data-path="key-wood-traits.html"><a href="key-wood-traits.html#ed-10"><i class="fa fa-check"></i>ED</a></li>
+<li class="chapter" data-level="" data-path="key-wood-traits.html"><a href="key-wood-traits.html#bety-10"><i class="fa fa-check"></i>BETY</a></li>
+<li class="chapter" data-level="" data-path="key-wood-traits.html"><a href="key-wood-traits.html#calculation-10"><i class="fa fa-check"></i>Calculation</a></li>
+<li class="chapter" data-level="" data-path="key-wood-traits.html"><a href="key-wood-traits.html#code-10"><i class="fa fa-check"></i>Code</a></li>
 </ul></li>
-<li><a href="wood-water-cap-wood-hydaulic-capacitance.html#wood_water_cap-wood-hydaulic-capacitance"><code>[wood_water_cap]:</code> Wood hydaulic capacitance</a><ul>
-<li class="chapter" data-level="" data-path="wood-water-cap-wood-hydaulic-capacitance.html"><a href="wood-water-cap-wood-hydaulic-capacitance.html"><i class="fa fa-check"></i>ED</a></li>
-<li class="chapter" data-level="" data-path="wood-water-cap-wood-hydaulic-capacitance.html"><a href="wood-water-cap-wood-hydaulic-capacitance.html#bety-10"><i class="fa fa-check"></i>BETY</a></li>
-<li class="chapter" data-level="" data-path="wood-water-cap-wood-hydaulic-capacitance.html"><a href="wood-water-cap-wood-hydaulic-capacitance.html#calculation-10"><i class="fa fa-check"></i>Calculation</a><ul>
-<li class="chapter" data-level="" data-path="wood-water-cap-wood-hydaulic-capacitance.html"><a href="wood-water-cap-wood-hydaulic-capacitance.html#expert-elicitation-10"><i class="fa fa-check"></i>Expert elicitation</a></li>
+<li><a href="key-wood-traits.html#wood_water_cap-wood-hydaulic-capacitance"><code>[wood_water_cap]:</code> Wood hydaulic capacitance</a><ul>
+<li class="chapter" data-level="" data-path="key-wood-traits.html"><a href="key-wood-traits.html#ed-11"><i class="fa fa-check"></i>ED</a></li>
+<li class="chapter" data-level="" data-path="key-wood-traits.html"><a href="key-wood-traits.html#bety-11"><i class="fa fa-check"></i>BETY</a></li>
+<li class="chapter" data-level="" data-path="key-wood-traits.html"><a href="key-wood-traits.html#calculation-11"><i class="fa fa-check"></i>Calculation</a></li>
+<li class="chapter" data-level="" data-path="key-wood-traits.html"><a href="key-wood-traits.html#code-11"><i class="fa fa-check"></i>Code</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="wood-water-cap-wood-hydaulic-capacitance.html"><a href="wood-water-cap-wood-hydaulic-capacitance.html#code-10"><i class="fa fa-check"></i>Code</a></li>
+<li><a href="key-wood-traits.html#wood_psi_min-sapwood-minimum-relative-water-content-or-sapwood-residual-fraction"><code>[wood_psi_min]:</code> Sapwood minimum relative water content or Sapwood residual fraction</a><ul>
+<li class="chapter" data-level="" data-path="key-wood-traits.html"><a href="key-wood-traits.html#ed-12"><i class="fa fa-check"></i>ED</a></li>
+<li class="chapter" data-level="" data-path="key-wood-traits.html"><a href="key-wood-traits.html#bety-12"><i class="fa fa-check"></i>BETY</a></li>
+<li class="chapter" data-level="" data-path="key-wood-traits.html"><a href="key-wood-traits.html#calculation-12"><i class="fa fa-check"></i>Calculation</a></li>
+<li class="chapter" data-level="" data-path="key-wood-traits.html"><a href="key-wood-traits.html#code-12"><i class="fa fa-check"></i>Code</a></li>
 </ul></li>
-<li><a href="wood-psi-min-sapwood-minimum-relative-water-content-or-sapwood-residual-fraction.html#wood_psi_min-sapwood-minimum-relative-water-content-or-sapwood-residual-fraction"><code>[wood_psi_min]:</code> Sapwood minimum relative water content or Sapwood residual fraction</a><ul>
-<li class="chapter" data-level="" data-path="wood-psi-min-sapwood-minimum-relative-water-content-or-sapwood-residual-fraction.html"><a href="wood-psi-min-sapwood-minimum-relative-water-content-or-sapwood-residual-fraction.html"><i class="fa fa-check"></i>ED</a></li>
-<li class="chapter" data-level="" data-path="wood-psi-min-sapwood-minimum-relative-water-content-or-sapwood-residual-fraction.html"><a href="wood-psi-min-sapwood-minimum-relative-water-content-or-sapwood-residual-fraction.html#bety-11"><i class="fa fa-check"></i>BETY</a></li>
-<li class="chapter" data-level="" data-path="wood-psi-min-sapwood-minimum-relative-water-content-or-sapwood-residual-fraction.html"><a href="wood-psi-min-sapwood-minimum-relative-water-content-or-sapwood-residual-fraction.html#calculation-11"><i class="fa fa-check"></i>Calculation</a><ul>
-<li class="chapter" data-level="" data-path="wood-psi-min-sapwood-minimum-relative-water-content-or-sapwood-residual-fraction.html"><a href="wood-psi-min-sapwood-minimum-relative-water-content-or-sapwood-residual-fraction.html#expert-elicitation-11"><i class="fa fa-check"></i>Expert elicitation</a></li>
+<li><a href="key-wood-traits.html#wood_kmax-maximum-hydraulic-conductivity-of-the-stem"><code>[wood_Kmax]:</code> Maximum hydraulic conductivity of the stem</a><ul>
+<li class="chapter" data-level="" data-path="key-wood-traits.html"><a href="key-wood-traits.html#ed-13"><i class="fa fa-check"></i>ED</a></li>
+<li class="chapter" data-level="" data-path="key-wood-traits.html"><a href="key-wood-traits.html#bety-13"><i class="fa fa-check"></i>BETY</a></li>
+<li class="chapter" data-level="" data-path="key-wood-traits.html"><a href="key-wood-traits.html#calculation-13"><i class="fa fa-check"></i>Calculation</a></li>
+<li class="chapter" data-level="" data-path="key-wood-traits.html"><a href="key-wood-traits.html#code-13"><i class="fa fa-check"></i>Code</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="wood-psi-min-sapwood-minimum-relative-water-content-or-sapwood-residual-fraction.html"><a href="wood-psi-min-sapwood-minimum-relative-water-content-or-sapwood-residual-fraction.html#code-11"><i class="fa fa-check"></i>Code</a></li>
+<li><a href="key-wood-traits.html#wood_psi50-water-potential-at-which-50-of-stem-conductivity-is-lost"><code>[wood_psi50]:</code> Water potential at which 50% of stem conductivity is lost</a><ul>
+<li class="chapter" data-level="" data-path="key-wood-traits.html"><a href="key-wood-traits.html#ed-14"><i class="fa fa-check"></i>ED</a></li>
+<li class="chapter" data-level="" data-path="key-wood-traits.html"><a href="key-wood-traits.html#bety-14"><i class="fa fa-check"></i>BETY</a></li>
+<li class="chapter" data-level="" data-path="key-wood-traits.html"><a href="key-wood-traits.html#calculation-14"><i class="fa fa-check"></i>Calculation</a></li>
+<li class="chapter" data-level="" data-path="key-wood-traits.html"><a href="key-wood-traits.html#code-14"><i class="fa fa-check"></i>Code</a></li>
 </ul></li>
-<li><a href="wood-kmax-maximum-hydraulic-conductivity-of-the-stem.html#wood_kmax-maximum-hydraulic-conductivity-of-the-stem"><code>[wood_Kmax]:</code> Maximum hydraulic conductivity of the stem</a><ul>
-<li class="chapter" data-level="" data-path="wood-kmax-maximum-hydraulic-conductivity-of-the-stem.html"><a href="wood-kmax-maximum-hydraulic-conductivity-of-the-stem.html"><i class="fa fa-check"></i>ED</a></li>
-<li class="chapter" data-level="" data-path="wood-kmax-maximum-hydraulic-conductivity-of-the-stem.html"><a href="wood-kmax-maximum-hydraulic-conductivity-of-the-stem.html#bety-12"><i class="fa fa-check"></i>BETY</a></li>
-<li class="chapter" data-level="" data-path="wood-kmax-maximum-hydraulic-conductivity-of-the-stem.html"><a href="wood-kmax-maximum-hydraulic-conductivity-of-the-stem.html#calculation-12"><i class="fa fa-check"></i>Calculation</a><ul>
-<li class="chapter" data-level="" data-path="wood-kmax-maximum-hydraulic-conductivity-of-the-stem.html"><a href="wood-kmax-maximum-hydraulic-conductivity-of-the-stem.html#expert-elicitation-12"><i class="fa fa-check"></i>Expert elicitation</a></li>
-<li class="chapter" data-level="" data-path="wood-kmax-maximum-hydraulic-conductivity-of-the-stem.html"><a href="wood-kmax-maximum-hydraulic-conductivity-of-the-stem.html#conversion-10"><i class="fa fa-check"></i>Conversion</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="wood-kmax-maximum-hydraulic-conductivity-of-the-stem.html"><a href="wood-kmax-maximum-hydraulic-conductivity-of-the-stem.html#code-12"><i class="fa fa-check"></i>Code</a></li>
-</ul></li>
-<li><a href="wood-psi50-water-potential-at-which-50-of-stem-conductivity-is-lost.html#wood_psi50-water-potential-at-which-50-of-stem-conductivity-is-lost"><code>[wood_psi50]:</code> Water potential at which 50% of stem conductivity is lost</a><ul>
-<li class="chapter" data-level="" data-path="wood-psi50-water-potential-at-which-50-of-stem-conductivity-is-lost.html"><a href="wood-psi50-water-potential-at-which-50-of-stem-conductivity-is-lost.html"><i class="fa fa-check"></i>ED</a></li>
-<li class="chapter" data-level="" data-path="wood-psi50-water-potential-at-which-50-of-stem-conductivity-is-lost.html"><a href="wood-psi50-water-potential-at-which-50-of-stem-conductivity-is-lost.html#bety-13"><i class="fa fa-check"></i>BETY</a></li>
-<li class="chapter" data-level="" data-path="wood-psi50-water-potential-at-which-50-of-stem-conductivity-is-lost.html"><a href="wood-psi50-water-potential-at-which-50-of-stem-conductivity-is-lost.html#calculation-13"><i class="fa fa-check"></i>Calculation</a><ul>
-<li class="chapter" data-level="" data-path="wood-psi50-water-potential-at-which-50-of-stem-conductivity-is-lost.html"><a href="wood-psi50-water-potential-at-which-50-of-stem-conductivity-is-lost.html#expert-elicitation-13"><i class="fa fa-check"></i>Expert elicitation</a></li>
-<li class="chapter" data-level="" data-path="wood-psi50-water-potential-at-which-50-of-stem-conductivity-is-lost.html"><a href="wood-psi50-water-potential-at-which-50-of-stem-conductivity-is-lost.html#conversion-11"><i class="fa fa-check"></i>Conversion</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="wood-psi50-water-potential-at-which-50-of-stem-conductivity-is-lost.html"><a href="wood-psi50-water-potential-at-which-50-of-stem-conductivity-is-lost.html#code-13"><i class="fa fa-check"></i>Code</a><ul>
-<li class="chapter" data-level="" data-path="wood-psi50-water-potential-at-which-50-of-stem-conductivity-is-lost.html"><a href="wood-psi50-water-potential-at-which-50-of-stem-conductivity-is-lost.html#using-the-best-fit-norm"><i class="fa fa-check"></i>Using the best fit norm</a></li>
-<li class="chapter" data-level="" data-path="wood-psi50-water-potential-at-which-50-of-stem-conductivity-is-lost.html"><a href="wood-psi50-water-potential-at-which-50-of-stem-conductivity-is-lost.html#using-more-realistic-lnorm"><i class="fa fa-check"></i>Using more realistic lnorm</a></li>
-</ul></li>
-</ul></li>
-<li><a href="wood-kexp-exponent-for-the-hydraulic-vulnerability-curve-of-stem-conductivity.html#wood_kexp-exponent-for-the-hydraulic-vulnerability-curve-of-stem-conductivity"><code>[wood_Kexp]:</code> Exponent for the hydraulic vulnerability curve of stem conductivity</a><ul>
-<li class="chapter" data-level="" data-path="wood-kexp-exponent-for-the-hydraulic-vulnerability-curve-of-stem-conductivity.html"><a href="wood-kexp-exponent-for-the-hydraulic-vulnerability-curve-of-stem-conductivity.html"><i class="fa fa-check"></i>ED</a></li>
-<li class="chapter" data-level="" data-path="wood-kexp-exponent-for-the-hydraulic-vulnerability-curve-of-stem-conductivity.html"><a href="wood-kexp-exponent-for-the-hydraulic-vulnerability-curve-of-stem-conductivity.html#bety-14"><i class="fa fa-check"></i>BETY</a></li>
-<li class="chapter" data-level="" data-path="wood-kexp-exponent-for-the-hydraulic-vulnerability-curve-of-stem-conductivity.html"><a href="wood-kexp-exponent-for-the-hydraulic-vulnerability-curve-of-stem-conductivity.html#calculation-14"><i class="fa fa-check"></i>Calculation</a><ul>
-<li class="chapter" data-level="" data-path="wood-kexp-exponent-for-the-hydraulic-vulnerability-curve-of-stem-conductivity.html"><a href="wood-kexp-exponent-for-the-hydraulic-vulnerability-curve-of-stem-conductivity.html#expert-elicitation-14"><i class="fa fa-check"></i>Expert elicitation</a></li>
-<li class="chapter" data-level="" data-path="wood-kexp-exponent-for-the-hydraulic-vulnerability-curve-of-stem-conductivity.html"><a href="wood-kexp-exponent-for-the-hydraulic-vulnerability-curve-of-stem-conductivity.html#conversion-12"><i class="fa fa-check"></i>Conversion</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="wood-kexp-exponent-for-the-hydraulic-vulnerability-curve-of-stem-conductivity.html"><a href="wood-kexp-exponent-for-the-hydraulic-vulnerability-curve-of-stem-conductivity.html#code-14"><i class="fa fa-check"></i>Code</a></li>
-</ul></li>
-<li class="chapter" data-level="5" data-path="comparing-data-to-priors.html"><a href="comparing-data-to-priors.html"><i class="fa fa-check"></i><b>5</b> Comparing Data to Priors</a><ul>
-<li class="chapter" data-level="" data-path="comparing-data-to-priors.html"><a href="comparing-data-to-priors.html#wood-density"><i class="fa fa-check"></i>Wood Density</a></li>
-<li class="chapter" data-level="" data-path="comparing-data-to-priors.html"><a href="comparing-data-to-priors.html#sla"><i class="fa fa-check"></i>SLA</a></li>
-<li class="chapter" data-level="" data-path="comparing-data-to-priors.html"><a href="comparing-data-to-priors.html#kmax"><i class="fa fa-check"></i>Kmax</a></li>
-<li class="chapter" data-level="" data-path="comparing-data-to-priors.html"><a href="comparing-data-to-priors.html#psi50"><i class="fa fa-check"></i>Psi50</a></li>
-<li class="chapter" data-level="" data-path="comparing-data-to-priors.html"><a href="comparing-data-to-priors.html#kexp"><i class="fa fa-check"></i>Kexp</a></li>
-</ul></li>
-<li class="chapter" data-level="6" data-path="taxonomic-name-resolution-when-importing-data-in-to-bety.html"><a href="taxonomic-name-resolution-when-importing-data-in-to-bety.html"><i class="fa fa-check"></i><b>6</b> Taxonomic Name Resolution when Importing Data in to BETY</a><ul>
-<li class="chapter" data-level="" data-path="taxonomic-name-resolution-when-importing-data-in-to-bety.html"><a href="taxonomic-name-resolution-when-importing-data-in-to-bety.html#name-resolution"><i class="fa fa-check"></i>Name Resolution</a></li>
-<li class="chapter" data-level="" data-path="taxonomic-name-resolution-when-importing-data-in-to-bety.html"><a href="taxonomic-name-resolution-when-importing-data-in-to-bety.html#building-a-tropical-pft"><i class="fa fa-check"></i>Building a Tropical PFT</a></li>
-<li class="chapter" data-level="" data-path="taxonomic-name-resolution-when-importing-data-in-to-bety.html"><a href="taxonomic-name-resolution-when-importing-data-in-to-bety.html#what-i-need-help-with"><i class="fa fa-check"></i>What I need help with</a></li>
-<li class="chapter" data-level="" data-path="taxonomic-name-resolution-when-importing-data-in-to-bety.html"><a href="taxonomic-name-resolution-when-importing-data-in-to-bety.html#cases"><i class="fa fa-check"></i>Cases</a><ul>
-<li class="chapter" data-level="" data-path="taxonomic-name-resolution-when-importing-data-in-to-bety.html"><a href="taxonomic-name-resolution-when-importing-data-in-to-bety.html#both-the-submitted-and-accepted-names-in-bety-and-they-are-the-same"><i class="fa fa-check"></i>Both the submitted and accepted names in BETY and they are the same</a></li>
-<li class="chapter" data-level="" data-path="taxonomic-name-resolution-when-importing-data-in-to-bety.html"><a href="taxonomic-name-resolution-when-importing-data-in-to-bety.html#both-the-submitted-and-accepted-names-in-bety-and-they-are-not-the-same"><i class="fa fa-check"></i>Both the submitted and accepted names in BETY and they are NOT the same</a></li>
-<li class="chapter" data-level="" data-path="taxonomic-name-resolution-when-importing-data-in-to-bety.html"><a href="taxonomic-name-resolution-when-importing-data-in-to-bety.html#only-the-accepted-name-is-in-in-bety"><i class="fa fa-check"></i>Only the accepted name is in in BETY</a></li>
-<li class="chapter" data-level="" data-path="taxonomic-name-resolution-when-importing-data-in-to-bety.html"><a href="taxonomic-name-resolution-when-importing-data-in-to-bety.html#only-the-submitted-name-is-in-in-bety"><i class="fa fa-check"></i>Only the submitted name is in in BETY</a></li>
-<li class="chapter" data-level="" data-path="taxonomic-name-resolution-when-importing-data-in-to-bety.html"><a href="taxonomic-name-resolution-when-importing-data-in-to-bety.html#none-of-the-names-are-in-bety"><i class="fa fa-check"></i>None of the names are in BETY</a></li>
-<li class="chapter" data-level="" data-path="taxonomic-name-resolution-when-importing-data-in-to-bety.html"><a href="taxonomic-name-resolution-when-importing-data-in-to-bety.html#tnrs-didnt-work"><i class="fa fa-check"></i>TNRS didn’t work</a></li>
+<li><a href="key-wood-traits.html#wood_kexp-exponent-for-the-hydraulic-vulnerability-curve-of-stem-conductivity"><code>[wood_Kexp]:</code> Exponent for the hydraulic vulnerability curve of stem conductivity</a><ul>
+<li class="chapter" data-level="" data-path="key-wood-traits.html"><a href="key-wood-traits.html#ed-15"><i class="fa fa-check"></i>ED</a></li>
+<li class="chapter" data-level="" data-path="key-wood-traits.html"><a href="key-wood-traits.html#bety-15"><i class="fa fa-check"></i>BETY</a></li>
+<li class="chapter" data-level="" data-path="key-wood-traits.html"><a href="key-wood-traits.html#calculation-15"><i class="fa fa-check"></i>Calculation</a></li>
+<li class="chapter" data-level="" data-path="key-wood-traits.html"><a href="key-wood-traits.html#code-15"><i class="fa fa-check"></i>Code</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -313,17 +251,715 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="key-wood-traits" class="section level1">
-<h1><span class="header-section-number">4</span> Key Wood Traits</h1>
+<div id="key-wood-traits" class="section level1 unnumbered">
+<h1>Key Wood Traits</h1>
 <hr />
+<div id="wood_psi_osmotic-sapwood-osmotic-water-potential-at-saturation" class="section level2 unnumbered">
+<h2><code>[wood_psi_osmotic]:</code> Sapwood osmotic water potential at saturation</h2>
+<div id="ed-7" class="section level3 unnumbered">
+<h3>ED</h3>
+<ul>
+<li>ED variable name : <code>wood_psi_osmotic</code></li>
+<li>ED variable units: <code>m</code></li>
+</ul>
+</div>
+<div id="bety-7" class="section level3 unnumbered">
+<h3>BETY</h3>
+<ul>
+<li>Variable id: <code>1000000298</code></li>
+<li>Prior id: <code>1000000410</code></li>
+</ul>
+<p>NOTE!! The units are NEGATIVE in the database
+so we can calculate a distribution that is entirely negative.</p>
+</div>
+<div id="calculation-7" class="section level3 unnumbered">
+<h3>Calculation</h3>
+<div id="expert-elicitation-7" class="section level4 unnumbered">
+<h4>Expert elicitation</h4>
+<p>Expert elicitation provided by Brad Christoffersen</p>
+<ul>
+<li>FATES varaiable name: <code>pinot_node (stem)</code></li>
+<li>FATES variable units: <code>m</code></li>
+</ul>
+</div>
+<div id="conversion-7" class="section level4 unnumbered">
+<h4>Conversion</h4>
+<p><code>MPa to m</code></p>
+</div>
+<div id="code-7" class="section level4 unnumbered">
+<h4>Code</h4>
+<pre class="sourceCode r"><code class="sourceCode r">i &lt;-<span class="st"> </span><span class="kw">which</span>(priors<span class="op">$</span>ED_name <span class="op">==</span><span class="st"> &quot;wood_psi_osmotic&quot;</span>)
+prior_in &lt;-<span class="st"> </span>priors[i, stats] <span class="op">*</span><span class="st"> </span>MPa2m
+
+myfit &lt;-<span class="st"> </span><span class="kw">prior_get_fit</span>(prior_in, accepted_dists, <span class="dt">plot =</span> <span class="ot">TRUE</span>)</code></pre>
+<p><img src="Final_Book_files/figure-html/calc%20wood_psi_osmotic-1.png" width="672" /></p>
+<pre class="sourceCode r"><code class="sourceCode r">myfit<span class="op">$</span>score<span class="op">$</span>dist[<span class="kw">which.min</span>(myfit<span class="op">$</span>score<span class="op">$</span>RMSE)]</code></pre>
+<pre><code>## [1] &quot;weibull&quot;</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">variable_id.in &lt;-<span class="st"> </span><span class="kw">tbl</span>(bety,<span class="st">&quot;variables&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(name <span class="op">==</span><span class="st"> </span>priors<span class="op">$</span>ED_name[i]) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(id)
+phylogeny.in &lt;-<span class="st"> &quot;plants&quot;</span>
+
+best.fit.name &lt;-<span class="st"> </span>myfit<span class="op">$</span>score<span class="op">$</span>dist[<span class="kw">which.min</span>(myfit<span class="op">$</span>score<span class="op">$</span>RMSE)]
+best.fit.dat &lt;-<span class="st"> </span>myfit<span class="op">$</span>dists <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="kw">one_of</span>(<span class="st">&quot;Name&quot;</span>, best.fit.name)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">rename</span>(value <span class="op">:</span><span class="er">=</span><span class="st"> </span><span class="op">!!</span>best.fit.name, <span class="dt">params =</span> Name)
+
+wood_psi_osmotic_prior_id &lt;-<span class="st"> </span><span class="kw">prior_input</span>(bety, variable_id.in, phylogeny.in, 
+                                         <span class="dt">dist.name.in =</span> best.fit.name, 
+                                         <span class="dt">parama.in =</span> best.fit.dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(params <span class="op">==</span><span class="st"> &quot;Para1&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(value), 
+                                         <span class="dt">paramb.in =</span> best.fit.dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(params <span class="op">==</span><span class="st"> &quot;Para2&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(value), 
+                                         <span class="dt">paramc.in =</span> best.fit.dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(params <span class="op">==</span><span class="st"> &quot;Para3&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(value))</code></pre>
+<pre><code>## [1] &quot;Entry with id = 1000000410 already exists. Parameters look the same. Old: weibull(2.4100, 237.4600) New: weibull(2.4100, 237.4600)&quot;</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">wood_psi_osmotic_fit &lt;-<span class="st"> </span><span class="kw">tbl</span>(bety, <span class="st">&quot;priors&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(id <span class="op">==</span><span class="st"> </span>wood_psi_osmotic_prior_id) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">collect</span>()
+wood_psi_osmotic_prior &lt;-<span class="st"> </span><span class="op">-</span><span class="kw">rdistn</span>(wood_psi_osmotic_fit)
+wood_psi_osmotic_default &lt;-<span class="st"> </span><span class="kw">get_ED_default</span>(PFT3_defaults_history, <span class="st">&quot;wood_psi_osmotic&quot;</span>)
+
+<span class="kw">prior_plot</span>(<span class="dt">prior =</span> wood_psi_osmotic_prior, 
+           <span class="dt">q =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), 
+           <span class="dt">plot_default =</span> wood_psi_osmotic_default,
+           <span class="dt">title =</span> <span class="kw">sprintf</span>(<span class="st">&quot;Sapwood osmotic water potential at saturation (wood_psi_osmotic): %s&quot;</span>, wood_psi_osmotic_fit<span class="op">$</span>distn),
+           <span class="dt">type =</span> <span class="st">&quot;elic&quot;</span>)</code></pre>
+<p><img src="Final_Book_files/figure-html/plot%20wood_psi_osmotic-1.png" width="672" /></p>
+<hr />
+</div>
+</div>
+</div>
+<div id="wood_elastic_mod-sapwood-bulk-elastic-modulus" class="section level2 unnumbered">
+<h2><code>[wood_elastic_mod]:</code> Sapwood bulk elastic modulus</h2>
+<div id="ed-8" class="section level3 unnumbered">
+<h3>ED</h3>
+<ul>
+<li>ED variable name : <code>wood_elastic_mod</code></li>
+<li>ED variable units: <code>MPa</code> Note! This is the only case in which MPa is used instead of m!</li>
+</ul>
+</div>
+<div id="bety-8" class="section level3 unnumbered">
+<h3>BETY</h3>
+<ul>
+<li>Variable id: <code>1000000303</code></li>
+<li>Prior id: <code>1000000394</code></li>
+</ul>
+</div>
+<div id="calculation-8" class="section level3 unnumbered">
+<h3>Calculation</h3>
+<div id="expert-elicitation-8" class="section level4 unnumbered">
+<h4>Expert elicitation</h4>
+<p>Expert elicitation provided by Brad Christoffersen</p>
+<ul>
+<li>FATES varaiable name: <code>epsil_node (stem)</code></li>
+<li>FATES variable units: <code>MPa</code></li>
+</ul>
+</div>
+<div id="conversion-8" class="section level4 unnumbered">
+<h4>Conversion</h4>
+<p>None!</p>
+</div>
+</div>
+<div id="code-8" class="section level3 unnumbered">
+<h3>Code</h3>
+<pre class="sourceCode r"><code class="sourceCode r">i &lt;-<span class="st"> </span><span class="kw">which</span>(priors<span class="op">$</span>ED_name <span class="op">==</span><span class="st"> &quot;wood_elastic_mod&quot;</span>)
+prior_in &lt;-<span class="st"> </span>priors[i,]
+myfit &lt;-<span class="st"> </span><span class="kw">prior_get_fit</span>(prior_in, accepted_dists, <span class="dt">plot =</span> <span class="ot">TRUE</span>)</code></pre>
+<p><img src="Final_Book_files/figure-html/calc%20wood_elastic_mod-1.png" width="672" /></p>
+<pre class="sourceCode r"><code class="sourceCode r">variable_id.in &lt;-<span class="st"> </span><span class="kw">tbl</span>(bety,<span class="st">&quot;variables&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(name <span class="op">==</span><span class="st"> </span>priors<span class="op">$</span>ED_name[i]) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(id)
+phylogeny.in &lt;-<span class="st"> &quot;plants&quot;</span>
+
+best.fit.name &lt;-<span class="st"> </span>myfit<span class="op">$</span>score<span class="op">$</span>dist[<span class="kw">which.min</span>(myfit<span class="op">$</span>score<span class="op">$</span>RMSE)]
+best.fit.dat &lt;-<span class="st"> </span>myfit<span class="op">$</span>dists <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="kw">one_of</span>(<span class="st">&quot;Name&quot;</span>, best.fit.name)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">rename</span>(value <span class="op">:</span><span class="er">=</span><span class="st"> </span><span class="op">!!</span>best.fit.name, <span class="dt">params =</span> Name)
+
+wood_elastic_mod_id &lt;-<span class="st"> </span><span class="kw">prior_input</span>(bety, variable_id.in, phylogeny.in, 
+                                   <span class="dt">dist.name.in =</span> best.fit.name, 
+                                   <span class="dt">parama.in =</span> best.fit.dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(params <span class="op">==</span><span class="st"> &quot;Para1&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(value), 
+                                   <span class="dt">paramb.in =</span> best.fit.dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(params <span class="op">==</span><span class="st"> &quot;Para2&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(value), 
+                                   <span class="dt">paramc.in =</span> best.fit.dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(params <span class="op">==</span><span class="st"> &quot;Para3&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(value))</code></pre>
+<pre><code>## [1] &quot;Entry with id = 1000000394 already exists. Parameters look the same. Old: gamma(3.4400, 0.1600) New: gamma(3.4400, 0.1600)&quot;</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">wood_elastic_mod_fit &lt;-<span class="st"> </span><span class="kw">tbl</span>(bety, <span class="st">&quot;priors&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(id <span class="op">==</span><span class="st"> </span>wood_elastic_mod_id) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">collect</span>()
+wood_elastic_mod_prior &lt;-<span class="st"> </span><span class="kw">rdistn</span>(wood_elastic_mod_fit)
+wood_elastic_mod_default &lt;-<span class="st"> </span><span class="kw">get_ED_default</span>(<span class="st">&quot;/fs/data3/ecowdery/ED.Hydro/parameters/pft3_defaults_history.xml&quot;</span>, <span class="st">&quot;wood_elastic_mod&quot;</span>)
+
+<span class="kw">prior_plot</span>(<span class="dt">prior =</span> wood_elastic_mod_prior, 
+           <span class="dt">q =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), 
+           <span class="dt">plot_default =</span> wood_elastic_mod_default,
+           <span class="dt">title =</span> <span class="kw">sprintf</span>(<span class="st">&quot;wood bulk elastic modulus (wood_elastic_mod): %s&quot;</span>, wood_elastic_mod_fit<span class="op">$</span>distn),
+           <span class="dt">type =</span> <span class="st">&quot;elic&quot;</span>)</code></pre>
+<p><img src="Final_Book_files/figure-html/plot%20wood_elastic_mod-1.png" width="672" /></p>
+<hr />
+</div>
+</div>
+<div id="wood_water_sat-sapwood-water-content-at-saturation" class="section level2 unnumbered">
+<h2><code>[wood_water_sat]:</code> Sapwood water content at saturation</h2>
+<div id="ed-9" class="section level3 unnumbered">
+<h3>ED</h3>
+<ul>
+<li>ED variable name: <code>wood_water_sat</code></li>
+<li>ED variable units: <code>kg H2O/kg biomass</code></li>
+</ul>
+</div>
+<div id="bety-9" class="section level3 unnumbered">
+<h3>BETY</h3>
+<ul>
+<li>Variable id: ``</li>
+<li>Prior id: ``</li>
+</ul>
+</div>
+<div id="calculation-9" class="section level3 unnumbered">
+<h3>Calculation</h3>
+<div id="expert-elicitation-9" class="section level4 unnumbered">
+<h4>Expert elicitation</h4>
+<p>Expert elicitation provided by Brad Christoffersen</p>
+<ul>
+<li>FATES variable name: <code>thetas_node (stem)</code></li>
+<li>FATES variable units: <code>kg kg-1</code></li>
+</ul>
+</div>
+<div id="conversion-9" class="section level4 unnumbered">
+<h4>Conversion</h4>
+<p>multiply by the density of water over wood density</p>
+</div>
+</div>
+<div id="code-9" class="section level3 unnumbered">
+<h3>Code</h3>
+<pre class="sourceCode r"><code class="sourceCode r">i &lt;-<span class="st"> </span><span class="kw">which</span>(priors<span class="op">$</span>ED_name <span class="op">==</span><span class="st"> &quot;wood_water_sat&quot;</span>)
+myfit_<span class="dv">0</span> &lt;-<span class="st"> </span><span class="kw">prior_get_fit</span>(priors[i,], accepted_dists, <span class="dt">plot =</span> <span class="ot">FALSE</span>)  
+
+myfit_<span class="dv">0</span><span class="op">$</span>score<span class="op">$</span>dist[<span class="kw">which.min</span>(myfit_<span class="dv">0</span><span class="op">$</span>score<span class="op">$</span>RMSE)]</code></pre>
+<pre><code>## [1] &quot;norm&quot;</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># I&#39;m skipping steps here for the sake of time and sanity</span>
+<span class="co"># Normal is the best fit</span>
+wood_water_sat_prior_<span class="dv">0</span> &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100000</span>, myfit_<span class="dv">0</span><span class="op">$</span>dists<span class="op">$</span>norm[<span class="dv">1</span>], myfit_<span class="dv">0</span><span class="op">$</span>dists<span class="op">$</span>norm[<span class="dv">2</span>])
+
+wood_water_sat_sample &lt;-<span class="st"> </span>wood_water_sat_prior_<span class="dv">0</span> <span class="op">*</span><span class="st"> </span>(wdns<span class="op">/</span>(wood_density_prior <span class="op">*</span><span class="st"> </span><span class="fl">1e3</span>)) 
+<span class="co"># Note that here we have to multiply by 1e3 because of the units of wood density </span>
+
+<span class="co"># In this case I&#39;m not using the function I built because here it wouldn&#39;t make sense. </span>
+prior_in &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">low.025 =</span>  <span class="kw">quantile</span>(wood_water_sat_sample, <span class="kw">c</span>(.<span class="dv">025</span>), <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),
+                       <span class="dt">low.25  =</span>  <span class="kw">quantile</span>(wood_water_sat_sample, <span class="kw">c</span>(.<span class="dv">25</span>), <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),
+                       <span class="dt">mean    =</span>  <span class="kw">quantile</span>(wood_water_sat_sample, <span class="kw">c</span>(.<span class="dv">5</span>), <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), 
+                       <span class="dt">upp.75  =</span>  <span class="kw">quantile</span>(wood_water_sat_sample, <span class="kw">c</span>(.<span class="dv">75</span>), <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), 
+                       <span class="dt">upp.975 =</span>  <span class="kw">quantile</span>(wood_water_sat_sample, <span class="kw">c</span>(.<span class="dv">975</span>), <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))
+myfit &lt;-<span class="st"> </span><span class="kw">prior_get_fit</span>(prior_in, accepted_dists, <span class="dt">plot =</span> <span class="ot">TRUE</span>)</code></pre>
+<pre><code>## Warning: Unknown columns: `theor.min`, `theor.max`</code></pre>
+<p><img src="Final_Book_files/figure-html/calc%20wood_water_sat-1.png" width="672" /></p>
+<pre class="sourceCode r"><code class="sourceCode r">variable_id.in &lt;-<span class="st"> </span><span class="kw">tbl</span>(bety,<span class="st">&quot;variables&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(name <span class="op">==</span><span class="st"> </span>priors<span class="op">$</span>ED_name[i]) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(id)
+phylogeny.in &lt;-<span class="st"> &quot;plants&quot;</span>
+
+best.fit.name &lt;-<span class="st"> </span>myfit<span class="op">$</span>score<span class="op">$</span>dist[<span class="kw">which.min</span>(myfit<span class="op">$</span>score<span class="op">$</span>RMSE)]
+best.fit.dat &lt;-<span class="st"> </span>myfit<span class="op">$</span>dists <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="kw">one_of</span>(<span class="st">&quot;Name&quot;</span>, best.fit.name)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">rename</span>(value <span class="op">:</span><span class="er">=</span><span class="st"> </span><span class="op">!!</span>best.fit.name, <span class="dt">params =</span> Name)
+
+wood_water_sat_prior_id &lt;-<span class="st"> </span><span class="kw">prior_input</span>(bety, variable_id.in, phylogeny.in, 
+                                       <span class="dt">dist.name.in =</span> best.fit.name, 
+                                       <span class="dt">parama.in =</span> best.fit.dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(params <span class="op">==</span><span class="st"> &quot;Para1&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(value), 
+                                       <span class="dt">paramb.in =</span> best.fit.dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(params <span class="op">==</span><span class="st"> &quot;Para2&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(value), 
+                                       <span class="dt">paramc.in =</span> best.fit.dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(params <span class="op">==</span><span class="st"> &quot;Para3&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(value))</code></pre>
+<pre><code>## [1] &quot;Entry with id = 1000000424 already exists. Parameters look different. Old: lnorm(0.0200, 0.6100) New: lnorm(0.0100, 0.6100)&quot;</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">wood_water_sat_fit &lt;-<span class="st"> </span><span class="kw">tbl</span>(bety, <span class="st">&quot;priors&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(id <span class="op">==</span><span class="st"> </span>wood_water_sat_prior_id) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">collect</span>()
+wood_water_sat_prior &lt;-<span class="st"> </span><span class="kw">rdistn</span>(wood_water_sat_fit)
+wood_water_sat_density &lt;-<span class="st"> </span><span class="kw">get_ED_default</span>(<span class="st">&quot;/fs/data3/ecowdery/ED.Hydro/parameters/pft3_defaults_history.xml&quot;</span>, <span class="st">&quot;wood_water_sat&quot;</span>)
+
+<span class="kw">prior_plot</span>(<span class="dt">prior =</span> wood_water_sat_prior, 
+           <span class="dt">q =</span> <span class="kw">c</span>(<span class="dv">0</span>,.<span class="dv">995</span>),
+           <span class="dt">plot_default =</span> wood_water_sat_density,
+           <span class="dt">title =</span> <span class="kw">sprintf</span>(<span class="st">&quot;Wood water content at saturation (wood_water_sat): %s&quot;</span>, wood_water_sat_fit<span class="op">$</span>distn),
+           <span class="dt">type =</span> <span class="st">&quot;mixed&quot;</span>)</code></pre>
+<pre><code>## Warning: Removed 500 rows containing non-finite values (stat_density).</code></pre>
+<p><img src="Final_Book_files/figure-html/plot%20wood_water_sat-1.png" width="672" /></p>
+<hr />
+</div>
+</div>
+<div id="wood_psi_tlp-sapwood-water-potential-at-turgor-loss-point" class="section level2 unnumbered">
+<h2><code>[wood_psi_tlp]:</code> Sapwood water potential at turgor loss point</h2>
+<div id="ed-10" class="section level3 unnumbered">
+<h3>ED</h3>
+<ul>
+<li>ED variable name: <code>wood_psi_tlp</code></li>
+<li>ED variable units: <code>m</code></li>
+</ul>
+</div>
+<div id="bety-10" class="section level3 unnumbered">
+<h3>BETY</h3>
+<ul>
+<li>Variable id: ``</li>
+<li>Prior id: ``</li>
+</ul>
+<p>NOTE!! The units are NEGATIVE in the database
+so we can calculate a distribution that is entirely negative.</p>
+</div>
+<div id="calculation-10" class="section level3 unnumbered">
+<h3>Calculation</h3>
+<div id="expert-elicitation-10" class="section level4 unnumbered">
+<h4>Expert elicitation</h4>
+<p>No expert elicitation provided by Brad Christoffersen.</p>
+<p>There is a FATES parameter but it is calculated from other parameters</p>
+<ul>
+<li>FATES variable name: <code>pitlp_node</code></li>
+<li>FATES variable units: <code>MPa</code></li>
+</ul>
+<p>Constraints we added
+- <code>wood_psi_tlp &gt; .1 MPa</code> (this was given as a boundary for other psi variables)</p>
+</div>
+<div id="conversion-10" class="section level4 unnumbered">
+<h4>Conversion</h4>
+<ul>
+<li><p>Calculated from other parameters: <code>wood_psi_osmotic</code> and <code>wood_elastic_mod</code></p></li>
+<li><p>Remember that <code>wood_elastic_mod</code> is <code>MPa</code>, where everything else is <code>m</code>!</p></li>
+</ul>
+</div>
+</div>
+<div id="code-10" class="section level3 unnumbered">
+<h3>Code</h3>
+<pre><code>wood_psi_tlp_samp = 
+(wood_psi_osmotic_prior * wood_elastic_mod_prior * MPa2m)/
+(wood_psi_osmotic_prior + wood_elastic_mod_prior * MPa2m)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">wood_psi_tlp_samp &lt;-<span class="st"> </span>
+<span class="st">  </span>(wood_psi_osmotic_prior <span class="op">*</span><span class="st"> </span>wood_elastic_mod_prior <span class="op">*</span><span class="st"> </span>MPa2m)<span class="op">/</span>
+<span class="st">  </span>(wood_psi_osmotic_prior <span class="op">+</span><span class="st"> </span>wood_elastic_mod_prior <span class="op">*</span><span class="st"> </span>MPa2m)
+
+<span class="kw">summary</span>(wood_psi_tlp_samp)</code></pre>
+<pre><code>##         Min.      1st Qu.       Median         Mean      3rd Qu. 
+## -218937.7820    -327.7115    -232.4071    -259.4481    -154.3735 
+##         Max. 
+##  183382.8223</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">i &lt;-<span class="st"> </span><span class="kw">which</span>(priors<span class="op">$</span>ED_name <span class="op">==</span><span class="st"> &quot;wood_psi_tlp&quot;</span>)
+prior_in &lt;-<span class="st"> </span>priors[i,stats] <span class="op">*</span><span class="st"> </span>MPa2m <span class="co"># Convert from MPa to m</span>
+prior_in &lt;-<span class="st"> </span><span class="kw">prior_add_samp_data</span>(prior_in, <span class="dt">samp =</span> <span class="op">-</span>wood_psi_tlp_samp)
+prior_in[,stats]</code></pre>
+<pre><code>##     theor.min     low.025      low.25        mean      upp.75     upp.975
+## 1 10.19716213 51.32709969 154.3734679 232.4070865 327.7115316 617.9146922
+##   theor.max
+## 1        NA</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">myfit &lt;-<span class="st"> </span><span class="kw">prior_get_fit</span>(prior_in, accepted_dists, <span class="dt">plot =</span> <span class="ot">TRUE</span>)</code></pre>
+<p><img src="Final_Book_files/figure-html/calc%20wood_psi_tlp_samp-1.png" width="672" /></p>
+<pre class="sourceCode r"><code class="sourceCode r">variable_id.in &lt;-<span class="st"> </span><span class="kw">tbl</span>(bety, <span class="st">&quot;variables&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(name <span class="op">==</span><span class="st"> &quot;wood_psi_tlp&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(id)
+phylogeny.in &lt;-<span class="st"> &quot;plants&quot;</span>
+
+best.fit.name &lt;-<span class="st"> </span>myfit<span class="op">$</span>score<span class="op">$</span>dist[<span class="kw">which.min</span>(myfit<span class="op">$</span>score<span class="op">$</span>RMSE)]
+best.fit.dat &lt;-<span class="st"> </span>myfit<span class="op">$</span>dists <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="kw">one_of</span>(<span class="st">&quot;Name&quot;</span>, best.fit.name)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">rename</span>(value <span class="op">:</span><span class="er">=</span><span class="st"> </span><span class="op">!!</span>best.fit.name, <span class="dt">params =</span> Name)
+
+wood_psi_tlp_prior_id &lt;-<span class="st"> </span><span class="kw">prior_input</span>(bety, variable_id.in, phylogeny.in, 
+                                     <span class="dt">dist.name.in =</span> best.fit.name, 
+                                     <span class="dt">parama.in =</span> best.fit.dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(params <span class="op">==</span><span class="st"> &quot;Para1&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(value), 
+                                     <span class="dt">paramb.in =</span> best.fit.dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(params <span class="op">==</span><span class="st"> &quot;Para2&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(value), 
+                                     <span class="dt">paramc.in =</span> best.fit.dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(params <span class="op">==</span><span class="st"> &quot;Para3&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(value))</code></pre>
+<pre><code>## [1] &quot;Entry with id = 1000000416 already exists. Parameters look the same. Old: lnorm(5.4300, 0.5500) New: lnorm(5.4300, 0.5500)&quot;</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">wood_psi_tlp_fit &lt;-<span class="st"> </span><span class="kw">tbl</span>(bety, <span class="st">&quot;priors&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(id <span class="op">==</span><span class="st"> </span>wood_psi_tlp_prior_id) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">collect</span>()
+wood_psi_tlp_prior &lt;-<span class="st"> </span><span class="op">-</span><span class="kw">rdistn</span>(wood_psi_tlp_fit) <span class="co"># Remember to flip back over for psi</span>
+wood_psi_tlp_default &lt;-<span class="st"> </span><span class="kw">get_ED_default</span>(<span class="st">&quot;/fs/data3/ecowdery/ED.Hydro/parameters/pft3_defaults_history.xml&quot;</span>, <span class="st">&quot;wood_psi_tlp&quot;</span>)
+
+<span class="kw">prior_plot</span>(<span class="dt">prior =</span> wood_psi_tlp_prior, 
+           <span class="dt">q =</span> <span class="kw">c</span>(.<span class="dv">005</span>,<span class="dv">1</span>),
+           <span class="dt">plot_default =</span> wood_psi_tlp_default,
+           <span class="dt">title =</span> <span class="kw">sprintf</span>(<span class="st">&quot;(wood_psi_tlp): %s&quot;</span>, wood_psi_tlp_fit<span class="op">$</span>distn),
+           <span class="dt">type =</span> <span class="st">&quot;mixed&quot;</span>)</code></pre>
+<pre><code>## Warning: Removed 500 rows containing non-finite values (stat_density).</code></pre>
+<p><img src="Final_Book_files/figure-html/plot%20wood_psi_tlp-1.png" width="672" /></p>
+<hr />
+</div>
+</div>
+<div id="wood_water_cap-wood-hydaulic-capacitance" class="section level2 unnumbered">
+<h2><code>[wood_water_cap]:</code> Wood hydaulic capacitance</h2>
+<div id="ed-11" class="section level3 unnumbered">
+<h3>ED</h3>
+<ul>
+<li>ED variable name : <code>wood_water_cap</code></li>
+<li>ED variable units: <code>kg H2O/kg biomass/m</code></li>
+</ul>
+</div>
+<div id="bety-11" class="section level3 unnumbered">
+<h3>BETY</h3>
+<p>Different units in BETY so we can fit a distribution!
+The numbers were so small that I couldn’t get the fitting function to work until
+I scaled the variable up!</p>
+<ul>
+<li>BETY varaible units: <code>g H2O / kg biomass / m</code></li>
+</ul>
+</div>
+<div id="calculation-11" class="section level3 unnumbered">
+<h3>Calculation</h3>
+<div id="expert-elicitation-11" class="section level4 unnumbered">
+<h4>Expert elicitation</h4>
+<p>No expert elicitation provided by Brad Christoffersen.</p>
+<p>Constraints we added
+- <code>wood_water_cap &gt; 1e-07 kg H2O/kg biomass/m</code></p>
+</div>
+</div>
+<div id="code-11" class="section level3 unnumbered">
+<h3>Code</h3>
+<pre class="sourceCode r"><code class="sourceCode r">wood_water_cap_samp &lt;-<span class="st"> </span>
+<span class="st">  </span><span class="dv">1000</span> <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>wood_psi_osmotic_prior <span class="op">/</span><span class="st"> </span>(<span class="dv">4</span> <span class="op">*</span><span class="st"> </span>wood_psi_tlp_prior)) <span class="op">*</span><span class="st"> </span>
+<span class="st">  </span>(wood_water_sat_prior <span class="op">/</span><span class="st"> </span>(<span class="dv">4</span> <span class="op">*</span><span class="st"> </span><span class="kw">abs</span>(wood_psi_tlp_prior))) 
+
+<span class="kw">summary</span>(wood_water_cap_samp)</code></pre>
+<pre><code>##        Min.     1st Qu.      Median        Mean     3rd Qu.        Max. 
+## -41.3353755   0.4660029   0.7723437   0.9906277   1.2771510  17.9238044</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">i &lt;-<span class="st"> </span><span class="kw">which</span>(priors<span class="op">$</span>ED_name <span class="op">==</span><span class="st"> &quot;wood_water_cap&quot;</span>)
+prior_in &lt;-<span class="st"> </span>priors[i,stats] 
+prior_in &lt;-<span class="st"> </span><span class="kw">prior_add_samp_data</span>(prior_in, <span class="dt">samp =</span> wood_water_cap_samp)
+prior_in[,stats]</code></pre>
+<pre><code>## # A tibble: 1 x 7
+##   theor.min low.025 low.25  mean upp.75 upp.975 theor.max
+##       &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;
+## 1 0.0000001   0.143  0.466 0.772   1.28    3.29        NA</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">myfit &lt;-<span class="st"> </span><span class="kw">prior_get_fit</span>(prior_in, accepted_dists, <span class="dt">plot =</span> <span class="ot">TRUE</span>)</code></pre>
+<p><img src="Final_Book_files/figure-html/calc%20wood_water_cap-1.png" width="672" /></p>
+<pre class="sourceCode r"><code class="sourceCode r">variable_id.in &lt;-<span class="st"> </span><span class="kw">tbl</span>(bety, <span class="st">&quot;variables&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(name <span class="op">==</span><span class="st"> &quot;wood_water_cap&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(id)
+phylogeny.in &lt;-<span class="st"> &quot;plants&quot;</span>
+
+best.fit.name &lt;-<span class="st"> </span>myfit<span class="op">$</span>score<span class="op">$</span>dist[<span class="kw">which.min</span>(myfit<span class="op">$</span>score<span class="op">$</span>RMSE)]
+best.fit.dat &lt;-<span class="st"> </span>myfit<span class="op">$</span>dists <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="kw">one_of</span>(<span class="st">&quot;Name&quot;</span>, best.fit.name)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">rename</span>(value <span class="op">:</span><span class="er">=</span><span class="st"> </span><span class="op">!!</span>best.fit.name, <span class="dt">params =</span> Name)
+
+wood_water_cap_prior_id &lt;-<span class="st"> </span><span class="kw">prior_input</span>(bety, variable_id.in, phylogeny.in, 
+                                       <span class="dt">dist.name.in =</span> best.fit.name, 
+                                       <span class="dt">parama.in =</span> best.fit.dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(params <span class="op">==</span><span class="st"> &quot;Para1&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(value), 
+                                       <span class="dt">paramb.in =</span> best.fit.dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(params <span class="op">==</span><span class="st"> &quot;Para2&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(value), 
+                                       <span class="dt">paramc.in =</span> best.fit.dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(params <span class="op">==</span><span class="st"> &quot;Para3&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(value))</code></pre>
+<pre><code>## [1] &quot;Entry with id = 1000000417 already exists. Parameters look the same. Old: lnorm(-0.2600, 0.7500) New: lnorm(-0.2600, 0.7500)&quot;</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">wood_water_cap_fit &lt;-<span class="st"> </span><span class="kw">tbl</span>(bety, <span class="st">&quot;priors&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(id <span class="op">==</span><span class="st"> </span>wood_water_cap_prior_id) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">collect</span>()
+wood_water_cap_prior &lt;-<span class="st"> </span><span class="kw">rdistn</span>(wood_water_cap_fit) <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span><span class="op">/</span><span class="dv">1000</span>) <span class="co"># Convert back to kg</span>
+wood_water_cap_default &lt;-<span class="st"> </span><span class="kw">get_ED_default</span>(<span class="st">&quot;/fs/data3/ecowdery/ED.Hydro/parameters/pft3_defaults_history.xml&quot;</span>, <span class="st">&quot;wood_water_cap&quot;</span>)
+
+<span class="kw">prior_plot</span>(<span class="dt">prior =</span> wood_water_cap_prior,
+           <span class="dt">plot_default =</span> wood_water_cap_default,
+           <span class="dt">title =</span> <span class="kw">sprintf</span>(<span class="st">&quot;(wood_water_cap): %s&quot;</span>, wood_water_cap_fit<span class="op">$</span>distn),
+           <span class="dt">type =</span> <span class="st">&quot;mixed&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> <span class="dv">10</span><span class="op">/</span>MPa2m <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span><span class="op">/</span><span class="dv">1000</span>)), <span class="dt">color =</span> <span class="st">&quot;gray&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> <span class="dv">100</span><span class="op">/</span>MPa2m <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span><span class="op">/</span><span class="dv">1000</span>)), <span class="dt">color =</span> <span class="st">&quot;gray&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> <span class="dv">300</span><span class="op">/</span>MPa2m <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span><span class="op">/</span><span class="dv">1000</span>)), <span class="dt">color =</span> <span class="st">&quot;gray&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> <span class="dv">900</span><span class="op">/</span>MPa2m <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span><span class="op">/</span><span class="dv">1000</span>)), <span class="dt">color =</span> <span class="st">&quot;gray&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">xlim</span>(<span class="dv">0</span>, <span class="fl">.009</span>)</code></pre>
+<pre><code>## Warning: Removed 43 rows containing non-finite values (stat_density).</code></pre>
+<p><img src="Final_Book_files/figure-html/plot%20wood_water_cap-1.png" width="672" /></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="dv">900</span><span class="op">/</span>MPa2m <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span><span class="op">/</span><span class="dv">1000</span>) <span class="op">&lt;</span><span class="st"> </span><span class="kw">max</span>(wood_water_cap_prior)</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<hr />
+</div>
+</div>
+<div id="wood_psi_min-sapwood-minimum-relative-water-content-or-sapwood-residual-fraction" class="section level2 unnumbered">
+<h2><code>[wood_psi_min]:</code> Sapwood minimum relative water content or Sapwood residual fraction</h2>
+<div id="ed-12" class="section level3 unnumbered">
+<h3>ED</h3>
+<ul>
+<li>ED variable name : <code>wood_psi_min</code></li>
+<li>Ed variable units: <code>m</code></li>
+</ul>
+</div>
+<div id="bety-12" class="section level3 unnumbered">
+<h3>BETY</h3>
+<p>Negative units in BETY so we can fit a distribution!</p>
+<ul>
+<li>BETY varaible units: <code>-m</code></li>
+</ul>
+</div>
+<div id="calculation-12" class="section level3 unnumbered">
+<h3>Calculation</h3>
+<div id="expert-elicitation-12" class="section level4 unnumbered">
+<h4>Expert elicitation</h4>
+<p>There are no FATES parameters</p>
+<p>Constraints we added
+- <code>wood_psi_min &gt; .1 MPa</code> (this was given as a boundary for other psi variables)</p>
+</div>
+</div>
+<div id="code-12" class="section level3 unnumbered">
+<h3>Code</h3>
+<p>Calculated from other priors.</p>
+<p>Should I put <code>wood_rwc_min</code> and <code>rwc_tlp_wood</code> in the database too?</p>
+<pre class="sourceCode r"><code class="sourceCode r">rwc_tlp_wood_samp &lt;-<span class="st"> </span><span class="fl">1.</span> <span class="op">-</span><span class="st"> </span>(<span class="fl">1.</span> <span class="op">-</span><span class="st"> </span><span class="fl">0.75</span> <span class="op">*</span><span class="st"> </span>wood_density_prior) <span class="op">/</span><span class="st"> </span>(<span class="fl">2.74</span> <span class="op">+</span><span class="st"> </span><span class="fl">2.01</span> <span class="op">*</span><span class="st"> </span>wood_density_prior) 
+wood_rwc_min_samp =<span class="st"> </span>wood_elastic_mod_prior <span class="op">*</span><span class="st"> </span>(<span class="fl">1.</span> <span class="op">-</span><span class="st"> </span>rwc_tlp_wood_samp) <span class="op">/</span><span class="st"> </span>(wood_psi_osmotic_prior <span class="op">/</span><span class="st"> </span>MPa2m) <span class="op">+</span><span class="st"> </span><span class="fl">1.</span>
+wood_psi_min_samp =<span class="st"> </span>(wood_rwc_min_samp <span class="op">-</span><span class="st"> </span><span class="fl">1.</span>) <span class="op">*</span><span class="st"> </span>wood_water_sat_prior <span class="op">/</span><span class="st"> </span>wood_water_cap_prior
+
+<span class="co"># Add in the max an min from the priors table</span>
+i &lt;-<span class="st"> </span><span class="kw">which</span>(priors<span class="op">$</span>ED_name <span class="op">==</span><span class="st"> &quot;wood_psi_min&quot;</span>)
+prior_in &lt;-<span class="st"> </span>priors[i,stats] <span class="op">*</span><span class="st"> </span>MPa2m <span class="co"># Convert from MPa to m</span>
+prior_in &lt;-<span class="st"> </span><span class="kw">prior_add_samp_data</span>(prior_in, <span class="dt">samp =</span> <span class="op">-</span>wood_psi_min_samp)
+prior_in[,stats]</code></pre>
+<pre><code>##     theor.min     low.025      low.25        mean      upp.75     upp.975
+## 1 10.19716213 110.2155337 675.9735379 1719.538058 4322.953645 25083.10828
+##   theor.max
+## 1        NA</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">myfit &lt;-<span class="st"> </span><span class="kw">prior_get_fit</span>(prior_in, accepted_dists, <span class="dt">plot =</span> <span class="ot">TRUE</span>)</code></pre>
+<p><img src="Final_Book_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<pre class="sourceCode r"><code class="sourceCode r">variable_id.in &lt;-<span class="st"> </span><span class="kw">tbl</span>(bety, <span class="st">&quot;variables&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(name <span class="op">==</span><span class="st"> &quot;wood_psi_min&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(id)
+phylogeny.in &lt;-<span class="st"> &quot;plants&quot;</span>
+
+best.fit.name &lt;-<span class="st"> </span>myfit<span class="op">$</span>score<span class="op">$</span>dist[<span class="kw">which.min</span>(myfit<span class="op">$</span>score<span class="op">$</span>RMSE)]
+best.fit.dat &lt;-<span class="st"> </span>myfit<span class="op">$</span>dists <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="kw">one_of</span>(<span class="st">&quot;Name&quot;</span>, best.fit.name)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">rename</span>(value <span class="op">:</span><span class="er">=</span><span class="st"> </span><span class="op">!!</span>best.fit.name, <span class="dt">params =</span> Name)
+
+wood_psi_min_prior_id &lt;-<span class="st"> </span><span class="kw">prior_input</span>(bety, variable_id.in, phylogeny.in, 
+                                     <span class="dt">dist.name.in =</span> best.fit.name, 
+                                     <span class="dt">parama.in =</span> best.fit.dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(params <span class="op">==</span><span class="st"> &quot;Para1&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(value), 
+                                     <span class="dt">paramb.in =</span> best.fit.dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(params <span class="op">==</span><span class="st"> &quot;Para2&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(value), 
+                                     <span class="dt">paramc.in =</span> best.fit.dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(params <span class="op">==</span><span class="st"> &quot;Para3&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(value))</code></pre>
+<pre><code>## [1] &quot;Entry with id = 1000000419 already exists. Parameters look the same. Old: lnorm(7.4500, 1.3800) New: lnorm(7.4500, 1.3800)&quot;</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">wood_psi_min_fit &lt;-<span class="st"> </span><span class="kw">tbl</span>(bety, <span class="st">&quot;priors&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(id <span class="op">==</span><span class="st"> </span>wood_psi_min_prior_id) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">collect</span>()
+wood_psi_min_prior &lt;-<span class="st"> </span><span class="op">-</span><span class="kw">rdistn</span>(wood_psi_min_fit) <span class="co"># Remember to flip psi</span>
+default_wood_psi_min &lt;-<span class="st"> </span><span class="kw">get_ED_default</span>(<span class="st">&quot;/fs/data3/ecowdery/ED.Hydro/parameters/pft3_defaults_history.xml&quot;</span>, <span class="st">&quot;wood_psi_min&quot;</span>)
+
+<span class="kw">prior_plot</span>(<span class="dt">prior =</span> wood_psi_min_prior, 
+           <span class="dt">q =</span> <span class="kw">c</span>(.<span class="dv">025</span>,<span class="dv">1</span>), 
+           <span class="dt">plot_default =</span> default_wood_psi_min,
+           <span class="dt">title =</span> <span class="kw">sprintf</span>(<span class="st">&quot;wood_psi_min: %s&quot;</span>, wood_psi_min_fit<span class="op">$</span>distn), 
+           <span class="dt">type =</span> <span class="st">&quot;mixed&quot;</span>)</code></pre>
+<pre><code>## Warning: Removed 2500 rows containing non-finite values (stat_density).</code></pre>
+<p><img src="Final_Book_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<hr />
+</div>
+</div>
+<div id="wood_kmax-maximum-hydraulic-conductivity-of-the-stem" class="section level2 unnumbered">
+<h2><code>[wood_Kmax]:</code> Maximum hydraulic conductivity of the stem</h2>
+<div id="ed-13" class="section level3 unnumbered">
+<h3>ED</h3>
+<ul>
+<li>ED variable name : <code>wood_Kmax</code></li>
+<li>ED variable units: <code>kg H2O / m / s</code> Note! This is the only case in which MPa is used instead of m!</li>
+</ul>
+</div>
+<div id="bety-13" class="section level3 unnumbered">
+<h3>BETY</h3>
+</div>
+<div id="calculation-13" class="section level3 unnumbered">
+<h3>Calculation</h3>
+<div id="expert-elicitation-13" class="section level4 unnumbered">
+<h4>Expert elicitation</h4>
+<p>Expert elicitation provided by Brad Christoffersen</p>
+<ul>
+<li>FATES varaiable name: <code>kmax_node</code></li>
+<li>FATES variable units: <code>kg m-1 s-1 MPa-1</code></li>
+</ul>
+</div>
+<div id="conversion-11" class="section level4 unnumbered">
+<h4>Conversion</h4>
+<p>I don’t think we need to multiply by the density of water … which is confusing.</p>
+</div>
+</div>
+<div id="code-13" class="section level3 unnumbered">
+<h3>Code</h3>
+<pre class="sourceCode r"><code class="sourceCode r">i &lt;-<span class="st"> </span><span class="kw">which</span>(priors<span class="op">$</span>ED_name <span class="op">==</span><span class="st"> &quot;wood_Kmax&quot;</span>)
+
+prior_in &lt;-<span class="st"> </span>priors[i, stats] <span class="op">/</span><span class="st"> </span>MPa2m
+myfit &lt;-<span class="st"> </span><span class="kw">prior_get_fit</span>(prior_in, accepted_dists, <span class="dt">plot =</span> <span class="ot">TRUE</span>)</code></pre>
+<p><img src="Final_Book_files/figure-html/calc%20wood_Kmax-1.png" width="672" /></p>
+<pre class="sourceCode r"><code class="sourceCode r">myfit<span class="op">$</span>score<span class="op">$</span>dist[<span class="kw">which.min</span>(myfit<span class="op">$</span>score<span class="op">$</span>RMSE)]</code></pre>
+<pre><code>## [1] &quot;exp&quot;</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">variable_id.in &lt;-<span class="st"> </span><span class="kw">tbl</span>(bety,<span class="st">&quot;variables&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(name <span class="op">==</span><span class="st"> </span>priors<span class="op">$</span>ED_name[i]) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(id)
+phylogeny.in &lt;-<span class="st"> &quot;plants&quot;</span>
+
+best.fit.name &lt;-<span class="st"> </span>myfit<span class="op">$</span>score<span class="op">$</span>dist[<span class="kw">which.min</span>(myfit<span class="op">$</span>score<span class="op">$</span>RMSE)]
+best.fit.dat &lt;-<span class="st"> </span>myfit<span class="op">$</span>dists <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="kw">one_of</span>(<span class="st">&quot;Name&quot;</span>, best.fit.name)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">rename</span>(value <span class="op">:</span><span class="er">=</span><span class="st"> </span><span class="op">!!</span>best.fit.name, <span class="dt">params =</span> Name)
+
+wood_Kmax_prior_id &lt;-<span class="st"> </span><span class="kw">prior_input</span>(bety, variable_id.in, phylogeny.in, 
+                                  <span class="dt">dist.name.in =</span> best.fit.name, 
+                                  <span class="dt">parama.in =</span> best.fit.dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(params <span class="op">==</span><span class="st"> &quot;Para1&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(value), 
+                                  <span class="dt">paramb.in =</span> best.fit.dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(params <span class="op">==</span><span class="st"> &quot;Para2&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(value), 
+                                  <span class="dt">paramc.in =</span> best.fit.dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(params <span class="op">==</span><span class="st"> &quot;Para3&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(value))</code></pre>
+<pre><code>## [1] &quot;Entry with id = 1000000418 already exists. Parameters look the same. Old: exp(32.6600) New: exp(32.6600)&quot;</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">wood_Kmax_fit &lt;-<span class="st"> </span><span class="kw">tbl</span>(bety, <span class="st">&quot;priors&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(id <span class="op">==</span><span class="st"> </span>wood_Kmax_prior_id) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">collect</span>()
+wood_Kmax_prior &lt;-<span class="st"> </span><span class="kw">rdistn</span>(wood_Kmax_fit) <span class="co"># </span><span class="al">NOTE</span><span class="co">: Need to convert to m from -m </span>
+wood_Kmax_default &lt;-<span class="st"> </span><span class="kw">get_ED_default</span>(<span class="st">&quot;/fs/data3/ecowdery/ED.Hydro/parameters/pft3_defaults_history.xml&quot;</span>, <span class="st">&quot;wood_Kmax&quot;</span>)
+
+<span class="kw">prior_plot</span>(<span class="dt">prior =</span> wood_Kmax_prior, 
+           <span class="dt">q =</span> <span class="kw">c</span>(<span class="dv">0</span>,.<span class="dv">975</span>), 
+           <span class="dt">plot_default =</span> wood_Kmax_default,
+           <span class="dt">title =</span> <span class="kw">sprintf</span>(<span class="st">&quot;Maximum hydraulic conductivity of the stem (wood_Kmax): %s&quot;</span>, wood_Kmax_fit<span class="op">$</span>distn),
+           <span class="dt">type =</span> <span class="st">&quot;elic&quot;</span>)</code></pre>
+<pre><code>## Warning: Removed 2500 rows containing non-finite values (stat_density).</code></pre>
+<p><img src="Final_Book_files/figure-html/plot%20wood_Kmax-1.png" width="672" /></p>
+<hr />
+</div>
+</div>
+<div id="wood_psi50-water-potential-at-which-50-of-stem-conductivity-is-lost" class="section level2 unnumbered">
+<h2><code>[wood_psi50]:</code> Water potential at which 50% of stem conductivity is lost</h2>
+<div id="ed-14" class="section level3 unnumbered">
+<h3>ED</h3>
+<ul>
+<li>ED variable name : <code>wood_psi50</code></li>
+<li>ED variable units: <code>m</code></li>
+</ul>
+</div>
+<div id="bety-14" class="section level3 unnumbered">
+<h3>BETY</h3>
+<p>Negative units in BETY so we can fit a distribution!</p>
+<ul>
+<li>BETY varaible units: <code>-m</code></li>
+</ul>
+</div>
+<div id="calculation-14" class="section level3 unnumbered">
+<h3>Calculation</h3>
+<p>NOTE: There is an <em>ERROR</em> in the ED code for the equation for <code>wood_psi50</code></p>
+<p>Should be:</p>
+<p><code>(-1.09-(3.57 * rho(ipft) ^ 1.73) * MPa2m</code></p>
+<p>This one is tricky, do we keep the normal distribution because it’s the best fit?</p>
+<div id="expert-elicitation-14" class="section level4 unnumbered">
+<h4>Expert elicitation</h4>
+<ul>
+<li>FATES varaiable name: <code>p50_node (stem)</code></li>
+<li>FATES variable units: <code>MPa</code></li>
+</ul>
+</div>
+<div id="conversion-12" class="section level4 unnumbered">
+<h4>Conversion</h4>
+<p><code>MPa to m</code></p>
+</div>
+</div>
+<div id="code-14" class="section level3 unnumbered">
+<h3>Code</h3>
+<div id="using-the-best-fit-norm" class="section level4 unnumbered">
+<h4>Using the best fit norm</h4>
+<pre class="sourceCode r"><code class="sourceCode r">i &lt;-<span class="st"> </span><span class="kw">which</span>(priors<span class="op">$</span>ED_name <span class="op">==</span><span class="st"> &quot;wood_psi50&quot;</span>)
+
+prior_in &lt;-<span class="st"> </span>priors[i, stats] <span class="op">*</span><span class="st"> </span>MPa2m
+prior_in</code></pre>
+<pre><code>##     theor.min     low.025      low.25 mean      upp.75     upp.975
+## 1 10.19716213 50.98581065 101.9716213   NA 407.8864852 611.8297278
+##   theor.max
+## 1        NA</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">myfit &lt;-<span class="st"> </span><span class="kw">prior_get_fit</span>(prior_in, accepted_dists, <span class="dt">plot =</span> <span class="ot">TRUE</span>)</code></pre>
+<p><img src="Final_Book_files/figure-html/calc%20wood_psi50-1.png" width="672" /></p>
+<pre class="sourceCode r"><code class="sourceCode r">myfit<span class="op">$</span>score<span class="op">$</span>dist[<span class="kw">which.min</span>(myfit<span class="op">$</span>score<span class="op">$</span>RMSE)]</code></pre>
+<pre><code>## [1] &quot;norm&quot;</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">variable_id.in &lt;-<span class="st"> </span><span class="kw">tbl</span>(bety,<span class="st">&quot;variables&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(name <span class="op">==</span><span class="st"> </span>priors<span class="op">$</span>ED_name[i]) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(id)
+phylogeny.in &lt;-<span class="st"> &quot;plants&quot;</span>
+
+best.fit.name &lt;-<span class="st"> </span>myfit<span class="op">$</span>score<span class="op">$</span>dist[<span class="kw">which.min</span>(myfit<span class="op">$</span>score<span class="op">$</span>RMSE)]
+best.fit.dat &lt;-<span class="st"> </span>myfit<span class="op">$</span>dists <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="kw">one_of</span>(<span class="st">&quot;Name&quot;</span>, best.fit.name)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">rename</span>(value <span class="op">:</span><span class="er">=</span><span class="st"> </span><span class="op">!!</span>best.fit.name, <span class="dt">params =</span> Name)
+
+wood_psi50_prior_id &lt;-<span class="st"> </span><span class="kw">prior_input</span>(bety, variable_id.in, phylogeny.in, 
+                                   <span class="dt">dist.name.in =</span> best.fit.name, 
+                                   <span class="dt">parama.in =</span> best.fit.dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(params <span class="op">==</span><span class="st"> &quot;Para1&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(value), 
+                                   <span class="dt">paramb.in =</span> best.fit.dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(params <span class="op">==</span><span class="st"> &quot;Para2&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(value), 
+                                   <span class="dt">paramc.in =</span> best.fit.dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(params <span class="op">==</span><span class="st"> &quot;Para3&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(value))</code></pre>
+<pre><code>## [1] &quot;Entry with id = 1000000360 already exists. Parameters look the same. Old: norm(284.6500, 176.3200) New: norm(284.6500, 176.3200)&quot;</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">wood_psi50_fit &lt;-<span class="st"> </span><span class="kw">tbl</span>(bety, <span class="st">&quot;priors&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(id <span class="op">==</span><span class="st"> </span>wood_psi50_prior_id) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">collect</span>()
+wood_psi50_prior &lt;-<span class="st"> </span><span class="op">-</span><span class="kw">rdistn</span>(wood_psi50_fit) <span class="co"># </span><span class="al">NOTE</span><span class="co">: Need to convert to m from -m </span>
+
+<span class="co"># Calculating default by hand because it is calculated wrong in ED! </span>
+wood_psi50_default &lt;-<span class="st"> </span>(<span class="op">-</span><span class="fl">1.09</span> <span class="op">-</span><span class="st"> </span>(<span class="fl">3.57</span> <span class="op">*</span><span class="st"> </span>wood_density_default <span class="op">^</span><span class="st"> </span><span class="fl">1.73</span>)) <span class="op">*</span><span class="st"> </span>MPa2m
+wrong_wood_psi50_default &lt;-<span class="st"> </span><span class="kw">get_ED_default</span>(PFT3_defaults_history, <span class="st">&quot;wood_psi50&quot;</span>)
+
+p &lt;-<span class="st"> </span><span class="kw">prior_plot</span>(<span class="dt">prior =</span> wood_psi50_prior, 
+                <span class="dt">q =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), 
+                <span class="dt">plot_default =</span> wood_psi50_default,
+                <span class="dt">title =</span> <span class="kw">sprintf</span>(<span class="st">&quot;Water potential at which 50perc. of stem cond. is lost (wood_psi50): %s&quot;</span>, wood_psi50_fit<span class="op">$</span>distn),
+                <span class="dt">type =</span> <span class="st">&quot;elic&quot;</span>) 
+
+p <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> wrong_wood_psi50_default), <span class="dt">color =</span> <span class="st">&quot;gray&quot;</span>, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> <span class="kw">quantile</span>(wood_psi50_prior, <span class="fl">.975</span>)), <span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>)</code></pre>
+<p><img src="Final_Book_files/figure-html/plot%20wood_psi50-1.png" width="672" /></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">quantile</span>(wood_psi50_prior, <span class="fl">.975</span>)</code></pre>
+<pre><code>##       97.5% 
+## 62.21843281</code></pre>
+<p>A positive number is within the 95% CI of the distribution so in this case,
+I’m going to choose a log normal distriburtion even though it is not the best fit.
+Hopefully this can also be fixed given that we have data for both psi50 and Kexp…</p>
+</div>
+<div id="using-more-realistic-lnorm" class="section level4 unnumbered">
+<h4>Using more realistic lnorm</h4>
+<pre class="sourceCode r"><code class="sourceCode r">best.fit.name &lt;-<span class="st"> &quot;lnorm&quot;</span>
+best.fit.dat &lt;-<span class="st"> </span>myfit<span class="op">$</span>dists <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="kw">one_of</span>(<span class="st">&quot;Name&quot;</span>, best.fit.name)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">rename</span>(value <span class="op">:</span><span class="er">=</span><span class="st"> </span><span class="op">!!</span>best.fit.name, <span class="dt">params =</span> Name)
+
+wood_psi50_prior_id &lt;-<span class="st"> </span><span class="kw">prior_input</span>(bety, variable_id.in, phylogeny.in, 
+                                   <span class="dt">dist.name.in =</span> best.fit.name, 
+                                   <span class="dt">parama.in =</span> best.fit.dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(params <span class="op">==</span><span class="st"> &quot;Para1&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(value), 
+                                   <span class="dt">paramb.in =</span> best.fit.dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(params <span class="op">==</span><span class="st"> &quot;Para2&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(value), 
+                                   <span class="dt">paramc.in =</span> best.fit.dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(params <span class="op">==</span><span class="st"> &quot;Para3&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(value))</code></pre>
+<pre><code>## [1] &quot;Entry with id = 1000000420 already exists. Parameters look the same. Old: lnorm(5.2800, 0.8500) New: lnorm(5.2800, 0.8500)&quot;</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">wood_psi50_fit &lt;-<span class="st"> </span><span class="kw">tbl</span>(bety, <span class="st">&quot;priors&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(id <span class="op">==</span><span class="st"> </span>wood_psi50_prior_id) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">collect</span>()
+wood_psi50_prior &lt;-<span class="st"> </span><span class="op">-</span><span class="kw">rdistn</span>(wood_psi50_fit) <span class="co"># </span><span class="al">NOTE</span><span class="co">: Need to convert to m from -m </span>
+
+<span class="co"># Calculating default by hand because it is calculated wrong in ED! </span>
+wood_psi50_default &lt;-<span class="st"> </span>(<span class="op">-</span><span class="fl">1.09</span> <span class="op">-</span><span class="st"> </span>(<span class="fl">3.57</span> <span class="op">*</span><span class="st"> </span>wood_density_default <span class="op">^</span><span class="st"> </span><span class="fl">1.73</span>)) <span class="op">*</span><span class="st"> </span>MPa2m
+wrong_wood_psi50_default &lt;-<span class="st"> </span><span class="kw">get_ED_default</span>(PFT3_defaults_history, <span class="st">&quot;wood_psi50&quot;</span>)
+
+<span class="kw">prior_plot</span>(<span class="dt">prior =</span> wood_psi50_prior, 
+           <span class="dt">q =</span> <span class="kw">c</span>(<span class="fl">0.025</span>,<span class="dv">1</span>), 
+           <span class="dt">plot_default =</span> wood_psi50_default,
+           <span class="dt">title =</span> <span class="kw">sprintf</span>(<span class="st">&quot;Water potential at which 50perc. of stem cond. is lost (wood_psi50): %s&quot;</span>, wood_psi50_fit<span class="op">$</span>distn),
+           <span class="dt">type =</span> <span class="st">&quot;elic&quot;</span>) </code></pre>
+<pre><code>## Warning: Removed 2500 rows containing non-finite values (stat_density).</code></pre>
+<p><img src="Final_Book_files/figure-html/recalc%20and%20plot%20wood_psi50-1.png" width="672" /></p>
+<hr />
+</div>
+</div>
+</div>
+<div id="wood_kexp-exponent-for-the-hydraulic-vulnerability-curve-of-stem-conductivity" class="section level2 unnumbered">
+<h2><code>[wood_Kexp]:</code> Exponent for the hydraulic vulnerability curve of stem conductivity</h2>
+<p>… under the Weibull function <code>1/(1+(psi/psi50) ^ Kexp_stem)</code></p>
+<div id="ed-15" class="section level3 unnumbered">
+<h3>ED</h3>
+<ul>
+<li>ED variable name : <code>wood_Kexp</code></li>
+<li>ED variable units: unitless</li>
+</ul>
+</div>
+<div id="bety-15" class="section level3 unnumbered">
+<h3>BETY</h3>
+</div>
+<div id="calculation-15" class="section level3 unnumbered">
+<h3>Calculation</h3>
+<div id="expert-elicitation-15" class="section level4 unnumbered">
+<h4>Expert elicitation</h4>
+<p>Expert elicitation provided by Brad Christoffersen</p>
+<ul>
+<li>FATES varaiable name: <code>avuln_node (stem)</code></li>
+<li>FATES variable units: unitless</li>
+</ul>
+</div>
+<div id="conversion-13" class="section level4 unnumbered">
+<h4>Conversion</h4>
+<p>None!</p>
+</div>
+</div>
+<div id="code-15" class="section level3 unnumbered">
+<h3>Code</h3>
+<pre class="sourceCode r"><code class="sourceCode r">i &lt;-<span class="st"> </span><span class="kw">which</span>(priors<span class="op">$</span>ED_name <span class="op">==</span><span class="st"> &quot;wood_Kexp&quot;</span>)
+
+prior_in &lt;-<span class="st"> </span>priors[i, stats]
+prior_in</code></pre>
+<pre><code>## # A tibble: 1 x 7
+##   theor.min low.025 low.25  mean upp.75 upp.975 theor.max
+##       &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;
+## 1       0.1       1     10    NA    100     200        NA</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">myfit &lt;-<span class="st"> </span><span class="kw">prior_get_fit</span>(prior_in, accepted_dists, <span class="dt">plot =</span> <span class="ot">TRUE</span>)</code></pre>
+<p><img src="Final_Book_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<pre class="sourceCode r"><code class="sourceCode r">myfit<span class="op">$</span>score<span class="op">$</span>dist[<span class="kw">which.min</span>(myfit<span class="op">$</span>score<span class="op">$</span>RMSE)]</code></pre>
+<pre><code>## [1] &quot;exp&quot;</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">variable_id.in &lt;-<span class="st"> </span><span class="kw">tbl</span>(bety,<span class="st">&quot;variables&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(name <span class="op">==</span><span class="st"> </span>priors<span class="op">$</span>ED_name[i]) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(id)
+phylogeny.in &lt;-<span class="st"> &quot;plants&quot;</span>
+
+best.fit.name &lt;-<span class="st"> </span>myfit<span class="op">$</span>score<span class="op">$</span>dist[<span class="kw">which.min</span>(myfit<span class="op">$</span>score<span class="op">$</span>RMSE)]
+best.fit.dat &lt;-<span class="st"> </span>myfit<span class="op">$</span>dists <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="kw">one_of</span>(<span class="st">&quot;Name&quot;</span>, best.fit.name)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">rename</span>(value <span class="op">:</span><span class="er">=</span><span class="st"> </span><span class="op">!!</span>best.fit.name, <span class="dt">params =</span> Name)
+
+wood_Kexp_prior_id &lt;-<span class="st"> </span><span class="kw">prior_input</span>(bety, variable_id.in, phylogeny.in, 
+                                   <span class="dt">dist.name.in =</span> best.fit.name, 
+                                   <span class="dt">parama.in =</span> best.fit.dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(params <span class="op">==</span><span class="st"> &quot;Para1&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(value), 
+                                   <span class="dt">paramb.in =</span> best.fit.dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(params <span class="op">==</span><span class="st"> &quot;Para2&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(value), 
+                                   <span class="dt">paramc.in =</span> best.fit.dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(params <span class="op">==</span><span class="st"> &quot;Para3&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(value))</code></pre>
+<pre><code>## [1] &quot;Entry with id = 1000000421 already exists. Parameters look the same. Old: exp(0.0200) New: exp(0.0200)&quot;</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">wood_Kexp_fit &lt;-<span class="st"> </span><span class="kw">tbl</span>(bety, <span class="st">&quot;priors&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(id <span class="op">==</span><span class="st"> </span>wood_Kexp_prior_id) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">collect</span>()
+wood_Kexp_prior &lt;-<span class="st"> </span><span class="kw">rdistn</span>(wood_Kexp_fit)
+
+<span class="co"># Calculating default by hand because psi50 is calculated wrong in ED!</span>
+wood_Kexp_default &lt;-<span class="st"> </span><span class="fl">0.544</span> <span class="op">*</span><span class="st"> </span><span class="fl">4.</span> <span class="op">*</span><span class="st"> </span>(<span class="op">-</span>wood_psi50_default <span class="op">/</span><span class="st"> </span>MPa2m) <span class="op">^</span><span class="st"> </span>(<span class="op">-</span><span class="fl">0.17</span>)
+wrong_wood_Kexp_default &lt;-<span class="st"> </span><span class="kw">get_ED_default</span>(PFT3_defaults_history, <span class="st">&quot;wood_Kexp&quot;</span>)
+
+p &lt;-<span class="st"> </span><span class="kw">prior_plot</span>(<span class="dt">prior =</span> wood_Kexp_prior, 
+                <span class="dt">q =</span> <span class="kw">c</span>(<span class="dv">0</span>,.<span class="dv">975</span>), 
+                <span class="dt">plot_default =</span> wood_Kexp_default,
+                <span class="dt">title =</span> <span class="kw">sprintf</span>(<span class="st">&quot;Water potential at which 50perc. of stem cond. is lost (wood_Kexp): %s&quot;</span>, wood_Kexp_fit<span class="op">$</span>distn),
+                <span class="dt">type =</span> <span class="st">&quot;elic&quot;</span>) 
+p <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> wrong_wood_Kexp_default), <span class="dt">color =</span> <span class="st">&quot;gray&quot;</span>, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>) </code></pre>
+<pre><code>## Warning: Removed 2500 rows containing non-finite values (stat_density).</code></pre>
+<p><img src="Final_Book_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p>Note: here the miscalculation of psi50 in the code barely shows up
+because the value is divided by a large number.</p>
+
+</div>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="leaf-psi-min-leaf-minimum-water-potential.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="wood-psi-osmotic-sapwood-osmotic-water-potential-at-saturation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="key-leaf-traits.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

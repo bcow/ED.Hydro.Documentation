@@ -3,18 +3,18 @@ title: "04-Sapwood_Parameters"
 output: html_document
 ---
 
-# (PART) Key Wood Traits {-}
+# Key Wood Traits {-}
 
 --------------------------------------------------------------------------------
 
-# `[wood_psi_osmotic]:` Sapwood osmotic water potential at saturation  {-}
+## `[wood_psi_osmotic]:` Sapwood osmotic water potential at saturation  {-}
 
-## ED  {-}
+### ED  {-}
 
 - ED variable name : `wood_psi_osmotic`
 - ED variable units: `m`
 
-## BETY  {-}
+### BETY  {-}
 
 - Variable id: `1000000298`
 - Prior id: `1000000410`
@@ -22,19 +22,19 @@ output: html_document
 NOTE!! The units are NEGATIVE in the database 
 so we can calculate a distribution that is entirely negative. 
 
-## Calculation  {-}
+### Calculation  {-}
 
-### Expert elicitation {-}
+#### Expert elicitation {-}
 
 Expert elicitation provided by Brad Christoffersen 
 
 - FATES varaiable name: `pinot_node (stem)`
 - FATES variable units: `m`
 
-### Conversion {-}
+#### Conversion {-}
 `MPa to m`
 
-### Code {-}
+#### Code {-}
 
 ```{r calc wood_psi_osmotic}
 i <- which(priors$ED_name == "wood_psi_osmotic")
@@ -64,37 +64,37 @@ prior_plot(prior = wood_psi_osmotic_prior,
            q = c(0,1), 
            plot_default = wood_psi_osmotic_default,
            title = sprintf("Sapwood osmotic water potential at saturation (wood_psi_osmotic): %s", wood_psi_osmotic_fit$distn),
-           type = "data")
+           type = "elic")
 ```
 
 --------------------------------------------------------------------------------
 
-# `[wood_elastic_mod]:` Sapwood bulk elastic modulus {-}
+## `[wood_elastic_mod]:` Sapwood bulk elastic modulus {-}
 
-## ED  {-}
+### ED  {-}
 
 - ED variable name : `wood_elastic_mod`
 - ED variable units: `MPa` Note! This is the only case in which MPa is used instead of m!
 
-## BETY  {-}
+### BETY  {-}
 
 - Variable id: `1000000303`
 - Prior id: `1000000394`
 
-## Calculation  {-}
+### Calculation  {-}
 
-### Expert elicitation {-}
+#### Expert elicitation {-}
 
 Expert elicitation provided by Brad Christoffersen 
 
 - FATES varaiable name: `epsil_node (stem)` 
 - FATES variable units: `MPa`
 
-### Conversion {-}
+#### Conversion {-}
 
 None!
 
-## Code {-}
+### Code {-}
 
 ```{r calc wood_elastic_mod}
 i <- which(priors$ED_name == "wood_elastic_mod")
@@ -125,36 +125,37 @@ prior_plot(prior = wood_elastic_mod_prior,
            q = c(0,1), 
            plot_default = wood_elastic_mod_default,
            title = sprintf("wood bulk elastic modulus (wood_elastic_mod): %s", wood_elastic_mod_fit$distn),
-           type = "data")
+           type = "elic")
 ```
 
 --------------------------------------------------------------------------------
-# `[wood_water_sat]:` Sapwood water content at saturation {-}
 
-## ED {-}
+## `[wood_water_sat]:` Sapwood water content at saturation {-}
+
+### ED {-}
 
 - ED variable name: `wood_water_sat`
 - ED variable units: `kg H2O/kg biomass`
 
-## BETY  {-}
+### BETY  {-}
 
 - Variable id: ``
 - Prior id: ``
 
-## Calculation  {-}
+### Calculation  {-}
 
-### Expert elicitation {-}
+#### Expert elicitation {-}
 
 Expert elicitation provided by Brad Christoffersen 
 
 - FATES variable name: `thetas_node (stem)`
 - FATES variable units: `kg kg-1`
 
-### Conversion  {-}
+#### Conversion  {-}
 
 multiply by the density of water over wood density
 
-## Code {-}
+### Code {-}
 
 ```{r calc wood_water_sat}
 i <- which(priors$ED_name == "wood_water_sat")
@@ -201,14 +202,15 @@ prior_plot(prior = wood_water_sat_prior,
 ```
 
 --------------------------------------------------------------------------------
-# `[wood_psi_tlp]:` Sapwood water potential at turgor loss point {-}
 
-## ED {-}
+## `[wood_psi_tlp]:` Sapwood water potential at turgor loss point {-}
+
+### ED {-}
 
 - ED variable name:  `wood_psi_tlp`
 - ED variable units: `m`
 
-## BETY  {-}
+### BETY  {-}
 
 - Variable id: ``
 - Prior id: ``
@@ -216,9 +218,9 @@ prior_plot(prior = wood_water_sat_prior,
 NOTE!! The units are NEGATIVE in the database 
 so we can calculate a distribution that is entirely negative. 
 
-## Calculation  {-}
+### Calculation  {-}
 
-### Expert elicitation {-}
+#### Expert elicitation {-}
 
 No expert elicitation provided by Brad Christoffersen. 
 
@@ -230,13 +232,13 @@ There is a FATES parameter but it is calculated from other parameters
 Constraints we added
 - `wood_psi_tlp > .1 MPa` (this was given as a boundary for other psi variables)
 
-### Conversion  {-}
+#### Conversion  {-}
 
 - Calculated from other parameters: `wood_psi_osmotic` and `wood_elastic_mod`
 
 - Remember that `wood_elastic_mod` is `MPa`, where everything else is `m`! 
 
-## Code {-}
+### Code {-}
 
 ```
 wood_psi_tlp_samp = 
@@ -281,21 +283,21 @@ prior_plot(prior = wood_psi_tlp_prior,
            q = c(.005,1),
            plot_default = wood_psi_tlp_default,
            title = sprintf("(wood_psi_tlp): %s", wood_psi_tlp_fit$distn),
-           type = "equation")
+           type = "mixed")
 
 
 ```
 
 --------------------------------------------------------------------------------
 
-# `[wood_water_cap]:` Wood hydaulic capacitance {-}
+## `[wood_water_cap]:` Wood hydaulic capacitance {-}
 
-## ED  {-}
+### ED  {-}
 
 - ED variable name : `wood_water_cap`
 - ED variable units: `kg H2O/kg biomass/m`
 
-## BETY {-}
+### BETY {-}
 
 Different units in BETY so we can fit a distribution!
 The numbers were so small that I couldn't get the fitting function to work until
@@ -303,16 +305,16 @@ I scaled the variable up!
 
 - BETY varaible units: `g H2O / kg biomass / m`
 
-## Calculation  {-}
+### Calculation  {-}
 
-### Expert elicitation {-}
+#### Expert elicitation {-}
 
 No expert elicitation provided by Brad Christoffersen. 
 
 Constraints we added
 - `wood_water_cap > 1e-07 kg H2O/kg biomass/m` 
 
-## Code {-}
+### Code {-}
 
 ```{r calc wood_water_cap}
 wood_water_cap_samp <- 
@@ -346,39 +348,45 @@ wood_water_cap_fit <- tbl(bety, "priors") %>% filter(id == wood_water_cap_prior_
 wood_water_cap_prior <- rdistn(wood_water_cap_fit) * (1/1000) # Convert back to kg
 wood_water_cap_default <- get_ED_default("/fs/data3/ecowdery/ED.Hydro/parameters/pft3_defaults_history.xml", "wood_water_cap")
 
-prior_plot(prior = wood_water_cap_prior, 
-           q = c(0,.975),
+prior_plot(prior = wood_water_cap_prior,
            plot_default = wood_water_cap_default,
            title = sprintf("(wood_water_cap): %s", wood_water_cap_fit$distn),
-           type = "equation")
+           type = "mixed") +
+  geom_vline(aes(xintercept = 10/MPa2m * (1/1000)), color = "gray") +
+  geom_vline(aes(xintercept = 100/MPa2m * (1/1000)), color = "gray") +
+  geom_vline(aes(xintercept = 300/MPa2m * (1/1000)), color = "gray") +
+  geom_vline(aes(xintercept = 900/MPa2m * (1/1000)), color = "gray") +
+  xlim(0, .009)
+
+900/MPa2m * (1/1000) < max(wood_water_cap_prior)
 
 ```
 
 --------------------------------------------------------------------------------
 
-# `[wood_psi_min]:` Sapwood minimum relative water content or Sapwood residual fraction {-}
+## `[wood_psi_min]:` Sapwood minimum relative water content or Sapwood residual fraction {-}
 
-## ED {-}
+### ED {-}
 
 - ED variable name : `wood_psi_min`
 - Ed variable units: `m`
 
-## BETY {-}
+### BETY {-}
 
 Negative units in BETY so we can fit a distribution! 
 
 - BETY varaible units: `-m`
 
-## Calculation  {-}
+### Calculation  {-}
 
-### Expert elicitation {-}
+#### Expert elicitation {-}
 
 There are no FATES parameters 
 
 Constraints we added
 - `wood_psi_min > .1 MPa` (this was given as a boundary for other psi variables)
 
-## Code {-}
+### Code {-}
 
 Calculated from other priors. 
 
@@ -419,34 +427,34 @@ prior_plot(prior = wood_psi_min_prior,
            q = c(.025,1), 
            plot_default = default_wood_psi_min,
            title = sprintf("wood_psi_min: %s", wood_psi_min_fit$distn), 
-           type = "equation")
+           type = "mixed")
 ```
 
 --------------------------------------------------------------------------------
 
-# `[wood_Kmax]:` Maximum hydraulic conductivity of the stem {-}
+## `[wood_Kmax]:` Maximum hydraulic conductivity of the stem {-}
 
-## ED {-}
+### ED {-}
 
 - ED variable name : `wood_Kmax`
 - ED variable units: `kg H2O / m / s` Note! This is the only case in which MPa is used instead of m!
 
-## BETY {-}
+### BETY {-}
 
-## Calculation  {-}
+### Calculation  {-}
 
-### Expert elicitation {-}
+#### Expert elicitation {-}
 
 Expert elicitation provided by Brad Christoffersen 
 
 - FATES varaiable name: `kmax_node` 
 - FATES variable units: `kg m-1 s-1 MPa-1` 
 
-### Conversion {-}
+#### Conversion {-}
 
 I don't think we need to multiply by the density of water  ... which is confusing. 
 
-## Code {-}
+### Code {-}
 
 ```{r calc wood_Kmax}
 i <- which(priors$ED_name == "wood_Kmax")
@@ -477,25 +485,25 @@ prior_plot(prior = wood_Kmax_prior,
            q = c(0,.975), 
            plot_default = wood_Kmax_default,
            title = sprintf("Maximum hydraulic conductivity of the stem (wood_Kmax): %s", wood_Kmax_fit$distn),
-           type = "data")
+           type = "elic")
 ```
 
 --------------------------------------------------------------------------------
 
-# `[wood_psi50]:` Water potential at which 50% of stem conductivity is lost {-}
+## `[wood_psi50]:` Water potential at which 50% of stem conductivity is lost {-}
 
-## ED {-}
+### ED {-}
 
 - ED variable name : `wood_psi50`
 - ED variable units: `m` 
 
-## BETY {-}
+### BETY {-}
 
 Negative units in BETY so we can fit a distribution! 
 
 - BETY varaible units: `-m`
 
-## Calculation {-}
+### Calculation {-}
 
 NOTE: There is an *ERROR* in the ED code for the equation for `wood_psi50`
 
@@ -505,17 +513,17 @@ Should be:
 
 This one is tricky, do we keep the normal distribution because it's the best fit?
 
-### Expert elicitation {-}
+#### Expert elicitation {-}
 
 - FATES varaiable name: `p50_node (stem)`
 - FATES variable units: `MPa`
 
-### Conversion {-}
+#### Conversion {-}
 `MPa to m`
 
-## Code {-}
+### Code {-}
 
-### Using the best fit norm {-}
+#### Using the best fit norm {-}
 ```{r calc wood_psi50}
 i <- which(priors$ED_name == "wood_psi50")
 
@@ -550,7 +558,7 @@ p <- prior_plot(prior = wood_psi50_prior,
                 q = c(0,1), 
                 plot_default = wood_psi50_default,
                 title = sprintf("Water potential at which 50perc. of stem cond. is lost (wood_psi50): %s", wood_psi50_fit$distn),
-                type = "data") 
+                type = "elic") 
 
 p + 
   geom_vline(aes(xintercept = wrong_wood_psi50_default), color = "gray", linetype = "dashed") + 
@@ -562,7 +570,7 @@ A positive number is within the 95% CI of the distribution so in this case,
 I'm going to choose a log normal distriburtion even though it is not the best fit. 
 Hopefully this can also be fixed given that we have data for both psi50 and Kexp... 
 
-### Using more realistic lnorm {-}
+#### Using more realistic lnorm {-}
 
 ```{r recalc and plot wood_psi50}
 
@@ -586,35 +594,35 @@ prior_plot(prior = wood_psi50_prior,
            q = c(0.025,1), 
            plot_default = wood_psi50_default,
            title = sprintf("Water potential at which 50perc. of stem cond. is lost (wood_psi50): %s", wood_psi50_fit$distn),
-           type = "data") 
+           type = "elic") 
 ```
 
 --------------------------------------------------------------------------------
 
-# `[wood_Kexp]:` Exponent for the hydraulic vulnerability curve of stem conductivity  {-}
+## `[wood_Kexp]:` Exponent for the hydraulic vulnerability curve of stem conductivity  {-}
 ... under the Weibull function `1/(1+(psi/psi50) ^ Kexp_stem)`
 
-## ED {-}
+### ED {-}
 
 - ED variable name : `wood_Kexp`
 - ED variable units: unitless 
 
-## BETY {-}
+### BETY {-}
 
-## Calculation {-}
+### Calculation {-}
 
-### Expert elicitation {-}
+#### Expert elicitation {-}
 
 Expert elicitation provided by Brad Christoffersen 
 
 - FATES varaiable name: `avuln_node (stem)` 
 - FATES variable units: unitless
 
-### Conversion {-}
+#### Conversion {-}
 
 None! 
 
-## Code {-} 
+### Code {-} 
 
 ```{r}
 i <- which(priors$ED_name == "wood_Kexp")
@@ -650,7 +658,7 @@ p <- prior_plot(prior = wood_Kexp_prior,
                 q = c(0,.975), 
                 plot_default = wood_Kexp_default,
                 title = sprintf("Water potential at which 50perc. of stem cond. is lost (wood_Kexp): %s", wood_Kexp_fit$distn),
-                type = "data") 
+                type = "elic") 
 p + 
   geom_vline(aes(xintercept = wrong_wood_Kexp_default), color = "gray", linetype = "dashed") 
 ```

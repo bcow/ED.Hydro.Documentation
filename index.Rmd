@@ -8,7 +8,7 @@ output:
   bookdown::gitbook: default
 github-repo: bcow/ED.Hydro.Documentation
 url: https\://bcow.github.io/ED.Hydro.Documentation/
-description: "Boooooook"
+description: "ED Hydro Documentation"
 ---
 
 # Documentation {-}

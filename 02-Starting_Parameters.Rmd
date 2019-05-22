@@ -3,29 +3,29 @@ title: "02-Starting_Parameters"
 output: html_document
 ---
 
-# (PART) Starting Parameters {-}
+# Starting Parameters {-}
 
-# `[wdns]:` Liquid water density {-}
+## `[wdns]:` Liquid water density {-}
 - ED variable name : `wdns`
 - ED variable units: `kg/m3`
 ```{r wdns}
 wdns <- 1.000e3    # Liquid water density [kg/m3]
 ```
 
-# `[grav]:` Gravity {-}
+## `[grav]:` Gravity {-}
 - ED variable name : `grav`
 - ED variable units: `m/s2`
 ```{r grav}
 grav <- 9.80665    # Gravity acceleration  [m/s2]
 ```
 
-# `[MPa2m]:` Conversion from MPa to m {-}
+## `[MPa2m]:` Conversion from MPa to m {-}
 - ED variable name : `MPa2m`
 ```{r MPa2m}
 MPa2m <- wdns / grav
 ```
 
-# `[wood_density]:` Wood density {-}
+## `[wood_density]:` Wood density {-}
 
 - ED variable name : `rho`
 - ED units: `g cm-3` Note! Leaf density is calculated in `kg cm-3` because that makes perfect sense ... 
@@ -40,7 +40,7 @@ There are multiple priors available for wood density so we are explicitly choosi
 
 ```{r wood_density}
 wood_density_id <- tbl(bety, "variables") %>% filter(name == "wood_density") %>% pull(id)
-wood_density_fit <- tbl(bety, "priors") %>% filter(variable_id == wood_density_id) %>% filter(id == 1000000281) %>% collect()
+wood_density_fit <- tbl(bety, "priors") %>% filter(variable_id == wood_density_id) %>% filter(id == 1000000422) %>% collect()
 wood_density_prior <- rdistn(wood_density_fit)
 wood_density_default <- get_ED_default(PFT3_defaults_history, "rho") 
 
@@ -51,7 +51,7 @@ prior_plot(prior = wood_density_prior,
 
 ```
 
-# `[SLA]:` Specific Leaf Area (SLA) {-}
+## `[SLA]:` Specific Leaf Area (SLA) {-}
 And subsequently $LMA = (1/SLA)$
 
 - ED variable name : `SLA`
