@@ -6,7 +6,7 @@ output: html_document
 # Comparing Data to Priors {-}
 
 
-```{r}
+```{r, echo = FALSE, warning=FALSE, message=FALSE}
 
 # bety <- betyConnect("/fs/data3/ecowdery/pecan/web/config.php")
 
@@ -46,7 +46,7 @@ trait_data <- tbl(bety, "traits") %>% filter(specie_id %in% species_ids) %>%
 ```
 
 ## Wood Density {-}
-```{r plot with data wood_density}
+```{r plot with data wood_density, echo = FALSE, warning=FALSE, message=FALSE}
 v_id <- v_df %>% filter(var == "wood_density") %>% pull(variable_id)
 wood_density_fit <- tbl(bety, "priors") %>% filter(variable_id == v_id) %>% filter(id == 1000000422) %>% collect()
 
@@ -70,7 +70,7 @@ p + geom_density(data = obs, aes(x = mean, fill = "obs"), alpha = .3, color = NA
 
 
 ## SLA  {-}
-```{r plot with data SLA}
+```{r plot with data SLA, echo = FALSE, warning=FALSE, message=FALSE}
 v_id <- v_df %>% filter(var == "SLA") %>% pull(variable_id)
 SLA_fit <- tbl(bety, "priors") %>% filter(variable_id == v_id) %>% filter(id == 142) %>% collect()
 
@@ -91,7 +91,7 @@ p + geom_density(data = obs, aes(x = mean, fill = "obs"), alpha = .3, color = NA
 
 ## leaf_psi_tlp {-}
 
-```{r plot with data leaf_psi_tlp}
+```{r plot with data leaf_psi_tlp, echo = FALSE, warning=FALSE, message=FALSE}
 v_id <- v_df %>% filter(var == "leaf_psi_tlp") %>% pull(variable_id)
 leaf_psi_tlp_fit <- tbl(bety, "priors") %>% filter(variable_id == v_id) %>% collect()
 
@@ -114,7 +114,7 @@ p + geom_density(data = obs, aes(x = mean, fill = "obs"), alpha = .3, color = NA
 
 ## leaf_water_cap {-}
 
-```{r plot with data leaf_water_cap}
+```{r plot with data leaf_water_cap, echo = FALSE, warning=FALSE, message=FALSE}
 v_id <- v_df %>% filter(var == "leaf_water_cap") %>% pull(variable_id)
 leaf_water_cap_fit <- tbl(bety, "priors") %>% filter(variable_id == v_id) %>% collect()
 
@@ -137,7 +137,7 @@ p + geom_density(data = obs, aes(x = mean, fill = "obs"), alpha = .3, color = NA
 
 ## wood_psi_tlp {-}
 
-```{r plot with data wood_psi_tlp}
+```{r plot with data wood_psi_tlp, echo = FALSE, warning=FALSE, message=FALSE}
 v_id <- v_df %>% filter(var == "wood_psi_tlp") %>% pull(variable_id)
 wood_psi_tlp_fit <- tbl(bety, "priors") %>% filter(variable_id == v_id) %>% filter(distn == "lnorm") %>% collect()
 
@@ -159,7 +159,7 @@ p + geom_density(data = obs, aes(x = mean, fill = "obs"), alpha = .3, color = NA
 
 ## wood_water_cap {-}
 
-```{r plot with data wood_water_cap}
+```{r plot with data wood_water_cap, echo = FALSE, warning=FALSE, message=FALSE}
 v_id <- v_df %>% filter(var == "wood_water_cap") %>% pull(variable_id)
 wood_water_cap_fit <- tbl(bety, "priors") %>% filter(variable_id == v_id) %>% collect()
 
@@ -182,7 +182,7 @@ p + geom_density(data = obs, aes(x = mean, fill = "obs"), alpha = .3, color = NA
 
 ## Kmax {-}
 
-```{r plot with data wood_Kmax}
+```{r plot with data wood_Kmax, echo = FALSE, warning=FALSE, message=FALSE}
 v_id <- v_df %>% filter(var == "wood_Kmax") %>% pull(variable_id)
 wood_Kmax_fit <- tbl(bety, "priors") %>% filter(variable_id == v_id)  %>% collect()
 
@@ -204,7 +204,7 @@ p + geom_density(data = obs, aes(x = mean, fill = "obs"), alpha = .3, color = NA
 
 ## psi50 {-}
 
-```{r plot with data wood_psi50}
+```{r plot with data wood_psi50, echo = FALSE, warning=FALSE, message=FALSE}
 v_id <- v_df %>% filter(var == "wood_psi50") %>% pull(variable_id)
 wood_psi50_fit <- tbl(bety, "priors") %>% filter(variable_id == v_id) %>% collect()
 
@@ -227,7 +227,7 @@ p + geom_density(data = obs, aes(x = mean, fill = "obs"), alpha = .3, color = NA
 
 ## Kexp {-}
 
-```{r plot with data Kexp}
+```{r plot with data Kexp, echo = FALSE, warning=FALSE, message=FALSE}
 v_id <- v_df %>% filter(var == "wood_Kexp") %>% pull(variable_id)
 wood_Kexp_fit <- tbl(bety, "priors") %>% filter(variable_id == v_id) %>% filter(id == 1000000425)  %>% collect()
 
@@ -250,7 +250,7 @@ p + geom_density(data = obs, aes(x = mean, fill = "obs"), alpha = .3, color = NA
 
 ## Fine root to leaf ratio {-}
 
-```{r plot with data fineroot2leaf}
+```{r plot with data fineroot2leaf, echo = FALSE, warning=FALSE, message=FALSE}
 v_id <- v_df %>% filter(var == "fineroot2leaf") %>% pull(variable_id)
 fineroot2leaf_fit <- tbl(bety, "priors") %>% filter(variable_id == v_id) %>% filter(id == 75) %>% collect()
 
