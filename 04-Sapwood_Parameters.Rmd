@@ -599,7 +599,7 @@ prior_plot(prior = wood_psi50_prior,
 
 --------------------------------------------------------------------------------
 
-## `[ax]:` 
+## `[ax]:` Slope of xylem vulnerability curve at P50 {-}
 
 ### ED {-}
 
@@ -622,7 +622,7 @@ None!
 
 ### Code {-} 
 
-```{r}
+```{r calc ax}
 i <- which(priors$Christoffersen_name == "avuln_node")
 
 prior_in <- priors[i, stats]
@@ -644,7 +644,7 @@ wood_ax_prior_id <- prior_input(bety, variable_id.in, phylogeny.in,
                                 paramc.in = best.fit.dat %>% filter(params == "Para3") %>% pull(value))
 ```
 
-```{r}
+```{r plot ax}
 wood_ax_fit <- tbl(bety, "priors") %>% filter(id == wood_ax_prior_id) %>% collect()
 wood_ax_prior <- rdistn(wood_ax_fit)
 
@@ -679,7 +679,7 @@ None!
 
 ### Code {-} 
 
-```{r}
+```{r calc Kexp}
 
 wood_Kexp_samp <- - wood_ax_prior * 4 * (wood_psi50_prior/MPa2m) / 100 
 
@@ -706,7 +706,7 @@ wood_Kexp_prior_id <- prior_input(bety, variable_id.in, phylogeny.in,
                                    paramc.in = best.fit.dat %>% filter(params == "Para3") %>% pull(value))
 ```
 
-```{r}
+```{r plot Kexp}
 wood_Kexp_fit <- tbl(bety, "priors") %>% filter(id == wood_Kexp_prior_id) %>% collect()
 wood_Kexp_prior <- rdistn(wood_Kexp_fit)
 

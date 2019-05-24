@@ -3,15 +3,12 @@ title: "05-Data_Compare"
 output: html_document
 ---
 
-# (PART) Comparing Data to Priors {-}
+# Comparing Data to Priors {-}
 
-To do this section, I really should just use the "get trait data" function 
-that is used in pecan because that will show me where/how to deal with the changes
-in variable units, both for all the psi variables that are negative but also for 
-the variables that are multiplied by 1000. 
 
 ```{r}
-bety <- betyConnect("/fs/data3/ecowdery/pecan/web/config.php")
+
+# bety <- betyConnect("/fs/data3/ecowdery/pecan/web/config.php")
 
 pftid <- 1000000131
 
@@ -21,7 +18,7 @@ tropical_species <- tbl(bety, "pfts") %>% dplyr::rename(pft_id = id) %>% filter(
   dplyr::select(one_of("pft_id", "name", "specie_id", "genus", "species", "scientificname")) %>% 
   collect()
 
-variables <- c(
+var <- c(
   "SLA", 
   "wood_density",
   "leaf_elastic_mod", "wood_elastic_mod",
@@ -30,39 +27,42 @@ variables <- c(
   "leaf_water_sat", "wood_water_sat",
   "leaf_water_cap", "wood_water_cap",
   "leaf_psi_min", "wood_psi_min",
+  "leaf_psi_tlp", "wood_psi_tlp",
   "wood_Kmax",
   "wood_psi50",
-  "wood_Kexp"
+  "wood_Kexp", 
+  "fineroot2leaf"
 )
 
-variables_ids <- lapply(variables, function(v) tbl(bety, "variables") %>% filter(name == v) %>% pull(id)) %>% unlist()
+variable_id <- lapply(var, function(v) tbl(bety, "variables") %>% filter(name == v) %>% pull(id)) %>% unlist()
 
-v_df <- data.frame(variables, variables_ids)
+v_df <- data.frame(var, variable_id, stringsAsFactors = FALSE)
 
 species_ids <- unique(tropical_species$specie_id)
 
 trait_data <- tbl(bety, "traits") %>% filter(specie_id %in% species_ids) %>% 
-  filter(variable_id %in% variables_ids) %>% collect()
+  filter(variable_id %in% v_df$variable_id) %>% collect() %>% left_join(v_df)
 
 ```
 
 ## Wood Density {-}
 ```{r plot with data wood_density}
-v_id <- v_df %>% filter(variables == "wood_density") %>% pull(variables_ids)
-wood_density_fit <- tbl(bety, "priors") %>% filter(variable_id == v_id) %>% filter(id == 1000000281) %>% collect()
+v_id <- v_df %>% filter(var == "wood_density") %>% pull(variable_id)
+wood_density_fit <- tbl(bety, "priors") %>% filter(variable_id == v_id) %>% filter(id == 1000000422) %>% collect()
 
 wood_density_prior <- rdistn(wood_density_fit) 
 wood_density_default <- get_ED_default("/fs/data3/ecowdery/ED.Hydro/parameters/pft3_defaults_history.xml", "rho")
 
 p <- prior_plot(prior = wood_density_prior, 
-           plot_default = wood_density_default,
-           title = sprintf("(wood_density): %s", wood_density_fit$distn),
-           type = "prior")
+                plot_default = wood_density_default,
+                title = sprintf("(wood_density): %s", wood_density_fit$distn),
+                type = "prior")
 
-p 
+obs <- trait_data %>% filter(var == "wood_density")
+obs$y <- 0
+p + geom_density(data = obs, aes(x = mean, fill = "obs"), alpha = .3, color = NA) + 
+  geom_point(data = obs, aes(x = mean, y = y), color = "purple4", shape = "|", size = 5)
 
-# obs <- trait_data %>% filter(variable_id == v_df$variables_ids[v_df$variables == "wood_density"]) 
-# p + geom_density(data = obs, aes(x = mean, fill = "obs"), alpha = .3, color = NA)
 ```
 
 
@@ -71,88 +71,200 @@ p
 
 ## SLA  {-}
 ```{r plot with data SLA}
-v_id <- v_df %>% filter(variables == "SLA") %>% pull(variables_ids)
+v_id <- v_df %>% filter(var == "SLA") %>% pull(variable_id)
 SLA_fit <- tbl(bety, "priors") %>% filter(variable_id == v_id) %>% filter(id == 142) %>% collect()
 
 SLA_prior <- rdistn(SLA_fit) 
 SLA_default <- get_ED_default("/fs/data3/ecowdery/ED.Hydro/parameters/pft3_defaults_history.xml", "SLA")
 
 p <- prior_plot(prior = SLA_prior, 
-           plot_default = SLA_default,
-           title = sprintf("(SLA): %s", SLA_fit$distn),
-           type = "prior")
+                plot_default = SLA_default,
+                title = sprintf("(SLA): %s", SLA_fit$distn),
+                type = "prior")
 
-obs <- trait_data %>% filter(variable_id == v_df$variables_ids[v_df$variables == "SLA"]) 
-obs$mean <- obs$mean 
-
-p + geom_density(data = obs, aes(x = mean, fill = "obs"), alpha = .3, color = NA)
+obs <- trait_data %>% filter(var == "SLA")
+obs$y <- 0
+p + geom_density(data = obs, aes(x = mean, fill = "obs"), alpha = .3, color = NA) + 
+  geom_point(data = obs, aes(x = mean, y = y), color = "purple4", shape = "|", size = 5)
 ```
 
 
+## leaf_psi_tlp {-}
 
+```{r plot with data leaf_psi_tlp}
+v_id <- v_df %>% filter(var == "leaf_psi_tlp") %>% pull(variable_id)
+leaf_psi_tlp_fit <- tbl(bety, "priors") %>% filter(variable_id == v_id) %>% collect()
+
+leaf_psi_tlp_prior <- -rdistn(leaf_psi_tlp_fit) 
+leaf_psi_tlp_default <- get_ED_default("/fs/data3/ecowdery/ED.Hydro/parameters/pft3_defaults_history.xml", "leaf_psi_tlp")
+
+p <- prior_plot(prior = leaf_psi_tlp_prior, 
+                plot_default = leaf_psi_tlp_default,
+                title = sprintf("(leaf_psi_tlp): %s", leaf_psi_tlp_fit$distn),
+                type = "prior") 
+
+obs <- trait_data %>% filter(var == "leaf_psi_tlp")
+obs$mean <- -obs$mean
+obs$y <- 0
+p + geom_density(data = obs, aes(x = mean, fill = "obs"), alpha = .3, color = NA) + 
+  geom_point(data = obs, aes(x = mean, y = y), color = "purple4", shape = "|", size = 5) +
+  xlim(-1000,0)
+```
+
+
+## leaf_water_cap {-}
+
+```{r plot with data leaf_water_cap}
+v_id <- v_df %>% filter(var == "leaf_water_cap") %>% pull(variable_id)
+leaf_water_cap_fit <- tbl(bety, "priors") %>% filter(variable_id == v_id) %>% collect()
+
+leaf_water_cap_prior <- rdistn(leaf_water_cap_fit) /1000
+leaf_water_cap_default <- get_ED_default("/fs/data3/ecowdery/ED.Hydro/parameters/pft3_defaults_history.xml", "leaf_water_cap")
+
+p <- prior_plot(prior = leaf_water_cap_prior, 
+                q = c(0,.99),
+                plot_default = leaf_water_cap_default,
+                title = sprintf("(leaf_water_cap): %s", leaf_water_cap_fit$distn),
+                type = "prior")
+
+obs <- trait_data %>% filter(var == "leaf_water_cap")
+obs$y <- 0
+obs$mean <- obs$mean / 1000
+p + geom_density(data = obs, aes(x = mean, fill = "obs"), alpha = .3, color = NA) + 
+  geom_point(data = obs, aes(x = mean, y = y), color = "purple4", shape = "|", size = 5)
+```
+
+
+## wood_psi_tlp {-}
+
+```{r plot with data wood_psi_tlp}
+v_id <- v_df %>% filter(var == "wood_psi_tlp") %>% pull(variable_id)
+wood_psi_tlp_fit <- tbl(bety, "priors") %>% filter(variable_id == v_id) %>% filter(distn == "lnorm") %>% collect()
+
+wood_psi_tlp_prior <- -rdistn(wood_psi_tlp_fit) 
+wood_psi_tlp_default <- get_ED_default("/fs/data3/ecowdery/ED.Hydro/parameters/pft3_defaults_history.xml", "wood_psi_tlp")
+
+p <- prior_plot(prior = wood_psi_tlp_prior, 
+                plot_default = wood_psi_tlp_default,
+                title = sprintf("(wood_psi_tlp): %s", wood_psi_tlp_fit$distn),
+                type = "prior") 
+
+obs <- trait_data %>% filter(var == "wood_psi_tlp")
+obs$mean <- -obs$mean
+obs$y <- 0
+p + geom_density(data = obs, aes(x = mean, fill = "obs"), alpha = .3, color = NA) + 
+  geom_point(data = obs, aes(x = mean, y = y), color = "purple4", shape = "|", size = 5) +
+  xlim(-1000,0)
+```
+
+## wood_water_cap {-}
+
+```{r plot with data wood_water_cap}
+v_id <- v_df %>% filter(var == "wood_water_cap") %>% pull(variable_id)
+wood_water_cap_fit <- tbl(bety, "priors") %>% filter(variable_id == v_id) %>% collect()
+
+wood_water_cap_prior <- rdistn(wood_water_cap_fit) /1000
+wood_water_cap_default <- get_ED_default("/fs/data3/ecowdery/ED.Hydro/parameters/pft3_defaults_history.xml", "wood_water_cap")
+
+p <- prior_plot(prior = wood_water_cap_prior, 
+                q = c(0,.999),
+                plot_default = wood_water_cap_default,
+                title = sprintf("(wood_water_cap): %s", wood_water_cap_fit$distn),
+                type = "prior")
+
+obs <- trait_data %>% filter(var == "wood_water_cap")
+obs$y <- 0
+obs$mean <- obs$mean / 1000
+p + geom_density(data = obs, aes(x = mean, fill = "obs"), alpha = .3, color = NA) + 
+  geom_point(data = obs, aes(x = mean, y = y), color = "purple4", shape = "|", size = 5)
+```
 
 
 ## Kmax {-}
 
 ```{r plot with data wood_Kmax}
-wood_Kmax_fit <- tbl(bety, "priors") %>% filter(id == wood_Kmax_prior_id) %>% collect()
-wood_Kmax_prior <- rdistn(wood_Kmax_fit) # NOTE: Need to convert to m from -m 
+v_id <- v_df %>% filter(var == "wood_Kmax") %>% pull(variable_id)
+wood_Kmax_fit <- tbl(bety, "priors") %>% filter(variable_id == v_id)  %>% collect()
+
+wood_Kmax_prior <- rdistn(wood_Kmax_fit) 
 wood_Kmax_default <- get_ED_default("/fs/data3/ecowdery/ED.Hydro/parameters/pft3_defaults_history.xml", "wood_Kmax")
 
 p <- prior_plot(prior = wood_Kmax_prior, 
-           q = c(0,.995),
-           plot_default = wood_Kmax_default,
-           title = sprintf("Maximum hydraulic conductivity of the stem (wood_Kmax): %s", wood_Kmax_fit$distn),
-           type = "prior")
+                q = c(0,.99),
+                plot_default = wood_Kmax_default,
+                title = sprintf("(wood_Kmax): %s", wood_Kmax_fit$distn),
+                type = "prior")
 
-obs <- trait_data %>% filter(variable_id == v_df$variables_ids[v_df$variables == "wood_Kmax"]) 
-obs$mean <- obs$mean 
-
-p + geom_density(data = obs, aes(x = mean, fill = "obs"), alpha = .3, color = NA)
+obs <- trait_data %>% filter(var == "wood_Kmax")
+obs$y <- 0
+p + geom_density(data = obs, aes(x = mean, fill = "obs"), alpha = .3, color = NA) + 
+  geom_point(data = obs, aes(x = mean, y = y), color = "purple4", shape = "|", size = 5)
 ```
 
 
-## Psi50 {-}
+## psi50 {-}
 
 ```{r plot with data wood_psi50}
-wood_psi50_fit <- tbl(bety, "priors") %>% filter(id == wood_psi50_prior_id) %>% collect()
-wood_psi50_prior <- -rdistn(wood_psi50_fit) # NOTE: Need to convert to m from -m 
+v_id <- v_df %>% filter(var == "wood_psi50") %>% pull(variable_id)
+wood_psi50_fit <- tbl(bety, "priors") %>% filter(variable_id == v_id) %>% collect()
 
-# Calculating default by hand because it is calculated wrong in ED! 
+wood_psi50_prior <- -rdistn(wood_psi50_fit) 
 wood_psi50_default <- (-1.09 - (3.57 * wood_density_default ^ 1.73)) * MPa2m
-wrong_wood_psi50_default <- get_ED_default(PFT3_defaults_history, "wood_psi50")
 
 p <- prior_plot(prior = wood_psi50_prior, 
-           q = c(0.025,1),
-           plot_default = wood_psi50_default,
-           title = sprintf("Water potential at which 50perc. of stem cond. is lost (wood_psi50): %s", wood_psi50_fit$distn),
-           type = "prior") 
+                plot_default = wood_psi50_default,
+                title = sprintf("(wood_psi50): %s", wood_psi50_fit$distn),
+                type = "prior") 
 
-obs <- trait_data %>% filter(variable_id == v_df$variables_ids[v_df$variables == "wood_psi50"]) 
-obs$mean <- obs$mean 
-
-p + geom_density(data = obs, aes(x = mean, fill = "obs"), alpha = .3, color = NA)
+obs <- trait_data %>% filter(var == "wood_psi50")
+obs$mean <- -obs$mean
+obs$y <- 0
+p + geom_density(data = obs, aes(x = mean, fill = "obs"), alpha = .3, color = NA) + 
+  geom_point(data = obs, aes(x = mean, y = y), color = "purple4", shape = "|", size = 5) +
+  xlim(-1000,0)
 
 ```
 
 ## Kexp {-}
 
 ```{r plot with data Kexp}
-wood_Kexp_fit <- tbl(bety, "priors") %>% filter(id == wood_Kexp_prior_id) %>% collect()
-wood_Kexp_prior <- rdistn(wood_Kexp_fit)
+v_id <- v_df %>% filter(var == "wood_Kexp") %>% pull(variable_id)
+wood_Kexp_fit <- tbl(bety, "priors") %>% filter(variable_id == v_id) %>% filter(id == 1000000425)  %>% collect()
 
-# Calculating default by hand because psi50 is calculated wrong in ED!
-wood_Kexp_default <- 0.544 * 4. * (-wood_psi50_default / MPa2m) ^ (-0.17)
-wrong_wood_Kexp_default <- get_ED_default(PFT3_defaults_history, "wood_Kexp")
+wood_Kexp_prior <- rdistn(wood_Kexp_fit) 
+wood_Kexp_default <- get_ED_default("/fs/data3/ecowdery/ED.Hydro/parameters/pft3_defaults_history.xml", "wood_Kexp")
 
 p <- prior_plot(prior = wood_Kexp_prior, 
-                q = c(0,.5), 
+                q = c(0,.99),
                 plot_default = wood_Kexp_default,
-                title = sprintf("Water potential at which 50perc. of stem cond. is lost (wood_Kexp): %s", wood_Kexp_fit$distn),
-                type = "prior") 
+                title = sprintf("(wood_Kexp): %s", wood_Kexp_fit$distn),
+                type = "prior")
 
-obs <- trait_data %>% filter(variable_id == v_df$variables_ids[v_df$variables == "wood_Kexp"]) 
+obs <- trait_data %>% filter(var == "wood_Kexp")
+obs$y <- 0
+p + geom_density(data = obs, aes(x = mean, fill = "obs"), alpha = .3, color = NA) + 
+  geom_point(data = obs, aes(x = mean, y = y), color = "purple4", shape = "|", size = 5)
 
-p + geom_density(data = obs, aes(x = mean, fill = "obs"), alpha = .3, color = NA)
+```
 
+
+## Fine root to leaf ratio {-}
+
+```{r plot with data fineroot2leaf}
+v_id <- v_df %>% filter(var == "fineroot2leaf") %>% pull(variable_id)
+fineroot2leaf_fit <- tbl(bety, "priors") %>% filter(variable_id == v_id) %>% filter(id == 75) %>% collect()
+
+fineroot2leaf_prior <- rdistn(fineroot2leaf_fit) 
+fineroot2leaf_default <- get_ED_default("/fs/data3/ecowdery/ED.Hydro/parameters/pft3_defaults_history.xml", "q")
+
+p <- prior_plot(prior = fineroot2leaf_prior, 
+                q = c(0,.99),
+                plot_default = fineroot2leaf_default,
+                title = sprintf("(fineroot2leaf): %s", fineroot2leaf_fit$distn),
+                type = "prior")
+
+obs <- trait_data %>% filter(var == "fineroot2leaf")
+obs$y <- 0
+p + geom_density(data = obs, aes(x = mean, fill = "obs"), alpha = .3, color = NA) + 
+  geom_point(data = obs, aes(x = mean, y = y), color = "purple4", shape = "|", size = 5)
 ```
