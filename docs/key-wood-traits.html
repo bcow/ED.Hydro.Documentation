@@ -25,7 +25,7 @@
 <meta name="author" content="Betsy Cowdery">
 
 
-<meta name="date" content="2019-05-22">
+<meta name="date" content="2019-05-23">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -227,11 +227,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="key-wood-traits.html"><a href="key-wood-traits.html#calculation-14"><i class="fa fa-check"></i>Calculation</a></li>
 <li class="chapter" data-level="" data-path="key-wood-traits.html"><a href="key-wood-traits.html#code-14"><i class="fa fa-check"></i>Code</a></li>
 </ul></li>
-<li><a href="key-wood-traits.html#wood_kexp-exponent-for-the-hydraulic-vulnerability-curve-of-stem-conductivity"><code>[wood_Kexp]:</code> Exponent for the hydraulic vulnerability curve of stem conductivity</a><ul>
+<li class="chapter" data-level="0.1" data-path="key-wood-traits.html"><a href="key-wood-traits.html#ax"><i class="fa fa-check"></i><b>0.1</b> <code>[ax]:</code></a><ul>
 <li class="chapter" data-level="" data-path="key-wood-traits.html"><a href="key-wood-traits.html#ed-15"><i class="fa fa-check"></i>ED</a></li>
 <li class="chapter" data-level="" data-path="key-wood-traits.html"><a href="key-wood-traits.html#bety-15"><i class="fa fa-check"></i>BETY</a></li>
 <li class="chapter" data-level="" data-path="key-wood-traits.html"><a href="key-wood-traits.html#calculation-15"><i class="fa fa-check"></i>Calculation</a></li>
 <li class="chapter" data-level="" data-path="key-wood-traits.html"><a href="key-wood-traits.html#code-15"><i class="fa fa-check"></i>Code</a></li>
+</ul></li>
+<li><a href="key-wood-traits.html#wood_kexp-exponent-for-the-hydraulic-vulnerability-curve-of-stem-conductivity"><code>[wood_Kexp]:</code> Exponent for the hydraulic vulnerability curve of stem conductivity</a><ul>
+<li class="chapter" data-level="" data-path="key-wood-traits.html"><a href="key-wood-traits.html#ed-16"><i class="fa fa-check"></i>ED</a></li>
+<li class="chapter" data-level="" data-path="key-wood-traits.html"><a href="key-wood-traits.html#bety-16"><i class="fa fa-check"></i>BETY</a></li>
+<li class="chapter" data-level="" data-path="key-wood-traits.html"><a href="key-wood-traits.html#calculation-16"><i class="fa fa-check"></i>Calculation</a></li>
+<li class="chapter" data-level="" data-path="key-wood-traits.html"><a href="key-wood-traits.html#code-16"><i class="fa fa-check"></i>Code</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -448,7 +454,7 @@ wood_water_sat_prior_id &lt;-<span class="st"> </span><span class="kw">prior_inp
                                        <span class="dt">parama.in =</span> best.fit.dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(params <span class="op">==</span><span class="st"> &quot;Para1&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(value), 
                                        <span class="dt">paramb.in =</span> best.fit.dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(params <span class="op">==</span><span class="st"> &quot;Para2&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(value), 
                                        <span class="dt">paramc.in =</span> best.fit.dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(params <span class="op">==</span><span class="st"> &quot;Para3&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(value))</code></pre>
-<pre><code>## [1] &quot;Entry with id = 1000000424 already exists. Parameters look different. Old: lnorm(0.0200, 0.6100) New: lnorm(0.0100, 0.6100)&quot;</code></pre>
+<pre><code>## [1] &quot;Entry with id = 1000000424 already exists. Parameters look different. Old: lnorm(0.0200, 0.6100) New: lnorm(0.0100, 0.6000)&quot;</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">wood_water_sat_fit &lt;-<span class="st"> </span><span class="kw">tbl</span>(bety, <span class="st">&quot;priors&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(id <span class="op">==</span><span class="st"> </span>wood_water_sat_prior_id) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">collect</span>()
 wood_water_sat_prior &lt;-<span class="st"> </span><span class="kw">rdistn</span>(wood_water_sat_fit)
 wood_water_sat_density &lt;-<span class="st"> </span><span class="kw">get_ED_default</span>(<span class="st">&quot;/fs/data3/ecowdery/ED.Hydro/parameters/pft3_defaults_history.xml&quot;</span>, <span class="st">&quot;wood_water_sat&quot;</span>)
@@ -512,16 +518,16 @@ so we can calculate a distribution that is entirely negative.</p>
 <span class="st">  </span>(wood_psi_osmotic_prior <span class="op">+</span><span class="st"> </span>wood_elastic_mod_prior <span class="op">*</span><span class="st"> </span>MPa2m)
 
 <span class="kw">summary</span>(wood_psi_tlp_samp)</code></pre>
-<pre><code>##         Min.      1st Qu.       Median         Mean      3rd Qu. 
-## -218937.7820    -327.7115    -232.4071    -259.4481    -154.3735 
-##         Max. 
-##  183382.8223</code></pre>
+<pre><code>##          Min.       1st Qu.        Median          Mean       3rd Qu. 
+## -1563647.2472     -326.3699     -231.9309     -269.2012     -153.7576 
+##          Max. 
+##   173853.4703</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">i &lt;-<span class="st"> </span><span class="kw">which</span>(priors<span class="op">$</span>ED_name <span class="op">==</span><span class="st"> &quot;wood_psi_tlp&quot;</span>)
 prior_in &lt;-<span class="st"> </span>priors[i,stats] <span class="op">*</span><span class="st"> </span>MPa2m <span class="co"># Convert from MPa to m</span>
 prior_in &lt;-<span class="st"> </span><span class="kw">prior_add_samp_data</span>(prior_in, <span class="dt">samp =</span> <span class="op">-</span>wood_psi_tlp_samp)
 prior_in[,stats]</code></pre>
 <pre><code>##     theor.min     low.025      low.25        mean      upp.75     upp.975
-## 1 10.19716213 51.32709969 154.3734679 232.4070865 327.7115316 617.9146922
+## 1 10.19716213 50.60101337 153.7576237 231.9309165 326.3698866 612.6207909
 ##   theor.max
 ## 1        NA</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">myfit &lt;-<span class="st"> </span><span class="kw">prior_get_fit</span>(prior_in, accepted_dists, <span class="dt">plot =</span> <span class="ot">TRUE</span>)</code></pre>
@@ -582,12 +588,14 @@ I scaled the variable up!</p>
 <div id="code-11" class="section level3 unnumbered">
 <h3>Code</h3>
 <pre class="sourceCode r"><code class="sourceCode r">wood_water_cap_samp &lt;-<span class="st"> </span>
-<span class="st">  </span><span class="dv">1000</span> <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>wood_psi_osmotic_prior <span class="op">/</span><span class="st"> </span>(<span class="dv">4</span> <span class="op">*</span><span class="st"> </span>wood_psi_tlp_prior)) <span class="op">*</span><span class="st"> </span>
+<span class="st">  </span><span class="dv">1000</span> <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span><span class="op">/</span>wood_density_prior) <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>wood_psi_osmotic_prior <span class="op">/</span><span class="st"> </span>(<span class="dv">4</span> <span class="op">*</span><span class="st"> </span>wood_psi_tlp_prior)) <span class="op">*</span><span class="st"> </span>
 <span class="st">  </span>(wood_water_sat_prior <span class="op">/</span><span class="st"> </span>(<span class="dv">4</span> <span class="op">*</span><span class="st"> </span><span class="kw">abs</span>(wood_psi_tlp_prior))) 
 
 <span class="kw">summary</span>(wood_water_cap_samp)</code></pre>
-<pre><code>##        Min.     1st Qu.      Median        Mean     3rd Qu.        Max. 
-## -41.3353755   0.4660029   0.7723437   0.9906277   1.2771510  17.9238044</code></pre>
+<pre><code>##         Min.      1st Qu.       Median         Mean      3rd Qu. 
+## -252.4213094    0.7628634    1.4317473    2.3768395    2.8189974 
+##         Max. 
+##   98.6900343</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">i &lt;-<span class="st"> </span><span class="kw">which</span>(priors<span class="op">$</span>ED_name <span class="op">==</span><span class="st"> &quot;wood_water_cap&quot;</span>)
 prior_in &lt;-<span class="st"> </span>priors[i,stats] 
 prior_in &lt;-<span class="st"> </span><span class="kw">prior_add_samp_data</span>(prior_in, <span class="dt">samp =</span> wood_water_cap_samp)
@@ -595,7 +603,7 @@ prior_in[,stats]</code></pre>
 <pre><code>## # A tibble: 1 x 7
 ##   theor.min low.025 low.25  mean upp.75 upp.975 theor.max
 ##       &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;
-## 1 0.0000001   0.143  0.466 0.772   1.28    3.29        NA</code></pre>
+## 1 0.0000001   0.203  0.763  1.43   2.82    11.0        NA</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">myfit &lt;-<span class="st"> </span><span class="kw">prior_get_fit</span>(prior_in, accepted_dists, <span class="dt">plot =</span> <span class="ot">TRUE</span>)</code></pre>
 <p><img src="Final_Book_files/figure-html/calc%20wood_water_cap-1.png" width="672" /></p>
 <pre class="sourceCode r"><code class="sourceCode r">variable_id.in &lt;-<span class="st"> </span><span class="kw">tbl</span>(bety, <span class="st">&quot;variables&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(name <span class="op">==</span><span class="st"> &quot;wood_water_cap&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(id)
@@ -609,7 +617,7 @@ wood_water_cap_prior_id &lt;-<span class="st"> </span><span class="kw">prior_inp
                                        <span class="dt">parama.in =</span> best.fit.dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(params <span class="op">==</span><span class="st"> &quot;Para1&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(value), 
                                        <span class="dt">paramb.in =</span> best.fit.dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(params <span class="op">==</span><span class="st"> &quot;Para2&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(value), 
                                        <span class="dt">paramc.in =</span> best.fit.dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(params <span class="op">==</span><span class="st"> &quot;Para3&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(value))</code></pre>
-<pre><code>## [1] &quot;Entry with id = 1000000417 already exists. Parameters look the same. Old: lnorm(-0.2600, 0.7500) New: lnorm(-0.2600, 0.7500)&quot;</code></pre>
+<pre><code>## [1] &quot;Entry with id = 1000000417 already exists. Parameters look different. Old: lnorm(0.3800, 0.9800) New: lnorm(0.3700, 0.9800)&quot;</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">wood_water_cap_fit &lt;-<span class="st"> </span><span class="kw">tbl</span>(bety, <span class="st">&quot;priors&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(id <span class="op">==</span><span class="st"> </span>wood_water_cap_prior_id) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">collect</span>()
 wood_water_cap_prior &lt;-<span class="st"> </span><span class="kw">rdistn</span>(wood_water_cap_fit) <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span><span class="op">/</span><span class="dv">1000</span>) <span class="co"># Convert back to kg</span>
 wood_water_cap_default &lt;-<span class="st"> </span><span class="kw">get_ED_default</span>(<span class="st">&quot;/fs/data3/ecowdery/ED.Hydro/parameters/pft3_defaults_history.xml&quot;</span>, <span class="st">&quot;wood_water_cap&quot;</span>)
@@ -623,7 +631,7 @@ wood_water_cap_default &lt;-<span class="st"> </span><span class="kw">get_ED_def
 <span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> <span class="dv">300</span><span class="op">/</span>MPa2m <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span><span class="op">/</span><span class="dv">1000</span>)), <span class="dt">color =</span> <span class="st">&quot;gray&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> <span class="dv">900</span><span class="op">/</span>MPa2m <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span><span class="op">/</span><span class="dv">1000</span>)), <span class="dt">color =</span> <span class="st">&quot;gray&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">xlim</span>(<span class="dv">0</span>, <span class="fl">.009</span>)</code></pre>
-<pre><code>## Warning: Removed 43 rows containing non-finite values (stat_density).</code></pre>
+<pre><code>## Warning: Removed 3217 rows containing non-finite values (stat_density).</code></pre>
 <p><img src="Final_Book_files/figure-html/plot%20wood_water_cap-1.png" width="672" /></p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="dv">900</span><span class="op">/</span>MPa2m <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span><span class="op">/</span><span class="dv">1000</span>) <span class="op">&lt;</span><span class="st"> </span><span class="kw">max</span>(wood_water_cap_prior)</code></pre>
 <pre><code>## [1] TRUE</code></pre>
@@ -669,7 +677,7 @@ prior_in &lt;-<span class="st"> </span>priors[i,stats] <span class="op">*</span>
 prior_in &lt;-<span class="st"> </span><span class="kw">prior_add_samp_data</span>(prior_in, <span class="dt">samp =</span> <span class="op">-</span>wood_psi_min_samp)
 prior_in[,stats]</code></pre>
 <pre><code>##     theor.min     low.025      low.25        mean      upp.75     upp.975
-## 1 10.19716213 110.2155337 675.9735379 1719.538058 4322.953645 25083.10828
+## 1 10.19716213 45.00184207 325.8362146 909.3598527 2517.463592 17401.99371
 ##   theor.max
 ## 1        NA</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">myfit &lt;-<span class="st"> </span><span class="kw">prior_get_fit</span>(prior_in, accepted_dists, <span class="dt">plot =</span> <span class="ot">TRUE</span>)</code></pre>
@@ -685,7 +693,7 @@ wood_psi_min_prior_id &lt;-<span class="st"> </span><span class="kw">prior_input
                                      <span class="dt">parama.in =</span> best.fit.dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(params <span class="op">==</span><span class="st"> &quot;Para1&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(value), 
                                      <span class="dt">paramb.in =</span> best.fit.dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(params <span class="op">==</span><span class="st"> &quot;Para2&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(value), 
                                      <span class="dt">paramc.in =</span> best.fit.dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(params <span class="op">==</span><span class="st"> &quot;Para3&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(value))</code></pre>
-<pre><code>## [1] &quot;Entry with id = 1000000419 already exists. Parameters look the same. Old: lnorm(7.4500, 1.3800) New: lnorm(7.4500, 1.3800)&quot;</code></pre>
+<pre><code>## [1] &quot;Entry with id = 1000000419 already exists. Parameters look the same. Old: lnorm(6.8100, 1.5200) New: lnorm(6.8100, 1.5200)&quot;</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">wood_psi_min_fit &lt;-<span class="st"> </span><span class="kw">tbl</span>(bety, <span class="st">&quot;priors&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(id <span class="op">==</span><span class="st"> </span>wood_psi_min_prior_id) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">collect</span>()
 wood_psi_min_prior &lt;-<span class="st"> </span><span class="op">-</span><span class="kw">rdistn</span>(wood_psi_min_fit) <span class="co"># Remember to flip psi</span>
 default_wood_psi_min &lt;-<span class="st"> </span><span class="kw">get_ED_default</span>(<span class="st">&quot;/fs/data3/ecowdery/ED.Hydro/parameters/pft3_defaults_history.xml&quot;</span>, <span class="st">&quot;wood_psi_min&quot;</span>)
@@ -842,8 +850,8 @@ p <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> <span class="kw">quantile</span>(wood_psi50_prior, <span class="fl">.975</span>)), <span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>)</code></pre>
 <p><img src="Final_Book_files/figure-html/plot%20wood_psi50-1.png" width="672" /></p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">quantile</span>(wood_psi50_prior, <span class="fl">.975</span>)</code></pre>
-<pre><code>##       97.5% 
-## 62.21843281</code></pre>
+<pre><code>##      97.5% 
+## 60.4086127</code></pre>
 <p>A positive number is within the 95% CI of the distribution so in this case,
 I’m going to choose a log normal distriburtion even though it is not the best fit.
 Hopefully this can also be fixed given that we have data for both psi50 and Kexp…</p>
@@ -877,15 +885,11 @@ wrong_wood_psi50_default &lt;-<span class="st"> </span><span class="kw">get_ED_d
 </div>
 </div>
 </div>
-<div id="wood_kexp-exponent-for-the-hydraulic-vulnerability-curve-of-stem-conductivity" class="section level2 unnumbered">
-<h2><code>[wood_Kexp]:</code> Exponent for the hydraulic vulnerability curve of stem conductivity</h2>
-<p>… under the Weibull function <code>1/(1+(psi/psi50) ^ Kexp_stem)</code></p>
+<div id="ax" class="section level2">
+<h2><span class="header-section-number">0.1</span> <code>[ax]:</code></h2>
 <div id="ed-15" class="section level3 unnumbered">
 <h3>ED</h3>
-<ul>
-<li>ED variable name : <code>wood_Kexp</code></li>
-<li>ED variable units: unitless</li>
-</ul>
+<p>Not in ED, but will be used to calculate <code>Kexp</code>.</p>
 </div>
 <div id="bety-15" class="section level3 unnumbered">
 <h3>BETY</h3>
@@ -907,7 +911,7 @@ wrong_wood_psi50_default &lt;-<span class="st"> </span><span class="kw">get_ED_d
 </div>
 <div id="code-15" class="section level3 unnumbered">
 <h3>Code</h3>
-<pre class="sourceCode r"><code class="sourceCode r">i &lt;-<span class="st"> </span><span class="kw">which</span>(priors<span class="op">$</span>ED_name <span class="op">==</span><span class="st"> &quot;wood_Kexp&quot;</span>)
+<pre class="sourceCode r"><code class="sourceCode r">i &lt;-<span class="st"> </span><span class="kw">which</span>(priors<span class="op">$</span>Christoffersen_name <span class="op">==</span><span class="st"> &quot;avuln_node&quot;</span>)
 
 prior_in &lt;-<span class="st"> </span>priors[i, stats]
 prior_in</code></pre>
@@ -919,6 +923,73 @@ prior_in</code></pre>
 <p><img src="Final_Book_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <pre class="sourceCode r"><code class="sourceCode r">myfit<span class="op">$</span>score<span class="op">$</span>dist[<span class="kw">which.min</span>(myfit<span class="op">$</span>score<span class="op">$</span>RMSE)]</code></pre>
 <pre><code>## [1] &quot;exp&quot;</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">variable_id.in &lt;-<span class="st"> </span><span class="kw">tbl</span>(bety,<span class="st">&quot;variables&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(name <span class="op">==</span><span class="st"> &quot;ax&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(id)
+phylogeny.in &lt;-<span class="st"> &quot;plants&quot;</span>
+
+best.fit.name &lt;-<span class="st"> </span>myfit<span class="op">$</span>score<span class="op">$</span>dist[<span class="kw">which.min</span>(myfit<span class="op">$</span>score<span class="op">$</span>RMSE)]
+best.fit.dat &lt;-<span class="st"> </span>myfit<span class="op">$</span>dists <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="kw">one_of</span>(<span class="st">&quot;Name&quot;</span>, best.fit.name)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">rename</span>(value <span class="op">:</span><span class="er">=</span><span class="st"> </span><span class="op">!!</span>best.fit.name, <span class="dt">params =</span> Name)
+
+wood_ax_prior_id &lt;-<span class="st"> </span><span class="kw">prior_input</span>(bety, variable_id.in, phylogeny.in, 
+                                <span class="dt">dist.name.in =</span> best.fit.name, 
+                                <span class="dt">parama.in =</span> best.fit.dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(params <span class="op">==</span><span class="st"> &quot;Para1&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(value), 
+                                <span class="dt">paramb.in =</span> best.fit.dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(params <span class="op">==</span><span class="st"> &quot;Para2&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(value), 
+                                <span class="dt">paramc.in =</span> best.fit.dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(params <span class="op">==</span><span class="st"> &quot;Para3&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(value))</code></pre>
+<pre><code>## [1] &quot;Entry with id = 1000000421 already exists. Parameters look the same. Old: exp(0.0200) New: exp(0.0200)&quot;</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">wood_ax_fit &lt;-<span class="st"> </span><span class="kw">tbl</span>(bety, <span class="st">&quot;priors&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(id <span class="op">==</span><span class="st"> </span>wood_ax_prior_id) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">collect</span>()
+wood_ax_prior &lt;-<span class="st"> </span><span class="kw">rdistn</span>(wood_ax_fit)
+
+<span class="kw">prior_plot</span>(<span class="dt">prior =</span> wood_ax_prior, 
+                <span class="dt">q =</span> <span class="kw">c</span>(<span class="dv">0</span>,.<span class="dv">975</span>), 
+                <span class="dt">title =</span> <span class="kw">sprintf</span>(<span class="st">&quot;Slope of xylem vulnerability curve at P50: %s&quot;</span>, wood_ax_fit<span class="op">$</span>distn),
+                <span class="dt">type =</span> <span class="st">&quot;elic&quot;</span>) </code></pre>
+<pre><code>## Warning: Removed 2500 rows containing non-finite values (stat_density).</code></pre>
+<p><img src="Final_Book_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+</div>
+</div>
+<div id="wood_kexp-exponent-for-the-hydraulic-vulnerability-curve-of-stem-conductivity" class="section level2 unnumbered">
+<h2><code>[wood_Kexp]:</code> Exponent for the hydraulic vulnerability curve of stem conductivity</h2>
+<p>… under the Weibull function <code>1/(1+(psi/psi50) ^ Kexp_stem)</code></p>
+<div id="ed-16" class="section level3 unnumbered">
+<h3>ED</h3>
+<ul>
+<li>ED variable name : <code>wood_Kexp</code></li>
+<li>ED variable units: unitless</li>
+</ul>
+</div>
+<div id="bety-16" class="section level3 unnumbered">
+<h3>BETY</h3>
+</div>
+<div id="calculation-16" class="section level3 unnumbered">
+<h3>Calculation</h3>
+<p>Kexp = -ax * 4 * p50 / 100</p>
+<div id="expert-elicitation-16" class="section level4 unnumbered">
+<h4>Expert elicitation</h4>
+<p>None</p>
+</div>
+<div id="conversion-14" class="section level4 unnumbered">
+<h4>Conversion</h4>
+<p>None!</p>
+</div>
+</div>
+<div id="code-16" class="section level3 unnumbered">
+<h3>Code</h3>
+<pre class="sourceCode r"><code class="sourceCode r">wood_Kexp_samp &lt;-<span class="st"> </span><span class="op">-</span><span class="st"> </span>wood_ax_prior <span class="op">*</span><span class="st"> </span><span class="dv">4</span> <span class="op">*</span><span class="st"> </span>(wood_psi50_prior<span class="op">/</span>MPa2m) <span class="op">/</span><span class="st"> </span><span class="dv">100</span> 
+
+<span class="kw">summary</span>(wood_Kexp_samp)</code></pre>
+<pre><code>##        Min.     1st Qu.      Median        Mean     3rd Qu.        Max. 
+##   0.0000811   0.8727019   2.4434025   5.4577912   6.1382659 340.0525871</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">i &lt;-<span class="st"> </span><span class="kw">which</span>(priors<span class="op">$</span>ED_name <span class="op">==</span><span class="st"> &quot;wood_Kexp&quot;</span>)
+prior_in &lt;-<span class="st"> </span>priors[i,stats] 
+prior_in &lt;-<span class="st"> </span><span class="kw">prior_add_samp_data</span>(prior_in, <span class="dt">samp =</span> wood_Kexp_samp)
+prior_in[,stats]</code></pre>
+<pre><code>## # A tibble: 1 x 7
+##   theor.min low.025 low.25  mean upp.75 upp.975 theor.max
+##       &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;
+## 1        NA  0.0680  0.873  2.44   6.14    29.3        NA</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">myfit &lt;-<span class="st"> </span><span class="kw">prior_get_fit</span>(prior_in, accepted_dists, <span class="dt">plot =</span> <span class="ot">TRUE</span>)</code></pre>
+<p><img src="Final_Book_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<pre class="sourceCode r"><code class="sourceCode r">myfit<span class="op">$</span>score<span class="op">$</span>dist[<span class="kw">which.min</span>(myfit<span class="op">$</span>score<span class="op">$</span>RMSE)]</code></pre>
+<pre><code>## [1] &quot;weibull&quot;</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">variable_id.in &lt;-<span class="st"> </span><span class="kw">tbl</span>(bety,<span class="st">&quot;variables&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(name <span class="op">==</span><span class="st"> </span>priors<span class="op">$</span>ED_name[i]) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(id)
 phylogeny.in &lt;-<span class="st"> &quot;plants&quot;</span>
 
@@ -930,7 +1001,7 @@ wood_Kexp_prior_id &lt;-<span class="st"> </span><span class="kw">prior_input</s
                                    <span class="dt">parama.in =</span> best.fit.dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(params <span class="op">==</span><span class="st"> &quot;Para1&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(value), 
                                    <span class="dt">paramb.in =</span> best.fit.dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(params <span class="op">==</span><span class="st"> &quot;Para2&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(value), 
                                    <span class="dt">paramc.in =</span> best.fit.dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(params <span class="op">==</span><span class="st"> &quot;Para3&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(value))</code></pre>
-<pre><code>## [1] &quot;Entry with id = 1000000421 already exists. Parameters look the same. Old: exp(0.0200) New: exp(0.0200)&quot;</code></pre>
+<pre><code>## [1] &quot;Entry with id = 1000000425 already exists. Parameters look different. Old: weibull(0.8000, 4.0700) New: weibull(0.8000, 4.0200)&quot;</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">wood_Kexp_fit &lt;-<span class="st"> </span><span class="kw">tbl</span>(bety, <span class="st">&quot;priors&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(id <span class="op">==</span><span class="st"> </span>wood_Kexp_prior_id) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">collect</span>()
 wood_Kexp_prior &lt;-<span class="st"> </span><span class="kw">rdistn</span>(wood_Kexp_fit)
 
@@ -942,11 +1013,11 @@ p &lt;-<span class="st"> </span><span class="kw">prior_plot</span>(<span class="
                 <span class="dt">q =</span> <span class="kw">c</span>(<span class="dv">0</span>,.<span class="dv">975</span>), 
                 <span class="dt">plot_default =</span> wood_Kexp_default,
                 <span class="dt">title =</span> <span class="kw">sprintf</span>(<span class="st">&quot;Water potential at which 50perc. of stem cond. is lost (wood_Kexp): %s&quot;</span>, wood_Kexp_fit<span class="op">$</span>distn),
-                <span class="dt">type =</span> <span class="st">&quot;elic&quot;</span>) 
-p <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> wrong_wood_Kexp_default), <span class="dt">color =</span> <span class="st">&quot;gray&quot;</span>, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>) </code></pre>
+                <span class="dt">type =</span> <span class="st">&quot;equation&quot;</span>) 
+p <span class="op">+</span><span class="st"> </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> wrong_wood_Kexp_default), 
+               <span class="dt">color =</span> <span class="st">&quot;gray&quot;</span>, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>) </code></pre>
 <pre><code>## Warning: Removed 2500 rows containing non-finite values (stat_density).</code></pre>
-<p><img src="Final_Book_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p><img src="Final_Book_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
 <p>Note: here the miscalculation of psi50 in the code barely shows up
 because the value is divided by a large number.</p>
 

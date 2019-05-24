@@ -318,7 +318,7 @@ Constraints we added
 
 ```{r calc wood_water_cap}
 wood_water_cap_samp <- 
-  1000 * (1 - wood_psi_osmotic_prior / (4 * wood_psi_tlp_prior)) * 
+  1000 * (1/wood_density_prior) * (1 - wood_psi_osmotic_prior / (4 * wood_psi_tlp_prior)) * 
   (wood_water_sat_prior / (4 * abs(wood_psi_tlp_prior))) 
 
 summary(wood_water_cap_samp)
@@ -599,13 +599,11 @@ prior_plot(prior = wood_psi50_prior,
 
 --------------------------------------------------------------------------------
 
-## `[wood_Kexp]:` Exponent for the hydraulic vulnerability curve of stem conductivity  {-}
-... under the Weibull function `1/(1+(psi/psi50) ^ Kexp_stem)`
+## `[ax]:` 
 
 ### ED {-}
 
-- ED variable name : `wood_Kexp`
-- ED variable units: unitless 
+Not in ED, but will be used to calculate `Kexp`.
 
 ### BETY {-}
 
@@ -625,10 +623,72 @@ None!
 ### Code {-} 
 
 ```{r}
-i <- which(priors$ED_name == "wood_Kexp")
+i <- which(priors$Christoffersen_name == "avuln_node")
 
 prior_in <- priors[i, stats]
 prior_in
+
+myfit <- prior_get_fit(prior_in, accepted_dists, plot = TRUE)
+myfit$score$dist[which.min(myfit$score$RMSE)]
+
+variable_id.in <- tbl(bety,"variables") %>% filter(name == "ax") %>% pull(id)
+phylogeny.in <- "plants"
+
+best.fit.name <- myfit$score$dist[which.min(myfit$score$RMSE)]
+best.fit.dat <- myfit$dists %>% select(one_of("Name", best.fit.name)) %>% rename(value := !!best.fit.name, params = Name)
+
+wood_ax_prior_id <- prior_input(bety, variable_id.in, phylogeny.in, 
+                                dist.name.in = best.fit.name, 
+                                parama.in = best.fit.dat %>% filter(params == "Para1") %>% pull(value), 
+                                paramb.in = best.fit.dat %>% filter(params == "Para2") %>% pull(value), 
+                                paramc.in = best.fit.dat %>% filter(params == "Para3") %>% pull(value))
+```
+
+```{r}
+wood_ax_fit <- tbl(bety, "priors") %>% filter(id == wood_ax_prior_id) %>% collect()
+wood_ax_prior <- rdistn(wood_ax_fit)
+
+prior_plot(prior = wood_ax_prior, 
+                q = c(0,.975), 
+                title = sprintf("Slope of xylem vulnerability curve at P50: %s", wood_ax_fit$distn),
+                type = "elic") 
+```
+
+
+## `[wood_Kexp]:` Exponent for the hydraulic vulnerability curve of stem conductivity  {-}
+... under the Weibull function `1/(1+(psi/psi50) ^ Kexp_stem)`
+
+### ED {-}
+
+- ED variable name : `wood_Kexp`
+- ED variable units: unitless 
+
+### BETY {-}
+
+### Calculation {-}
+
+Kexp = -ax * 4 * p50 / 100
+
+#### Expert elicitation {-}
+
+None
+
+#### Conversion {-}
+
+None! 
+
+### Code {-} 
+
+```{r}
+
+wood_Kexp_samp <- - wood_ax_prior * 4 * (wood_psi50_prior/MPa2m) / 100 
+
+summary(wood_Kexp_samp)
+
+i <- which(priors$ED_name == "wood_Kexp")
+prior_in <- priors[i,stats] 
+prior_in <- prior_add_samp_data(prior_in, samp = wood_Kexp_samp)
+prior_in[,stats]
 
 myfit <- prior_get_fit(prior_in, accepted_dists, plot = TRUE)
 myfit$score$dist[which.min(myfit$score$RMSE)]
@@ -658,9 +718,9 @@ p <- prior_plot(prior = wood_Kexp_prior,
                 q = c(0,.975), 
                 plot_default = wood_Kexp_default,
                 title = sprintf("Water potential at which 50perc. of stem cond. is lost (wood_Kexp): %s", wood_Kexp_fit$distn),
-                type = "elic") 
-p + 
-  geom_vline(aes(xintercept = wrong_wood_Kexp_default), color = "gray", linetype = "dashed") 
+                type = "equation") 
+p + geom_vline(aes(xintercept = wrong_wood_Kexp_default), 
+               color = "gray", linetype = "dashed") 
 ```
 
 Note: here the miscalculation of psi50 in the code barely shows up 

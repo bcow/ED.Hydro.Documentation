@@ -25,7 +25,7 @@
 <meta name="author" content="Betsy Cowdery">
 
 
-<meta name="date" content="2019-05-22">
+<meta name="date" content="2019-05-23">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -227,11 +227,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="key-wood-traits.html"><a href="key-wood-traits.html#calculation-14"><i class="fa fa-check"></i>Calculation</a></li>
 <li class="chapter" data-level="" data-path="key-wood-traits.html"><a href="key-wood-traits.html#code-14"><i class="fa fa-check"></i>Code</a></li>
 </ul></li>
-<li><a href="key-wood-traits.html#wood_kexp-exponent-for-the-hydraulic-vulnerability-curve-of-stem-conductivity"><code>[wood_Kexp]:</code> Exponent for the hydraulic vulnerability curve of stem conductivity</a><ul>
+<li class="chapter" data-level="0.1" data-path="key-wood-traits.html"><a href="key-wood-traits.html#ax"><i class="fa fa-check"></i><b>0.1</b> <code>[ax]:</code></a><ul>
 <li class="chapter" data-level="" data-path="key-wood-traits.html"><a href="key-wood-traits.html#ed-15"><i class="fa fa-check"></i>ED</a></li>
 <li class="chapter" data-level="" data-path="key-wood-traits.html"><a href="key-wood-traits.html#bety-15"><i class="fa fa-check"></i>BETY</a></li>
 <li class="chapter" data-level="" data-path="key-wood-traits.html"><a href="key-wood-traits.html#calculation-15"><i class="fa fa-check"></i>Calculation</a></li>
 <li class="chapter" data-level="" data-path="key-wood-traits.html"><a href="key-wood-traits.html#code-15"><i class="fa fa-check"></i>Code</a></li>
+</ul></li>
+<li><a href="key-wood-traits.html#wood_kexp-exponent-for-the-hydraulic-vulnerability-curve-of-stem-conductivity"><code>[wood_Kexp]:</code> Exponent for the hydraulic vulnerability curve of stem conductivity</a><ul>
+<li class="chapter" data-level="" data-path="key-wood-traits.html"><a href="key-wood-traits.html#ed-16"><i class="fa fa-check"></i>ED</a></li>
+<li class="chapter" data-level="" data-path="key-wood-traits.html"><a href="key-wood-traits.html#bety-16"><i class="fa fa-check"></i>BETY</a></li>
+<li class="chapter" data-level="" data-path="key-wood-traits.html"><a href="key-wood-traits.html#calculation-16"><i class="fa fa-check"></i>Calculation</a></li>
+<li class="chapter" data-level="" data-path="key-wood-traits.html"><a href="key-wood-traits.html#code-16"><i class="fa fa-check"></i>Code</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -254,8 +260,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="setup" class="section level1 unnumbered">
 <h1>Setup</h1>
 <p><img src="ED_HYDRO.png" width="1607" /></p>
+<pre><code>## Warning: Unknown columns: `BETY_prior_id`</code></pre>
 <pre><code>## [1] &quot;leaf_psi_tlp&quot;   &quot;wood_psi_tlp&quot;   &quot;rwc_tlp_wood&quot;   &quot;leaf_density&quot;  
-## [5] &quot;leaf_psi_min&quot;   &quot;leaf_water_cap&quot; &quot;wood_psi_min&quot;   &quot;wood_water_cap&quot;</code></pre>
+## [5] &quot;leaf_psi_min&quot;   &quot;leaf_water_cap&quot; &quot;wood_Kexp&quot;      &quot;wood_psi_min&quot;  
+## [9] &quot;wood_water_cap&quot;</code></pre>
 <table>
 <thead>
 <tr>
@@ -267,9 +275,6 @@ Christoffersen_name
 </th>
 <th style="text-align:right;">
 BETY_variable_id
-</th>
-<th style="text-align:right;">
-BETY_prior_id
 </th>
 <th style="text-align:left;">
 ED_units
@@ -303,22 +308,18 @@ theor.max
 <tbody>
 <tr>
 <td style="text-align:left;">
-wood_Kexp
 </td>
 <td style="text-align:left;">
 avuln_node
 </td>
 <td style="text-align:right;">
-1000000291
-</td>
-<td style="text-align:right;">
-1000000361
+NA
 </td>
 <td style="text-align:left;">
-unitless
+NA
 </td>
 <td style="text-align:left;">
-unitless
+MPa * 100
 </td>
 <td style="text-align:right;">
 1e-01
@@ -351,9 +352,6 @@ epsil_node
 </td>
 <td style="text-align:right;">
 1000000294
-</td>
-<td style="text-align:right;">
-1000000387
 </td>
 <td style="text-align:left;">
 MPa
@@ -389,9 +387,6 @@ wood_elastic_mod
 </td>
 <td style="text-align:left;">
 epsil_node
-</td>
-<td style="text-align:right;">
-NA
 </td>
 <td style="text-align:right;">
 NA
@@ -434,9 +429,6 @@ kmax_node
 <td style="text-align:right;">
 1000000290
 </td>
-<td style="text-align:right;">
-1000000357
-</td>
 <td style="text-align:left;">
 kg H2O / m / s
 </td>
@@ -474,9 +466,6 @@ p50_node
 </td>
 <td style="text-align:right;">
 1000000289
-</td>
-<td style="text-align:right;">
-1000000360
 </td>
 <td style="text-align:left;">
 m
@@ -516,9 +505,6 @@ pinot_node
 <td style="text-align:right;">
 1000000295
 </td>
-<td style="text-align:right;">
-1000000388
-</td>
 <td style="text-align:left;">
 m
 </td>
@@ -556,9 +542,6 @@ pinot_node
 </td>
 <td style="text-align:right;">
 1000000298
-</td>
-<td style="text-align:right;">
-NA
 </td>
 <td style="text-align:left;">
 m
@@ -598,9 +581,6 @@ pitlp_node
 <td style="text-align:right;">
 1000000284
 </td>
-<td style="text-align:right;">
-1000000384
-</td>
 <td style="text-align:left;">
 m
 </td>
@@ -638,9 +618,6 @@ pitlp_node
 </td>
 <td style="text-align:right;">
 1000000301
-</td>
-<td style="text-align:right;">
-NA
 </td>
 <td style="text-align:left;">
 m
@@ -680,9 +657,6 @@ rwctlp_node
 <td style="text-align:right;">
 1000000296
 </td>
-<td style="text-align:right;">
-NA
-</td>
 <td style="text-align:left;">
 unitless
 </td>
@@ -720,9 +694,6 @@ thetas_node
 </td>
 <td style="text-align:right;">
 1000000285
-</td>
-<td style="text-align:right;">
-1000000358
 </td>
 <td style="text-align:left;">
 kg H2O/kg biomass
@@ -762,9 +733,6 @@ thetas_node
 <td style="text-align:right;">
 1000000286
 </td>
-<td style="text-align:right;">
-1000000359
-</td>
 <td style="text-align:left;">
 kg H2O/kg biomass
 </td>
@@ -798,9 +766,6 @@ NA
 leaf_density
 </td>
 <td style="text-align:left;">
-NA
-</td>
-<td style="text-align:right;">
 NA
 </td>
 <td style="text-align:right;">
@@ -844,9 +809,6 @@ NA
 <td style="text-align:right;">
 1000000299
 </td>
-<td style="text-align:right;">
-1000000392
-</td>
 <td style="text-align:left;">
 m
 </td>
@@ -885,9 +847,6 @@ NA
 <td style="text-align:right;">
 1000000287
 </td>
-<td style="text-align:right;">
-1000000390
-</td>
 <td style="text-align:left;">
 kg H2O/kg biomass/m
 </td>
@@ -918,6 +877,44 @@ NA
 </tr>
 <tr>
 <td style="text-align:left;">
+wood_Kexp
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+1000000305
+</td>
+<td style="text-align:left;">
+unitless
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
 wood_psi_min
 </td>
 <td style="text-align:left;">
@@ -925,9 +922,6 @@ NA
 </td>
 <td style="text-align:right;">
 1000000300
-</td>
-<td style="text-align:right;">
-NA
 </td>
 <td style="text-align:left;">
 m
@@ -966,9 +960,6 @@ NA
 </td>
 <td style="text-align:right;">
 1000000288
-</td>
-<td style="text-align:right;">
-1000000391
 </td>
 <td style="text-align:left;">
 kg H2O/kg biomass/m
