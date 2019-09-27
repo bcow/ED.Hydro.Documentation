@@ -1,0 +1,140 @@
+---
+title: "The Downsides of Detail"
+output: html_document
+---
+
+
+################################################################################
+# Introduction {-}
+
+## Tropical forests and water stress {-}
+
+* Tropical forests are important to productivity.
+     * CITE
+
+* Under water stress, this productivity has the potential to change.
+     * CITE
+
+* Water stress is predicted to increas in both intensity and frequency. 
+     
+     * Climate change projections include predictions of increased variability in global climate conditions. This could result in increased frequency of extreme events such as early or late heat waves, droughts and floods (IPCC). 
+     * Extreme heat events are not entirely independent from droughts, and it is possible that the increasing occurrence of the two could create a positive feedback loop, ultimately leading to even more extreme conditions and event durations (Reyer et al. 2013). 
+
+* To accurately predict future tropical forest productivity, we must be able to predict responses to water stress. 
+
+
+## Models predicting response to water stress {-}
+
+* Ecosystem models, at their core, are a series of hypotheses and assumptions about individual ecological processes and their interactions. 
+
+* These processes are the primary components of models, and the sum of their parts produces ecosystem level responses such as net primary productivity. 
+
+* Our understanding of the ecophysiological mechanisms that govern species responses to water stress are limited.
+
+* Plants face a fundamental tradeoff between obtaining carbon and losing water, neither of which they can survive long without (Bonan 2015).  
+
+* Stomata take on the role of balancing the flux of CO2 and water between leaves and the atmosphere by changing stomatal conductance ($g_s$), the rate of assimilation and transpiration through stomata. Understanding why and how $g_s$ changes, especially under stress, is crucial to successfully predicting plant productivity under climate change. 
+
+* Much work has been done to understand stomatal behavior, however, despite the existence of numerous studies showing correlations between stomatal conductance and environmental factors such as light availability, temperature, atmospheric concentration of CO2, vapor pressure deficit (VPD) and soil water availability, there is still much debate over which biological mechanisms drive stomatal conductance.
+
+* The competing theories as to which mechanisms drive stomatal conductance under drought conditions, have be analogized to a “supply” and “demand” problem by (Novick et al. 2016). 
+
+     * The “supply” argument is supported by cohesion-tension theory: water cannot be supplied to the plant because water uptake is limited by decreasing soil water potential (Williams et al. 1996). 
+     * The “demand” argument is supported by stomatal optimization theory: plants want to maximize carbon uptake for a given water loss (Ball et al. 1987, Medlyn et al. 2011). 
+
+* One focuses on plant hydraulics and one on carbon assimilation but both water and CO2 availability are predicted to change with climate change and thus models need to react properly to both. 
+
+* There is general agreement that there needs to be a linking between soil moisture and photosynthesis-driven stomatal conductance (Choat et al. 2018, Medlyn et al. 2015, Rogers et al. 2017), but as of yet, the work to combines the theory is fairly new (Anderegg et al. 2017). 
+### Empirical vs mechanistic approach to modeling {-}
+
+* It also happens that the competing “supply” and “demand” models differ in fundamental and interesting mathematical ways. 
+
+   * The “demand” models based on optimizing carbon uptake as a function of atmospheric demand for water vapor are inherently empirical. 
+   * Despite the progress that has been made toward finding biological meaning for parameters in the original Ball-Berry-Leuning stomatal conductance model in (Medlyn et al. 2011), there still exist parameters that have no grounding in reality. As a result, the physical mechanisms behind the seemingly inverse relationship between gs and VPD are still debated (CITE). 
+   * On the other hand, the “supply” models based on maintaining water potentials throughout the plant to prevent cavitation, are mechanistic models based on cohesion-theory which in turn is built from physical understanding of intermolecular attraction and the flow of water against gravity (CITE). While various models differ in their choices of parameters, in general, parameters are physical properties of plants that can be measured.  
+
+### New mechanistic hydauics models have downsides: complexity! {-}
+
+* Mo' parameters, mo' problems! 
+* In most cases it in impossible to know the exact value of a model parameter and thus simply increasing the number of parameters in a model increases the amount of total parametric uncertainty that should be considered when calculating model predictive uncertainty. 
+
+* Not only does the model include more parameters, these parameters are hydraulic plant traits that are difficult (and in some cases theoretically impossible) to mesure in the field. This means that estimates of the paramter values contain exceptionally high amounts of uncertainty that have the potential to propogate through the model and contribute a great deal to model predictive uncertianty. 
+
+* Additioanlly, the sensitivity of the model to the hydraulic parameters may not be the same under all conditions. 
+     * It may be the case that the model is much more sensitive to hydraulic parameters under water stress conditions. 
+     * And thus predictive uncertainty from the mechanistic hydraulic model could increase unceder water stress, which would be exactly what we don't want, given that we are expecting to see increases in those climactic condiitons. 
+     
+* Uncertainties in stomatal responses are major drivers of ecosystem model uncertainty in predicted production (De Kauwe et al. 2013).  Furthermore, the choices between stomatal conductance models has been highlighted as a key step required for advancing ecosystem modeling (Medlyn et al. 2015, Unable to find information for 4913547). 
+
+## Question {-}
+
+The question then stands: even if mechanistic models have the potential to perform better under benchmarking tests and obviously represent a more sophisticated understanding of the processes underlying plant reponse to water stress, does this improvement outweight the potential increases in predictive uncertainty that come with increased model complexity?
+
+In other words: what good is a more sophisticated solution if we have no confidence in it?
+
+Furthermore, given the current hydraulic trait data that has been collected, can we sufficiently constrain parametric uncertainty enough to curtail excessive predictive uncertainty? 
+If this is not currently possible, does this seem like an achievable future goal using uncertainty and varaiance decomposition analysis to guide us towards the appropriate data collection strategy?
+
+## This study {-}
+
+* We aim to do a full uncertainty analysis of new hydraulic models. 
+
+* Full meta analysis of hydraulic traits
+* Compare model performace under dry years as well as wet years.And maybe also soil moisture?
+
+
+```{r}
+my_tbl <- tibble::tribble(
+  ~HYDRO_WET,  ~HYRO_DRY,   ~ORIG_WET,  ~ORIG_DRY, ~SOIL_MOIST,
+  0000000000, 1002716134,  0000000000, 0000000000,           2,
+  0000000000, 0000000000,  0000000000, 0000000000,         1.2
+  ) 
+require(knitr)
+kable(my_tbl, digits = 3, row.names = FALSE, align = "l",
+              caption = NULL)
+
+```
+
+
+################################################################################
+# Methods and Materials {-}
+
+## Ecosystem Demography Model (Version 2) {-}
+
+### Mechanisitc Hyraulics {-}
+
+## ED2 Parameter Description {-}
+
+## Site and Prescrition of Initial Vegetation Conditions {-}
+
+## BCI 2012 survey data {-}
+
+## Prescription of Atmospheric Conditions {-}
+
+### BCI 2012 flux tower data {-}
+
+### Simulating Drought {-}
+
+## Attributing Uncertainty to Ecological Processes {-}
+
+### Calculating Parameter Uncertainty {-}
+
+### Calculating Parameter Sensitivity and Contribution to Model Uncertainty {-}
+
+## Simulation protocols and data analysis {-}
+
+### PEcAn {-}
+
+### Meta Analysis {-}
+
+### Ensemble Runs  {-}
+
+### Sensitivity Analysis and Variance Decomposition {-}
+
+### Benchmarking {-}
+
+# Results {-}
+
+# Discussion {-}
+
+Good news is that it looks like it's worth it. 

@@ -466,7 +466,13 @@ myfit$score$dist[which.min(myfit$score$RMSE)]
 variable_id.in <- tbl(bety,"variables") %>% filter(name == priors$ED_name[i]) %>% pull(id)
 phylogeny.in <- "plants"
 
-best.fit.name <- myfit$score$dist[which.min(myfit$score$RMSE)]
+# In this case, the exponential function is the best fit, 
+# but I'm going to choose the beta function because it is much easier to deal 
+# with in the meta analysis. This could be wrong and we may need to return to it. 
+
+# best.fit.name <- myfit$score$dist[which.min(myfit$score$RMSE)]
+best.fit.name <- "beta"
+
 best.fit.dat <- myfit$dists %>% select(one_of("Name", best.fit.name)) %>% rename(value := !!best.fit.name, params = Name)
 
 wood_Kmax_prior_id <- prior_input(bety, variable_id.in, phylogeny.in, 
@@ -474,10 +480,11 @@ wood_Kmax_prior_id <- prior_input(bety, variable_id.in, phylogeny.in,
                                   parama.in = best.fit.dat %>% filter(params == "Para1") %>% pull(value), 
                                   paramb.in = best.fit.dat %>% filter(params == "Para2") %>% pull(value), 
                                   paramc.in = best.fit.dat %>% filter(params == "Para3") %>% pull(value))
+wood_Kmax_prior_id <- wood_Kmax_prior_id[1]
 ```
 
 ```{r plot wood_Kmax}
-wood_Kmax_fit <- tbl(bety, "priors") %>% filter(id == wood_Kmax_prior_id) %>% collect()
+wood_Kmax_fit <- pfts_priors %>% filter(var_name == "wood_Kmax") %>% select(one_of("distn", "parama", "paramb"))
 wood_Kmax_prior <- rdistn(wood_Kmax_fit) # NOTE: Need to convert to m from -m 
 wood_Kmax_default <- get_ED_default("/fs/data3/ecowdery/ED.Hydro/parameters/pft3_defaults_history.xml", "wood_Kmax")
 
@@ -485,7 +492,8 @@ prior_plot(prior = wood_Kmax_prior,
            q = c(0,.975), 
            plot_default = wood_Kmax_default,
            title = sprintf("Maximum hydraulic conductivity of the stem (wood_Kmax): %s", wood_Kmax_fit$distn),
-           type = "elic")
+           type = "elic") 
+
 ```
 
 --------------------------------------------------------------------------------

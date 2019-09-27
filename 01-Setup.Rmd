@@ -21,10 +21,24 @@ stats <- c("theor.min",
            "upp.975",
            "theor.max")
 
+accepted_dists <- c("norm", "lnorm", "chisq", "beta", "poisson", "exp", "gamma","weibull", "unif" )
 priors <- prior_load_data(download = FALSE, subset = TRUE)
 
 kable(priors)
 
-load("/fs/data3/ecowdery/ED.Hydro/parameters/prior_calculations/prior_data/accepted_dists.Rdata")
+```
+## PFT: ED_Tropical_Hydro
 
+ED id: 1000000131
+
+```{r}
+
+pftid <- 1000000131
+
+priorid <- tbl(bety, "pfts_priors") %>% filter(pft_id == pftid) %>% pull(prior_id)
+
+pfts_priors <- tbl(bety, "priors") %>% filter(id %in% priorid) %>% select(one_of("id", "variable_id", "distn", "parama", "paramb")) %>% 
+  left_join(tbl(bety, "variables") %>% select("id", "name"), by = c("variable_id" = "id")) %>% collect() %>% rename("var_name" = "name") 
+
+kable(pfts_priors)
 ```

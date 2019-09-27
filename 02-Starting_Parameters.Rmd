@@ -39,9 +39,8 @@ $$\frac{WD (gcm^{-2})}{\rho_w(gcm^{-2})} * \rho_w(gcm^{-2}) =  \frac{WD (gcm^{-2
 There are multiple priors available for wood density so we are explicitly choosing prior `1000000281` (this was chosen by someone else when the PFT was created.)
 
 ```{r wood_density}
-wood_density_id <- tbl(bety, "variables") %>% filter(name == "wood_density") %>% pull(id)
-wood_density_fit <- tbl(bety, "priors") %>% filter(variable_id == wood_density_id) %>% filter(id == 1000000422) %>% collect()
-wood_density_prior <- rdistn(wood_density_fit)
+wood_density_fit <- pfts_priors %>% filter(var_name == "wood_density") %>% select(one_of("distn", "parama", "paramb"))
+wood_density_prior <- rdistn(wood_density_fit) 
 wood_density_default <- get_ED_default(PFT3_defaults_history, "rho") 
 
 prior_plot(prior = wood_density_prior, 
@@ -60,8 +59,7 @@ And subsequently $LMA = (1/SLA)$
 There are multiple priors available for SLA so we are explicitly choosing prior `142` (this was chosen by someone else when the PFT was created.)
 
 ```{r SLA}
-SLA_id <- tbl(bety, "variables") %>% filter(name == "SLA") %>% pull(id)
-SLA_fit <- tbl(bety, "priors") %>% filter(variable_id == SLA_id) %>% filter(id == 142) %>% collect()
+SLA_fit <- pfts_priors %>% filter(var_name == "SLA") %>% select(one_of("distn", "parama", "paramb"))
 SLA_prior <- rdistn(SLA_fit)
 SLA_default <- get_ED_default("/fs/data3/ecowdery/ED.Hydro/parameters/pft3_defaults_history.xml", "SLA")
 

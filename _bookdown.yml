@@ -3,12 +3,12 @@ chapter_name: ""
 repo: https://github.com/bcow/ED.Hydro.Documentation
 output_dir: docs
 rmd_files: [
+  "Paper.Rmd",
   "index.Rmd",
   "01-Setup.Rmd",
   "02-Starting_Parameters.Rmd",
   "03-Leaf_Parameters.Rmd",
-  "04-Sapwood_Parameters.Rmd",
-  "05-Data_Compare.Rmd"
+  "04-Sapwood_Parameters.Rmd"
   ]
 clean: [packages.bib, bookdown.bbl]
 new_session: no

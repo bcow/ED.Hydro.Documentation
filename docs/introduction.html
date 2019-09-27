@@ -5,11 +5,11 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Calculating ED Hydro Parameter Priors</title>
+  <title>Introduction | Calculating ED Hydro Parameter Priors</title>
   <meta name="description" content="ED Hydro Documentation">
   <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
-  <meta property="og:title" content="Calculating ED Hydro Parameter Priors" />
+  <meta property="og:title" content="Introduction | Calculating ED Hydro Parameter Priors" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://bcow.github.io/ED.Hydro.Documentation/" />
   
@@ -17,7 +17,7 @@
   <meta name="github-repo" content="bcow/ED.Hydro.Documentation" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Calculating ED Hydro Parameter Priors" />
+  <meta name="twitter:title" content="Introduction | Calculating ED Hydro Parameter Priors" />
   
   <meta name="twitter:description" content="ED Hydro Documentation" />
   
@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-
-<link rel="next" href="introduction.html">
+<link rel="prev" href="index.html">
+<link rel="next" href="methods-and-materials.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -292,18 +292,119 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Calculating ED Hydro Parameter Priors</h1>
-<p class="author"><em>Betsy Cowdery</em></p>
-<p class="date"><em>2019-09-27</em></p>
+<div id="introduction" class="section level1 unnumbered">
+<h1>Introduction</h1>
+<div id="tropical-forests-and-water-stress" class="section level2 unnumbered">
+<h2>Tropical forests and water stress</h2>
+<ul>
+<li>Tropical forests are important to productivity.
+<ul>
+<li>CITE</li>
+</ul></li>
+<li>Under water stress, this productivity has the potential to change.
+<ul>
+<li>CITE</li>
+</ul></li>
+<li><p>Water stress is predicted to increas in both intensity and frequency.</p>
+<ul>
+<li>Climate change projections include predictions of increased variability in global climate conditions. This could result in increased frequency of extreme events such as early or late heat waves, droughts and floods (IPCC).</li>
+<li>Extreme heat events are not entirely independent from droughts, and it is possible that the increasing occurrence of the two could create a positive feedback loop, ultimately leading to even more extreme conditions and event durations (Reyer et al. 2013).</li>
+</ul></li>
+<li><p>To accurately predict future tropical forest productivity, we must be able to predict responses to water stress.</p></li>
+</ul>
 </div>
-<div id="documentation" class="section level1 unnumbered">
-<h1>Documentation</h1>
-<p>So far this covers how I calculated all the priors.
-It may ultimately show how the priors compare to the observed data (and the results of a meta analysis given the PFTs we’re interested in.)</p>
-
-<div id="section" class="section level80">
-<p><span class="header-section-number">0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.1</span> </p>
+<div id="models-predicting-response-to-water-stress" class="section level2 unnumbered">
+<h2>Models predicting response to water stress</h2>
+<ul>
+<li><p>Ecosystem models, at their core, are a series of hypotheses and assumptions about individual ecological processes and their interactions.</p></li>
+<li><p>These processes are the primary components of models, and the sum of their parts produces ecosystem level responses such as net primary productivity.</p></li>
+<li><p>Our understanding of the ecophysiological mechanisms that govern species responses to water stress are limited.</p></li>
+<li><p>Plants face a fundamental tradeoff between obtaining carbon and losing water, neither of which they can survive long without (Bonan 2015).</p></li>
+<li><p>Stomata take on the role of balancing the flux of CO2 and water between leaves and the atmosphere by changing stomatal conductance (<span class="math inline">\(g_s\)</span>), the rate of assimilation and transpiration through stomata. Understanding why and how <span class="math inline">\(g_s\)</span> changes, especially under stress, is crucial to successfully predicting plant productivity under climate change.</p></li>
+<li><p>Much work has been done to understand stomatal behavior, however, despite the existence of numerous studies showing correlations between stomatal conductance and environmental factors such as light availability, temperature, atmospheric concentration of CO2, vapor pressure deficit (VPD) and soil water availability, there is still much debate over which biological mechanisms drive stomatal conductance.</p></li>
+<li><p>The competing theories as to which mechanisms drive stomatal conductance under drought conditions, have be analogized to a “supply” and “demand” problem by (Novick et al. 2016).</p>
+<ul>
+<li>The “supply” argument is supported by cohesion-tension theory: water cannot be supplied to the plant because water uptake is limited by decreasing soil water potential (Williams et al. 1996).</li>
+<li>The “demand” argument is supported by stomatal optimization theory: plants want to maximize carbon uptake for a given water loss (Ball et al. 1987, Medlyn et al. 2011).</li>
+</ul></li>
+<li><p>One focuses on plant hydraulics and one on carbon assimilation but both water and CO2 availability are predicted to change with climate change and thus models need to react properly to both.</p></li>
+<li><p>There is general agreement that there needs to be a linking between soil moisture and photosynthesis-driven stomatal conductance (Choat et al. 2018, Medlyn et al. 2015, Rogers et al. 2017), but as of yet, the work to combines the theory is fairly new (Anderegg et al. 2017).
+### Empirical vs mechanistic approach to modeling {-}</p></li>
+<li><p>It also happens that the competing “supply” and “demand” models differ in fundamental and interesting mathematical ways.</p>
+<ul>
+<li>The “demand” models based on optimizing carbon uptake as a function of atmospheric demand for water vapor are inherently empirical.</li>
+<li>Despite the progress that has been made toward finding biological meaning for parameters in the original Ball-Berry-Leuning stomatal conductance model in (Medlyn et al. 2011), there still exist parameters that have no grounding in reality. As a result, the physical mechanisms behind the seemingly inverse relationship between gs and VPD are still debated (CITE).</li>
+<li>On the other hand, the “supply” models based on maintaining water potentials throughout the plant to prevent cavitation, are mechanistic models based on cohesion-theory which in turn is built from physical understanding of intermolecular attraction and the flow of water against gravity (CITE). While various models differ in their choices of parameters, in general, parameters are physical properties of plants that can be measured.</li>
+</ul></li>
+</ul>
+<div id="new-mechanistic-hydauics-models-have-downsides-complexity" class="section level3 unnumbered">
+<h3>New mechanistic hydauics models have downsides: complexity!</h3>
+<ul>
+<li>Mo’ parameters, mo’ problems!</li>
+<li><p>In most cases it in impossible to know the exact value of a model parameter and thus simply increasing the number of parameters in a model increases the amount of total parametric uncertainty that should be considered when calculating model predictive uncertainty.</p></li>
+<li><p>Not only does the model include more parameters, these parameters are hydraulic plant traits that are difficult (and in some cases theoretically impossible) to mesure in the field. This means that estimates of the paramter values contain exceptionally high amounts of uncertainty that have the potential to propogate through the model and contribute a great deal to model predictive uncertianty.</p></li>
+<li>Additioanlly, the sensitivity of the model to the hydraulic parameters may not be the same under all conditions.
+<ul>
+<li>It may be the case that the model is much more sensitive to hydraulic parameters under water stress conditions.</li>
+<li>And thus predictive uncertainty from the mechanistic hydraulic model could increase unceder water stress, which would be exactly what we don’t want, given that we are expecting to see increases in those climactic condiitons.</li>
+</ul></li>
+<li><p>Uncertainties in stomatal responses are major drivers of ecosystem model uncertainty in predicted production (De Kauwe et al. 2013). Furthermore, the choices between stomatal conductance models has been highlighted as a key step required for advancing ecosystem modeling (Medlyn et al. 2015, Unable to find information for 4913547).</p></li>
+</ul>
+</div>
+</div>
+<div id="question" class="section level2 unnumbered">
+<h2>Question</h2>
+<p>The question then stands: even if mechanistic models have the potential to perform better under benchmarking tests and obviously represent a more sophisticated understanding of the processes underlying plant reponse to water stress, does this improvement outweight the potential increases in predictive uncertainty that come with increased model complexity?</p>
+<p>In other words: what good is a more sophisticated solution if we have no confidence in it?</p>
+<p>Furthermore, given the current hydraulic trait data that has been collected, can we sufficiently constrain parametric uncertainty enough to curtail excessive predictive uncertainty?
+If this is not currently possible, does this seem like an achievable future goal using uncertainty and varaiance decomposition analysis to guide us towards the appropriate data collection strategy?</p>
+</div>
+<div id="this-study" class="section level2 unnumbered">
+<h2>This study</h2>
+<ul>
+<li><p>We aim to do a full uncertainty analysis of new hydraulic models.</p></li>
+<li>Full meta analysis of hydraulic traits</li>
+<li><p>Compare model performace under dry years as well as wet years.And maybe also soil moisture?</p></li>
+</ul>
+<pre class="sourceCode r"><code class="sourceCode r">my_tbl &lt;-<span class="st"> </span>tibble<span class="op">::</span><span class="kw">tribble</span>(
+  <span class="op">~</span>HYDRO_WET,  <span class="op">~</span>HYRO_DRY,   <span class="op">~</span>ORIG_WET,  <span class="op">~</span>ORIG_DRY, <span class="op">~</span>SOIL_MOIST,
+  <span class="dv">0000000000</span>, <span class="dv">1002716134</span>,  <span class="dv">0000000000</span>, <span class="dv">0000000000</span>,           <span class="dv">2</span>,
+  <span class="dv">0000000000</span>, <span class="dv">0000000000</span>,  <span class="dv">0000000000</span>, <span class="dv">0000000000</span>,         <span class="fl">1.2</span>
+  ) 
+<span class="kw">require</span>(knitr)</code></pre>
+<pre><code>## Loading required package: knitr</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">kable</span>(my_tbl, <span class="dt">digits =</span> <span class="dv">3</span>, <span class="dt">row.names =</span> <span class="ot">FALSE</span>, <span class="dt">align =</span> <span class="st">&quot;l&quot;</span>,
+              <span class="dt">caption =</span> <span class="ot">NULL</span>)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">HYDRO_WET</th>
+<th align="left">HYRO_DRY</th>
+<th align="left">ORIG_WET</th>
+<th align="left">ORIG_DRY</th>
+<th align="left">SOIL_MOIST</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">0</td>
+<td align="left">1002716134</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">2.0</td>
+</tr>
+<tr class="even">
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">0</td>
+<td align="left">1.2</td>
+</tr>
+</tbody>
+</table>
+<div id="section-1" class="section level80">
+<p><span class="header-section-number">0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.2</span> </p>
+</div>
 </div>
 </div>
             </section>
@@ -311,8 +412,8 @@ It may ultimately show how the priors compare to the observed data (and the resu
           </div>
         </div>
       </div>
-
-<a href="introduction.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="methods-and-materials.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
