@@ -1,0 +1,13 @@
+---
+title: "04-Photo_SC"
+output: html_document
+---
+
+# Photosynthesis and Stomatal Conductance {-}
+
+## Vcmax                     Vcmax traits_photo {-}
+
+## stomatal_slope            Stomatal Slope traits_photo {-}
+
+## quantum_efficiency        Quantum Efficiency traits_photo  {-}
+

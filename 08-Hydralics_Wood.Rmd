@@ -1,46 +1,38 @@
 ---
-title: "04-Sapwood_Parameters"
+title: "08-Hydraulics_Wood"
 output: html_document
 ---
 
-# Key Wood Traits {-}
+# Hydraulic Wood Traits {-}
 
-## `[wood_density]:` Wood density {-}
+```{r, echo = FALSE, warning=FALSE, message=FALSE}
+# bety <- betyConnect("/fs/data3/ecowdery/pecan/web/config.php")
 
-- ED variable name : `rho`
-- ED units: `g cm-3` Note! Leaf density is calculated in `kg cm-3` because that makes perfect sense ... 
-- ED variable id: 1000000055
-- FATES varaiable name: `WD`
+pftid <- 1000000131
+pfts_priors <- tbl(bety, "priors") %>% 
+  filter(id %in% priorid) %>% 
+  dplyr::select(one_of("id", "variable_id", "distn", "parama", "paramb")) %>% 
+  left_join(tbl(bety, "variables") %>% 
+              dplyr::select("id", "name"), by = c("variable_id" = "id")) %>% 
+  collect() %>% 
+  rename("var_name" = "name") 
 
-In the database, wood_density is unitless. 
-So I'm assuming it can be directly mapped to our `wood_density` as such:
+tropical_species <- tbl(bety, "pfts") %>% 
+  dplyr::rename(pft_id = id) %>% 
+  filter(pft_id == pftid) %>%
+  inner_join(., tbl(bety, "pfts_species"), by = "pft_id") %>% 
+  inner_join(., tbl(bety, "species") %>% 
+               dplyr::rename(specie_id = id), by = "specie_id") %>% 
+  dplyr::select(one_of("pft_id", "name", "specie_id", "genus", "species", "scientificname")) %>% 
+  collect()
 
-$$\frac{WD (gcm^{-2})}{\rho_w(gcm^{-2})} * \rho_w(gcm^{-2}) =  \frac{WD (gcm^{-2})}{1(gcm^{-2})} * 1(gcm^{-2})$$
-There are multiple priors available for wood density so we are explicitly choosing prior `1000000281` (this was chosen by someone else when the PFT was created.)
+species_ids <- unique(tropical_species$specie_id)
 
-```{r wood_density}
-t = "wood_density"
-
-traits[[t]] <- list(
-  variable_name = t,
-  variable_id =  pfts_priors %>% filter(var_name == t) %>% pull(variable_id),
-  prior_id = pfts_priors %>% filter(var_name == t) %>% pull(id),
-  fit = pfts_priors %>% filter(var_name == t) %>% select("distn", "parama", "paramb")
-)
-
-traits[[t]]$prior = rdistn(traits[[t]]$fit)
-traits[[t]]$default = get_ED_default(PFT3_defaults_history, "rho")
-
-prior_plot(prior = traits[[t]]$prior, 
-           plot_default = traits[[t]]$default,
-           title = sprintf("%s:\n(%s, %.4f, %.4f)", t, 
-                           traits[[t]]$fit$distn, 
-                           traits[[t]]$fit$parama,
-                           traits[[t]]$fit$paramb),
-           type = "prior")
+trait_data <- tbl(bety, "traits") %>% filter(specie_id %in% species_ids) %>% 
+  filter(variable_id %in% !!pfts_priors$variable_id) %>% 
+  select(id, specie_id, variable_id, mean) %>% collect() %>% 
+  left_join(pfts_priors %>% select(var=var_name, variable_id)) 
 ```
-
---------------------------------------------------------------------------------
 
 ## `[wood_psi_osmotic]:` Sapwood osmotic water potential at saturation  {-}
 
@@ -303,11 +295,11 @@ traits <- fit_trait_dist(bety, traits, t, prior_in, accepted_dists)
 
 ```{r plot wood_psi_tlp}
 
-traits[[t]]$prior = -1 * rdistn(traits[[t]]$fit) # Remember to flip back over for psi
-traits[[t]]$default = get_ED_default(PFT3_defaults_history, t)
+traits[[t]]$prior <- -1 * rdistn(traits[[t]]$fit) # Remember to flip back over for psi
+traits[[t]]$default <- get_ED_default(PFT3_defaults_history, t)
 
-prior_plot(prior = traits[[t]]$prior, 
-           q = c(.005,1),
+p_plot <- prior_plot(prior = traits[[t]]$prior, 
+           # q = c(.005,1),
            plot_default = traits[[t]]$default,
            title = sprintf("%s(%s):\n%s(%.4f, %.4f)", t_long, t, 
                            traits[[t]]$fit$distn, 
@@ -315,6 +307,13 @@ prior_plot(prior = traits[[t]]$prior,
                            traits[[t]]$fit$paramb),
            type = "mixed")
 
+traits[[t]]$obs <- -1 * trait_data %>% filter(var == t) %>% pull(mean)
+
+obs_plot <- data.frame(mean = traits[[t]]$obs, y = 0)
+
+p_plot + 
+  geom_density(data = obs_plot, aes(x = mean, fill = "obs", color = "obs"), alpha = .3) + 
+  geom_point(data = obs_plot, aes(x = mean, y = y, color = "obs"), shape = "o", size = 3)
 ```
 
 --------------------------------------------------------------------------------
@@ -368,6 +367,7 @@ prior_in[,stats]
 
 traits <- fit_trait_dist(bety, traits, t, prior_in, accepted_dists)
 ```
+
 ```{r plot wood_water_cap}
 
 # I don't actually remember why we were plotting 10, 100, 300, 900 ... ?
@@ -375,8 +375,8 @@ traits <- fit_trait_dist(bety, traits, t, prior_in, accepted_dists)
 traits[[t]]$prior = rdistn(traits[[t]]$fit) * (1/1000) # Convert back to kg
 traits[[t]]$default = get_ED_default(PFT3_defaults_history, t)
 
-prior_plot(prior = traits[[t]]$prior, 
-           q = c(0, .975),
+p_plot <- prior_plot(prior = traits[[t]]$prior, 
+           q = c(0, .995),
            plot_default = traits[[t]]$default,
            title = sprintf("%s(%s):\n%s(%.4f, %.4f)", t_long, t, 
                            traits[[t]]$fit$distn, 
@@ -387,6 +387,16 @@ prior_plot(prior = traits[[t]]$prior,
   geom_vline(aes(xintercept = 100/C$MPa2m * (1/1000)), color = "gray") +
   geom_vline(aes(xintercept = 300/C$MPa2m * (1/1000)), color = "gray") +
   geom_vline(aes(xintercept = 900/C$MPa2m * (1/1000)), color = "gray")
+
+
+
+traits[[t]]$obs <- trait_data %>% filter(var == t) %>% pull(mean) * (1/1000) # Convert back to kg
+
+obs_plot <- data.frame(mean = traits[[t]]$obs, y = 0)
+
+p_plot + 
+  geom_density(data = obs_plot, aes(x = mean, fill = "obs", color = "obs"), alpha = .3) + 
+  geom_point(data = obs_plot, aes(x = mean, y = y, color = "obs"), shape = "o", size = 3)
 
 ```
 
@@ -504,7 +514,7 @@ traits <- fit_trait_dist(bety, traits, t, prior_in, accepted_dists = "beta")
 traits[[t]]$prior = rdistn(traits[[t]]$fit) 
 traits[[t]]$default = get_ED_default(PFT3_defaults_history, t)
 
-prior_plot(prior = traits[[t]]$prior, 
+p_plot <- prior_plot(prior = traits[[t]]$prior, 
           q = c(0,.975),
            plot_default = traits[[t]]$default,
            title = sprintf("%s(%s):\n%s(%.4f, %.4f)", t_long, t, 
@@ -512,6 +522,13 @@ prior_plot(prior = traits[[t]]$prior,
                            traits[[t]]$fit$parama,
                            traits[[t]]$fit$paramb),
            type = "elic")
+
+traits[[t]]$obs <- trait_data %>% filter(var == t) %>% pull(mean) 
+obs_plot <- data.frame(mean = traits[[t]]$obs, y = 0)
+
+p_plot + 
+  geom_density(data = obs_plot, aes(x = mean, fill = "obs", color = "obs"), alpha = .3) + 
+  geom_point(data = obs_plot, aes(x = mean, y = y, color = "obs"), shape = "o", size = 3)
 
 ```
 
@@ -575,7 +592,7 @@ traits[[t]]$prior = -1 * rdistn(traits[[t]]$fit)
 # Calculating default from wood density by hand because it is calculated incorrectly in ED! 
 traits[[t]]$default = (-1.09 - (3.57 * traits[["wood_density"]]$default ^ 1.73)) * C$MPa2m
 
-prior_plot(prior = traits[[t]]$prior, 
+p_plot <- prior_plot(prior = traits[[t]]$prior, 
           q = c(0.025,1),
            plot_default = traits[[t]]$default,
            title = sprintf("%s(%s):\n%s(%.4f, %.4f)", t_long, t, 
@@ -583,6 +600,13 @@ prior_plot(prior = traits[[t]]$prior,
                            traits[[t]]$fit$parama,
                            traits[[t]]$fit$paramb),
            type = "elic")
+
+traits[[t]]$obs <- trait_data %>% filter(var == t) %>% pull(mean) * -1
+obs_plot <- data.frame(mean = traits[[t]]$obs, y = 0)
+
+p_plot + 
+  geom_density(data = obs_plot, aes(x = mean, fill = "obs", color = "obs"), alpha = .3) + 
+  geom_point(data = obs_plot, aes(x = mean, y = y, color = "obs"), shape = "o", size = 3)
 ```
 
 
@@ -683,7 +707,7 @@ traits[[t]]$prior = rdistn(traits[[t]]$fit)
 # Calculating default from wood density by hand because it is calculated incorrectly in ED! 
 traits[[t]]$default = 0.544 * 4. * (-traits[["wood_psi50"]]$default / C$MPa2m) ^ (-0.17)
 
-prior_plot(prior = traits[[t]]$prior, 
+p_plot <- prior_plot(prior = traits[[t]]$prior, 
                 q = c(0,.975), 
            plot_default = traits[[t]]$default,
            title = sprintf("%s(%s):\n%s(%.4f, %.4f)", t_long, t, 
@@ -691,6 +715,13 @@ prior_plot(prior = traits[[t]]$prior,
                            traits[[t]]$fit$parama,
                            traits[[t]]$fit$paramb),
            type = "equation")
+
+traits[[t]]$obs <- trait_data %>% filter(var == t) %>% pull(mean) 
+obs_plot <- data.frame(mean = traits[[t]]$obs, y = 0)
+
+p_plot + 
+  geom_density(data = obs_plot, aes(x = mean, fill = "obs", color = "obs"), alpha = .3) + 
+  geom_point(data = obs_plot, aes(x = mean, y = y, color = "obs"), shape = "o", size = 3)
 ```
 
 Note: here the miscalculation of psi50 in the code barely shows up 

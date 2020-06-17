@@ -5,9 +5,14 @@ output_dir: docs
 rmd_files: [
   "index.Rmd",
   "01-Setup.Rmd",
-  "02-Starting_Parameters.Rmd",
-  "03-Leaf_Parameters.Rmd",
-  "04-Sapwood_Parameters.Rmd"
+  "02-Constants.Rmd",
+  "03-Alloc_Allom.Rmd",
+  "04-Photo_SC.Rmd",
+  "05-Radiation.Rmd",
+  "06-Resp_Turnovr.Rmd",
+  "07-Hydralics_Leaf.Rmd",
+  "08-Hydralics_Wood.Rmd",
+  "09-Hydralics_Root.Rmd"
   ]
 clean: [packages.bib, bookdown.bbl]
 new_session: no

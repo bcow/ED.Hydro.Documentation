@@ -1,0 +1,11 @@
+---
+title: "Hydraulics_Root"
+output: html_document
+---
+
+# Hydraulic Root Traits {-}
+
+## root beta {-}
+
+## root curvature  {-}
+... but we aren't using it because there is no prior

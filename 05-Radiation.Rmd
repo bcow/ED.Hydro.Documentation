@@ -1,0 +1,17 @@
+---
+title: "05-Radiation"
+output: html_document
+---
+
+# Radiation {-}
+
+## orient_factor          Leaf orientation  {-}
+
+## leaf_reflect_nir      Leaf NIR reflectance  {-}
+
+## leaf_trans_nir    Leaf NIR transmittance {-}
+
+## leaf_reflect_vis      Leaf VIS reflectance  {-}
+
+## leaf_trans_vis    Leaf VIS transmittance  {-}
+

@@ -40,7 +40,7 @@ v_df <- data.frame(var, variable_id, stringsAsFactors = FALSE)
 species_ids <- unique(tropical_species$specie_id)
 
 trait_data <- tbl(bety, "traits") %>% filter(specie_id %in% species_ids) %>% 
-  filter(variable_id %in% v_df$variable_id) %>% collect() %>% left_join(v_df)
+  filter(variable_id %in% !!v_df$variable_id) %>% collect() %>% left_join(v_df)
 
 ```
 

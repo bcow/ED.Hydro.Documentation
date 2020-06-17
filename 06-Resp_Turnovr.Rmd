@@ -1,0 +1,16 @@
+---
+title: "06-Resp_Turnovr"
+output: html_document
+---
+
+# Respiration and Turnover  {-}
+
+## growth_resp_factor        Growth Respiration  {-}
+
+## leaf_respiration_rate_m2     Leaf Respiration Rate   {-}
+
+## veg_respiration_Q10            Veg. Resp. Q10   {-}
+
+## leaf_turnover_rate        Leaf Turnover Rate   {-}
+
+## root_turnover_rate        Root Turnover Rate   {-}

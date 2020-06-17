@@ -1,42 +1,9 @@
 ---
-title: "03-Leaf_Parameters"
+title: "07-Hydraulics_Leaf"
 output: html_document
 ---
 
-# Key Leaf Traits {-}
-
-## `[SLA]:` Specific Leaf Area (SLA) {-}
-And subsequently $LMA = (1/SLA)$
-
-- ED variable name : `SLA`
-- ED variable id: 15
-
-There are multiple priors available for SLA so we are explicitly choosing prior `142` (this was chosen by someone else when the PFT was created.)
-
-```{r SLA}
-t = "SLA"
-t_long = "Specific Leaf Area "
-
-traits[[t]] <- list(
-  variable_name = t,
-  variable_id =  pfts_priors %>% filter(var_name == t) %>% pull(variable_id),
-  prior_id = pfts_priors %>% filter(var_name == t) %>% pull(id),
-  fit = pfts_priors %>% filter(var_name == t) %>% select("distn", "parama", "paramb")
-)
-
-traits[[t]]$prior = rdistn(traits[[t]]$fit)
-traits[[t]]$default = get_ED_default(PFT3_defaults_history, t)
-
-prior_plot(prior = traits[[t]]$prior, 
-           plot_default = traits[[t]]$default,
-           title = sprintf("%s(%s):\n%s(%.4f, %.4f)", t_long, t, 
-                           traits[[t]]$fit$distn, 
-                           traits[[t]]$fit$parama,
-                           traits[[t]]$fit$paramb),
-           type = "prior")
-```
-
---------------------------------------------------------------------------------
+# Hydraulic Leaf Traits {-}
 
 ## `[leaf_psi_osmotic]:` Leaf osmotic water potential at saturation {-}
 
