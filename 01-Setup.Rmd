@@ -1,6 +1,7 @@
 # Setup {-}
 
 ```{r setup, echo = FALSE}
+
 suppressPackageStartupMessages(library(ED.Hydro.Helpers))
 suppressPackageStartupMessages(library(rlang))
 suppressPackageStartupMessages(library(knitr))
@@ -27,6 +28,25 @@ priors <- prior_load_data(download = FALSE, subset = TRUE)
 kable(priors)
 
 ```
+
+```{r}
+traits <- list()
+```
+
+## Choosing PFTs {-}
+
+-   2: early tropical                 
+-   3: mid tropical             
+-   4: late tropical 
+
+Here we are only using one tropical PFT instead of three. But there is a hydro and non, hydro version. \\
+
+Both were cloned from the Broadleaf Tropical PFT made for FATES, with additional species added in when trait data was added for the meta analysis. 
+
+- ED_Tropical: 1000000132 (http://psql-pecan.bu.edu/bety/pfts/1000000132)
+- ED_Tropical_Hydro: 1000000131 (http://psql-pecan.bu.edu/bety/pfts/1000000131)
+
+
 ## PFT: ED_Tropical_Hydro
 
 ED id: 1000000131
@@ -37,8 +57,8 @@ pftid <- 1000000131
 
 priorid <- tbl(bety, "pfts_priors") %>% filter(pft_id == pftid) %>% pull(prior_id)
 
-pfts_priors <- tbl(bety, "priors") %>% filter(id %in% priorid) %>% select(one_of("id", "variable_id", "distn", "parama", "paramb")) %>% 
-  left_join(tbl(bety, "variables") %>% select("id", "name"), by = c("variable_id" = "id")) %>% collect() %>% rename("var_name" = "name") 
+pfts_priors <- tbl(bety, "priors") %>% filter(id %in% priorid) %>% dplyr::select(one_of("id", "variable_id", "distn", "parama", "paramb")) %>% 
+  left_join(tbl(bety, "variables") %>% dplyr::select("id", "name"), by = c("variable_id" = "id")) %>% collect() %>% rename("var_name" = "name") 
 
 kable(pfts_priors)
 ```

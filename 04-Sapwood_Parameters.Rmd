@@ -5,6 +5,41 @@ output: html_document
 
 # Key Wood Traits {-}
 
+## `[wood_density]:` Wood density {-}
+
+- ED variable name : `rho`
+- ED units: `g cm-3` Note! Leaf density is calculated in `kg cm-3` because that makes perfect sense ... 
+- ED variable id: 1000000055
+- FATES varaiable name: `WD`
+
+In the database, wood_density is unitless. 
+So I'm assuming it can be directly mapped to our `wood_density` as such:
+
+$$\frac{WD (gcm^{-2})}{\rho_w(gcm^{-2})} * \rho_w(gcm^{-2}) =  \frac{WD (gcm^{-2})}{1(gcm^{-2})} * 1(gcm^{-2})$$
+There are multiple priors available for wood density so we are explicitly choosing prior `1000000281` (this was chosen by someone else when the PFT was created.)
+
+```{r wood_density}
+t = "wood_density"
+
+traits[[t]] <- list(
+  variable_name = t,
+  variable_id =  pfts_priors %>% filter(var_name == t) %>% pull(variable_id),
+  prior_id = pfts_priors %>% filter(var_name == t) %>% pull(id),
+  fit = pfts_priors %>% filter(var_name == t) %>% select("distn", "parama", "paramb")
+)
+
+traits[[t]]$prior = rdistn(traits[[t]]$fit)
+traits[[t]]$default = get_ED_default(PFT3_defaults_history, "rho")
+
+prior_plot(prior = traits[[t]]$prior, 
+           plot_default = traits[[t]]$default,
+           title = sprintf("%s:\n(%s, %.4f, %.4f)", t, 
+                           traits[[t]]$fit$distn, 
+                           traits[[t]]$fit$parama,
+                           traits[[t]]$fit$paramb),
+           type = "prior")
+```
+
 --------------------------------------------------------------------------------
 
 ## `[wood_psi_osmotic]:` Sapwood osmotic water potential at saturation  {-}
@@ -36,35 +71,34 @@ Expert elicitation provided by Brad Christoffersen
 
 #### Code {-}
 
+
 ```{r calc wood_psi_osmotic}
-i <- which(priors$ED_name == "wood_psi_osmotic")
-prior_in <- priors[i, stats] * MPa2m
 
-myfit <- prior_get_fit(prior_in, accepted_dists, plot = TRUE)
-myfit$score$dist[which.min(myfit$score$RMSE)]
+t = "wood_psi_osmotic"
+t_long = "Sapwood osmotic water potential at saturation "
 
-variable_id.in <- tbl(bety,"variables") %>% filter(name == priors$ED_name[i]) %>% pull(id)
-phylogeny.in <- "plants"
+i <- which(priors$ED_name == t)
+prior_in <- priors[i, stats] * C$MPa2m
 
-best.fit.name <- myfit$score$dist[which.min(myfit$score$RMSE)]
-best.fit.dat <- myfit$dists %>% select(one_of("Name", best.fit.name)) %>% rename(value := !!best.fit.name, params = Name)
-
-wood_psi_osmotic_prior_id <- prior_input(bety, variable_id.in, phylogeny.in, 
-                                         dist.name.in = best.fit.name, 
-                                         parama.in = best.fit.dat %>% filter(params == "Para1") %>% pull(value), 
-                                         paramb.in = best.fit.dat %>% filter(params == "Para2") %>% pull(value), 
-                                         paramc.in = best.fit.dat %>% filter(params == "Para3") %>% pull(value))
+traits <- fit_trait_dist(bety, traits, t, prior_in, accepted_dists)
 ```
-```{r plot wood_psi_osmotic}
-wood_psi_osmotic_fit <- tbl(bety, "priors") %>% filter(id == wood_psi_osmotic_prior_id) %>% collect()
-wood_psi_osmotic_prior <- -rdistn(wood_psi_osmotic_fit)
-wood_psi_osmotic_default <- get_ED_default(PFT3_defaults_history, "wood_psi_osmotic")
 
-prior_plot(prior = wood_psi_osmotic_prior, 
-           q = c(0,1), 
-           plot_default = wood_psi_osmotic_default,
-           title = sprintf("Sapwood osmotic water potential at saturation (wood_psi_osmotic): %s", wood_psi_osmotic_fit$distn),
+
+
+
+```{r plot wood_psi_osmotic}
+
+traits[[t]]$prior = -1 * rdistn(traits[[t]]$fit)
+traits[[t]]$default = get_ED_default(PFT3_defaults_history, t)
+
+prior_plot(prior = traits[[t]]$prior, 
+           plot_default = traits[[t]]$default,
+           title = sprintf("%s(%s):\n%s(%.4f, %.4f)", t_long, t, 
+                           traits[[t]]$fit$distn, 
+                           traits[[t]]$fit$parama,
+                           traits[[t]]$fit$paramb),
            type = "elic")
+
 ```
 
 --------------------------------------------------------------------------------
@@ -97,35 +131,32 @@ None!
 ### Code {-}
 
 ```{r calc wood_elastic_mod}
-i <- which(priors$ED_name == "wood_elastic_mod")
+
+t = "wood_elastic_mod"
+t_long = "wood bulk elastic modulus "
+
+i <- which(priors$ED_name == t)
 prior_in <- priors[i,]
-myfit <- prior_get_fit(prior_in, accepted_dists, plot = TRUE)
 
-variable_id.in <- tbl(bety,"variables") %>% filter(name == priors$ED_name[i]) %>% pull(id)
-phylogeny.in <- "plants"
-
-best.fit.name <- myfit$score$dist[which.min(myfit$score$RMSE)]
-best.fit.dat <- myfit$dists %>% select(one_of("Name", best.fit.name)) %>% rename(value := !!best.fit.name, params = Name)
-
-wood_elastic_mod_id <- prior_input(bety, variable_id.in, phylogeny.in, 
-                                   dist.name.in = best.fit.name, 
-                                   parama.in = best.fit.dat %>% filter(params == "Para1") %>% pull(value), 
-                                   paramb.in = best.fit.dat %>% filter(params == "Para2") %>% pull(value), 
-                                   paramc.in = best.fit.dat %>% filter(params == "Para3") %>% pull(value))
+traits <- fit_trait_dist(bety, traits, t, prior_in, accepted_dists)
 
 ```
 
 
 ```{r plot wood_elastic_mod}
-wood_elastic_mod_fit <- tbl(bety, "priors") %>% filter(id == wood_elastic_mod_id) %>% collect()
-wood_elastic_mod_prior <- rdistn(wood_elastic_mod_fit)
-wood_elastic_mod_default <- get_ED_default("/fs/data3/ecowdery/ED.Hydro/parameters/pft3_defaults_history.xml", "wood_elastic_mod")
 
-prior_plot(prior = wood_elastic_mod_prior, 
-           q = c(0,1), 
-           plot_default = wood_elastic_mod_default,
-           title = sprintf("wood bulk elastic modulus (wood_elastic_mod): %s", wood_elastic_mod_fit$distn),
+traits[[t]]$prior = rdistn(traits[[t]]$fit)
+traits[[t]]$default = get_ED_default(PFT3_defaults_history, t)
+
+prior_plot(prior = traits[[t]]$prior, 
+           q = c(0,.999), 
+           plot_default = traits[[t]]$default,
+           title = sprintf("%s(%s):\n%s(%.4f, %.4f)", t_long, t, 
+                           traits[[t]]$fit$distn, 
+                           traits[[t]]$fit$parama,
+                           traits[[t]]$fit$paramb),
            type = "elic")
+
 ```
 
 --------------------------------------------------------------------------------
@@ -158,47 +189,51 @@ multiply by the density of water over wood density
 ### Code {-}
 
 ```{r calc wood_water_sat}
-i <- which(priors$ED_name == "wood_water_sat")
-myfit_0 <- prior_get_fit(priors[i,], accepted_dists, plot = FALSE)  
 
-myfit_0$score$dist[which.min(myfit_0$score$RMSE)]
+t = "wood_water_sat"
+t_long = "Wood water content at saturation "
+
+i <- which(priors$ED_name == t)
+temp_wws_fit <- prior_get_fit(priors[i,], accepted_dists, plot = FALSE)  
+
+temp_wws_fit$score$dist[which.min(temp_wws_fit$score$RMSE)]
 # I'm skipping steps here for the sake of time and sanity
 # Normal is the best fit
-wood_water_sat_prior_0 <- rnorm(100000, myfit_0$dists$norm[1], myfit_0$dists$norm[2])
 
-wood_water_sat_sample <- wood_water_sat_prior_0 * (wdns/(wood_density_prior * 1e3)) 
+temp_wws_prior <- rnorm(100000, temp_wws_fit$dists$norm[1], temp_wws_fit$dists$norm[2])
+
+temp_wws_sample <- temp_wws_prior * (C$wdns/(traits[["wood_density"]]$prior * 1e3)) 
 # Note that here we have to multiply by 1e3 because of the units of wood density 
 
 # In this case I'm not using the function I built because here it wouldn't make sense. 
-prior_in <- data.frame(low.025 =  quantile(wood_water_sat_sample, c(.025), na.rm = TRUE),
-                       low.25  =  quantile(wood_water_sat_sample, c(.25), na.rm = TRUE),
-                       mean    =  quantile(wood_water_sat_sample, c(.5), na.rm = TRUE), 
-                       upp.75  =  quantile(wood_water_sat_sample, c(.75), na.rm = TRUE), 
-                       upp.975 =  quantile(wood_water_sat_sample, c(.975), na.rm = TRUE))
-myfit <- prior_get_fit(prior_in, accepted_dists, plot = TRUE)
+prior_in <- data.frame(
+  theor.min = NA,
+  low.025 =  quantile(temp_wws_sample, c(.025), na.rm = TRUE),
+  low.25  =  quantile(temp_wws_sample, c(.25), na.rm = TRUE),
+  mean    =  quantile(temp_wws_sample, c(.5), na.rm = TRUE), 
+  upp.75  =  quantile(temp_wws_sample, c(.75), na.rm = TRUE), 
+  upp.975 =  quantile(temp_wws_sample, c(.975), na.rm = TRUE),
+  theor.max = NA)
 
-variable_id.in <- tbl(bety,"variables") %>% filter(name == priors$ED_name[i]) %>% pull(id)
-phylogeny.in <- "plants"
+traits <- fit_trait_dist(bety, traits, t, prior_in, accepted_dists)
 
-best.fit.name <- myfit$score$dist[which.min(myfit$score$RMSE)]
-best.fit.dat <- myfit$dists %>% select(one_of("Name", best.fit.name)) %>% rename(value := !!best.fit.name, params = Name)
-
-wood_water_sat_prior_id <- prior_input(bety, variable_id.in, phylogeny.in, 
-                                       dist.name.in = best.fit.name, 
-                                       parama.in = best.fit.dat %>% filter(params == "Para1") %>% pull(value), 
-                                       paramb.in = best.fit.dat %>% filter(params == "Para2") %>% pull(value), 
-                                       paramc.in = best.fit.dat %>% filter(params == "Para3") %>% pull(value))
+# Now we can remove temp variables
+rm(temp_wws_fit, temp_wws_prior, temp_wws_sample)
 ```
 ```{r plot wood_water_sat}
-wood_water_sat_fit <- tbl(bety, "priors") %>% filter(id == wood_water_sat_prior_id) %>% collect()
-wood_water_sat_prior <- rdistn(wood_water_sat_fit)
-wood_water_sat_density <- get_ED_default("/fs/data3/ecowdery/ED.Hydro/parameters/pft3_defaults_history.xml", "wood_water_sat")
 
-prior_plot(prior = wood_water_sat_prior, 
-           q = c(0,.995),
-           plot_default = wood_water_sat_density,
-           title = sprintf("Wood water content at saturation (wood_water_sat): %s", wood_water_sat_fit$distn),
+traits[[t]]$prior = rdistn(traits[[t]]$fit)
+traits[[t]]$default = get_ED_default(PFT3_defaults_history, t)
+
+prior_plot(prior = traits[[t]]$prior, 
+           q = c(0,.99), 
+           plot_default = traits[[t]]$default,
+           title = sprintf("%s(%s):\n%s(%.4f, %.4f)", t_long, t, 
+                           traits[[t]]$fit$distn, 
+                           traits[[t]]$fit$parama,
+                           traits[[t]]$fit$paramb),
            type = "mixed")
+
 ```
 
 --------------------------------------------------------------------------------
@@ -242,49 +277,43 @@ Constraints we added
 
 ```
 wood_psi_tlp_samp = 
-(wood_psi_osmotic_prior * wood_elastic_mod_prior * MPa2m)/
-(wood_psi_osmotic_prior + wood_elastic_mod_prior * MPa2m)
+(wood_psi_osmotic_prior * wood_elastic_mod_prior * C$MPa2m)/
+(wood_psi_osmotic_prior + wood_elastic_mod_prior * C$MPa2m)
 ```
 
 ```{r calc wood_psi_tlp_samp}
-wood_psi_tlp_samp <- 
-  (wood_psi_osmotic_prior * wood_elastic_mod_prior * MPa2m)/
-  (wood_psi_osmotic_prior + wood_elastic_mod_prior * MPa2m)
 
-summary(wood_psi_tlp_samp)
+t = "wood_psi_tlp"
+t_long = "Sapwood water potential at turgor loss point "
 
-i <- which(priors$ED_name == "wood_psi_tlp")
-prior_in <- priors[i,stats] * MPa2m # Convert from MPa to m
-prior_in <- prior_add_samp_data(prior_in, samp = -wood_psi_tlp_samp)
+
+temp_wpt_sample <- 
+  (traits[["wood_psi_osmotic"]]$prior * traits[["wood_elastic_mod"]]$prior * C$MPa2m)/
+  (traits[["wood_psi_osmotic"]]$prior + traits[["wood_elastic_mod"]]$prior * C$MPa2m)
+
+summary(temp_wpt_sample)
+
+i <- which(priors$ED_name == t)
+prior_in <- priors[i,stats] * C$MPa2m # Convert from MPa to m
+prior_in <- prior_add_samp_data(prior_in, samp = -temp_wpt_sample)
 prior_in[,stats]
 
-myfit <- prior_get_fit(prior_in, accepted_dists, plot = TRUE)
-
-variable_id.in <- tbl(bety, "variables") %>% filter(name == "wood_psi_tlp") %>% pull(id)
-phylogeny.in <- "plants"
-
-best.fit.name <- myfit$score$dist[which.min(myfit$score$RMSE)]
-best.fit.dat <- myfit$dists %>% select(one_of("Name", best.fit.name)) %>% rename(value := !!best.fit.name, params = Name)
-
-wood_psi_tlp_prior_id <- prior_input(bety, variable_id.in, phylogeny.in, 
-                                     dist.name.in = best.fit.name, 
-                                     parama.in = best.fit.dat %>% filter(params == "Para1") %>% pull(value), 
-                                     paramb.in = best.fit.dat %>% filter(params == "Para2") %>% pull(value), 
-                                     paramc.in = best.fit.dat %>% filter(params == "Para3") %>% pull(value))
-
+traits <- fit_trait_dist(bety, traits, t, prior_in, accepted_dists)
 ```
 
 ```{r plot wood_psi_tlp}
-wood_psi_tlp_fit <- tbl(bety, "priors") %>% filter(id == wood_psi_tlp_prior_id) %>% collect()
-wood_psi_tlp_prior <- -rdistn(wood_psi_tlp_fit) # Remember to flip back over for psi
-wood_psi_tlp_default <- get_ED_default("/fs/data3/ecowdery/ED.Hydro/parameters/pft3_defaults_history.xml", "wood_psi_tlp")
 
-prior_plot(prior = wood_psi_tlp_prior, 
+traits[[t]]$prior = -1 * rdistn(traits[[t]]$fit) # Remember to flip back over for psi
+traits[[t]]$default = get_ED_default(PFT3_defaults_history, t)
+
+prior_plot(prior = traits[[t]]$prior, 
            q = c(.005,1),
-           plot_default = wood_psi_tlp_default,
-           title = sprintf("(wood_psi_tlp): %s", wood_psi_tlp_fit$distn),
+           plot_default = traits[[t]]$default,
+           title = sprintf("%s(%s):\n%s(%.4f, %.4f)", t_long, t, 
+                           traits[[t]]$fit$distn, 
+                           traits[[t]]$fit$parama,
+                           traits[[t]]$fit$paramb),
            type = "mixed")
-
 
 ```
 
@@ -317,48 +346,47 @@ Constraints we added
 ### Code {-}
 
 ```{r calc wood_water_cap}
-wood_water_cap_samp <- 
-  1000 * (1/wood_density_prior) * (1 - wood_psi_osmotic_prior / (4 * wood_psi_tlp_prior)) * 
-  (wood_water_sat_prior / (4 * abs(wood_psi_tlp_prior))) 
+# wood_water_cap_samp <- 
+#   1000 * (1/wood_density_prior) * (1 - wood_psi_osmotic_prior / (4 * wood_psi_tlp_prior)) * 
+#   (wood_water_sat_prior / (4 * abs(wood_psi_tlp_prior))) 
 
-summary(wood_water_cap_samp)
+temp_wwc_samp <- 
+  1000 * (1/traits[["wood_density"]]$prior) * (1 - traits[["wood_psi_osmotic"]]$prior / 
+                                                 (4 * traits[["wood_psi_tlp"]]$prior)) * 
+  (traits[["wood_water_sat"]]$prior / 
+     (4 * abs(traits[["wood_psi_tlp"]]$prior))) 
 
-i <- which(priors$ED_name == "wood_water_cap")
+summary(temp_wwc_samp)
+
+t = "wood_water_cap"
+t_long = "Wood Water Cap "
+
+i <- which(priors$ED_name == t)
 prior_in <- priors[i,stats] 
-prior_in <- prior_add_samp_data(prior_in, samp = wood_water_cap_samp)
+prior_in <- prior_add_samp_data(prior_in, samp = temp_wwc_samp)
 prior_in[,stats]
 
-myfit <- prior_get_fit(prior_in, accepted_dists, plot = TRUE)
-
-variable_id.in <- tbl(bety, "variables") %>% filter(name == "wood_water_cap") %>% pull(id)
-phylogeny.in <- "plants"
-
-best.fit.name <- myfit$score$dist[which.min(myfit$score$RMSE)]
-best.fit.dat <- myfit$dists %>% select(one_of("Name", best.fit.name)) %>% rename(value := !!best.fit.name, params = Name)
-
-wood_water_cap_prior_id <- prior_input(bety, variable_id.in, phylogeny.in, 
-                                       dist.name.in = best.fit.name, 
-                                       parama.in = best.fit.dat %>% filter(params == "Para1") %>% pull(value), 
-                                       paramb.in = best.fit.dat %>% filter(params == "Para2") %>% pull(value), 
-                                       paramc.in = best.fit.dat %>% filter(params == "Para3") %>% pull(value))
-
+traits <- fit_trait_dist(bety, traits, t, prior_in, accepted_dists)
 ```
 ```{r plot wood_water_cap}
-wood_water_cap_fit <- tbl(bety, "priors") %>% filter(id == wood_water_cap_prior_id) %>% collect()
-wood_water_cap_prior <- rdistn(wood_water_cap_fit) * (1/1000) # Convert back to kg
-wood_water_cap_default <- get_ED_default("/fs/data3/ecowdery/ED.Hydro/parameters/pft3_defaults_history.xml", "wood_water_cap")
 
-prior_plot(prior = wood_water_cap_prior,
-           plot_default = wood_water_cap_default,
-           title = sprintf("(wood_water_cap): %s", wood_water_cap_fit$distn),
-           type = "mixed") +
-  geom_vline(aes(xintercept = 10/MPa2m * (1/1000)), color = "gray") +
-  geom_vline(aes(xintercept = 100/MPa2m * (1/1000)), color = "gray") +
-  geom_vline(aes(xintercept = 300/MPa2m * (1/1000)), color = "gray") +
-  geom_vline(aes(xintercept = 900/MPa2m * (1/1000)), color = "gray") +
-  xlim(0, .009)
+# I don't actually remember why we were plotting 10, 100, 300, 900 ... ?
 
-900/MPa2m * (1/1000) < max(wood_water_cap_prior)
+traits[[t]]$prior = rdistn(traits[[t]]$fit) * (1/1000) # Convert back to kg
+traits[[t]]$default = get_ED_default(PFT3_defaults_history, t)
+
+prior_plot(prior = traits[[t]]$prior, 
+           q = c(0, .975),
+           plot_default = traits[[t]]$default,
+           title = sprintf("%s(%s):\n%s(%.4f, %.4f)", t_long, t, 
+                           traits[[t]]$fit$distn, 
+                           traits[[t]]$fit$parama,
+                           traits[[t]]$fit$paramb),
+           type = "mixed")  +
+  geom_vline(aes(xintercept = 10/C$MPa2m * (1/1000)), color = "gray") +
+  geom_vline(aes(xintercept = 100/C$MPa2m * (1/1000)), color = "gray") +
+  geom_vline(aes(xintercept = 300/C$MPa2m * (1/1000)), color = "gray") +
+  geom_vline(aes(xintercept = 900/C$MPa2m * (1/1000)), color = "gray")
 
 ```
 
@@ -393,40 +421,39 @@ Calculated from other priors.
 Should I put `wood_rwc_min` and `rwc_tlp_wood` in the database too?
 
 ```{r}
-rwc_tlp_wood_samp <- 1. - (1. - 0.75 * wood_density_prior) / (2.74 + 2.01 * wood_density_prior) 
-wood_rwc_min_samp = wood_elastic_mod_prior * (1. - rwc_tlp_wood_samp) / (wood_psi_osmotic_prior / MPa2m) + 1.
-wood_psi_min_samp = (wood_rwc_min_samp - 1.) * wood_water_sat_prior / wood_water_cap_prior
+# rwc_tlp_wood_samp <- 1. - (1. - 0.75 * wood_density_prior) / (2.74 + 2.01 * wood_density_prior) 
+# wood_rwc_min_samp = wood_elastic_mod_prior * (1. - rwc_tlp_wood_samp) / (wood_psi_osmotic_prior / C$MPa2m) + 1.
+# wood_psi_min_samp = (wood_rwc_min_samp - 1.) * wood_water_sat_prior / wood_water_cap_prior
 
-# Add in the max an min from the priors table
-i <- which(priors$ED_name == "wood_psi_min")
-prior_in <- priors[i,stats] * MPa2m # Convert from MPa to m
-prior_in <- prior_add_samp_data(prior_in, samp = -wood_psi_min_samp)
+temp_rwc_tlp_wood_samp <- 1. - (1. - 0.75 * traits[["wood_density"]]$prior) / (2.74 + 2.01 * traits[["wood_density"]]$prior)
+temp_wood_rwc_min_samp = traits[["wood_elastic_mod"]]$prior * (1. - temp_rwc_tlp_wood_samp) / (traits[["wood_psi_osmotic"]]$prior / C$MPa2m) + 1.
+temp_wood_rwc_min_samp = (temp_wood_rwc_min_samp - 1.) * traits[["wood_water_sat"]]$prior / traits[["wood_water_cap"]]$prior
+
+
+t = "wood_psi_min"
+t_long = "Wood Psi Min "
+
+i <- which(priors$ED_name == t)
+prior_in <- priors[i,stats] * C$MPa2m # Convert from MPa to m
+prior_in <- prior_add_samp_data(prior_in, samp = -temp_wood_rwc_min_samp)
 prior_in[,stats]
 
-myfit <- prior_get_fit(prior_in, accepted_dists, plot = TRUE)
+traits <- fit_trait_dist(bety, traits, t, prior_in, accepted_dists)
 
-variable_id.in <- tbl(bety, "variables") %>% filter(name == "wood_psi_min") %>% pull(id)
-phylogeny.in <- "plants"
 
-best.fit.name <- myfit$score$dist[which.min(myfit$score$RMSE)]
-best.fit.dat <- myfit$dists %>% select(one_of("Name", best.fit.name)) %>% rename(value := !!best.fit.name, params = Name)
-
-wood_psi_min_prior_id <- prior_input(bety, variable_id.in, phylogeny.in, 
-                                     dist.name.in = best.fit.name, 
-                                     parama.in = best.fit.dat %>% filter(params == "Para1") %>% pull(value), 
-                                     paramb.in = best.fit.dat %>% filter(params == "Para2") %>% pull(value), 
-                                     paramc.in = best.fit.dat %>% filter(params == "Para3") %>% pull(value))
 ```
 
 ```{r}
-wood_psi_min_fit <- tbl(bety, "priors") %>% filter(id == wood_psi_min_prior_id) %>% collect()
-wood_psi_min_prior <- -rdistn(wood_psi_min_fit) # Remember to flip psi
-default_wood_psi_min <- get_ED_default("/fs/data3/ecowdery/ED.Hydro/parameters/pft3_defaults_history.xml", "wood_psi_min")
+traits[[t]]$prior = -1 * rdistn(traits[[t]]$fit) # Remember to flip back over for psi
+traits[[t]]$default = get_ED_default(PFT3_defaults_history, t)
 
-prior_plot(prior = wood_psi_min_prior, 
-           q = c(.025,1), 
-           plot_default = default_wood_psi_min,
-           title = sprintf("wood_psi_min: %s", wood_psi_min_fit$distn), 
+prior_plot(prior = traits[[t]]$prior, 
+          q = c(.025,1),
+           plot_default = traits[[t]]$default,
+           title = sprintf("%s(%s):\n%s(%.4f, %.4f)", t_long, t, 
+                           traits[[t]]$fit$distn, 
+                           traits[[t]]$fit$parama,
+                           traits[[t]]$fit$paramb),
            type = "mixed")
 ```
 
@@ -457,42 +484,34 @@ I don't think we need to multiply by the density of water  ... which is confusin
 ### Code {-}
 
 ```{r calc wood_Kmax}
-i <- which(priors$ED_name == "wood_Kmax")
+t = "wood_Kmax"
+t_long = "Maximum hydraulic conductivity of the stem "
 
-prior_in <- priors[i, stats] / MPa2m
-myfit <- prior_get_fit(prior_in, accepted_dists, plot = TRUE)
-myfit$score$dist[which.min(myfit$score$RMSE)]
+i <- which(priors$ED_name == t)
+prior_in <- priors[i, stats] / C$MPa2m 
 
-variable_id.in <- tbl(bety,"variables") %>% filter(name == priors$ED_name[i]) %>% pull(id)
-phylogeny.in <- "plants"
+fit_trait_dist(bety, traits, t, prior_in, accepted_dists, return_traits = FALSE)
 
 # In this case, the exponential function is the best fit, 
 # but I'm going to choose the beta function because it is much easier to deal 
 # with in the meta analysis. This could be wrong and we may need to return to it. 
+traits <- fit_trait_dist(bety, traits, t, prior_in, accepted_dists = "beta")
 
-# best.fit.name <- myfit$score$dist[which.min(myfit$score$RMSE)]
-best.fit.name <- "beta"
-
-best.fit.dat <- myfit$dists %>% select(one_of("Name", best.fit.name)) %>% rename(value := !!best.fit.name, params = Name)
-
-wood_Kmax_prior_id <- prior_input(bety, variable_id.in, phylogeny.in, 
-                                  dist.name.in = best.fit.name, 
-                                  parama.in = best.fit.dat %>% filter(params == "Para1") %>% pull(value), 
-                                  paramb.in = best.fit.dat %>% filter(params == "Para2") %>% pull(value), 
-                                  paramc.in = best.fit.dat %>% filter(params == "Para3") %>% pull(value))
-wood_Kmax_prior_id <- wood_Kmax_prior_id[1]
 ```
 
 ```{r plot wood_Kmax}
-wood_Kmax_fit <- pfts_priors %>% filter(var_name == "wood_Kmax") %>% select(one_of("distn", "parama", "paramb"))
-wood_Kmax_prior <- rdistn(wood_Kmax_fit) # NOTE: Need to convert to m from -m 
-wood_Kmax_default <- get_ED_default("/fs/data3/ecowdery/ED.Hydro/parameters/pft3_defaults_history.xml", "wood_Kmax")
 
-prior_plot(prior = wood_Kmax_prior, 
-           q = c(0,.975), 
-           plot_default = wood_Kmax_default,
-           title = sprintf("Maximum hydraulic conductivity of the stem (wood_Kmax): %s", wood_Kmax_fit$distn),
-           type = "elic") 
+traits[[t]]$prior = rdistn(traits[[t]]$fit) 
+traits[[t]]$default = get_ED_default(PFT3_defaults_history, t)
+
+prior_plot(prior = traits[[t]]$prior, 
+          q = c(0,.975),
+           plot_default = traits[[t]]$default,
+           title = sprintf("%s(%s):\n%s(%.4f, %.4f)", t_long, t, 
+                           traits[[t]]$fit$distn, 
+                           traits[[t]]$fit$parama,
+                           traits[[t]]$fit$paramb),
+           type = "elic")
 
 ```
 
@@ -517,7 +536,7 @@ NOTE: There is an *ERROR* in the ED code for the equation for `wood_psi50`
 
 Should be:
 
-`(-1.09-(3.57 * rho(ipft) ^ 1.73) * MPa2m`
+`(-1.09-(3.57 * rho(ipft) ^ 1.73) * C$MPa2m`
 
 This one is tricky, do we keep the normal distribution because it's the best fit?
 
@@ -533,77 +552,39 @@ This one is tricky, do we keep the normal distribution because it's the best fit
 
 #### Using the best fit norm {-}
 ```{r calc wood_psi50}
-i <- which(priors$ED_name == "wood_psi50")
+t = "wood_psi50"
+t_long = "Water potential at which 50% of stem conductivity is lost "
 
-prior_in <- priors[i, stats] * MPa2m
-prior_in
+i <- which(priors$ED_name == t)
+prior_in <- priors[i, stats] * C$MPa2m
 
-myfit <- prior_get_fit(prior_in, accepted_dists, plot = TRUE)
-myfit$score$dist[which.min(myfit$score$RMSE)]
+fit_trait_dist(bety, traits, t, prior_in, accepted_dists, return_traits = FALSE)
 
-variable_id.in <- tbl(bety,"variables") %>% filter(name == priors$ED_name[i]) %>% pull(id)
-phylogeny.in <- "plants"
+# In this case norm is the best fitting ditribution, 
+# But a positive number ends up falling within the 95% CI of the distribution.
+# So I'm going to choose a log normal distribution even though it is not the best fit. 
+# Hopefully this can also be fixed given that we have data for both psi50 and Kexp... 
 
-best.fit.name <- myfit$score$dist[which.min(myfit$score$RMSE)]
-best.fit.dat <- myfit$dists %>% select(one_of("Name", best.fit.name)) %>% rename(value := !!best.fit.name, params = Name)
+traits <- fit_trait_dist(bety, traits, t, prior_in, accepted_dists = "lnorm")
 
-wood_psi50_prior_id <- prior_input(bety, variable_id.in, phylogeny.in, 
-                                   dist.name.in = best.fit.name, 
-                                   parama.in = best.fit.dat %>% filter(params == "Para1") %>% pull(value), 
-                                   paramb.in = best.fit.dat %>% filter(params == "Para2") %>% pull(value), 
-                                   paramc.in = best.fit.dat %>% filter(params == "Para3") %>% pull(value))
 ```
 
 ```{r plot wood_psi50}
-wood_psi50_fit <- tbl(bety, "priors") %>% filter(id == wood_psi50_prior_id) %>% collect()
-wood_psi50_prior <- -rdistn(wood_psi50_fit) # NOTE: Need to convert to m from -m 
+traits[[t]]$prior = -1 * rdistn(traits[[t]]$fit) 
 
-# Calculating default by hand because it is calculated wrong in ED! 
-wood_psi50_default <- (-1.09 - (3.57 * wood_density_default ^ 1.73)) * MPa2m
-wrong_wood_psi50_default <- get_ED_default(PFT3_defaults_history, "wood_psi50")
+# Calculating default from wood density by hand because it is calculated incorrectly in ED! 
+traits[[t]]$default = (-1.09 - (3.57 * traits[["wood_density"]]$default ^ 1.73)) * C$MPa2m
 
-p <- prior_plot(prior = wood_psi50_prior, 
-                q = c(0,1), 
-                plot_default = wood_psi50_default,
-                title = sprintf("Water potential at which 50perc. of stem cond. is lost (wood_psi50): %s", wood_psi50_fit$distn),
-                type = "elic") 
-
-p + 
-  geom_vline(aes(xintercept = wrong_wood_psi50_default), color = "gray", linetype = "dashed") + 
-  geom_vline(aes(xintercept = quantile(wood_psi50_prior, .975)), color = "blue", linetype = "dashed")
-quantile(wood_psi50_prior, .975)
+prior_plot(prior = traits[[t]]$prior, 
+          q = c(0.025,1),
+           plot_default = traits[[t]]$default,
+           title = sprintf("%s(%s):\n%s(%.4f, %.4f)", t_long, t, 
+                           traits[[t]]$fit$distn, 
+                           traits[[t]]$fit$parama,
+                           traits[[t]]$fit$paramb),
+           type = "elic")
 ```
 
-A positive number is within the 95% CI of the distribution so in this case,
-I'm going to choose a log normal distriburtion even though it is not the best fit. 
-Hopefully this can also be fixed given that we have data for both psi50 and Kexp... 
-
-#### Using more realistic lnorm {-}
-
-```{r recalc and plot wood_psi50}
-
-best.fit.name <- "lnorm"
-best.fit.dat <- myfit$dists %>% select(one_of("Name", best.fit.name)) %>% rename(value := !!best.fit.name, params = Name)
-
-wood_psi50_prior_id <- prior_input(bety, variable_id.in, phylogeny.in, 
-                                   dist.name.in = best.fit.name, 
-                                   parama.in = best.fit.dat %>% filter(params == "Para1") %>% pull(value), 
-                                   paramb.in = best.fit.dat %>% filter(params == "Para2") %>% pull(value), 
-                                   paramc.in = best.fit.dat %>% filter(params == "Para3") %>% pull(value))
-
-wood_psi50_fit <- tbl(bety, "priors") %>% filter(id == wood_psi50_prior_id) %>% collect()
-wood_psi50_prior <- -rdistn(wood_psi50_fit) # NOTE: Need to convert to m from -m 
-
-# Calculating default by hand because it is calculated wrong in ED! 
-wood_psi50_default <- (-1.09 - (3.57 * wood_density_default ^ 1.73)) * MPa2m
-wrong_wood_psi50_default <- get_ED_default(PFT3_defaults_history, "wood_psi50")
-
-prior_plot(prior = wood_psi50_prior, 
-           q = c(0.025,1), 
-           plot_default = wood_psi50_default,
-           title = sprintf("Water potential at which 50perc. of stem cond. is lost (wood_psi50): %s", wood_psi50_fit$distn),
-           type = "elic") 
-```
 
 --------------------------------------------------------------------------------
 
@@ -631,35 +612,26 @@ None!
 ### Code {-} 
 
 ```{r calc ax}
+
+t = "ax"
+t_long = "Slope of xylem vulnerability curve at P50 "
 i <- which(priors$Christoffersen_name == "avuln_node")
-
 prior_in <- priors[i, stats]
-prior_in
 
-myfit <- prior_get_fit(prior_in, accepted_dists, plot = TRUE)
-myfit$score$dist[which.min(myfit$score$RMSE)]
+traits <- fit_trait_dist(bety, traits, t, prior_in, accepted_dists)
 
-variable_id.in <- tbl(bety,"variables") %>% filter(name == "ax") %>% pull(id)
-phylogeny.in <- "plants"
-
-best.fit.name <- myfit$score$dist[which.min(myfit$score$RMSE)]
-best.fit.dat <- myfit$dists %>% select(one_of("Name", best.fit.name)) %>% rename(value := !!best.fit.name, params = Name)
-
-wood_ax_prior_id <- prior_input(bety, variable_id.in, phylogeny.in, 
-                                dist.name.in = best.fit.name, 
-                                parama.in = best.fit.dat %>% filter(params == "Para1") %>% pull(value), 
-                                paramb.in = best.fit.dat %>% filter(params == "Para2") %>% pull(value), 
-                                paramc.in = best.fit.dat %>% filter(params == "Para3") %>% pull(value))
 ```
 
 ```{r plot ax}
-wood_ax_fit <- tbl(bety, "priors") %>% filter(id == wood_ax_prior_id) %>% collect()
-wood_ax_prior <- rdistn(wood_ax_fit)
+traits[[t]]$prior = rdistn(traits[[t]]$fit) 
 
-prior_plot(prior = wood_ax_prior, 
-                q = c(0,.975), 
-                title = sprintf("Slope of xylem vulnerability curve at P50: %s", wood_ax_fit$distn),
-                type = "elic") 
+prior_plot(prior = traits[[t]]$prior, 
+          q = c(0,.975),
+           title = sprintf("%s(%s):\n(%s, %.4f)", t_long, t, 
+                           traits[[t]]$fit$distn, 
+                           traits[[t]]$fit$parama),
+          type = "elic")
+
 ```
 
 
@@ -689,46 +661,36 @@ None!
 
 ```{r calc Kexp}
 
-wood_Kexp_samp <- - wood_ax_prior * 4 * (wood_psi50_prior/MPa2m) / 100 
+t = "wood_Kexp"
+t_long = "Exponent for the hydraulic vulnerability curve of stem conductivity  "
 
-summary(wood_Kexp_samp)
+temp_wood_Kexp_samp <- -1 * traits[["ax"]]$prior * 4 * (traits[["wood_psi50"]]$prior/C$MPa2m) / 100 
+summary(temp_wood_Kexp_samp)
 
-i <- which(priors$ED_name == "wood_Kexp")
+i <- which(priors$ED_name == t)
 prior_in <- priors[i,stats] 
-prior_in <- prior_add_samp_data(prior_in, samp = wood_Kexp_samp)
+prior_in <- prior_add_samp_data(prior_in, samp = temp_wood_Kexp_samp)
 prior_in[,stats]
 
-myfit <- prior_get_fit(prior_in, accepted_dists, plot = TRUE)
-myfit$score$dist[which.min(myfit$score$RMSE)]
+traits <- fit_trait_dist(bety, traits, t, prior_in, accepted_dists)
 
-variable_id.in <- tbl(bety,"variables") %>% filter(name == priors$ED_name[i]) %>% pull(id)
-phylogeny.in <- "plants"
-
-best.fit.name <- myfit$score$dist[which.min(myfit$score$RMSE)]
-best.fit.dat <- myfit$dists %>% select(one_of("Name", best.fit.name)) %>% rename(value := !!best.fit.name, params = Name)
-
-wood_Kexp_prior_id <- prior_input(bety, variable_id.in, phylogeny.in, 
-                                   dist.name.in = best.fit.name, 
-                                   parama.in = best.fit.dat %>% filter(params == "Para1") %>% pull(value), 
-                                   paramb.in = best.fit.dat %>% filter(params == "Para2") %>% pull(value), 
-                                   paramc.in = best.fit.dat %>% filter(params == "Para3") %>% pull(value))
 ```
 
 ```{r plot Kexp}
-wood_Kexp_fit <- tbl(bety, "priors") %>% filter(id == wood_Kexp_prior_id) %>% collect()
-wood_Kexp_prior <- rdistn(wood_Kexp_fit)
 
-# Calculating default by hand because psi50 is calculated wrong in ED!
-wood_Kexp_default <- 0.544 * 4. * (-wood_psi50_default / MPa2m) ^ (-0.17)
-wrong_wood_Kexp_default <- get_ED_default(PFT3_defaults_history, "wood_Kexp")
+traits[[t]]$prior = rdistn(traits[[t]]$fit) 
 
-p <- prior_plot(prior = wood_Kexp_prior, 
+# Calculating default from wood density by hand because it is calculated incorrectly in ED! 
+traits[[t]]$default = 0.544 * 4. * (-traits[["wood_psi50"]]$default / C$MPa2m) ^ (-0.17)
+
+prior_plot(prior = traits[[t]]$prior, 
                 q = c(0,.975), 
-                plot_default = wood_Kexp_default,
-                title = sprintf("Water potential at which 50perc. of stem cond. is lost (wood_Kexp): %s", wood_Kexp_fit$distn),
-                type = "equation") 
-p + geom_vline(aes(xintercept = wrong_wood_Kexp_default), 
-               color = "gray", linetype = "dashed") 
+           plot_default = traits[[t]]$default,
+           title = sprintf("%s(%s):\n%s(%.4f, %.4f)", t_long, t, 
+                           traits[[t]]$fit$distn, 
+                           traits[[t]]$fit$parama,
+                           traits[[t]]$fit$paramb),
+           type = "equation")
 ```
 
 Note: here the miscalculation of psi50 in the code barely shows up 

@@ -3,7 +3,6 @@ chapter_name: ""
 repo: https://github.com/bcow/ED.Hydro.Documentation
 output_dir: docs
 rmd_files: [
-  "Paper.Rmd",
   "index.Rmd",
   "01-Setup.Rmd",
   "02-Starting_Parameters.Rmd",

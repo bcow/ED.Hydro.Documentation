@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Calculating ED Hydro Parameter Priors</title>
+  <title>Constants | Calculating ED Hydro Parameter Priors</title>
   <meta name="description" content="ED Hydro Documentation" />
   <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Calculating ED Hydro Parameter Priors" />
+  <meta property="og:title" content="Constants | Calculating ED Hydro Parameter Priors" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://bcow.github.io/ED.Hydro.Documentation/" />
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="bcow/ED.Hydro.Documentation" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Calculating ED Hydro Parameter Priors" />
+  <meta name="twitter:title" content="Constants | Calculating ED Hydro Parameter Priors" />
   
   <meta name="twitter:description" content="ED Hydro Documentation" />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="setup.html"/>
+<link rel="prev" href="setup.html"/>
+<link rel="next" href="key-leaf-traits.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -261,24 +261,41 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Calculating ED Hydro Parameter Priors</h1>
-<p class="author"><em>Betsy Cowdery</em></p>
-<p class="date"><em>2020-06-16</em></p>
+<div id="constants" class="section level1 unnumbered">
+<h1>Constants</h1>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">C &lt;-<span class="st"> </span><span class="kw">list</span>()</a></code></pre></div>
+<div id="wdns-liquid-water-density" class="section level2 unnumbered">
+<h2><code>[wdns]:</code> Liquid water density</h2>
+<ul>
+<li>ED variable name : <code>wdns</code></li>
+<li>ED variable units: <code>kg/m3</code></li>
+</ul>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">C<span class="op">$</span>wdns &lt;-<span class="st"> </span><span class="fl">1.000e3</span>    <span class="co"># Liquid water density [kg/m3]</span></a></code></pre></div>
 </div>
-<div id="documentation" class="section level1 unnumbered">
-<h1>Documentation</h1>
-<p>So far this covers how I calculated all the priors.
-It may ultimately show how the priors compare to the observed data (and the results of a meta analysis given the PFTs we’re interested in.)</p>
+<div id="grav-gravity" class="section level2 unnumbered">
+<h2><code>[grav]:</code> Gravity</h2>
+<ul>
+<li>ED variable name : <code>grav</code></li>
+<li>ED variable units: <code>m/s2</code></li>
+</ul>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">C<span class="op">$</span>grav &lt;-<span class="st"> </span><span class="fl">9.80665</span>    <span class="co"># Gravity acceleration  [m/s2]</span></a></code></pre></div>
+</div>
+<div id="mpa2m-conversion-from-mpa-to-m" class="section level2 unnumbered">
+<h2><code>[MPa2m]:</code> Conversion from MPa to m</h2>
+<ul>
+<li>ED variable name : <code>MPa2m</code></li>
+</ul>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">C<span class="op">$</span>MPa2m &lt;-<span class="st"> </span>C<span class="op">$</span>wdns <span class="op">/</span><span class="st"> </span>C<span class="op">$</span>grav</a></code></pre></div>
 
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="setup.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="setup.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="key-leaf-traits.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

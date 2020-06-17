@@ -5,6 +5,37 @@ output: html_document
 
 # Key Leaf Traits {-}
 
+## `[SLA]:` Specific Leaf Area (SLA) {-}
+And subsequently $LMA = (1/SLA)$
+
+- ED variable name : `SLA`
+- ED variable id: 15
+
+There are multiple priors available for SLA so we are explicitly choosing prior `142` (this was chosen by someone else when the PFT was created.)
+
+```{r SLA}
+t = "SLA"
+t_long = "Specific Leaf Area "
+
+traits[[t]] <- list(
+  variable_name = t,
+  variable_id =  pfts_priors %>% filter(var_name == t) %>% pull(variable_id),
+  prior_id = pfts_priors %>% filter(var_name == t) %>% pull(id),
+  fit = pfts_priors %>% filter(var_name == t) %>% select("distn", "parama", "paramb")
+)
+
+traits[[t]]$prior = rdistn(traits[[t]]$fit)
+traits[[t]]$default = get_ED_default(PFT3_defaults_history, t)
+
+prior_plot(prior = traits[[t]]$prior, 
+           plot_default = traits[[t]]$default,
+           title = sprintf("%s(%s):\n%s(%.4f, %.4f)", t_long, t, 
+                           traits[[t]]$fit$distn, 
+                           traits[[t]]$fit$parama,
+                           traits[[t]]$fit$paramb),
+           type = "prior")
+```
+
 --------------------------------------------------------------------------------
 
 ## `[leaf_psi_osmotic]:` Leaf osmotic water potential at saturation {-}
@@ -37,35 +68,27 @@ Expert elicitation provided by Brad Christoffersen
 ### Code {-}
 
 ```{r calc leaf_psi_osmotic}
-i <- which(priors$ED_name == "leaf_psi_osmotic")
 
-prior_in <- priors[i, stats] * MPa2m
-myfit <- prior_get_fit(prior_in, accepted_dists, plot = TRUE)
-myfit$score$dist[which.min(myfit$score$RMSE)]
+t = "leaf_psi_osmotic"
+t_long = "Leaf osmotic water potential at saturation "
 
-variable_id.in <- tbl(bety,"variables") %>% filter(name == priors$ED_name[i]) %>% pull(id)
-phylogeny.in <- "plants"
+i <- which(priors$ED_name == t)
+prior_in <- priors[i, stats] * C$MPa2m
 
-best.fit.name <- myfit$score$dist[which.min(myfit$score$RMSE)]
-best.fit.dat <- myfit$dists %>% select(one_of("Name", best.fit.name)) %>% rename(value := !!best.fit.name, params = Name)
-
-leaf_psi_osmotic_prior_id <- prior_input(bety, variable_id.in, phylogeny.in, 
-                                         dist.name.in = best.fit.name, 
-                                         parama.in = best.fit.dat %>% filter(params == "Para1") %>% pull(value), 
-                                         paramb.in = best.fit.dat %>% filter(params == "Para2") %>% pull(value), 
-                                         paramc.in = best.fit.dat %>% filter(params == "Para3") %>% pull(value))
-
+traits <- fit_trait_dist(bety, traits, t, prior_in, accepted_dists)
 ```
 
 ```{r plot leaf_psi_osmotic}
-leaf_psi_osmotic_fit <- tbl(bety, "priors") %>% filter(id == leaf_psi_osmotic_prior_id) %>% collect()
-leaf_psi_osmotic_prior <- -rdistn(leaf_psi_osmotic_fit) # NOTE: Need to convert to m from -m 
-leaf_psi_osmotic_default <- get_ED_default("/fs/data3/ecowdery/ED.Hydro/parameters/pft3_defaults_history.xml", "leaf_psi_osmotic")
 
-prior_plot(prior = leaf_psi_osmotic_prior, 
-           q = c(0,1), 
-           plot_default = leaf_psi_osmotic_default,
-           title = sprintf(" (leaf_psi_osmotic): %s", leaf_psi_osmotic_fit$distn),
+traits[[t]]$prior = -1 * rdistn(traits[[t]]$fit)
+traits[[t]]$default = get_ED_default(PFT3_defaults_history, t)
+
+prior_plot(prior = traits[[t]]$prior, 
+           plot_default = traits[[t]]$default,
+           title = sprintf("%s(%s):\n%s(%.4f, %.4f)", t_long, t, 
+                           traits[[t]]$fit$distn, 
+                           traits[[t]]$fit$parama,
+                           traits[[t]]$fit$paramb),
            type = "elic")
 ```
 
@@ -99,34 +122,30 @@ None!
 ### Code {-}
 
 ```{r calc leaf_elastic_mod}
-i <- which(priors$ED_name == "leaf_elastic_mod")
+
+t = "leaf_elastic_mod"
+t_long = "Leaf bulk elastic modulus "
+
+i <- which(priors$ED_name == t)
 prior_in <- priors[i,]
-myfit <- prior_get_fit(prior_in, accepted_dists, plot = TRUE)
 
-variable_id.in <- tbl(bety,"variables") %>% filter(name == priors$ED_name[i]) %>% pull(id)
-phylogeny.in <- "plants"
-
-best.fit.name <- myfit$score$dist[which.min(myfit$score$RMSE)]
-best.fit.dat <- myfit$dists %>% select(one_of("Name", best.fit.name)) %>% rename(value := !!best.fit.name, params = Name)
-
-leaf_elastic_mod_id <- prior_input(bety, variable_id.in, phylogeny.in, 
-                                   dist.name.in = best.fit.name, 
-                                   parama.in = best.fit.dat %>% filter(params == "Para1") %>% pull(value), 
-                                   paramb.in = best.fit.dat %>% filter(params == "Para2") %>% pull(value), 
-                                   paramc.in = best.fit.dat %>% filter(params == "Para3") %>% pull(value))
-
+traits <- fit_trait_dist(bety, traits, t, prior_in, accepted_dists)
 
 ```
 
-```{r plot leaf_elastic_mod}
-leaf_elastic_mod_fit <- tbl(bety, "priors") %>% filter(id == leaf_elastic_mod_id) %>% collect()
-leaf_elastic_mod_prior <- rdistn(leaf_elastic_mod_fit)
-leaf_elastic_mod_default <- get_ED_default("/fs/data3/ecowdery/ED.Hydro/parameters/pft3_defaults_history.xml", "leaf_elastic_mod")
 
-prior_plot(prior = leaf_elastic_mod_prior, 
-           q = c(0,.995), 
-           plot_default = leaf_elastic_mod_default,
-           title = sprintf("Leaf bulk elastic modulus (leaf_elastic_mod): %s", leaf_elastic_mod_fit$distn),
+```{r plot leaf_elastic_mod}
+
+traits[[t]]$prior = rdistn(traits[[t]]$fit)
+traits[[t]]$default = get_ED_default(PFT3_defaults_history, t)
+
+prior_plot(prior = traits[[t]]$prior, 
+           q = c(0,.999), 
+           plot_default = traits[[t]]$default,
+           title = sprintf("%s(%s):\n%s(%.4f, %.4f)", t_long, t, 
+                           traits[[t]]$fit$distn, 
+                           traits[[t]]$fit$parama,
+                           traits[[t]]$fit$paramb),
            type = "elic")
 ```
 
@@ -154,18 +173,26 @@ I will use the equation in ED to calcualte the prior and
 add min and max values to make sure the distribution 
 does not predict values that are not biologically possible. 
 
-Values added by Betsy and Felicien: 
-```{r, eval = FALSE}
-# Leaf_density
-priors[which(priors$ED_name == "leaf_density"),
-       c("theor.min", "theor.max")] <- c(1e-7, 2000)
-```
-
 Copies directly from the ED code: `max(0.1 * 1.e3, (leaf_elastic_mod(ipft) - 2.03) / 25.4 * 1.e3)`
 
 But there is a key step here that we need to think about, which is that in the ED code, `0.1 * 1.e3` is the smallest possible value. I encorporate that information by setting `0.1 * 1.e3` as the min theoretical value when fitting the distribution (but remove the `max` from the equation when calculating the `leaf_density_sample`.)
 
 `leaf_density_sample <- (leaf_elastic_mod_prior - 2.03) / 25.4 * 1.e3`
+
+Values added by Betsy and Felicien: 
+```{r}
+t = "leaf_density"
+t_long = "Density of leaf tissue "
+
+i <- which(priors$ED_name == "leaf_density")
+
+# Leaf_density
+priors[i,c("theor.min", "theor.max")] <- c(1e-7, 2000)
+
+# Does it make more sense to do what the ED code does??? 
+# Turns out it doesn't change the parameters ... so maybe I'll do that
+priors[i,c("theor.min", "theor.max")] <- c(1e-3, 2000)
+```
 
 #### Conversion {-}
 
@@ -174,39 +201,30 @@ None
 ### Code {-}
 
 ```{r calc leaf_density_sample}
-leaf_density_sample <- (leaf_elastic_mod_prior - 2.03) / 25.4 * 1.e3
+
+temp_leaf_density_sample <- (traits[["leaf_elastic_mod"]]$prior - 2.03) / 25.4 * 1.e3
 
 # Add in the max an min from the priors table
-i <- which(priors$ED_name == "leaf_density")
 prior_in <- priors[i,] # Note here I don't need to do any units conversion 
-prior_in <- prior_add_samp_data(prior_in, samp = leaf_density_sample)
+prior_in <- prior_add_samp_data(prior_in, samp = temp_leaf_density_sample)
 prior_in[,stats]
 
-myfit <-  prior_get_fit(prior_in, accepted_dists, plot = TRUE)
+traits <- fit_trait_dist(bety, traits, t, prior_in, accepted_dists)
 
-variable_id.in <- tbl(bety,"variables") %>% filter(name == "leaf_density") %>% pull(id)
-phylogeny.in <- "plants"
-
-best.fit.name <- myfit$score$dist[which.min(myfit$score$RMSE)]
-best.fit.dat <- myfit$dists %>% select(one_of("Name", best.fit.name)) %>% rename(value := !!best.fit.name, params = Name)
-
-leaf_density_default <- (get_ED_default("/fs/data3/ecowdery/ED.Hydro/parameters/pft3_defaults_history.xml", "leaf_elastic_mod") - 2.03) / 25.4 * 1.e3
-
-leaf_density_id <- prior_input(bety, variable_id.in, phylogeny.in, 
-                               dist.name.in = best.fit.name, 
-                               parama.in = best.fit.dat %>% filter(params == "Para1") %>% pull(value), 
-                               paramb.in = best.fit.dat %>% filter(params == "Para2") %>% pull(value), 
-                               paramc.in = best.fit.dat %>% filter(params == "Para3") %>% pull(value))
 ```
 
 ```{r plot leaf_density_sample}
-leaf_density_fit <- tbl(bety, "priors") %>% filter(id == leaf_density_id) %>% collect()
-leaf_density_prior <- rdistn(leaf_density_fit)
 
-prior_plot(prior = leaf_density_prior, 
-           q = c(0,.995),
-           plot_default = leaf_density_default,
-           title = sprintf("Leaf density (leaf_density): %s", leaf_density_fit$distn),
+traits[[t]]$prior = rdistn(traits[[t]]$fit)
+traits[[t]]$default = (get_ED_default("/fs/data3/ecowdery/ED.Hydro/parameters/pft3_defaults_history.xml", "leaf_elastic_mod") - 2.03) / 25.4 * 1.e3
+
+prior_plot(prior = traits[[t]]$prior, 
+           q = c(0,.995), 
+           plot_default = traits[[t]]$default,
+           title = sprintf("%s(%s):\n%s(%.4f, %.4f)", t_long, t, 
+                           traits[[t]]$fit$distn, 
+                           traits[[t]]$fit$parama,
+                           traits[[t]]$fit$paramb),
            type = "mixed")
 ```
 
@@ -251,106 +269,8 @@ FATES to ED, must multiply by `(water density)/(leaf density)`
 
 #### Initial testing code {-}
 
-```{r test calc leaf_water_sat}
-leaf_density_prior_1 <- leaf_density_prior
-leaf_density_prior_2 <- rlnorm(100000, 6.51, .59) # Also trying with lnorm, this is left over from a previous question but I'm including it for now so that the code runs 
-
-# Following the equation in ED
-
-SLA_density <-  get_ED_default("/fs/data3/ecowdery/ED.Hydro/parameters/pft3_defaults_history.xml", "SLA")
-default_LMA <- 1e3 * 2 / SLA_density # 1.e3 * C2B / SLA(ipft)
-
-leaf_water_sat_density <- get_ED_default("/fs/data3/ecowdery/ED.Hydro/parameters/pft3_defaults_history.xml", "leaf_water_sat")
-
-leaf_water_sat_default_calc <- (-2.32e4 / default_LMA + 782.) * (1. / (-0.21 * log(1.e4 / default_LMA) + 1.43) - 1.) / leaf_density_default
-# c(leaf_water_sat_density, leaf_water_sat_default_calc)
-
-LMA_prior <- 1e3 * 2 / SLA_prior
-
-# Should be analogous to Christoffersen because I'm dividing by wdns instead of leaf_density
-leaf_water_sat_samp_1_1 <- 
-  (-2.32e4 / LMA_prior + 782.) * 
-  (1. / (-0.21 * log(1.e4 / LMA_prior) + 1.43) - 1.) / leaf_density_prior_1
-leaf_water_sat_samp_1_2 <- 
-  (-2.32e4 / LMA_prior + 782.) * 
-  (1. / (-0.21 * log(1.e4 / LMA_prior) + 1.43) - 1.) / leaf_density_prior_2
-
-prior_in_1_1 <- data.frame(low.025 =  quantile(leaf_water_sat_samp_1_1, c(.025), na.rm = TRUE),
-                           low.25  =  quantile(leaf_water_sat_samp_1_1, c(.25), na.rm = TRUE),
-                           mean    =  quantile(leaf_water_sat_samp_1_1, c(.5), na.rm = TRUE), 
-                           upp.75  =  quantile(leaf_water_sat_samp_1_1, c(.75), na.rm = TRUE), 
-                           upp.975 =  quantile(leaf_water_sat_samp_1_1, c(.975), na.rm = TRUE))
-
-myfit_1_1 <-  prior_get_fit(prior_in_1_1, accepted_dists, plot = FALSE)
-myfit_1_1$score$dist[which.min(myfit_1_1$score$RMSE)]
-# I'm skipping steps here just for the sake of time & sanity
-leaf_water_sat_prior_1_1 <- rexp(1000, myfit_1_1$dists$exp[1])
-
-prior_in_1_2 <- data.frame(low.025 =  quantile(leaf_water_sat_samp_1_2, c(.025), na.rm = TRUE),
-                           low.25  =  quantile(leaf_water_sat_samp_1_2, c(.25), na.rm = TRUE),
-                           mean    =  quantile(leaf_water_sat_samp_1_2, c(.5), na.rm = TRUE), 
-                           upp.75  =  quantile(leaf_water_sat_samp_1_2, c(.75), na.rm = TRUE), 
-                           upp.975 =  quantile(leaf_water_sat_samp_1_2, c(.975), na.rm = TRUE))
-
-myfit_1_2 <-  prior_get_fit(prior_in_1_2, accepted_dists, plot = FALSE)
-myfit_1_2$score$dist[which.min(myfit_1_2$score$RMSE)]
-# I'm skipping steps here just for the sake of time & sanity
-leaf_water_sat_prior_1_2 <- rlnorm(1000, myfit_1_2$dists$lnorm[1], myfit_1_2$dists$lnorm[2])
-
-# Using the data 
-i <- which(priors$ED_name == "leaf_water_sat")
-
-myfit_2 <- prior_get_fit(priors[i,], accepted_dists, plot = FALSE) 
-myfit_2$score$dist[which.min(myfit_2$score$RMSE)]
-# I'm skipping steps here just for the sake of time & sanity
-leaf_water_sat_prior_2 <- rnorm(1000, myfit_2$dists$norm[1], myfit_2$dists$norm[2])
-
-calc_2_1 <- leaf_water_sat_prior_2 * (wdns/(leaf_density_prior_1))
-prior_in_2_1 <- data.frame(low.025 =  quantile(calc_2_1, c(.025), na.rm = TRUE),
-                           low.25  =  quantile(calc_2_1, c(.25), na.rm = TRUE),
-                           mean    =  quantile(calc_2_1, c(.5), na.rm = TRUE), 
-                           upp.75  =  quantile(calc_2_1, c(.75), na.rm = TRUE), 
-                           upp.975 =  quantile(calc_2_1, c(.975), na.rm = TRUE))
-myfit_2_1 <-  prior_get_fit(prior_in_2_1, accepted_dists, plot = FALSE)
-myfit_2_1$score$dist[which.min(myfit_2_1$score$RMSE)]
-# I'm skipping steps here just for the sake of time & sanity
-leaf_water_sat_prior_2_1 <- rlnorm(1000, myfit_2_1$dists$lnorm[1], myfit_2_1$dists$lnorm[2])
-
-
-calc_2_2 <- leaf_water_sat_prior_2 * (wdns/(leaf_density_prior_2))
-prior_in_2_2 <- data.frame(low.025 =  quantile(calc_2_2, c(.025), na.rm = TRUE),
-                           low.25  =  quantile(calc_2_2, c(.25), na.rm = TRUE),
-                           mean    =  quantile(calc_2_2, c(.5), na.rm = TRUE), 
-                           upp.75  =  quantile(calc_2_2, c(.75), na.rm = TRUE), 
-                           upp.975 =  quantile(calc_2_2, c(.975), na.rm = TRUE))
-myfit_2_2 <-  prior_get_fit(prior_in_2_2, accepted_dists, plot = FALSE)
-myfit_2_2$score$dist[which.min(myfit_2_2$score$RMSE)]
-# I'm skipping steps here just for the sake of time & sanity
-leaf_water_sat_prior_2_2 <- rlnorm(1000, myfit_2_2$dists$lnorm[1], myfit_2_2$dists$lnorm[2])
-
-df <- data.frame(leaf_water_sat_prior_1_1, leaf_water_sat_prior_1_2, 
-                 leaf_water_sat_prior_2_1, leaf_water_sat_prior_2_2)
-df2 <- df %>% 
-  gather(key = "prior") %>% 
-  mutate(leaf_dens_dist = case_when(
-    prior == "leaf_water_sat_prior_1_1" ~ "Weibull",
-    prior == "leaf_water_sat_prior_1_2" ~ "Log Normal",
-    prior == "leaf_water_sat_prior_2_1" ~ "Weibull",
-    prior == "leaf_water_sat_prior_2_2" ~ "Log Normal"
-  )) %>% 
-  mutate(prior_or_data = case_when(
-    prior == "leaf_water_sat_prior_1_1" ~ "LMA_prior",
-    prior == "leaf_water_sat_prior_1_2" ~ "LMA_prior",
-    prior == "leaf_water_sat_prior_2_1" ~ "leaf_water_sat_exp_elicit",
-    prior == "leaf_water_sat_prior_2_2" ~ "leaf_water_sat_exp_elicit"
-  ))
-
-ggplot(data = df2) + 
-  geom_density(aes(x = value, color = prior_or_data, linetype = leaf_dens_dist)) + 
-  geom_vline(aes(xintercept = leaf_water_sat_density)) +
-  geom_point(aes(x = .03, y = 0)) + geom_point(aes(x = 1.5, y = 0)) + geom_point(aes(x = 2, y = 0)) +
-  xlim(-.25, 4)
-
+```{r test leaf_water_sat, eval = FALSE, echo=FALSE, warning=FALSE}
+# source("Leaf_water_sat_prior_or_elic.R")
 ```
 
 From this point, we can see that just using the equations in the ED code makes 
@@ -359,56 +279,49 @@ these values should not be zero and that the distribution underpredicts both
 in relation to the default value and the values that Felicien gave me. 
 
 Thus I would create the prior using the expert elicitation values provided by Brad. 
-I am also comfortable with chooseing the best fit distribution for leaf_density
-which is the weibull distribution instead of trying to come up with a reason 
-why we should make leaf density log normal instead. 
-The log normal was the best if I didn't include the lower bound - that's why I wanted to look at it... 
 
 #### Actual code {-}
 
 ```{r calc leaf_water_sat}
+t = "leaf_water_sat"
+t_long = "Leaf water content at saturation "
+i <- which(priors$ED_name == t)
+temp_myfit_0 <- prior_get_fit(priors[i,], accepted_dists, plot = FALSE)  
 
-i <- which(priors$ED_name == "leaf_water_sat")
-myfit_0 <- prior_get_fit(priors[i,], accepted_dists, plot = FALSE)  
-
-myfit_0$score$dist[which.min(myfit_0$score$RMSE)]
+temp_myfit_0$score$dist[which.min(temp_myfit_0$score$RMSE)]
 # I'm skipping steps here just for the sake of time & sanity
-leaf_water_sat_prior_0 <- rnorm(100000, myfit_0$dists$norm[1], myfit_0$dists$norm[2])
+temp_leaf_water_sat_prior_0 <- rnorm(100000, temp_myfit_0$dists$norm[1], temp_myfit_0$dists$norm[2])
 
-leaf_water_sat_sample <- leaf_water_sat_prior_0 * (wdns/(leaf_density_prior))
+temp_leaf_water_sat_sample <- temp_leaf_water_sat_prior_0 * (C$wdns/(traits[["leaf_density"]]$prior))
 
-# plot(density(leaf_water_sat_sample), main = "leaf water sat sample without fitting")
+# plot(density(temp_leaf_water_sat_sample), main = "leaf water sat sample without fitting")
 
 # In this case I'm not using the function I built because here it wouldn't make sense. 
-prior_in <- data.frame(low.025 =  quantile(leaf_water_sat_sample, c(.025), na.rm = TRUE),
-                       low.25  =  quantile(leaf_water_sat_sample, c(.25), na.rm = TRUE),
-                       mean    =  quantile(leaf_water_sat_sample, c(.5), na.rm = TRUE), 
-                       upp.75  =  quantile(leaf_water_sat_sample, c(.75), na.rm = TRUE), 
-                       upp.975 =  quantile(leaf_water_sat_sample, c(.975), na.rm = TRUE))
-myfit <- prior_get_fit(prior_in, accepted_dists, plot = TRUE)
+prior_in <- data.frame(
+  theor.min = NA,
+  low.025 =  quantile(temp_leaf_water_sat_sample, c(.025), na.rm = TRUE),
+  low.25  =  quantile(temp_leaf_water_sat_sample, c(.25), na.rm = TRUE),
+  mean    =  quantile(temp_leaf_water_sat_sample, c(.5), na.rm = TRUE), 
+  upp.75  =  quantile(temp_leaf_water_sat_sample, c(.75), na.rm = TRUE), 
+  upp.975 =  quantile(temp_leaf_water_sat_sample, c(.975), na.rm = TRUE),
+  theor.max = NA)
 
-variable_id.in <- tbl(bety,"variables") %>% filter(name == priors$ED_name[i]) %>% pull(id)
-phylogeny.in <- "plants"
-
-best.fit.name <- myfit$score$dist[which.min(myfit$score$RMSE)]
-best.fit.dat <- myfit$dists %>% select(one_of("Name", best.fit.name)) %>% rename(value := !!best.fit.name, params = Name)
-
-leaf_water_sat_prior_id <- prior_input(bety, variable_id.in, phylogeny.in, 
-                                       dist.name.in = best.fit.name, 
-                                       parama.in = best.fit.dat %>% filter(params == "Para1") %>% pull(value), 
-                                       paramb.in = best.fit.dat %>% filter(params == "Para2") %>% pull(value), 
-                                       paramc.in = best.fit.dat %>% filter(params == "Para3") %>% pull(value))
+traits <- fit_trait_dist(bety, traits, t, prior_in, accepted_dists)
 ```
 
-```{r plot leaf_water_sat}
-leaf_water_sat_fit <- tbl(bety, "priors") %>% filter(id == leaf_water_sat_prior_id) %>% collect()
-leaf_water_sat_prior <- rdistn(leaf_water_sat_fit)
-leaf_water_sat_density <- get_ED_default("/fs/data3/ecowdery/ED.Hydro/parameters/pft3_defaults_history.xml", "leaf_water_sat")
 
-prior_plot(prior = leaf_water_sat_prior, 
-           q = c(0,.995),
-           plot_default = leaf_water_sat_density,
-           title = sprintf("Leaf water content at saturation (leaf_water_sat): %s", leaf_water_sat_fit$distn),
+```{r plot leaf_water_sat}
+
+traits[[t]]$prior = rdistn(traits[[t]]$fit)
+traits[[t]]$default = get_ED_default(PFT3_defaults_history, t)
+
+prior_plot(prior = traits[[t]]$prior, 
+           q = c(0,.995), 
+           plot_default = traits[[t]]$default,
+           title = sprintf("%s(%s):\n%s(%.4f, %.4f)", t_long, t, 
+                           traits[[t]]$fit$distn, 
+                           traits[[t]]$fit$parama,
+                           traits[[t]]$fit$paramb),
            type = "mixed")
 
 ```
@@ -442,20 +355,28 @@ add min and max values to make sure the distribution
 does not predict values that are not biologically possible. 
 
 Values added by Betsy and Felicien: 
-```{r, eval = FALSE}
-# Leaf_psi_tlp
-priors[which(priors$ED_name == "leaf_psi_tlp"),
-       c("theor.min", "theor.max")] <- c(-6, -0.5)
+```{r}
+t = "leaf_psi_tlp"
+t_long = "Leaf water potential at turgor loss point "
+i <- which(priors$ED_name == t)
+
+priors[i, stats]
+
+# priors[which(priors$ED_name == "leaf_psi_tlp"),
+       # c("theor.min", "theor.max")] <- c(-6, -0.5)
+# priors[i,c("theor.min", "theor.max")] <- c(0.5, 6)
+
+
 ```
 
-Code directly from ED: `leaf_elastic_mod(ipft)  * (leaf_psi_osmotic(ipft) / MPa2m) / (leaf_elastic_mod(ipft) + leaf_psi_osmotic(ipft) / MPa2m) * MPa2m`
+Code directly from ED: `leaf_elastic_mod(ipft)  * (leaf_psi_osmotic(ipft) / C$MPa2m) / (leaf_elastic_mod(ipft) + leaf_psi_osmotic(ipft) / C$MPa2m) * C$MPa2m`
 
 Thus, `leaf_psi_tlp` is calculated purely from other parameters: `leaf_psi_osmotic` and `leaf_elastic_mod`
 
-```{r, eval=FALSE}
-leaf_psi_tlp_samp <- 
-  (leaf_psi_osmotic_prior * (leaf_elastic_mod_prior * MPa2m))/
-  (leaf_psi_osmotic_prior + (leaf_elastic_mod_prior * MPa2m))
+```
+temp_leaf_psi_tlp_samp <- 
+  (leaf_psi_osmotic_prior * (leaf_elastic_mod_prior * C$MPa2m))/
+  (leaf_psi_osmotic_prior + (leaf_elastic_mod_prior * C$MPa2m))
 ```
 
 #### Conversion {-}
@@ -465,50 +386,55 @@ Remember that `leaf_elastic_mod` is `MPa`, where everything else is `m`!
 ### Code {-}
 
 ```{r calc leaf_psi_tlp}
-
-leaf_psi_tlp_samp <- 
-  (leaf_psi_osmotic_prior * (leaf_elastic_mod_prior * MPa2m))/
-  (leaf_psi_osmotic_prior + (leaf_elastic_mod_prior * MPa2m))
-
-summary(leaf_psi_tlp_samp)
+temp_leaf_psi_tlp_samp <-
+(traits[["leaf_psi_osmotic"]]$prior * (traits[["leaf_elastic_mod"]]$prior * C$MPa2m))/
+(traits[["leaf_psi_osmotic"]]$prior + (traits[["leaf_elastic_mod"]]$prior * C$MPa2m))
 
 # Add in the max an min from the priors table
-i <- which(priors$ED_name == "leaf_psi_tlp")
-prior_in <- priors[i,stats] * MPa2m # Convert from MPa to m
-prior_in <- prior_add_samp_data(prior_in, samp = -leaf_psi_tlp_samp)
+i <- which(priors$ED_name == t)
+prior_in <- priors[i,stats] * C$MPa2m # Convert from MPa to m
+prior_in <- prior_add_samp_data(prior_in, samp = -temp_leaf_psi_tlp_samp)
 prior_in[,stats]
 
 myfit <- prior_get_fit(prior_in, accepted_dists, plot = TRUE)
 
-variable_id.in <- tbl(bety, "variables") %>% filter(name == "leaf_psi_tlp") %>% pull(id)
+variable_id.in <- tbl(bety,"variables") %>% 
+  filter(name == !!priors$ED_name[i]) %>% 
+  pull(id)
 phylogeny.in <- "plants"
 
 best.fit.name <- myfit$score$dist[which.min(myfit$score$RMSE)]
-best.fit.dat <- myfit$dists %>% select(one_of("Name", best.fit.name)) %>% rename(value := !!best.fit.name, params = Name)
+best.fit.dat <- myfit$dists %>% 
+  select(one_of("Name", best.fit.name)) %>% 
+  rename(value := !!best.fit.name, params = Name)
 
-leaf_psi_tlp_prior_id <- prior_input(bety, variable_id.in, phylogeny.in, 
-                                     dist.name.in = best.fit.name, 
-                                     parama.in = best.fit.dat %>% filter(params == "Para1") %>% pull(value), 
-                                     paramb.in = best.fit.dat %>% filter(params == "Para2") %>% pull(value), 
-                                     paramc.in = best.fit.dat %>% filter(params == "Para3") %>% pull(value))
+
+traits <- fit_trait_dist(bety, traits, t, prior_in, accepted_dists)
 ```
 
+
 ```{r plot leaf_psi_tlp}
-leaf_psi_tlp_fit <- tbl(bety, "priors") %>% filter(id == leaf_psi_tlp_prior_id) %>% collect()
-leaf_psi_tlp_prior <- -rdistn(leaf_psi_tlp_fit) # Remember to flip back over for psi
-leaf_psi_tlp_default <- get_ED_default("/fs/data3/ecowdery/ED.Hydro/parameters/pft3_defaults_history.xml", "leaf_psi_tlp")
 
-# plot(density(leaf_psi_tlp_prior), main = "leaf_psi_tlp prior")
-# abline(v = get_ED_default("/fs/data3/ecowdery/ED.Hydro/parameters/pft3_defaults_history.xml", "leaf_psi_tlp"), col = "blue", lwd = 2)
-# abline(v = quantile(leaf_psi_osmotic_prior, c(.025, .975)), lty = 2)
-# legend("topleft",legend=c("Prior", "95% CI", "ED PFT 3 Default"), col=c("black", "black","blue"), lwd = c(2,1,2), lty = c(1,2,1))
+traits[[t]]$prior = -1 * rdistn(traits[[t]]$fit) # Remember to flip back over for psi
+traits[[t]]$default = get_ED_default(PFT3_defaults_history, t)
 
-prior_plot(prior = leaf_psi_tlp_prior, 
+prior_plot(prior = traits[[t]]$prior, 
            q = c(.005,1),
-           plot_default = leaf_psi_tlp_default,
-           title = sprintf("(leaf_psi_tlp): %s", leaf_psi_tlp_fit$distn),
+           plot_default = traits[[t]]$default,
+           title = sprintf("%s(%s):\n%s(%.4f, %.4f)", t_long, t, 
+                           traits[[t]]$fit$distn, 
+                           traits[[t]]$fit$parama,
+                           traits[[t]]$fit$paramb),
            type = "mixed")
 
+prior_plot(prior = traits[[t]]$prior * (-1/C$MPa2m), 
+           q = c(0,.995),
+           plot_default = traits[[t]]$default * (-1/C$MPa2m),
+           title = sprintf("%s(%s):\n%s(%.4f, %.4f)", t_long, t, 
+                           traits[[t]]$fit$distn, 
+                           traits[[t]]$fit$parama,
+                           traits[[t]]$fit$paramb),
+           type = "mixed")
 
 ```
 
@@ -539,8 +465,9 @@ add min and max values to make sure the distribution
 does not predict values that are not biologically possible. 
 
 Values added by Betsy and Felicien: 
-```{r, eval = FALSE}
-# Leaf_water_cap
+```{r}
+t = "leaf_water_cap"
+t_long = "Leaf hydaulic capacitance "
 priors[which(priors$ED_name == "leaf_water_cap"),
        c("theor.min", "theor.max")] <- c(1e-7, NA)
 ```
@@ -554,52 +481,45 @@ Don't forget about the switch from kg to g!
 ### Code {-}
 
 ```{r calc leaf_water_cap}
-leaf_water_cap_samp <- 
-  1000 * (1 - leaf_psi_osmotic_prior / (4 * leaf_psi_tlp_prior)) * 
-  (leaf_water_sat_prior / (4 * abs(leaf_psi_tlp_prior))) # * (wdns/leaf_density_prior)
 
-leaf_water_cap_samp <- leaf_water_cap_samp[0 < leaf_water_cap_samp]
+# leaf_water_cap_samp <- 
+#   1000 * (1 - leaf_psi_osmotic_prior / (4 * leaf_psi_tlp_prior)) * 
+#   (leaf_water_sat_prior / (4 * abs(leaf_psi_tlp_prior))) # * (C$wdns/leaf_density_prior)
+# 
+# leaf_water_cap_samp <- leaf_water_cap_samp[0 < leaf_water_cap_samp]
 
-default_leaf_water_cap <- get_ED_default("/fs/data3/ecowdery/ED.Hydro/parameters/pft3_defaults_history.xml", "leaf_water_cap")
 
-plot(density(leaf_water_cap_samp))
-abline(v = default_leaf_water_cap)
+temp_leaf_water_cap_samp <- 
+  1000 * (1 - traits[["leaf_psi_osmotic"]]$prior / (4 * traits[["leaf_psi_tlp"]]$prior)) * 
+  (traits[["leaf_water_sat"]]$prior / (4 * abs(traits[["leaf_psi_tlp"]]$prior))) # * (C$wdns/traits[["leaf_density"]]$prior)
+
+temp_leaf_water_cap_samp <- temp_leaf_water_cap_samp[0 < temp_leaf_water_cap_samp]
 
 # Add in the max an min from the priors table
 i <- which(priors$ED_name == "leaf_water_cap")
 prior_in <- priors[i,stats] 
 prior_in[,"theor.min"] <- NA
-# prior_in[,"theor.max"] <- max(.35 * (1/MPa2m) * (wdns/leaf_density_prior) )
-prior_in <- prior_add_samp_data(prior_in, samp = leaf_water_cap_samp)
+# prior_in[,"theor.max"] <- max(.35 * (1/C$MPa2m) * (C$wdns/leaf_density_prior) )
+prior_in <- prior_add_samp_data(prior_in, samp = temp_leaf_water_cap_samp)
 prior_in[,stats]
 
-myfit <- prior_get_fit(prior_in, accepted_dists, plot = TRUE)
-
-variable_id.in <- tbl(bety, "variables") %>% filter(name == "leaf_water_cap") %>% pull(id)
-phylogeny.in <- "plants"
-
-best.fit.name <- myfit$score$dist[which.min(myfit$score$RMSE)]
-best.fit.dat <- myfit$dists %>% select(one_of("Name", best.fit.name)) %>% rename(value := !!best.fit.name, params = Name)
-
-leaf_water_cap_prior_id <- prior_input(bety, variable_id.in, phylogeny.in, 
-                                       dist.name.in = best.fit.name, 
-                                       parama.in = best.fit.dat %>% filter(params == "Para1") %>% pull(value), 
-                                       paramb.in = best.fit.dat %>% filter(params == "Para2") %>% pull(value), 
-                                       paramc.in = best.fit.dat %>% filter(params == "Para3") %>% pull(value))
+traits <- fit_trait_dist(bety, traits, t, prior_in, accepted_dists)
 
 ```
 
+
 ```{r plot leaf_water_cap}
-leaf_water_cap_fit <- tbl(bety, "priors") %>% filter(id == leaf_water_cap_prior_id) %>% collect()
-leaf_water_cap_prior <- rdistn(leaf_water_cap_fit) * (1/1000)
-leaf_water_cap_default <- get_ED_default("/fs/data3/ecowdery/ED.Hydro/parameters/pft3_defaults_history.xml", "leaf_water_cap")
+traits[[t]]$prior = rdistn(traits[[t]]$fit) * (1/1000) # Convert back to kg
+traits[[t]]$default = get_ED_default(PFT3_defaults_history, t)
 
-prior_plot(prior = leaf_water_cap_prior, 
-           q = c(0,.975),
-           plot_default = leaf_water_cap_default,
-           title = sprintf("(leaf_water_cap): %s", leaf_water_cap_fit$distn),
-           type = "mixed")
-
+prior_plot(prior = traits[[t]]$prior, 
+           q = c(0, .975),
+           plot_default = traits[[t]]$default,
+           title = sprintf("%s(%s):\n%s(%.4f, %.4f)", t_long, t, 
+                           traits[[t]]$fit$distn, 
+                           traits[[t]]$fit$parama,
+                           traits[[t]]$fit$paramb),
+           type = "mixed")  
 ```
 
 --------------------------------------------------------------------------------
@@ -631,11 +551,22 @@ I will use the equation in ED to calcualte the prior and
 add min and max values to make sure the distribution 
 does not predict values that are not biologically possible. 
 
-Values added by Betsy and Felicien: 
-```{r, eval = FALSE}
-# Leaf_psi_min
-priors[which(priors$ED_name == "leaf_psi_min"),
-       c("theor.min", "theor.max")] <- c(-700, -0.1)
+ 
+```{r}
+t = "leaf_psi_min"
+t_long = "Leaf minimum water potential "
+
+i <- which(priors$ED_name == "leaf_psi_min")
+
+# Values added by Betsy and Felicien: c(-700, -0.1)
+priors[i,c("theor.min", "theor.max")] <- c(0.1,700)
+
+# Did Felicien mean 70 ?????
+# priors[which(priors$ED_name == "leaf_psi_min"),
+#        c("theor.min", "theor.max")] <- c(0.1,70) ## 
+# No max value
+# priors[which(priors$ED_name == "leaf_psi_min"),
+#        c("theor.min", "theor.max")] <- c(0.1,NA) 
 ```
 
 Code copied from ED: 
@@ -652,40 +583,33 @@ None
 ### Code {-}
 
 ```{r calc leaf_psi_min}
-leaf_rwc_min_samp = 0.01 * leaf_elastic_mod_prior + 0.17
-leaf_psi_min_samp = (leaf_rwc_min_samp - 1.) * leaf_water_sat_prior / leaf_water_cap_prior
+# traits[["leaf_water_sat"]]$prior
+
+temp_leaf_rwc_min_samp = 0.01 * traits[["leaf_elastic_mod"]]$prior + 0.17
+temp_leaf_psi_min_samp = (temp_leaf_rwc_min_samp - 1.) * traits[["leaf_water_sat"]]$prior / traits[["leaf_water_cap"]]$prior
 
 # Add in the max an min from the priors table
-i <- which(priors$ED_name == "leaf_psi_min")
-prior_in <- priors[i,stats] * MPa2m # Convert from MPa to m
-prior_in <- prior_add_samp_data(prior_in, samp = -leaf_psi_min_samp)
-prior_in[,stats]
 
-myfit <- prior_get_fit(prior_in, accepted_dists, plot = TRUE)
+prior_in <- priors[i,stats] * C$MPa2m # Convert from MPa to m
+prior_in <- prior_add_samp_data(prior_in, samp = -temp_leaf_psi_min_samp)
+prior_in[,stats] / C$MPa2m
 
-variable_id.in <- tbl(bety, "variables") %>% filter(name == "leaf_psi_min") %>% pull(id)
-phylogeny.in <- "plants"
-
-best.fit.name <- myfit$score$dist[which.min(myfit$score$RMSE)]
-best.fit.dat <- myfit$dists %>% select(one_of("Name", best.fit.name)) %>% rename(value := !!best.fit.name, params = Name)
-
-leaf_psi_min_prior_id <- prior_input(bety, variable_id.in, phylogeny.in, 
-                                     dist.name.in = best.fit.name, 
-                                     parama.in = best.fit.dat %>% filter(params == "Para1") %>% pull(value), 
-                                     paramb.in = best.fit.dat %>% filter(params == "Para2") %>% pull(value), 
-                                     paramc.in = best.fit.dat %>% filter(params == "Para3") %>% pull(value))
+traits <- fit_trait_dist(bety, traits, t, prior_in, accepted_dists)
 
 ```
 
 ```{r plot leaf_psi_min}
-leaf_psi_min_fit <- tbl(bety, "priors") %>% filter(id == leaf_psi_min_prior_id) %>% collect()
-leaf_psi_min_prior <- -rdistn(leaf_psi_min_fit) # Remember to flip psi
-default_leaf_psi_min <- get_ED_default("/fs/data3/ecowdery/ED.Hydro/parameters/pft3_defaults_history.xml", "leaf_psi_min")
 
-prior_plot(prior = leaf_psi_min_prior, 
-           q = c(.025,1), 
-           plot_default = default_leaf_psi_min,
-           title = sprintf("leaf_psi_min: %s", leaf_psi_min_fit$distn), 
+traits[[t]]$prior = -1 * rdistn(traits[[t]]$fit) # Remember to flip back over for psi
+traits[[t]]$default = get_ED_default(PFT3_defaults_history, t)
+
+prior_plot(prior = traits[[t]]$prior, 
+          q = c(.025,1),
+           plot_default = traits[[t]]$default,
+           title = sprintf("%s(%s):\n%s(%.4f, %.4f)", t_long, t, 
+                           traits[[t]]$fit$distn, 
+                           traits[[t]]$fit$parama,
+                           traits[[t]]$fit$paramb),
            type = "mixed")
 
 ```

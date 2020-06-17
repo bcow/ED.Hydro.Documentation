@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html >
-
+<html lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Setup | Calculating ED Hydro Parameter Priors</title>
-  <meta name="description" content="ED Hydro Documentation">
-  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+  <meta name="description" content="ED Hydro Documentation" />
+  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Setup | Calculating ED Hydro Parameter Priors" />
   <meta property="og:type" content="book" />
@@ -22,18 +21,18 @@
   <meta name="twitter:description" content="ED Hydro Documentation" />
   
 
-<meta name="author" content="Betsy Cowdery">
+<meta name="author" content="Betsy Cowdery" />
 
 
-<meta name="date" content="2019-09-27">
+<meta name="date" content="2020-06-16" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="discussion.html">
-<link rel="next" href="starting-parameters.html">
+<link rel="prev" href="index.html"/>
+<link rel="next" href="constants.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -41,6 +40,9 @@
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
 
 
 
@@ -56,7 +58,6 @@ a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
 a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
@@ -127,50 +128,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <ul class="summary">
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Documentation</a></li>
-<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i>Introduction</a><ul>
-<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#tropical-forests-and-water-stress"><i class="fa fa-check"></i>Tropical forests and water stress</a></li>
-<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#models-predicting-response-to-water-stress"><i class="fa fa-check"></i>Models predicting response to water stress</a><ul>
-<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#new-mechanistic-hydauics-models-have-downsides-complexity"><i class="fa fa-check"></i>New mechanistic hydauics models have downsides: complexity!</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#question"><i class="fa fa-check"></i>Question</a></li>
-<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html#this-study"><i class="fa fa-check"></i>This study</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="methods-and-materials.html"><a href="methods-and-materials.html"><i class="fa fa-check"></i>Methods and Materials</a><ul>
-<li class="chapter" data-level="" data-path="methods-and-materials.html"><a href="methods-and-materials.html#ecosystem-demography-model-version-2"><i class="fa fa-check"></i>Ecosystem Demography Model (Version 2)</a><ul>
-<li class="chapter" data-level="" data-path="methods-and-materials.html"><a href="methods-and-materials.html#mechanisitc-hyraulics"><i class="fa fa-check"></i>Mechanisitc Hyraulics</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="methods-and-materials.html"><a href="methods-and-materials.html#ed2-parameter-description"><i class="fa fa-check"></i>ED2 Parameter Description</a></li>
-<li class="chapter" data-level="" data-path="methods-and-materials.html"><a href="methods-and-materials.html#site-and-prescrition-of-initial-vegetation-conditions"><i class="fa fa-check"></i>Site and Prescrition of Initial Vegetation Conditions</a></li>
-<li class="chapter" data-level="" data-path="methods-and-materials.html"><a href="methods-and-materials.html#bci-2012-survey-data"><i class="fa fa-check"></i>BCI 2012 survey data</a></li>
-<li class="chapter" data-level="" data-path="methods-and-materials.html"><a href="methods-and-materials.html#prescription-of-atmospheric-conditions"><i class="fa fa-check"></i>Prescription of Atmospheric Conditions</a><ul>
-<li class="chapter" data-level="" data-path="methods-and-materials.html"><a href="methods-and-materials.html#bci-2012-flux-tower-data"><i class="fa fa-check"></i>BCI 2012 flux tower data</a></li>
-<li class="chapter" data-level="" data-path="methods-and-materials.html"><a href="methods-and-materials.html#simulating-drought"><i class="fa fa-check"></i>Simulating Drought</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="methods-and-materials.html"><a href="methods-and-materials.html#attributing-uncertainty-to-ecological-processes"><i class="fa fa-check"></i>Attributing Uncertainty to Ecological Processes</a><ul>
-<li class="chapter" data-level="" data-path="methods-and-materials.html"><a href="methods-and-materials.html#calculating-parameter-uncertainty"><i class="fa fa-check"></i>Calculating Parameter Uncertainty</a></li>
-<li class="chapter" data-level="" data-path="methods-and-materials.html"><a href="methods-and-materials.html#calculating-parameter-sensitivity-and-contribution-to-model-uncertainty"><i class="fa fa-check"></i>Calculating Parameter Sensitivity and Contribution to Model Uncertainty</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="methods-and-materials.html"><a href="methods-and-materials.html#simulation-protocols-and-data-analysis"><i class="fa fa-check"></i>Simulation protocols and data analysis</a><ul>
-<li class="chapter" data-level="" data-path="methods-and-materials.html"><a href="methods-and-materials.html#pecan"><i class="fa fa-check"></i>PEcAn</a></li>
-<li class="chapter" data-level="" data-path="methods-and-materials.html"><a href="methods-and-materials.html#meta-analysis"><i class="fa fa-check"></i>Meta Analysis</a></li>
-<li class="chapter" data-level="" data-path="methods-and-materials.html"><a href="methods-and-materials.html#ensemble-runs"><i class="fa fa-check"></i>Ensemble Runs</a></li>
-<li class="chapter" data-level="" data-path="methods-and-materials.html"><a href="methods-and-materials.html#sensitivity-analysis-and-variance-decomposition"><i class="fa fa-check"></i>Sensitivity Analysis and Variance Decomposition</a></li>
-<li class="chapter" data-level="" data-path="methods-and-materials.html"><a href="methods-and-materials.html#benchmarking"><i class="fa fa-check"></i>Benchmarking</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i>Results</a></li>
-<li class="chapter" data-level="" data-path="discussion.html"><a href="discussion.html"><i class="fa fa-check"></i>Discussion</a></li>
 <li class="chapter" data-level="" data-path="setup.html"><a href="setup.html"><i class="fa fa-check"></i>Setup</a><ul>
+<li class="chapter" data-level="" data-path="setup.html"><a href="setup.html#choosing-pfts"><i class="fa fa-check"></i>Choosing PFTs</a></li>
 <li class="chapter" data-level="0.1" data-path="setup.html"><a href="setup.html#pft-ed_tropical_hydro"><i class="fa fa-check"></i><b>0.1</b> PFT: ED_Tropical_Hydro</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="starting-parameters.html"><a href="starting-parameters.html"><i class="fa fa-check"></i>Starting Parameters</a><ul>
-<li><a href="starting-parameters.html#wdns-liquid-water-density"><code>[wdns]:</code> Liquid water density</a></li>
-<li><a href="starting-parameters.html#grav-gravity"><code>[grav]:</code> Gravity</a></li>
-<li><a href="starting-parameters.html#mpa2m-conversion-from-mpa-to-m"><code>[MPa2m]:</code> Conversion from MPa to m</a></li>
-<li><a href="starting-parameters.html#wood_density-wood-density"><code>[wood_density]:</code> Wood density</a></li>
-<li><a href="starting-parameters.html#sla-specific-leaf-area-sla"><code>[SLA]:</code> Specific Leaf Area (SLA)</a></li>
+<li class="chapter" data-level="" data-path="constants.html"><a href="constants.html"><i class="fa fa-check"></i>Constants</a><ul>
+<li><a href="constants.html#wdns-liquid-water-density"><code>[wdns]:</code> Liquid water density</a></li>
+<li><a href="constants.html#grav-gravity"><code>[grav]:</code> Gravity</a></li>
+<li><a href="constants.html#mpa2m-conversion-from-mpa-to-m"><code>[MPa2m]:</code> Conversion from MPa to m</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="key-leaf-traits.html"><a href="key-leaf-traits.html"><i class="fa fa-check"></i>Key Leaf Traits</a><ul>
+<li><a href="key-leaf-traits.html#sla-specific-leaf-area-sla"><code>[SLA]:</code> Specific Leaf Area (SLA)</a></li>
 <li><a href="key-leaf-traits.html#leaf_psi_osmotic-leaf-osmotic-water-potential-at-saturation"><code>[leaf_psi_osmotic]:</code> Leaf osmotic water potential at saturation</a><ul>
 <li class="chapter" data-level="" data-path="key-leaf-traits.html"><a href="key-leaf-traits.html#ed"><i class="fa fa-check"></i>ED</a></li>
 <li class="chapter" data-level="" data-path="key-leaf-traits.html"><a href="key-leaf-traits.html#bety"><i class="fa fa-check"></i>BETY</a></li>
@@ -215,6 +183,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="key-wood-traits.html"><a href="key-wood-traits.html"><i class="fa fa-check"></i>Key Wood Traits</a><ul>
+<li><a href="key-wood-traits.html#wood_density-wood-density"><code>[wood_density]:</code> Wood density</a></li>
 <li><a href="key-wood-traits.html#wood_psi_osmotic-sapwood-osmotic-water-potential-at-saturation"><code>[wood_psi_osmotic]:</code> Sapwood osmotic water potential at saturation</a><ul>
 <li class="chapter" data-level="" data-path="key-wood-traits.html"><a href="key-wood-traits.html#ed-7"><i class="fa fa-check"></i>ED</a></li>
 <li class="chapter" data-level="" data-path="key-wood-traits.html"><a href="key-wood-traits.html#bety-7"><i class="fa fa-check"></i>BETY</a></li>
@@ -1026,25 +995,34 @@ NA
 </tr>
 </tbody>
 </table>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">traits &lt;-<span class="st"> </span><span class="kw">list</span>()</a></code></pre></div>
+<div id="choosing-pfts" class="section level2 unnumbered">
+<h2>Choosing PFTs</h2>
+<ul>
+<li>2: early tropical<br />
+</li>
+<li>3: mid tropical<br />
+</li>
+<li>4: late tropical</li>
+</ul>
+<p>Here we are only using one tropical PFT instead of three. But there is a hydro and non, hydro version. \</p>
+<p>Both were cloned from the Broadleaf Tropical PFT made for FATES, with additional species added in when trait data was added for the meta analysis.</p>
+<ul>
+<li>ED_Tropical: 1000000132 (<a href="http://psql-pecan.bu.edu/bety/pfts/1000000132" class="uri">http://psql-pecan.bu.edu/bety/pfts/1000000132</a>)</li>
+<li>ED_Tropical_Hydro: 1000000131 (<a href="http://psql-pecan.bu.edu/bety/pfts/1000000131" class="uri">http://psql-pecan.bu.edu/bety/pfts/1000000131</a>)</li>
+</ul>
+</div>
 <div id="pft-ed_tropical_hydro" class="section level2">
 <h2><span class="header-section-number">0.1</span> PFT: ED_Tropical_Hydro</h2>
 <p>ED id: 1000000131</p>
-<pre class="sourceCode r"><code class="sourceCode r">pftid &lt;-<span class="st"> </span><span class="dv">1000000131</span>
-
-priorid &lt;-<span class="st"> </span><span class="kw">tbl</span>(bety, <span class="st">&quot;pfts_priors&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(pft_id <span class="op">==</span><span class="st"> </span>pftid) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(prior_id)</code></pre>
-<pre><code>## Warning: `new_overscope()` is deprecated as of rlang 0.2.0.
-## Please use `new_data_mask()` instead.
-## This warning is displayed once per session.</code></pre>
-<pre><code>## Warning: `overscope_eval_next()` is deprecated as of rlang 0.2.0.
-## Please use `eval_tidy()` with a data mask instead.
-## This warning is displayed once per session.</code></pre>
-<pre><code>## Warning: `overscope_clean()` is deprecated as of rlang 0.2.0.
-## This warning is displayed once per session.</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r">pfts_priors &lt;-<span class="st"> </span><span class="kw">tbl</span>(bety, <span class="st">&quot;priors&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(id <span class="op">%in%</span><span class="st"> </span>priorid) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="kw">one_of</span>(<span class="st">&quot;id&quot;</span>, <span class="st">&quot;variable_id&quot;</span>, <span class="st">&quot;distn&quot;</span>, <span class="st">&quot;parama&quot;</span>, <span class="st">&quot;paramb&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">left_join</span>(<span class="kw">tbl</span>(bety, <span class="st">&quot;variables&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="st">&quot;id&quot;</span>, <span class="st">&quot;name&quot;</span>), <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;variable_id&quot;</span> =<span class="st"> &quot;id&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">collect</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">rename</span>(<span class="st">&quot;var_name&quot;</span> =<span class="st"> &quot;name&quot;</span>) </code></pre>
-<pre><code>## Warning: `chr_along()` is deprecated as of rlang 0.2.0.
-## This warning is displayed once per session.</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">kable</span>(pfts_priors)</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">pftid &lt;-<span class="st"> </span><span class="dv">1000000131</span></a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb4-3" data-line-number="3">priorid &lt;-<span class="st"> </span><span class="kw">tbl</span>(bety, <span class="st">&quot;pfts_priors&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(pft_id <span class="op">==</span><span class="st"> </span>pftid) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(prior_id)</a>
+<a class="sourceLine" id="cb4-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb4-5" data-line-number="5">pfts_priors &lt;-<span class="st"> </span><span class="kw">tbl</span>(bety, <span class="st">&quot;priors&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(id <span class="op">%in%</span><span class="st"> </span>priorid) <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="kw">one_of</span>(<span class="st">&quot;id&quot;</span>, <span class="st">&quot;variable_id&quot;</span>, <span class="st">&quot;distn&quot;</span>, <span class="st">&quot;parama&quot;</span>, <span class="st">&quot;paramb&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb4-6" data-line-number="6"><span class="st">  </span><span class="kw">left_join</span>(<span class="kw">tbl</span>(bety, <span class="st">&quot;variables&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="st">&quot;id&quot;</span>, <span class="st">&quot;name&quot;</span>), <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;variable_id&quot;</span> =<span class="st"> &quot;id&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">collect</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">rename</span>(<span class="st">&quot;var_name&quot;</span> =<span class="st"> &quot;name&quot;</span>) </a>
+<a class="sourceLine" id="cb4-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb4-8" data-line-number="8"><span class="kw">kable</span>(pfts_priors)</a></code></pre></div>
 <table>
 <thead>
 <tr>
@@ -1080,10 +1058,10 @@ var_name
 unif
 </td>
 <td style="text-align:right;">
-0.000000000
+0.0000
 </td>
 <td style="text-align:right;">
-0.5000000000
+0.500
 </td>
 <td style="text-align:left;">
 orient_factor
@@ -1100,10 +1078,10 @@ orient_factor
 unif
 </td>
 <td style="text-align:right;">
-0.100000000
+0.1000
 </td>
 <td style="text-align:right;">
-1.1000000000
+1.100
 </td>
 <td style="text-align:left;">
 wood_density
@@ -1120,10 +1098,10 @@ wood_density
 lnorm
 </td>
 <td style="text-align:right;">
-5.420000000
+5.4200
 </td>
 <td style="text-align:right;">
-0.5300000000
+0.530
 </td>
 <td style="text-align:left;">
 leaf_psi_tlp
@@ -1140,10 +1118,10 @@ leaf_psi_tlp
 norm
 </td>
 <td style="text-align:right;">
-0.470000000
+0.4700
 </td>
 <td style="text-align:right;">
-0.0500000000
+0.050
 </td>
 <td style="text-align:left;">
 b2Rd
@@ -1160,10 +1138,10 @@ b2Rd
 unif
 </td>
 <td style="text-align:right;">
-0.000000000
+0.0000
 </td>
 <td style="text-align:right;">
-100.0000000000
+100.000
 </td>
 <td style="text-align:left;">
 SRA
@@ -1180,10 +1158,10 @@ SRA
 lnorm
 </td>
 <td style="text-align:right;">
-5.430000000
+5.4300
 </td>
 <td style="text-align:right;">
-0.5500000000
+0.550
 </td>
 <td style="text-align:left;">
 wood_psi_tlp
@@ -1200,10 +1178,10 @@ wood_psi_tlp
 weibull
 </td>
 <td style="text-align:right;">
-0.800000000
+0.8000
 </td>
 <td style="text-align:right;">
-4.0700000000
+4.070
 </td>
 <td style="text-align:left;">
 wood_Kexp
@@ -1220,93 +1198,13 @@ wood_Kexp
 beta
 </td>
 <td style="text-align:right;">
-0.720000000
+0.7200
 </td>
 <td style="text-align:right;">
-21.9500000000
+21.950
 </td>
 <td style="text-align:left;">
 wood_Kmax
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-1000000420
-</td>
-<td style="text-align:right;">
-1000000289
-</td>
-<td style="text-align:left;">
-lnorm
-</td>
-<td style="text-align:right;">
-5.280000000
-</td>
-<td style="text-align:right;">
-0.8500000000
-</td>
-<td style="text-align:left;">
-wood_psi50
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-1000000405
-</td>
-<td style="text-align:right;">
-1000000287
-</td>
-<td style="text-align:left;">
-lnorm
-</td>
-<td style="text-align:right;">
--0.290000000
-</td>
-<td style="text-align:right;">
-0.7600000000
-</td>
-<td style="text-align:left;">
-leaf_water_cap
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-1000000448
-</td>
-<td style="text-align:right;">
-1000000310
-</td>
-<td style="text-align:left;">
-norm
-</td>
-<td style="text-align:right;">
-1.847288597
-</td>
-<td style="text-align:right;">
-0.6607372343
-</td>
-<td style="text-align:left;">
-b2Bl_large
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-1000000447
-</td>
-<td style="text-align:right;">
-1000000309
-</td>
-<td style="text-align:left;">
-lnorm
-</td>
-<td style="text-align:right;">
--4.620000000
-</td>
-<td style="text-align:right;">
-1.0800000000
-</td>
-<td style="text-align:left;">
-b1Bl_large
 </td>
 </tr>
 <tr>
@@ -1320,13 +1218,53 @@ b1Bl_large
 gamma
 </td>
 <td style="text-align:right;">
-174.750000000
+138.7800
 </td>
 <td style="text-align:right;">
-368.4900000000
+292.440
 </td>
 <td style="text-align:left;">
 b1Rd
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1000000405
+</td>
+<td style="text-align:right;">
+1000000287
+</td>
+<td style="text-align:left;">
+lnorm
+</td>
+<td style="text-align:right;">
+-0.2900
+</td>
+<td style="text-align:right;">
+0.760
+</td>
+<td style="text-align:left;">
+leaf_water_cap
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1000000420
+</td>
+<td style="text-align:right;">
+1000000289
+</td>
+<td style="text-align:left;">
+lnorm
+</td>
+<td style="text-align:right;">
+5.2800
+</td>
+<td style="text-align:right;">
+0.850
+</td>
+<td style="text-align:left;">
+wood_psi50
 </td>
 </tr>
 <tr>
@@ -1340,10 +1278,10 @@ b1Rd
 unif
 </td>
 <td style="text-align:right;">
-0.000100000
+0.0001
 </td>
 <td style="text-align:right;">
-0.1000000000
+0.100
 </td>
 <td style="text-align:left;">
 root_beta
@@ -1351,22 +1289,42 @@ root_beta
 </tr>
 <tr>
 <td style="text-align:right;">
-1000000417
+1000000447
 </td>
 <td style="text-align:right;">
-1000000288
+1000000309
 </td>
 <td style="text-align:left;">
 lnorm
 </td>
 <td style="text-align:right;">
-0.380000000
+-3.9300
 </td>
 <td style="text-align:right;">
-0.9800000000
+0.030
 </td>
 <td style="text-align:left;">
-wood_water_cap
+b1Bl_large
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1000000448
+</td>
+<td style="text-align:right;">
+1000000310
+</td>
+<td style="text-align:left;">
+norm
+</td>
+<td style="text-align:right;">
+1.8500
+</td>
+<td style="text-align:right;">
+0.020
+</td>
+<td style="text-align:left;">
+b2Bl_large
 </td>
 </tr>
 <tr>
@@ -1380,10 +1338,10 @@ wood_water_cap
 weibull
 </td>
 <td style="text-align:right;">
-2.000000000
+2.0000
 </td>
 <td style="text-align:right;">
-7.0000000000
+7.000
 </td>
 <td style="text-align:left;">
 stomatal_slope
@@ -1391,22 +1349,22 @@ stomatal_slope
 </tr>
 <tr>
 <td style="text-align:right;">
-1000000460
+1000000417
 </td>
 <td style="text-align:right;">
-1000000314
+1000000288
 </td>
 <td style="text-align:left;">
-unif
+lnorm
 </td>
 <td style="text-align:right;">
-1.000000000
+0.3700
 </td>
 <td style="text-align:right;">
-5.0000000000
+0.980
 </td>
 <td style="text-align:left;">
-stoma_psi_c
+wood_water_cap
 </td>
 </tr>
 <tr>
@@ -1420,13 +1378,33 @@ stoma_psi_c
 beta
 </td>
 <td style="text-align:right;">
-4.060000000
+4.0600
 </td>
 <td style="text-align:right;">
-7.2000000000
+7.200
 </td>
 <td style="text-align:left;">
 growth_resp_factor
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1000000460
+</td>
+<td style="text-align:right;">
+1000000314
+</td>
+<td style="text-align:left;">
+unif
+</td>
+<td style="text-align:right;">
+1.0000
+</td>
+<td style="text-align:right;">
+5.000
+</td>
+<td style="text-align:left;">
+stoma_psi_c
 </td>
 </tr>
 <tr>
@@ -1440,10 +1418,10 @@ growth_resp_factor
 weibull
 </td>
 <td style="text-align:right;">
-1.550000000
+1.5500
 </td>
 <td style="text-align:right;">
-0.8620000000
+0.862
 </td>
 <td style="text-align:left;">
 root_turnover_rate
@@ -1460,10 +1438,10 @@ root_turnover_rate
 beta
 </td>
 <td style="text-align:right;">
-1.000000000
+1.0000
 </td>
 <td style="text-align:right;">
-1.0000000000
+1.000
 </td>
 <td style="text-align:left;">
 agf_bs
@@ -1480,10 +1458,10 @@ agf_bs
 weibull
 </td>
 <td style="text-align:right;">
-2.100000000
+2.1000
 </td>
 <td style="text-align:right;">
-12.1000000000
+12.100
 </td>
 <td style="text-align:left;">
 SLA
@@ -1500,10 +1478,10 @@ SLA
 unif
 </td>
 <td style="text-align:right;">
-0.010000000
+0.0100
 </td>
 <td style="text-align:right;">
-0.2000000000
+0.200
 </td>
 <td style="text-align:left;">
 leaf_reflect_vis
@@ -1520,10 +1498,10 @@ leaf_reflect_vis
 unif
 </td>
 <td style="text-align:right;">
-0.010000000
+0.0100
 </td>
 <td style="text-align:right;">
-0.3000000000
+0.300
 </td>
 <td style="text-align:left;">
 leaf_reflect_nir
@@ -1540,10 +1518,10 @@ leaf_reflect_nir
 unif
 </td>
 <td style="text-align:right;">
-0.010000000
+0.0100
 </td>
 <td style="text-align:right;">
-0.2000000000
+0.200
 </td>
 <td style="text-align:left;">
 leaf_trans_vis
@@ -1560,10 +1538,10 @@ leaf_trans_vis
 unif
 </td>
 <td style="text-align:right;">
-0.010000000
+0.0100
 </td>
 <td style="text-align:right;">
-0.6000000000
+0.600
 </td>
 <td style="text-align:left;">
 leaf_trans_nir
@@ -1580,10 +1558,10 @@ leaf_trans_nir
 unif
 </td>
 <td style="text-align:right;">
-0.040000000
+0.0400
 </td>
 <td style="text-align:right;">
-1.0000000000
+1.000
 </td>
 <td style="text-align:left;">
 leaf_turnover_rate
@@ -1600,10 +1578,10 @@ leaf_turnover_rate
 lnorm
 </td>
 <td style="text-align:right;">
--0.250000000
+-0.2500
 </td>
 <td style="text-align:right;">
-1.0000000000
+1.000
 </td>
 <td style="text-align:left;">
 fineroot2leaf
@@ -1620,10 +1598,10 @@ fineroot2leaf
 gamma
 </td>
 <td style="text-align:right;">
-1.500000000
+1.5000
 </td>
 <td style="text-align:right;">
-0.4000000000
+0.400
 </td>
 <td style="text-align:left;">
 leaf_respiration_rate_m2
@@ -1640,10 +1618,10 @@ leaf_respiration_rate_m2
 unif
 </td>
 <td style="text-align:right;">
-1.400000000
+1.4000
 </td>
 <td style="text-align:right;">
-2.6000000000
+2.600
 </td>
 <td style="text-align:left;">
 veg_respiration_Q10
@@ -1660,10 +1638,10 @@ veg_respiration_Q10
 gamma
 </td>
 <td style="text-align:right;">
-2.000000000
+2.0000
 </td>
 <td style="text-align:right;">
-22.0000000000
+22.000
 </td>
 <td style="text-align:left;">
 quantum_efficiency
@@ -1680,10 +1658,10 @@ quantum_efficiency
 weibull
 </td>
 <td style="text-align:right;">
-1.700000000
+1.7000
 </td>
 <td style="text-align:right;">
-80.0000000000
+80.000
 </td>
 <td style="text-align:left;">
 Vcmax
@@ -1699,17 +1677,19 @@ Vcmax
           </div>
         </div>
       </div>
-<a href="discussion.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="starting-parameters.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="constants.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
@@ -1717,12 +1697,11 @@ gitbook.start({
 "github": false,
 "facebook": true,
 "twitter": true,
-"google": false,
 "linkedin": false,
 "weibo": false,
 "instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
@@ -1734,6 +1713,10 @@ gitbook.start({
 "text": null
 },
 "history": {
+"link": null,
+"text": null
+},
+"view": {
 "link": null,
 "text": null
 },
@@ -1752,8 +1735,9 @@ gitbook.start({
     script.type = "text/javascript";
     var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
