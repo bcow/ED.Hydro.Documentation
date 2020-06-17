@@ -472,13 +472,13 @@ does not predict values that are not biologically possible.</p>
 <pre><code>## # A tibble: 1 x 7
 ##   theor.min low.025 low.25  mean upp.75 upp.975 theor.max
 ##       &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;
-## 1     0.001    120.   430.  685.  1016.   1876.      2000</code></pre>
+## 1     0.001    118.   434.  688.  1018.   1858.      2000</code></pre>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1">traits &lt;-<span class="st"> </span><span class="kw">fit_trait_dist</span>(bety, traits, t, prior_in, accepted_dists)</a></code></pre></div>
 <p><img src="Final_Book_files/figure-html/calc%20leaf_density_sample-1.png" width="672" /></p>
 <pre><code>## Entry with id = 1000000396 already exists.
 ## Parameters look different.
 ## Old: weibull(1.8300, 845.2500)
-## New: weibull(1.8200, 845.6600)</code></pre>
+## New: weibull(1.8300, 848.8400)</code></pre>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1">traits[[t]]<span class="op">$</span>prior =<span class="st"> </span><span class="kw">rdistn</span>(traits[[t]]<span class="op">$</span>fit)</a>
 <a class="sourceLine" id="cb22-2" data-line-number="2">traits[[t]]<span class="op">$</span>default =<span class="st"> </span>(<span class="kw">get_ED_default</span>(<span class="st">&quot;/fs/data3/ecowdery/ED.Hydro/parameters/pft3_defaults_history.xml&quot;</span>, <span class="st">&quot;leaf_elastic_mod&quot;</span>) <span class="op">-</span><span class="st"> </span><span class="fl">2.03</span>) <span class="op">/</span><span class="st"> </span><span class="fl">25.4</span> <span class="op">*</span><span class="st"> </span><span class="dv">1</span>.e3</a>
 <a class="sourceLine" id="cb22-3" data-line-number="3"></a>
@@ -653,10 +653,8 @@ does not predict values that are not biologically possible.</p>
 <a class="sourceLine" id="cb34-7" data-line-number="7">prior_in &lt;-<span class="st"> </span>priors[i,stats] <span class="op">*</span><span class="st"> </span>C<span class="op">$</span>MPa2m <span class="co"># Convert from MPa to m</span></a>
 <a class="sourceLine" id="cb34-8" data-line-number="8">prior_in &lt;-<span class="st"> </span><span class="kw">prior_add_samp_data</span>(prior_in, <span class="dt">samp =</span> <span class="op">-</span>temp_leaf_psi_tlp_samp)</a>
 <a class="sourceLine" id="cb34-9" data-line-number="9">prior_in[,stats]</a></code></pre></div>
-<pre><code>##     theor.min     low.025      low.25       mean      upp.75 upp.975
-## 1 50.98581065 51.13176491 154.5035372 231.491275 325.7060855      NA
-##     theor.max
-## 1 611.8297278</code></pre>
+<pre><code>##     theor.min low.025      low.25        mean      upp.75 upp.975   theor.max
+## 1 50.98581065      NA 153.6700345 231.8867672 326.1701485      NA 611.8297278</code></pre>
 <div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" data-line-number="1">myfit &lt;-<span class="st"> </span><span class="kw">prior_get_fit</span>(prior_in, accepted_dists, <span class="dt">plot =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <p><img src="Final_Book_files/figure-html/calc%20leaf_psi_tlp-1.png" width="672" /></p>
 <div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1">variable_id.in &lt;-<span class="st"> </span><span class="kw">tbl</span>(bety,<span class="st">&quot;variables&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
@@ -673,9 +671,9 @@ does not predict values that are not biologically possible.</p>
 <a class="sourceLine" id="cb37-12" data-line-number="12">traits &lt;-<span class="st"> </span><span class="kw">fit_trait_dist</span>(bety, traits, t, prior_in, accepted_dists)</a></code></pre></div>
 <p><img src="Final_Book_files/figure-html/calc%20leaf_psi_tlp-2.png" width="672" /></p>
 <pre><code>## Entry with id = 1000000384 already exists.
-## Parameters look the saaaaame.
+## Parameters look different.
 ## Old: lnorm(5.4200, 0.5300)
-## New: lnorm(5.4200, 0.5300)</code></pre>
+## New: lnorm(5.4200, 0.5400)</code></pre>
 <div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" data-line-number="1">traits[[t]]<span class="op">$</span>prior =<span class="st"> </span><span class="dv">-1</span> <span class="op">*</span><span class="st"> </span><span class="kw">rdistn</span>(traits[[t]]<span class="op">$</span>fit) <span class="co"># Remember to flip back over for psi</span></a>
 <a class="sourceLine" id="cb39-2" data-line-number="2">traits[[t]]<span class="op">$</span>default =<span class="st"> </span><span class="kw">get_ED_default</span>(PFT3_defaults_history, t)</a>
 <a class="sourceLine" id="cb39-3" data-line-number="3"></a>
@@ -764,7 +762,7 @@ does not predict values that are not biologically possible.</p>
 <pre><code>## # A tibble: 1 x 7
 ##   theor.min low.025 low.25  mean upp.75 upp.975 theor.max
 ##   &lt;lgl&gt;       &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;
-## 1 NA          0.163  0.451 0.752   1.25    3.28        NA</code></pre>
+## 1 NA          0.161  0.450 0.750   1.24    3.28        NA</code></pre>
 <div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" data-line-number="1">traits &lt;-<span class="st"> </span><span class="kw">fit_trait_dist</span>(bety, traits, t, prior_in, accepted_dists)</a></code></pre></div>
 <p><img src="Final_Book_files/figure-html/calc%20leaf_water_cap-1.png" width="672" /></p>
 <pre><code>## Entry with id = 1000000405 already exists.
@@ -849,8 +847,8 @@ leaf_psi_min = (leaf_rwc_min(ipft) - 1.) * leaf_water_sat(ipft) / leaf_water_cap
 <a class="sourceLine" id="cb52-8" data-line-number="8">prior_in &lt;-<span class="st"> </span>priors[i,stats] <span class="op">*</span><span class="st"> </span>C<span class="op">$</span>MPa2m <span class="co"># Convert from MPa to m</span></a>
 <a class="sourceLine" id="cb52-9" data-line-number="9">prior_in &lt;-<span class="st"> </span><span class="kw">prior_add_samp_data</span>(prior_in, <span class="dt">samp =</span> <span class="op">-</span>temp_leaf_psi_min_samp)</a>
 <a class="sourceLine" id="cb52-10" data-line-number="10">prior_in[,stats] <span class="op">/</span><span class="st"> </span>C<span class="op">$</span>MPa2m</a></code></pre></div>
-<pre><code>##   theor.min     low.025      low.25        mean      upp.75     upp.975
-## 1       0.1 1.012590174 3.824121863 7.600810421 15.11700446 55.72369998
+<pre><code>##   theor.min    low.025      low.25        mean      upp.75     upp.975
+## 1       0.1 1.01633738 3.809536815 7.573818531 15.03741949 55.01960403
 ##   theor.max
 ## 1       700</code></pre>
 <div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" data-line-number="1">traits &lt;-<span class="st"> </span><span class="kw">fit_trait_dist</span>(bety, traits, t, prior_in, accepted_dists)</a></code></pre></div>

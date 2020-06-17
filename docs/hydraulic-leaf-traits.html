@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Hydraulic Leaf Traits | Calculating ED Hydro Parameter Priors</title>
+  <meta name="description" content="ED Hydro Documentation" />
+  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Hydraulic Leaf Traits | Calculating ED Hydro Parameter Priors" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="https://bcow.github.io/ED.Hydro.Documentation/" />
+  
+  <meta property="og:description" content="ED Hydro Documentation" />
+  <meta name="github-repo" content="bcow/ED.Hydro.Documentation" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Hydraulic Leaf Traits | Calculating ED Hydro Parameter Priors" />
+  
+  <meta name="twitter:description" content="ED Hydro Documentation" />
+  
+
+<meta name="author" content="Betsy Cowdery" />
+
+
+<meta name="date" content="2020-06-17" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="respiration-and-turnover.html"/>
+<link rel="next" href="hydraulic-wood-traits.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Documentation</a></li>
+<li class="chapter" data-level="" data-path="setup.html"><a href="setup.html"><i class="fa fa-check"></i>Setup</a><ul>
+<li class="chapter" data-level="" data-path="setup.html"><a href="setup.html#choosing-pfts"><i class="fa fa-check"></i>Choosing PFTs</a></li>
+<li class="chapter" data-level="0.1" data-path="setup.html"><a href="setup.html#pft-ed_tropical_hydro"><i class="fa fa-check"></i><b>0.1</b> PFT: ED_Tropical_Hydro</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="constants.html"><a href="constants.html"><i class="fa fa-check"></i>Constants</a><ul>
+<li><a href="constants.html#wdns-liquid-water-density"><code>[wdns]:</code> Liquid water density</a></li>
+<li><a href="constants.html#grav-gravity"><code>[grav]:</code> Gravity</a></li>
+<li><a href="constants.html#mpa2m-conversion-from-mpa-to-m"><code>[MPa2m]:</code> Conversion from MPa to m</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="allocation-and-allometry.html"><a href="allocation-and-allometry.html"><i class="fa fa-check"></i>Allocation and Allometry</a><ul>
+<li><a href="allocation-and-allometry.html#sla-specific-leaf-area-sla"><code>[SLA]:</code> Specific Leaf Area (SLA)</a></li>
+<li class="chapter" data-level="" data-path="allocation-and-allometry.html"><a href="allocation-and-allometry.html#agf_bs-abvgnd-struc.-biomass"><i class="fa fa-check"></i>agf_bs Abvgnd % Struc. Biomass</a></li>
+<li class="chapter" data-level="" data-path="allocation-and-allometry.html"><a href="allocation-and-allometry.html#b1bl_large-leaf-biomass-allom.-int."><i class="fa fa-check"></i>b1Bl_large Leaf Biomass Allom. Int.</a></li>
+<li class="chapter" data-level="" data-path="allocation-and-allometry.html"><a href="allocation-and-allometry.html#b2bl_large-leaf-biomass-allom.-slope"><i class="fa fa-check"></i>b2Bl_large Leaf Biomass Allom. Slope</a></li>
+<li><a href="allocation-and-allometry.html#wood_density-wood-density"><code>[wood_density]:</code> Wood density</a></li>
+<li class="chapter" data-level="" data-path="allocation-and-allometry.html"><a href="allocation-and-allometry.html#fineroot2leaf-fine-root-allocation"><i class="fa fa-check"></i>fineroot2leaf Fine Root Allocation</a></li>
+<li class="chapter" data-level="" data-path="allocation-and-allometry.html"><a href="allocation-and-allometry.html#b1rd-root-depth-allom.-int."><i class="fa fa-check"></i>b1Rd Root Depth Allom. Int.</a></li>
+<li class="chapter" data-level="" data-path="allocation-and-allometry.html"><a href="allocation-and-allometry.html#b2rd-root-depth-allom.-slope"><i class="fa fa-check"></i>b2Rd Root Depth Allom. Slope</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="photosynthesis-and-stomatal-conductance.html"><a href="photosynthesis-and-stomatal-conductance.html"><i class="fa fa-check"></i>Photosynthesis and Stomatal Conductance</a><ul>
+<li class="chapter" data-level="" data-path="photosynthesis-and-stomatal-conductance.html"><a href="photosynthesis-and-stomatal-conductance.html#vcmax-vcmax-traits_photo"><i class="fa fa-check"></i>Vcmax Vcmax traits_photo</a></li>
+<li class="chapter" data-level="" data-path="photosynthesis-and-stomatal-conductance.html"><a href="photosynthesis-and-stomatal-conductance.html#stomatal_slope-stomatal-slope-traits_photo"><i class="fa fa-check"></i>stomatal_slope Stomatal Slope traits_photo</a></li>
+<li class="chapter" data-level="" data-path="photosynthesis-and-stomatal-conductance.html"><a href="photosynthesis-and-stomatal-conductance.html#quantum_efficiency-quantum-efficiency-traits_photo"><i class="fa fa-check"></i>quantum_efficiency Quantum Efficiency traits_photo</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="radiation.html"><a href="radiation.html"><i class="fa fa-check"></i>Radiation</a><ul>
+<li class="chapter" data-level="" data-path="radiation.html"><a href="radiation.html#orient_factor-leaf-orientation"><i class="fa fa-check"></i>orient_factor Leaf orientation</a></li>
+<li class="chapter" data-level="" data-path="radiation.html"><a href="radiation.html#leaf_reflect_nir-leaf-nir-reflectance"><i class="fa fa-check"></i>leaf_reflect_nir Leaf NIR reflectance</a></li>
+<li class="chapter" data-level="" data-path="radiation.html"><a href="radiation.html#leaf_trans_nir-leaf-nir-transmittance"><i class="fa fa-check"></i>leaf_trans_nir Leaf NIR transmittance</a></li>
+<li class="chapter" data-level="" data-path="radiation.html"><a href="radiation.html#leaf_reflect_vis-leaf-vis-reflectance"><i class="fa fa-check"></i>leaf_reflect_vis Leaf VIS reflectance</a></li>
+<li class="chapter" data-level="" data-path="radiation.html"><a href="radiation.html#leaf_trans_vis-leaf-vis-transmittance"><i class="fa fa-check"></i>leaf_trans_vis Leaf VIS transmittance</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="respiration-and-turnover.html"><a href="respiration-and-turnover.html"><i class="fa fa-check"></i>Respiration and Turnover</a><ul>
+<li class="chapter" data-level="" data-path="respiration-and-turnover.html"><a href="respiration-and-turnover.html#growth_resp_factor-growth-respiration"><i class="fa fa-check"></i>growth_resp_factor Growth Respiration</a></li>
+<li class="chapter" data-level="" data-path="respiration-and-turnover.html"><a href="respiration-and-turnover.html#leaf_respiration_rate_m2-leaf-respiration-rate"><i class="fa fa-check"></i>leaf_respiration_rate_m2 Leaf Respiration Rate</a></li>
+<li class="chapter" data-level="" data-path="respiration-and-turnover.html"><a href="respiration-and-turnover.html#veg_respiration_q10-veg.-resp.-q10"><i class="fa fa-check"></i>veg_respiration_Q10 Veg. Resp. Q10</a></li>
+<li class="chapter" data-level="" data-path="respiration-and-turnover.html"><a href="respiration-and-turnover.html#leaf_turnover_rate-leaf-turnover-rate"><i class="fa fa-check"></i>leaf_turnover_rate Leaf Turnover Rate</a></li>
+<li class="chapter" data-level="" data-path="respiration-and-turnover.html"><a href="respiration-and-turnover.html#root_turnover_rate-root-turnover-rate"><i class="fa fa-check"></i>root_turnover_rate Root Turnover Rate</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="hydraulic-leaf-traits.html"><a href="hydraulic-leaf-traits.html"><i class="fa fa-check"></i>Hydraulic Leaf Traits</a><ul>
+<li><a href="hydraulic-leaf-traits.html#leaf_psi_osmotic-leaf-osmotic-water-potential-at-saturation"><code>[leaf_psi_osmotic]:</code> Leaf osmotic water potential at saturation</a><ul>
+<li class="chapter" data-level="" data-path="hydraulic-leaf-traits.html"><a href="hydraulic-leaf-traits.html#ed"><i class="fa fa-check"></i>ED</a></li>
+<li class="chapter" data-level="" data-path="hydraulic-leaf-traits.html"><a href="hydraulic-leaf-traits.html#bety"><i class="fa fa-check"></i>BETY</a></li>
+<li class="chapter" data-level="" data-path="hydraulic-leaf-traits.html"><a href="hydraulic-leaf-traits.html#calculation"><i class="fa fa-check"></i>Calculation</a></li>
+<li class="chapter" data-level="" data-path="hydraulic-leaf-traits.html"><a href="hydraulic-leaf-traits.html#code"><i class="fa fa-check"></i>Code</a></li>
+</ul></li>
+<li><a href="hydraulic-leaf-traits.html#leaf_elastic_mod-leaf-bulk-elastic-modulus"><code>[leaf_elastic_mod]</code>: Leaf bulk elastic modulus</a><ul>
+<li class="chapter" data-level="" data-path="hydraulic-leaf-traits.html"><a href="hydraulic-leaf-traits.html#ed-1"><i class="fa fa-check"></i>ED</a></li>
+<li class="chapter" data-level="" data-path="hydraulic-leaf-traits.html"><a href="hydraulic-leaf-traits.html#bety-1"><i class="fa fa-check"></i>BETY</a></li>
+<li class="chapter" data-level="" data-path="hydraulic-leaf-traits.html"><a href="hydraulic-leaf-traits.html#calculation-1"><i class="fa fa-check"></i>Calculation</a></li>
+<li class="chapter" data-level="" data-path="hydraulic-leaf-traits.html"><a href="hydraulic-leaf-traits.html#code-1"><i class="fa fa-check"></i>Code</a></li>
+</ul></li>
+<li><a href="hydraulic-leaf-traits.html#leaf_density-density-of-leaf-tissue"><code>[leaf_density]:</code> Density of leaf tissue</a><ul>
+<li class="chapter" data-level="" data-path="hydraulic-leaf-traits.html"><a href="hydraulic-leaf-traits.html#ed-2"><i class="fa fa-check"></i>ED</a></li>
+<li class="chapter" data-level="" data-path="hydraulic-leaf-traits.html"><a href="hydraulic-leaf-traits.html#bety-2"><i class="fa fa-check"></i>BETY</a></li>
+<li class="chapter" data-level="" data-path="hydraulic-leaf-traits.html"><a href="hydraulic-leaf-traits.html#calculation-2"><i class="fa fa-check"></i>Calculation</a></li>
+<li class="chapter" data-level="" data-path="hydraulic-leaf-traits.html"><a href="hydraulic-leaf-traits.html#code-2"><i class="fa fa-check"></i>Code</a></li>
+</ul></li>
+<li><a href="hydraulic-leaf-traits.html#leaf_water_sat-leaf-water-content-at-saturation"><code>[leaf_water_sat]:</code> Leaf water content at saturation</a><ul>
+<li class="chapter" data-level="" data-path="hydraulic-leaf-traits.html"><a href="hydraulic-leaf-traits.html#ed-3"><i class="fa fa-check"></i>ED</a></li>
+<li class="chapter" data-level="" data-path="hydraulic-leaf-traits.html"><a href="hydraulic-leaf-traits.html#bety-3"><i class="fa fa-check"></i>BETY</a></li>
+<li class="chapter" data-level="" data-path="hydraulic-leaf-traits.html"><a href="hydraulic-leaf-traits.html#calculation-3"><i class="fa fa-check"></i>Calculation</a></li>
+<li class="chapter" data-level="" data-path="hydraulic-leaf-traits.html"><a href="hydraulic-leaf-traits.html#code-3"><i class="fa fa-check"></i>Code</a></li>
+</ul></li>
+<li><a href="hydraulic-leaf-traits.html#leaf_psi_tlp-leaf-water-potential-at-turgor-loss-point"><code>[leaf_psi_tlp]:</code> Leaf water potential at turgor loss point</a><ul>
+<li class="chapter" data-level="" data-path="hydraulic-leaf-traits.html"><a href="hydraulic-leaf-traits.html#ed-4"><i class="fa fa-check"></i>ED</a></li>
+<li class="chapter" data-level="" data-path="hydraulic-leaf-traits.html"><a href="hydraulic-leaf-traits.html#bety-4"><i class="fa fa-check"></i>BETY</a></li>
+<li class="chapter" data-level="" data-path="hydraulic-leaf-traits.html"><a href="hydraulic-leaf-traits.html#calculation-4"><i class="fa fa-check"></i>Calculation</a></li>
+<li class="chapter" data-level="" data-path="hydraulic-leaf-traits.html"><a href="hydraulic-leaf-traits.html#code-4"><i class="fa fa-check"></i>Code</a></li>
+</ul></li>
+<li><a href="hydraulic-leaf-traits.html#leaf_water_cap-leaf-hydaulic-capacitance."><code>[leaf_water_cap]:</code> Leaf hydaulic capacitance.</a><ul>
+<li class="chapter" data-level="" data-path="hydraulic-leaf-traits.html"><a href="hydraulic-leaf-traits.html#ed-5"><i class="fa fa-check"></i>ED</a></li>
+<li class="chapter" data-level="" data-path="hydraulic-leaf-traits.html"><a href="hydraulic-leaf-traits.html#bety-5"><i class="fa fa-check"></i>BETY</a></li>
+<li class="chapter" data-level="" data-path="hydraulic-leaf-traits.html"><a href="hydraulic-leaf-traits.html#calculation-5"><i class="fa fa-check"></i>Calculation</a></li>
+<li class="chapter" data-level="" data-path="hydraulic-leaf-traits.html"><a href="hydraulic-leaf-traits.html#code-5"><i class="fa fa-check"></i>Code</a></li>
+</ul></li>
+<li><a href="hydraulic-leaf-traits.html#leaf_psi_min-leaf-minimum-water-potential"><code>[leaf_psi_min]:</code> Leaf minimum water potential</a><ul>
+<li class="chapter" data-level="" data-path="hydraulic-leaf-traits.html"><a href="hydraulic-leaf-traits.html#ed-6"><i class="fa fa-check"></i>ED</a></li>
+<li class="chapter" data-level="" data-path="hydraulic-leaf-traits.html"><a href="hydraulic-leaf-traits.html#bety-6"><i class="fa fa-check"></i>BETY</a></li>
+<li class="chapter" data-level="" data-path="hydraulic-leaf-traits.html"><a href="hydraulic-leaf-traits.html#calculation-6"><i class="fa fa-check"></i>Calculation</a></li>
+<li class="chapter" data-level="" data-path="hydraulic-leaf-traits.html"><a href="hydraulic-leaf-traits.html#code-6"><i class="fa fa-check"></i>Code</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="hydraulic-wood-traits.html"><a href="hydraulic-wood-traits.html"><i class="fa fa-check"></i>Hydraulic Wood Traits</a><ul>
+<li><a href="hydraulic-wood-traits.html#wood_psi_osmotic-sapwood-osmotic-water-potential-at-saturation"><code>[wood_psi_osmotic]:</code> Sapwood osmotic water potential at saturation</a><ul>
+<li class="chapter" data-level="" data-path="hydraulic-wood-traits.html"><a href="hydraulic-wood-traits.html#ed-7"><i class="fa fa-check"></i>ED</a></li>
+<li class="chapter" data-level="" data-path="hydraulic-wood-traits.html"><a href="hydraulic-wood-traits.html#bety-7"><i class="fa fa-check"></i>BETY</a></li>
+<li class="chapter" data-level="" data-path="hydraulic-wood-traits.html"><a href="hydraulic-wood-traits.html#calculation-7"><i class="fa fa-check"></i>Calculation</a></li>
+</ul></li>
+<li><a href="hydraulic-wood-traits.html#wood_elastic_mod-sapwood-bulk-elastic-modulus"><code>[wood_elastic_mod]:</code> Sapwood bulk elastic modulus</a><ul>
+<li class="chapter" data-level="" data-path="hydraulic-wood-traits.html"><a href="hydraulic-wood-traits.html#ed-8"><i class="fa fa-check"></i>ED</a></li>
+<li class="chapter" data-level="" data-path="hydraulic-wood-traits.html"><a href="hydraulic-wood-traits.html#bety-8"><i class="fa fa-check"></i>BETY</a></li>
+<li class="chapter" data-level="" data-path="hydraulic-wood-traits.html"><a href="hydraulic-wood-traits.html#calculation-8"><i class="fa fa-check"></i>Calculation</a></li>
+<li class="chapter" data-level="" data-path="hydraulic-wood-traits.html"><a href="hydraulic-wood-traits.html#code-8"><i class="fa fa-check"></i>Code</a></li>
+</ul></li>
+<li><a href="hydraulic-wood-traits.html#wood_water_sat-sapwood-water-content-at-saturation"><code>[wood_water_sat]:</code> Sapwood water content at saturation</a><ul>
+<li class="chapter" data-level="" data-path="hydraulic-wood-traits.html"><a href="hydraulic-wood-traits.html#ed-9"><i class="fa fa-check"></i>ED</a></li>
+<li class="chapter" data-level="" data-path="hydraulic-wood-traits.html"><a href="hydraulic-wood-traits.html#bety-9"><i class="fa fa-check"></i>BETY</a></li>
+<li class="chapter" data-level="" data-path="hydraulic-wood-traits.html"><a href="hydraulic-wood-traits.html#calculation-9"><i class="fa fa-check"></i>Calculation</a></li>
+<li class="chapter" data-level="" data-path="hydraulic-wood-traits.html"><a href="hydraulic-wood-traits.html#code-9"><i class="fa fa-check"></i>Code</a></li>
+</ul></li>
+<li><a href="hydraulic-wood-traits.html#wood_psi_tlp-sapwood-water-potential-at-turgor-loss-point"><code>[wood_psi_tlp]:</code> Sapwood water potential at turgor loss point</a><ul>
+<li class="chapter" data-level="" data-path="hydraulic-wood-traits.html"><a href="hydraulic-wood-traits.html#ed-10"><i class="fa fa-check"></i>ED</a></li>
+<li class="chapter" data-level="" data-path="hydraulic-wood-traits.html"><a href="hydraulic-wood-traits.html#bety-10"><i class="fa fa-check"></i>BETY</a></li>
+<li class="chapter" data-level="" data-path="hydraulic-wood-traits.html"><a href="hydraulic-wood-traits.html#calculation-10"><i class="fa fa-check"></i>Calculation</a></li>
+<li class="chapter" data-level="" data-path="hydraulic-wood-traits.html"><a href="hydraulic-wood-traits.html#code-10"><i class="fa fa-check"></i>Code</a></li>
+</ul></li>
+<li><a href="hydraulic-wood-traits.html#wood_water_cap-wood-hydaulic-capacitance"><code>[wood_water_cap]:</code> Wood hydaulic capacitance</a><ul>
+<li class="chapter" data-level="" data-path="hydraulic-wood-traits.html"><a href="hydraulic-wood-traits.html#ed-11"><i class="fa fa-check"></i>ED</a></li>
+<li class="chapter" data-level="" data-path="hydraulic-wood-traits.html"><a href="hydraulic-wood-traits.html#bety-11"><i class="fa fa-check"></i>BETY</a></li>
+<li class="chapter" data-level="" data-path="hydraulic-wood-traits.html"><a href="hydraulic-wood-traits.html#calculation-11"><i class="fa fa-check"></i>Calculation</a></li>
+<li class="chapter" data-level="" data-path="hydraulic-wood-traits.html"><a href="hydraulic-wood-traits.html#code-11"><i class="fa fa-check"></i>Code</a></li>
+</ul></li>
+<li><a href="hydraulic-wood-traits.html#wood_psi_min-sapwood-minimum-relative-water-content-or-sapwood-residual-fraction"><code>[wood_psi_min]:</code> Sapwood minimum relative water content or Sapwood residual fraction</a><ul>
+<li class="chapter" data-level="" data-path="hydraulic-wood-traits.html"><a href="hydraulic-wood-traits.html#ed-12"><i class="fa fa-check"></i>ED</a></li>
+<li class="chapter" data-level="" data-path="hydraulic-wood-traits.html"><a href="hydraulic-wood-traits.html#bety-12"><i class="fa fa-check"></i>BETY</a></li>
+<li class="chapter" data-level="" data-path="hydraulic-wood-traits.html"><a href="hydraulic-wood-traits.html#calculation-12"><i class="fa fa-check"></i>Calculation</a></li>
+<li class="chapter" data-level="" data-path="hydraulic-wood-traits.html"><a href="hydraulic-wood-traits.html#code-12"><i class="fa fa-check"></i>Code</a></li>
+</ul></li>
+<li><a href="hydraulic-wood-traits.html#wood_kmax-maximum-hydraulic-conductivity-of-the-stem"><code>[wood_Kmax]:</code> Maximum hydraulic conductivity of the stem</a><ul>
+<li class="chapter" data-level="" data-path="hydraulic-wood-traits.html"><a href="hydraulic-wood-traits.html#ed-13"><i class="fa fa-check"></i>ED</a></li>
+<li class="chapter" data-level="" data-path="hydraulic-wood-traits.html"><a href="hydraulic-wood-traits.html#bety-13"><i class="fa fa-check"></i>BETY</a></li>
+<li class="chapter" data-level="" data-path="hydraulic-wood-traits.html"><a href="hydraulic-wood-traits.html#calculation-13"><i class="fa fa-check"></i>Calculation</a></li>
+<li class="chapter" data-level="" data-path="hydraulic-wood-traits.html"><a href="hydraulic-wood-traits.html#code-13"><i class="fa fa-check"></i>Code</a></li>
+</ul></li>
+<li><a href="hydraulic-wood-traits.html#wood_psi50-water-potential-at-which-50-of-stem-conductivity-is-lost"><code>[wood_psi50]:</code> Water potential at which 50% of stem conductivity is lost</a><ul>
+<li class="chapter" data-level="" data-path="hydraulic-wood-traits.html"><a href="hydraulic-wood-traits.html#ed-14"><i class="fa fa-check"></i>ED</a></li>
+<li class="chapter" data-level="" data-path="hydraulic-wood-traits.html"><a href="hydraulic-wood-traits.html#bety-14"><i class="fa fa-check"></i>BETY</a></li>
+<li class="chapter" data-level="" data-path="hydraulic-wood-traits.html"><a href="hydraulic-wood-traits.html#calculation-14"><i class="fa fa-check"></i>Calculation</a></li>
+<li class="chapter" data-level="" data-path="hydraulic-wood-traits.html"><a href="hydraulic-wood-traits.html#code-14"><i class="fa fa-check"></i>Code</a></li>
+</ul></li>
+<li><a href="hydraulic-wood-traits.html#ax-slope-of-xylem-vulnerability-curve-at-p50"><code>[ax]:</code> Slope of xylem vulnerability curve at P50</a><ul>
+<li class="chapter" data-level="" data-path="hydraulic-wood-traits.html"><a href="hydraulic-wood-traits.html#ed-15"><i class="fa fa-check"></i>ED</a></li>
+<li class="chapter" data-level="" data-path="hydraulic-wood-traits.html"><a href="hydraulic-wood-traits.html#bety-15"><i class="fa fa-check"></i>BETY</a></li>
+<li class="chapter" data-level="" data-path="hydraulic-wood-traits.html"><a href="hydraulic-wood-traits.html#calculation-15"><i class="fa fa-check"></i>Calculation</a></li>
+<li class="chapter" data-level="" data-path="hydraulic-wood-traits.html"><a href="hydraulic-wood-traits.html#code-15"><i class="fa fa-check"></i>Code</a></li>
+</ul></li>
+<li><a href="hydraulic-wood-traits.html#wood_kexp-exponent-for-the-hydraulic-vulnerability-curve-of-stem-conductivity"><code>[wood_Kexp]:</code> Exponent for the hydraulic vulnerability curve of stem conductivity</a><ul>
+<li class="chapter" data-level="" data-path="hydraulic-wood-traits.html"><a href="hydraulic-wood-traits.html#ed-16"><i class="fa fa-check"></i>ED</a></li>
+<li class="chapter" data-level="" data-path="hydraulic-wood-traits.html"><a href="hydraulic-wood-traits.html#bety-16"><i class="fa fa-check"></i>BETY</a></li>
+<li class="chapter" data-level="" data-path="hydraulic-wood-traits.html"><a href="hydraulic-wood-traits.html#calculation-16"><i class="fa fa-check"></i>Calculation</a></li>
+<li class="chapter" data-level="" data-path="hydraulic-wood-traits.html"><a href="hydraulic-wood-traits.html#code-16"><i class="fa fa-check"></i>Code</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="hydraulic-root-traits.html"><a href="hydraulic-root-traits.html"><i class="fa fa-check"></i>Hydraulic Root Traits</a><ul>
+<li class="chapter" data-level="" data-path="hydraulic-root-traits.html"><a href="hydraulic-root-traits.html#root-beta"><i class="fa fa-check"></i>root beta</a></li>
+<li class="chapter" data-level="" data-path="hydraulic-root-traits.html"><a href="hydraulic-root-traits.html#root-curvature"><i class="fa fa-check"></i>root curvature</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Calculating ED Hydro Parameter Priors</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="hydraulic-leaf-traits" class="section level1 unnumbered">
+<h1>Hydraulic Leaf Traits</h1>
+<div id="leaf_psi_osmotic-leaf-osmotic-water-potential-at-saturation" class="section level2 unnumbered">
+<h2><code>[leaf_psi_osmotic]:</code> Leaf osmotic water potential at saturation</h2>
+<div id="ed" class="section level3 unnumbered">
+<h3>ED</h3>
+<ul>
+<li>ED variable name : <code>leaf_psi_osmotic</code></li>
+<li>ED variable units: <code>m</code></li>
+</ul>
+</div>
+<div id="bety" class="section level3 unnumbered">
+<h3>BETY</h3>
+<p>NOTE!! The units are NEGATIVE in the database
+so we can calculate a distribution that is entirely negative.</p>
+<ul>
+<li>Variable id: <code>1000000295</code></li>
+<li>Prior id: <code>1000000388</code></li>
+</ul>
+</div>
+<div id="calculation" class="section level3 unnumbered">
+<h3>Calculation</h3>
+<div id="expert-elicitation" class="section level4 unnumbered">
+<h4>Expert elicitation</h4>
+<p>Expert elicitation provided by Brad Christoffersen</p>
+<ul>
+<li>FATES varaiable name: <code>pinot_node (leaf)</code></li>
+<li>FATES variable units: <code>MPa</code></li>
+</ul>
+</div>
+<div id="conversion" class="section level4 unnumbered">
+<h4>Conversion</h4>
+<p><code>MPa to m</code></p>
+</div>
+</div>
+<div id="code" class="section level3 unnumbered">
+<h3>Code</h3>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">t =<span class="st"> &quot;leaf_psi_osmotic&quot;</span></a>
+<a class="sourceLine" id="cb11-2" data-line-number="2">t_long =<span class="st"> &quot;Leaf osmotic water potential at saturation &quot;</span></a>
+<a class="sourceLine" id="cb11-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb11-4" data-line-number="4">i &lt;-<span class="st"> </span><span class="kw">which</span>(priors<span class="op">$</span>ED_name <span class="op">==</span><span class="st"> </span>t)</a>
+<a class="sourceLine" id="cb11-5" data-line-number="5">prior_in &lt;-<span class="st"> </span>priors[i, stats] <span class="op">*</span><span class="st"> </span>C<span class="op">$</span>MPa2m</a>
+<a class="sourceLine" id="cb11-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb11-7" data-line-number="7">traits &lt;-<span class="st"> </span><span class="kw">fit_trait_dist</span>(bety, traits, t, prior_in, accepted_dists)</a></code></pre></div>
+<p><img src="Final_Book_files/figure-html/calc%20leaf_psi_osmotic-1.png" width="672" /></p>
+<pre><code>## Entry with id = 1000000388 already exists.
+## Parameters look the saaaaame.
+## Old: weibull(2.4100, 237.4600)
+## New: weibull(2.4100, 237.4600)</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">traits[[t]]<span class="op">$</span>prior =<span class="st"> </span><span class="dv">-1</span> <span class="op">*</span><span class="st"> </span><span class="kw">rdistn</span>(traits[[t]]<span class="op">$</span>fit)</a>
+<a class="sourceLine" id="cb13-2" data-line-number="2">traits[[t]]<span class="op">$</span>default =<span class="st"> </span><span class="kw">get_ED_default</span>(PFT3_defaults_history, t)</a>
+<a class="sourceLine" id="cb13-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb13-4" data-line-number="4"><span class="kw">prior_plot</span>(<span class="dt">prior =</span> traits[[t]]<span class="op">$</span>prior, </a>
+<a class="sourceLine" id="cb13-5" data-line-number="5">           <span class="dt">plot_default =</span> traits[[t]]<span class="op">$</span>default,</a>
+<a class="sourceLine" id="cb13-6" data-line-number="6">           <span class="dt">title =</span> <span class="kw">sprintf</span>(<span class="st">&quot;%s(%s):</span><span class="ch">\n</span><span class="st">%s(%.4f, %.4f)&quot;</span>, t_long, t, </a>
+<a class="sourceLine" id="cb13-7" data-line-number="7">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>distn, </a>
+<a class="sourceLine" id="cb13-8" data-line-number="8">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>parama,</a>
+<a class="sourceLine" id="cb13-9" data-line-number="9">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>paramb),</a>
+<a class="sourceLine" id="cb13-10" data-line-number="10">           <span class="dt">type =</span> <span class="st">&quot;elic&quot;</span>)</a></code></pre></div>
+<p><img src="Final_Book_files/figure-html/plot%20leaf_psi_osmotic-1.png" width="672" /></p>
+<hr />
+</div>
+</div>
+<div id="leaf_elastic_mod-leaf-bulk-elastic-modulus" class="section level2 unnumbered">
+<h2><code>[leaf_elastic_mod]</code>: Leaf bulk elastic modulus</h2>
+<div id="ed-1" class="section level3 unnumbered">
+<h3>ED</h3>
+<ul>
+<li>ED variable name : <code>leaf_elastic_mod</code></li>
+<li>ED variable units: <code>MPa</code> Note! This is the only case in which MPa is used instead of m!</li>
+</ul>
+</div>
+<div id="bety-1" class="section level3 unnumbered">
+<h3>BETY</h3>
+<ul>
+<li>Variable id: <code>1000000294</code></li>
+<li>Prior id: <code>1000000387</code></li>
+</ul>
+</div>
+<div id="calculation-1" class="section level3 unnumbered">
+<h3>Calculation</h3>
+<div id="expert-elicitation-1" class="section level4 unnumbered">
+<h4>Expert elicitation</h4>
+<p>Expert elicitation provided by Brad Christoffersen</p>
+<ul>
+<li>FATES varaiable name: <code>epsil_node (leaf)</code></li>
+<li>FATES variable units: <code>MPa</code></li>
+</ul>
+</div>
+<div id="conversion-1" class="section level4 unnumbered">
+<h4>Conversion</h4>
+<p>None!</p>
+</div>
+</div>
+<div id="code-1" class="section level3 unnumbered">
+<h3>Code</h3>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">t =<span class="st"> &quot;leaf_elastic_mod&quot;</span></a>
+<a class="sourceLine" id="cb14-2" data-line-number="2">t_long =<span class="st"> &quot;Leaf bulk elastic modulus &quot;</span></a>
+<a class="sourceLine" id="cb14-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb14-4" data-line-number="4">i &lt;-<span class="st"> </span><span class="kw">which</span>(priors<span class="op">$</span>ED_name <span class="op">==</span><span class="st"> </span>t)</a>
+<a class="sourceLine" id="cb14-5" data-line-number="5">prior_in &lt;-<span class="st"> </span>priors[i,]</a>
+<a class="sourceLine" id="cb14-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb14-7" data-line-number="7">traits &lt;-<span class="st"> </span><span class="kw">fit_trait_dist</span>(bety, traits, t, prior_in, accepted_dists)</a></code></pre></div>
+<p><img src="Final_Book_files/figure-html/calc%20leaf_elastic_mod-1.png" width="672" /></p>
+<pre><code>## Entry with id = 1000000387 already exists.
+## Parameters look the saaaaame.
+## Old: gamma(3.4400, 0.1600)
+## New: gamma(3.4400, 0.1600)</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1">traits[[t]]<span class="op">$</span>prior =<span class="st"> </span><span class="kw">rdistn</span>(traits[[t]]<span class="op">$</span>fit)</a>
+<a class="sourceLine" id="cb16-2" data-line-number="2">traits[[t]]<span class="op">$</span>default =<span class="st"> </span><span class="kw">get_ED_default</span>(PFT3_defaults_history, t)</a>
+<a class="sourceLine" id="cb16-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb16-4" data-line-number="4"><span class="kw">prior_plot</span>(<span class="dt">prior =</span> traits[[t]]<span class="op">$</span>prior, </a>
+<a class="sourceLine" id="cb16-5" data-line-number="5">           <span class="dt">q =</span> <span class="kw">c</span>(<span class="dv">0</span>,.<span class="dv">999</span>), </a>
+<a class="sourceLine" id="cb16-6" data-line-number="6">           <span class="dt">plot_default =</span> traits[[t]]<span class="op">$</span>default,</a>
+<a class="sourceLine" id="cb16-7" data-line-number="7">           <span class="dt">title =</span> <span class="kw">sprintf</span>(<span class="st">&quot;%s(%s):</span><span class="ch">\n</span><span class="st">%s(%.4f, %.4f)&quot;</span>, t_long, t, </a>
+<a class="sourceLine" id="cb16-8" data-line-number="8">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>distn, </a>
+<a class="sourceLine" id="cb16-9" data-line-number="9">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>parama,</a>
+<a class="sourceLine" id="cb16-10" data-line-number="10">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>paramb),</a>
+<a class="sourceLine" id="cb16-11" data-line-number="11">           <span class="dt">type =</span> <span class="st">&quot;elic&quot;</span>)</a></code></pre></div>
+<pre><code>## Warning: Removed 100 rows containing non-finite values (stat_density).</code></pre>
+<p><img src="Final_Book_files/figure-html/plot%20leaf_elastic_mod-1.png" width="672" /></p>
+<hr />
+</div>
+</div>
+<div id="leaf_density-density-of-leaf-tissue" class="section level2 unnumbered">
+<h2><code>[leaf_density]:</code> Density of leaf tissue</h2>
+<div id="ed-2" class="section level3 unnumbered">
+<h3>ED</h3>
+<ul>
+<li>ED variable name : <code>leaf_density</code></li>
+<li>ED variable units: <code>kg m-3</code></li>
+</ul>
+</div>
+<div id="bety-2" class="section level3 unnumbered">
+<h3>BETY</h3>
+<ul>
+<li>Variable id: <code>1000000304</code></li>
+<li>Prior id: <code>1000000396</code></li>
+</ul>
+</div>
+<div id="calculation-2" class="section level3 unnumbered">
+<h3>Calculation</h3>
+<div id="expert-elicitation-2" class="section level4 unnumbered">
+<h4>Expert elicitation</h4>
+<p>No expert elicitation provided by Brad Christoffersen.</p>
+<p>I will use the equation in ED to calcualte the prior and
+add min and max values to make sure the distribution
+does not predict values that are not biologically possible.</p>
+<p>Copies directly from the ED code: <code>max(0.1 * 1.e3, (leaf_elastic_mod(ipft) - 2.03) / 25.4 * 1.e3)</code></p>
+<p>But there is a key step here that we need to think about, which is that in the ED code, <code>0.1 * 1.e3</code> is the smallest possible value. I encorporate that information by setting <code>0.1 * 1.e3</code> as the min theoretical value when fitting the distribution (but remove the <code>max</code> from the equation when calculating the <code>leaf_density_sample</code>.)</p>
+<p><code>leaf_density_sample &lt;- (leaf_elastic_mod_prior - 2.03) / 25.4 * 1.e3</code></p>
+<p>Values added by Betsy and Felicien:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1">t =<span class="st"> &quot;leaf_density&quot;</span></a>
+<a class="sourceLine" id="cb18-2" data-line-number="2">t_long =<span class="st"> &quot;Density of leaf tissue &quot;</span></a>
+<a class="sourceLine" id="cb18-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb18-4" data-line-number="4">i &lt;-<span class="st"> </span><span class="kw">which</span>(priors<span class="op">$</span>ED_name <span class="op">==</span><span class="st"> &quot;leaf_density&quot;</span>)</a>
+<a class="sourceLine" id="cb18-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb18-6" data-line-number="6"><span class="co"># Leaf_density</span></a>
+<a class="sourceLine" id="cb18-7" data-line-number="7">priors[i,<span class="kw">c</span>(<span class="st">&quot;theor.min&quot;</span>, <span class="st">&quot;theor.max&quot;</span>)] &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">1e-7</span>, <span class="dv">2000</span>)</a>
+<a class="sourceLine" id="cb18-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb18-9" data-line-number="9"><span class="co"># Does it make more sense to do what the ED code does??? </span></a>
+<a class="sourceLine" id="cb18-10" data-line-number="10"><span class="co"># Turns out it doesn&#39;t change the parameters ... so maybe I&#39;ll do that</span></a>
+<a class="sourceLine" id="cb18-11" data-line-number="11">priors[i,<span class="kw">c</span>(<span class="st">&quot;theor.min&quot;</span>, <span class="st">&quot;theor.max&quot;</span>)] &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">1e-3</span>, <span class="dv">2000</span>)</a></code></pre></div>
+</div>
+<div id="conversion-2" class="section level4 unnumbered">
+<h4>Conversion</h4>
+<p>None</p>
+</div>
+</div>
+<div id="code-2" class="section level3 unnumbered">
+<h3>Code</h3>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1">temp_leaf_density_sample &lt;-<span class="st"> </span>(traits[[<span class="st">&quot;leaf_elastic_mod&quot;</span>]]<span class="op">$</span>prior <span class="op">-</span><span class="st"> </span><span class="fl">2.03</span>) <span class="op">/</span><span class="st"> </span><span class="fl">25.4</span> <span class="op">*</span><span class="st"> </span><span class="dv">1</span>.e3</a>
+<a class="sourceLine" id="cb19-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb19-3" data-line-number="3"><span class="co"># Add in the max an min from the priors table</span></a>
+<a class="sourceLine" id="cb19-4" data-line-number="4">prior_in &lt;-<span class="st"> </span>priors[i,] <span class="co"># Note here I don&#39;t need to do any units conversion </span></a>
+<a class="sourceLine" id="cb19-5" data-line-number="5">prior_in &lt;-<span class="st"> </span><span class="kw">prior_add_samp_data</span>(prior_in, <span class="dt">samp =</span> temp_leaf_density_sample)</a>
+<a class="sourceLine" id="cb19-6" data-line-number="6">prior_in[,stats]</a></code></pre></div>
+<pre><code>## # A tibble: 1 x 7
+##   theor.min low.025 low.25  mean upp.75 upp.975 theor.max
+##       &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;
+## 1     0.001    121.   433.  685.  1011.   1862.      2000</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1">traits &lt;-<span class="st"> </span><span class="kw">fit_trait_dist</span>(bety, traits, t, prior_in, accepted_dists)</a></code></pre></div>
+<p><img src="Final_Book_files/figure-html/calc%20leaf_density_sample-1.png" width="672" /></p>
+<pre><code>## Entry with id = 1000000396 already exists.
+## Parameters look different.
+## Old: weibull(1.8300, 845.2500)
+## New: weibull(1.8400, 843.8900)</code></pre>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1">traits[[t]]<span class="op">$</span>prior =<span class="st"> </span><span class="kw">rdistn</span>(traits[[t]]<span class="op">$</span>fit)</a>
+<a class="sourceLine" id="cb23-2" data-line-number="2">traits[[t]]<span class="op">$</span>default =<span class="st"> </span>(<span class="kw">get_ED_default</span>(<span class="st">&quot;/fs/data3/ecowdery/ED.Hydro/parameters/pft3_defaults_history.xml&quot;</span>, <span class="st">&quot;leaf_elastic_mod&quot;</span>) <span class="op">-</span><span class="st"> </span><span class="fl">2.03</span>) <span class="op">/</span><span class="st"> </span><span class="fl">25.4</span> <span class="op">*</span><span class="st"> </span><span class="dv">1</span>.e3</a>
+<a class="sourceLine" id="cb23-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb23-4" data-line-number="4"><span class="kw">prior_plot</span>(<span class="dt">prior =</span> traits[[t]]<span class="op">$</span>prior, </a>
+<a class="sourceLine" id="cb23-5" data-line-number="5">           <span class="dt">q =</span> <span class="kw">c</span>(<span class="dv">0</span>,.<span class="dv">995</span>), </a>
+<a class="sourceLine" id="cb23-6" data-line-number="6">           <span class="dt">plot_default =</span> traits[[t]]<span class="op">$</span>default,</a>
+<a class="sourceLine" id="cb23-7" data-line-number="7">           <span class="dt">title =</span> <span class="kw">sprintf</span>(<span class="st">&quot;%s(%s):</span><span class="ch">\n</span><span class="st">%s(%.4f, %.4f)&quot;</span>, t_long, t, </a>
+<a class="sourceLine" id="cb23-8" data-line-number="8">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>distn, </a>
+<a class="sourceLine" id="cb23-9" data-line-number="9">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>parama,</a>
+<a class="sourceLine" id="cb23-10" data-line-number="10">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>paramb),</a>
+<a class="sourceLine" id="cb23-11" data-line-number="11">           <span class="dt">type =</span> <span class="st">&quot;mixed&quot;</span>)</a></code></pre></div>
+<pre><code>## Warning: Removed 500 rows containing non-finite values (stat_density).</code></pre>
+<p><img src="Final_Book_files/figure-html/plot%20leaf_density_sample-1.png" width="672" /></p>
+<hr />
+</div>
+</div>
+<div id="leaf_water_sat-leaf-water-content-at-saturation" class="section level2 unnumbered">
+<h2><code>[leaf_water_sat]:</code> Leaf water content at saturation</h2>
+<div id="ed-3" class="section level3 unnumbered">
+<h3>ED</h3>
+<ul>
+<li>ED variable name : <code>leaf_water_sat</code></li>
+<li>ED variable units: <code>kg H2O/kg biomass</code></li>
+</ul>
+</div>
+<div id="bety-3" class="section level3 unnumbered">
+<h3>BETY</h3>
+<ul>
+<li>Variable id: <code>1000000285</code></li>
+<li>Prior id: <code>1000000414</code></li>
+</ul>
+</div>
+<div id="calculation-3" class="section level3 unnumbered">
+<h3>Calculation</h3>
+<p>There are a couple ways to approach this:</p>
+<p>Either build a prior completely from other priors
+(ie using the equations from ED and a prior for LMA and leaf_density)
+or try to do a combination where we use the priovided expert elicitation
+and the prior distribution for leaf_density.</p>
+<p>I am going to try doing both just to see how they differ.</p>
+<div id="expert-elicitation-3" class="section level4 unnumbered">
+<h4>Expert elicitation</h4>
+<p>Expert elicitation provided by Brad Christoffersen</p>
+<ul>
+<li>FATES varaiable name: <code>thetas_node (leaf)</code></li>
+<li>FATES variable units: <code>kg kg-1</code></li>
+</ul>
+</div>
+<div id="conversion-3" class="section level4 unnumbered">
+<h4>Conversion</h4>
+<p>The equations between the two are identical except that to get from
+FATES to ED, must multiply by <code>(water density)/(leaf density)</code></p>
+</div>
+</div>
+<div id="code-3" class="section level3 unnumbered">
+<h3>Code</h3>
+<div id="initial-testing-code" class="section level4 unnumbered">
+<h4>Initial testing code</h4>
+<p>From this point, we can see that just using the equations in the ED code makes
+the distributions predict low values which is could be a problem given that
+these values should not be zero and that the distribution underpredicts both
+in relation to the default value and the values that Felicien gave me.</p>
+<p>Thus I would create the prior using the expert elicitation values provided by Brad.</p>
+</div>
+<div id="actual-code" class="section level4 unnumbered">
+<h4>Actual code</h4>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1">t =<span class="st"> &quot;leaf_water_sat&quot;</span></a>
+<a class="sourceLine" id="cb25-2" data-line-number="2">t_long =<span class="st"> &quot;Leaf water content at saturation &quot;</span></a>
+<a class="sourceLine" id="cb25-3" data-line-number="3">i &lt;-<span class="st"> </span><span class="kw">which</span>(priors<span class="op">$</span>ED_name <span class="op">==</span><span class="st"> </span>t)</a>
+<a class="sourceLine" id="cb25-4" data-line-number="4">temp_myfit_<span class="dv">0</span> &lt;-<span class="st"> </span><span class="kw">prior_get_fit</span>(priors[i,], accepted_dists, <span class="dt">plot =</span> <span class="ot">FALSE</span>)  </a>
+<a class="sourceLine" id="cb25-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb25-6" data-line-number="6">temp_myfit_<span class="dv">0</span><span class="op">$</span>score<span class="op">$</span>dist[<span class="kw">which.min</span>(temp_myfit_<span class="dv">0</span><span class="op">$</span>score<span class="op">$</span>RMSE)]</a></code></pre></div>
+<pre><code>## [1] &quot;norm&quot;</code></pre>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1"><span class="co"># I&#39;m skipping steps here just for the sake of time &amp; sanity</span></a>
+<a class="sourceLine" id="cb27-2" data-line-number="2">temp_leaf_water_sat_prior_<span class="dv">0</span> &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100000</span>, temp_myfit_<span class="dv">0</span><span class="op">$</span>dists<span class="op">$</span>norm[<span class="dv">1</span>], temp_myfit_<span class="dv">0</span><span class="op">$</span>dists<span class="op">$</span>norm[<span class="dv">2</span>])</a>
+<a class="sourceLine" id="cb27-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb27-4" data-line-number="4">temp_leaf_water_sat_sample &lt;-<span class="st"> </span>temp_leaf_water_sat_prior_<span class="dv">0</span> <span class="op">*</span><span class="st"> </span>(C<span class="op">$</span>wdns<span class="op">/</span>(traits[[<span class="st">&quot;leaf_density&quot;</span>]]<span class="op">$</span>prior))</a>
+<a class="sourceLine" id="cb27-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb27-6" data-line-number="6"><span class="co"># plot(density(temp_leaf_water_sat_sample), main = &quot;leaf water sat sample without fitting&quot;)</span></a>
+<a class="sourceLine" id="cb27-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb27-8" data-line-number="8"><span class="co"># In this case I&#39;m not using the function I built because here it wouldn&#39;t make sense. </span></a>
+<a class="sourceLine" id="cb27-9" data-line-number="9">prior_in &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</a>
+<a class="sourceLine" id="cb27-10" data-line-number="10">  <span class="dt">theor.min =</span> <span class="ot">NA</span>,</a>
+<a class="sourceLine" id="cb27-11" data-line-number="11">  <span class="dt">low.025 =</span>  <span class="kw">quantile</span>(temp_leaf_water_sat_sample, <span class="kw">c</span>(.<span class="dv">025</span>), <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</a>
+<a class="sourceLine" id="cb27-12" data-line-number="12">  <span class="dt">low.25  =</span>  <span class="kw">quantile</span>(temp_leaf_water_sat_sample, <span class="kw">c</span>(.<span class="dv">25</span>), <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</a>
+<a class="sourceLine" id="cb27-13" data-line-number="13">  <span class="dt">mean    =</span>  <span class="kw">quantile</span>(temp_leaf_water_sat_sample, <span class="kw">c</span>(.<span class="dv">5</span>), <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), </a>
+<a class="sourceLine" id="cb27-14" data-line-number="14">  <span class="dt">upp.75  =</span>  <span class="kw">quantile</span>(temp_leaf_water_sat_sample, <span class="kw">c</span>(.<span class="dv">75</span>), <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), </a>
+<a class="sourceLine" id="cb27-15" data-line-number="15">  <span class="dt">upp.975 =</span>  <span class="kw">quantile</span>(temp_leaf_water_sat_sample, <span class="kw">c</span>(.<span class="dv">975</span>), <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</a>
+<a class="sourceLine" id="cb27-16" data-line-number="16">  <span class="dt">theor.max =</span> <span class="ot">NA</span>)</a>
+<a class="sourceLine" id="cb27-17" data-line-number="17"></a>
+<a class="sourceLine" id="cb27-18" data-line-number="18">traits &lt;-<span class="st"> </span><span class="kw">fit_trait_dist</span>(bety, traits, t, prior_in, accepted_dists)</a></code></pre></div>
+<p><img src="Final_Book_files/figure-html/calc%20leaf_water_sat-1.png" width="672" /></p>
+<pre><code>## Entry with id = 1000000414 already exists.
+## Parameters look the saaaaame.
+## Old: lnorm(-0.0400, 0.6400)
+## New: lnorm(-0.0400, 0.6400)</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1">traits[[t]]<span class="op">$</span>prior =<span class="st"> </span><span class="kw">rdistn</span>(traits[[t]]<span class="op">$</span>fit)</a>
+<a class="sourceLine" id="cb29-2" data-line-number="2">traits[[t]]<span class="op">$</span>default =<span class="st"> </span><span class="kw">get_ED_default</span>(PFT3_defaults_history, t)</a>
+<a class="sourceLine" id="cb29-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb29-4" data-line-number="4"><span class="kw">prior_plot</span>(<span class="dt">prior =</span> traits[[t]]<span class="op">$</span>prior, </a>
+<a class="sourceLine" id="cb29-5" data-line-number="5">           <span class="dt">q =</span> <span class="kw">c</span>(<span class="dv">0</span>,.<span class="dv">995</span>), </a>
+<a class="sourceLine" id="cb29-6" data-line-number="6">           <span class="dt">plot_default =</span> traits[[t]]<span class="op">$</span>default,</a>
+<a class="sourceLine" id="cb29-7" data-line-number="7">           <span class="dt">title =</span> <span class="kw">sprintf</span>(<span class="st">&quot;%s(%s):</span><span class="ch">\n</span><span class="st">%s(%.4f, %.4f)&quot;</span>, t_long, t, </a>
+<a class="sourceLine" id="cb29-8" data-line-number="8">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>distn, </a>
+<a class="sourceLine" id="cb29-9" data-line-number="9">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>parama,</a>
+<a class="sourceLine" id="cb29-10" data-line-number="10">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>paramb),</a>
+<a class="sourceLine" id="cb29-11" data-line-number="11">           <span class="dt">type =</span> <span class="st">&quot;mixed&quot;</span>)</a></code></pre></div>
+<pre><code>## Warning: Removed 500 rows containing non-finite values (stat_density).</code></pre>
+<p><img src="Final_Book_files/figure-html/plot%20leaf_water_sat-1.png" width="672" /></p>
+<hr />
+</div>
+</div>
+</div>
+<div id="leaf_psi_tlp-leaf-water-potential-at-turgor-loss-point" class="section level2 unnumbered">
+<h2><code>[leaf_psi_tlp]:</code> Leaf water potential at turgor loss point</h2>
+<div id="ed-4" class="section level3 unnumbered">
+<h3>ED</h3>
+<ul>
+<li>ED variable name : <code>leaf_psi_tlp</code></li>
+<li>ED variable units: <code>m</code></li>
+</ul>
+</div>
+<div id="bety-4" class="section level3 unnumbered">
+<h3>BETY</h3>
+<ul>
+<li>Variable id: <code>1000000284</code></li>
+<li>Prior id: <code>1000000384</code></li>
+</ul>
+<p>NOTE!! The units are NEGATIVE in the database
+so we can calculate a distribution that is entirely negative.</p>
+</div>
+<div id="calculation-4" class="section level3 unnumbered">
+<h3>Calculation</h3>
+<div id="expert-elicitation-4" class="section level4 unnumbered">
+<h4>Expert elicitation</h4>
+<p>No expert elicitation provided by Brad Christoffersen.</p>
+<p>I will use the equation in ED to calcualte the prior and
+add min and max values to make sure the distribution
+does not predict values that are not biologically possible.</p>
+<p>Values added by Betsy and Felicien:</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1">t =<span class="st"> &quot;leaf_psi_tlp&quot;</span></a>
+<a class="sourceLine" id="cb31-2" data-line-number="2">t_long =<span class="st"> &quot;Leaf water potential at turgor loss point &quot;</span></a>
+<a class="sourceLine" id="cb31-3" data-line-number="3">i &lt;-<span class="st"> </span><span class="kw">which</span>(priors<span class="op">$</span>ED_name <span class="op">==</span><span class="st"> </span>t)</a>
+<a class="sourceLine" id="cb31-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb31-5" data-line-number="5">priors[i, stats]</a></code></pre></div>
+<pre><code>## # A tibble: 1 x 7
+##   theor.min low.025 low.25  mean upp.75 upp.975 theor.max
+##       &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;
+## 1       0.5      NA     NA    NA     NA      NA         6</code></pre>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1"><span class="co"># priors[which(priors$ED_name == &quot;leaf_psi_tlp&quot;),</span></a>
+<a class="sourceLine" id="cb33-2" data-line-number="2">       <span class="co"># c(&quot;theor.min&quot;, &quot;theor.max&quot;)] &lt;- c(-6, -0.5)</span></a>
+<a class="sourceLine" id="cb33-3" data-line-number="3"><span class="co"># priors[i,c(&quot;theor.min&quot;, &quot;theor.max&quot;)] &lt;- c(0.5, 6)</span></a></code></pre></div>
+<p>Code directly from ED: <code>leaf_elastic_mod(ipft)  * (leaf_psi_osmotic(ipft) / C$MPa2m) / (leaf_elastic_mod(ipft) + leaf_psi_osmotic(ipft) / C$MPa2m) * C$MPa2m</code></p>
+<p>Thus, <code>leaf_psi_tlp</code> is calculated purely from other parameters: <code>leaf_psi_osmotic</code> and <code>leaf_elastic_mod</code></p>
+<pre><code>temp_leaf_psi_tlp_samp &lt;- 
+  (leaf_psi_osmotic_prior * (leaf_elastic_mod_prior * C$MPa2m))/
+  (leaf_psi_osmotic_prior + (leaf_elastic_mod_prior * C$MPa2m))</code></pre>
+</div>
+<div id="conversion-4" class="section level4 unnumbered">
+<h4>Conversion</h4>
+<p>Remember that <code>leaf_elastic_mod</code> is <code>MPa</code>, where everything else is <code>m</code>!</p>
+</div>
+</div>
+<div id="code-4" class="section level3 unnumbered">
+<h3>Code</h3>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1">temp_leaf_psi_tlp_samp &lt;-</a>
+<a class="sourceLine" id="cb35-2" data-line-number="2">(traits[[<span class="st">&quot;leaf_psi_osmotic&quot;</span>]]<span class="op">$</span>prior <span class="op">*</span><span class="st"> </span>(traits[[<span class="st">&quot;leaf_elastic_mod&quot;</span>]]<span class="op">$</span>prior <span class="op">*</span><span class="st"> </span>C<span class="op">$</span>MPa2m))<span class="op">/</span></a>
+<a class="sourceLine" id="cb35-3" data-line-number="3">(traits[[<span class="st">&quot;leaf_psi_osmotic&quot;</span>]]<span class="op">$</span>prior <span class="op">+</span><span class="st"> </span>(traits[[<span class="st">&quot;leaf_elastic_mod&quot;</span>]]<span class="op">$</span>prior <span class="op">*</span><span class="st"> </span>C<span class="op">$</span>MPa2m))</a>
+<a class="sourceLine" id="cb35-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb35-5" data-line-number="5"><span class="co"># Add in the max an min from the priors table</span></a>
+<a class="sourceLine" id="cb35-6" data-line-number="6">i &lt;-<span class="st"> </span><span class="kw">which</span>(priors<span class="op">$</span>ED_name <span class="op">==</span><span class="st"> </span>t)</a>
+<a class="sourceLine" id="cb35-7" data-line-number="7">prior_in &lt;-<span class="st"> </span>priors[i,stats] <span class="op">*</span><span class="st"> </span>C<span class="op">$</span>MPa2m <span class="co"># Convert from MPa to m</span></a>
+<a class="sourceLine" id="cb35-8" data-line-number="8">prior_in &lt;-<span class="st"> </span><span class="kw">prior_add_samp_data</span>(prior_in, <span class="dt">samp =</span> <span class="op">-</span>temp_leaf_psi_tlp_samp)</a>
+<a class="sourceLine" id="cb35-9" data-line-number="9">prior_in[,stats]</a></code></pre></div>
+<pre><code>##     theor.min     low.025      low.25        mean   upp.75     upp.975
+## 1 50.98581065 51.54306697 153.2210207 231.2432454 326.2985 608.4072799
+##     theor.max
+## 1 611.8297278</code></pre>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1">myfit &lt;-<span class="st"> </span><span class="kw">prior_get_fit</span>(prior_in, accepted_dists, <span class="dt">plot =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<p><img src="Final_Book_files/figure-html/calc%20leaf_psi_tlp-1.png" width="672" /></p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" data-line-number="1">variable_id.in &lt;-<span class="st"> </span><span class="kw">tbl</span>(bety,<span class="st">&quot;variables&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb38-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(name <span class="op">==</span><span class="st"> </span><span class="op">!!</span>priors<span class="op">$</span>ED_name[i]) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb38-3" data-line-number="3"><span class="st">  </span><span class="kw">pull</span>(id)</a>
+<a class="sourceLine" id="cb38-4" data-line-number="4">phylogeny.in &lt;-<span class="st"> &quot;plants&quot;</span></a>
+<a class="sourceLine" id="cb38-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb38-6" data-line-number="6">best.fit.name &lt;-<span class="st"> </span>myfit<span class="op">$</span>score<span class="op">$</span>dist[<span class="kw">which.min</span>(myfit<span class="op">$</span>score<span class="op">$</span>RMSE)]</a>
+<a class="sourceLine" id="cb38-7" data-line-number="7">best.fit.dat &lt;-<span class="st"> </span>myfit<span class="op">$</span>dists <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb38-8" data-line-number="8"><span class="st">  </span><span class="kw">select</span>(<span class="kw">one_of</span>(<span class="st">&quot;Name&quot;</span>, best.fit.name)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb38-9" data-line-number="9"><span class="st">  </span><span class="kw">rename</span>(value <span class="op">:</span><span class="er">=</span><span class="st"> </span><span class="op">!!</span>best.fit.name, <span class="dt">params =</span> Name)</a>
+<a class="sourceLine" id="cb38-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb38-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb38-12" data-line-number="12">traits &lt;-<span class="st"> </span><span class="kw">fit_trait_dist</span>(bety, traits, t, prior_in, accepted_dists)</a></code></pre></div>
+<p><img src="Final_Book_files/figure-html/calc%20leaf_psi_tlp-2.png" width="672" /></p>
+<pre><code>## Entry with id = 1000000384 already exists.
+## Parameters look different.
+## Old: lnorm(5.4200, 0.5300)
+## New: lnorm(5.4200, 0.5400)</code></pre>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" data-line-number="1">traits[[t]]<span class="op">$</span>prior =<span class="st"> </span><span class="dv">-1</span> <span class="op">*</span><span class="st"> </span><span class="kw">rdistn</span>(traits[[t]]<span class="op">$</span>fit) <span class="co"># Remember to flip back over for psi</span></a>
+<a class="sourceLine" id="cb40-2" data-line-number="2">traits[[t]]<span class="op">$</span>default =<span class="st"> </span><span class="kw">get_ED_default</span>(PFT3_defaults_history, t)</a>
+<a class="sourceLine" id="cb40-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb40-4" data-line-number="4"><span class="kw">prior_plot</span>(<span class="dt">prior =</span> traits[[t]]<span class="op">$</span>prior, </a>
+<a class="sourceLine" id="cb40-5" data-line-number="5">           <span class="dt">q =</span> <span class="kw">c</span>(.<span class="dv">005</span>,<span class="dv">1</span>),</a>
+<a class="sourceLine" id="cb40-6" data-line-number="6">           <span class="dt">plot_default =</span> traits[[t]]<span class="op">$</span>default,</a>
+<a class="sourceLine" id="cb40-7" data-line-number="7">           <span class="dt">title =</span> <span class="kw">sprintf</span>(<span class="st">&quot;%s(%s):</span><span class="ch">\n</span><span class="st">%s(%.4f, %.4f)&quot;</span>, t_long, t, </a>
+<a class="sourceLine" id="cb40-8" data-line-number="8">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>distn, </a>
+<a class="sourceLine" id="cb40-9" data-line-number="9">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>parama,</a>
+<a class="sourceLine" id="cb40-10" data-line-number="10">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>paramb),</a>
+<a class="sourceLine" id="cb40-11" data-line-number="11">           <span class="dt">type =</span> <span class="st">&quot;mixed&quot;</span>)</a></code></pre></div>
+<pre><code>## Warning: Removed 500 rows containing non-finite values (stat_density).</code></pre>
+<p><img src="Final_Book_files/figure-html/plot%20leaf_psi_tlp-1.png" width="672" /></p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" data-line-number="1"><span class="kw">prior_plot</span>(<span class="dt">prior =</span> traits[[t]]<span class="op">$</span>prior <span class="op">*</span><span class="st"> </span>(<span class="op">-</span><span class="dv">1</span><span class="op">/</span>C<span class="op">$</span>MPa2m), </a>
+<a class="sourceLine" id="cb42-2" data-line-number="2">           <span class="dt">q =</span> <span class="kw">c</span>(<span class="dv">0</span>,.<span class="dv">995</span>),</a>
+<a class="sourceLine" id="cb42-3" data-line-number="3">           <span class="dt">plot_default =</span> traits[[t]]<span class="op">$</span>default <span class="op">*</span><span class="st"> </span>(<span class="op">-</span><span class="dv">1</span><span class="op">/</span>C<span class="op">$</span>MPa2m),</a>
+<a class="sourceLine" id="cb42-4" data-line-number="4">           <span class="dt">title =</span> <span class="kw">sprintf</span>(<span class="st">&quot;%s(%s):</span><span class="ch">\n</span><span class="st">%s(%.4f, %.4f)&quot;</span>, t_long, t, </a>
+<a class="sourceLine" id="cb42-5" data-line-number="5">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>distn, </a>
+<a class="sourceLine" id="cb42-6" data-line-number="6">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>parama,</a>
+<a class="sourceLine" id="cb42-7" data-line-number="7">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>paramb),</a>
+<a class="sourceLine" id="cb42-8" data-line-number="8">           <span class="dt">type =</span> <span class="st">&quot;mixed&quot;</span>)</a></code></pre></div>
+<pre><code>## Warning: Removed 500 rows containing non-finite values (stat_density).</code></pre>
+<p><img src="Final_Book_files/figure-html/plot%20leaf_psi_tlp-2.png" width="672" /></p>
+<hr />
+</div>
+</div>
+<div id="leaf_water_cap-leaf-hydaulic-capacitance." class="section level2 unnumbered">
+<h2><code>[leaf_water_cap]:</code> Leaf hydaulic capacitance.</h2>
+<div id="ed-5" class="section level3 unnumbered">
+<h3>ED</h3>
+<ul>
+<li>ED variable name : <code>leaf_water_cap</code></li>
+<li>ED variable units: <code>kg H2O/kg biomass/m</code></li>
+</ul>
+</div>
+<div id="bety-5" class="section level3 unnumbered">
+<h3>BETY</h3>
+<ul>
+<li>Variable id: <code>1000000287</code></li>
+<li>Prior id: <code>1000000405</code></li>
+</ul>
+<p>NOTE: units in BETY are <code>g H2O / kg biomass / m</code>! This is because we needed to multiply by 1000 to get large enough values to fit the distribution.</p>
+</div>
+<div id="calculation-5" class="section level3 unnumbered">
+<h3>Calculation</h3>
+<div id="expert-elicitation-5" class="section level4 unnumbered">
+<h4>Expert elicitation</h4>
+<p>No expert elicitation provided by Brad Christoffersen.</p>
+<p>I will use the equation in ED to calcualte the prior and
+add min and max values to make sure the distribution
+does not predict values that are not biologically possible.</p>
+<p>Values added by Betsy and Felicien:</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" data-line-number="1">t =<span class="st"> &quot;leaf_water_cap&quot;</span></a>
+<a class="sourceLine" id="cb44-2" data-line-number="2">t_long =<span class="st"> &quot;Leaf hydaulic capacitance &quot;</span></a>
+<a class="sourceLine" id="cb44-3" data-line-number="3">priors[<span class="kw">which</span>(priors<span class="op">$</span>ED_name <span class="op">==</span><span class="st"> &quot;leaf_water_cap&quot;</span>),</a>
+<a class="sourceLine" id="cb44-4" data-line-number="4">       <span class="kw">c</span>(<span class="st">&quot;theor.min&quot;</span>, <span class="st">&quot;theor.max&quot;</span>)] &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">1e-7</span>, <span class="ot">NA</span>)</a></code></pre></div>
+<p>Equation copied directly from ED: <code>(1. - leaf_psi_osmotic(ipft) / (4. * leaf_psi_tlp(ipft))) * leaf_water_sat(ipft) / (4. * abs(leaf_psi_tlp(ipft)))</code></p>
+</div>
+<div id="conversion-5" class="section level4 unnumbered">
+<h4>Conversion</h4>
+<p>Don’t forget about the switch from kg to g!</p>
+</div>
+</div>
+<div id="code-5" class="section level3 unnumbered">
+<h3>Code</h3>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" data-line-number="1"><span class="co"># leaf_water_cap_samp &lt;- </span></a>
+<a class="sourceLine" id="cb45-2" data-line-number="2"><span class="co">#   1000 * (1 - leaf_psi_osmotic_prior / (4 * leaf_psi_tlp_prior)) * </span></a>
+<a class="sourceLine" id="cb45-3" data-line-number="3"><span class="co">#   (leaf_water_sat_prior / (4 * abs(leaf_psi_tlp_prior))) # * (C$wdns/leaf_density_prior)</span></a>
+<a class="sourceLine" id="cb45-4" data-line-number="4"><span class="co"># </span></a>
+<a class="sourceLine" id="cb45-5" data-line-number="5"><span class="co"># leaf_water_cap_samp &lt;- leaf_water_cap_samp[0 &lt; leaf_water_cap_samp]</span></a>
+<a class="sourceLine" id="cb45-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb45-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb45-8" data-line-number="8">temp_leaf_water_cap_samp &lt;-<span class="st"> </span></a>
+<a class="sourceLine" id="cb45-9" data-line-number="9"><span class="st">  </span><span class="dv">1000</span> <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>traits[[<span class="st">&quot;leaf_psi_osmotic&quot;</span>]]<span class="op">$</span>prior <span class="op">/</span><span class="st"> </span>(<span class="dv">4</span> <span class="op">*</span><span class="st"> </span>traits[[<span class="st">&quot;leaf_psi_tlp&quot;</span>]]<span class="op">$</span>prior)) <span class="op">*</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb45-10" data-line-number="10"><span class="st">  </span>(traits[[<span class="st">&quot;leaf_water_sat&quot;</span>]]<span class="op">$</span>prior <span class="op">/</span><span class="st"> </span>(<span class="dv">4</span> <span class="op">*</span><span class="st"> </span><span class="kw">abs</span>(traits[[<span class="st">&quot;leaf_psi_tlp&quot;</span>]]<span class="op">$</span>prior))) <span class="co"># * (C$wdns/traits[[&quot;leaf_density&quot;]]$prior)</span></a>
+<a class="sourceLine" id="cb45-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb45-12" data-line-number="12">temp_leaf_water_cap_samp &lt;-<span class="st"> </span>temp_leaf_water_cap_samp[<span class="dv">0</span> <span class="op">&lt;</span><span class="st"> </span>temp_leaf_water_cap_samp]</a>
+<a class="sourceLine" id="cb45-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb45-14" data-line-number="14"><span class="co"># Add in the max an min from the priors table</span></a>
+<a class="sourceLine" id="cb45-15" data-line-number="15">i &lt;-<span class="st"> </span><span class="kw">which</span>(priors<span class="op">$</span>ED_name <span class="op">==</span><span class="st"> &quot;leaf_water_cap&quot;</span>)</a>
+<a class="sourceLine" id="cb45-16" data-line-number="16">prior_in &lt;-<span class="st"> </span>priors[i,stats] </a>
+<a class="sourceLine" id="cb45-17" data-line-number="17">prior_in[,<span class="st">&quot;theor.min&quot;</span>] &lt;-<span class="st"> </span><span class="ot">NA</span></a>
+<a class="sourceLine" id="cb45-18" data-line-number="18"><span class="co"># prior_in[,&quot;theor.max&quot;] &lt;- max(.35 * (1/C$MPa2m) * (C$wdns/leaf_density_prior) )</span></a>
+<a class="sourceLine" id="cb45-19" data-line-number="19">prior_in &lt;-<span class="st"> </span><span class="kw">prior_add_samp_data</span>(prior_in, <span class="dt">samp =</span> temp_leaf_water_cap_samp)</a>
+<a class="sourceLine" id="cb45-20" data-line-number="20">prior_in[,stats]</a></code></pre></div>
+<pre><code>## # A tibble: 1 x 7
+##   theor.min low.025 low.25  mean upp.75 upp.975 theor.max
+##   &lt;lgl&gt;       &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;
+## 1 NA          0.164  0.451 0.747   1.24    3.29        NA</code></pre>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" data-line-number="1">traits &lt;-<span class="st"> </span><span class="kw">fit_trait_dist</span>(bety, traits, t, prior_in, accepted_dists)</a></code></pre></div>
+<p><img src="Final_Book_files/figure-html/calc%20leaf_water_cap-1.png" width="672" /></p>
+<pre><code>## Entry with id = 1000000405 already exists.
+## Parameters look different.
+## Old: lnorm(-0.2900, 0.7600)
+## New: lnorm(-0.2900, 0.7500)</code></pre>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" data-line-number="1">traits[[t]]<span class="op">$</span>prior =<span class="st"> </span><span class="kw">rdistn</span>(traits[[t]]<span class="op">$</span>fit) <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span><span class="op">/</span><span class="dv">1000</span>) <span class="co"># Convert back to kg</span></a>
+<a class="sourceLine" id="cb49-2" data-line-number="2">traits[[t]]<span class="op">$</span>default =<span class="st"> </span><span class="kw">get_ED_default</span>(PFT3_defaults_history, t)</a>
+<a class="sourceLine" id="cb49-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb49-4" data-line-number="4"><span class="kw">prior_plot</span>(<span class="dt">prior =</span> traits[[t]]<span class="op">$</span>prior, </a>
+<a class="sourceLine" id="cb49-5" data-line-number="5">           <span class="dt">q =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">.975</span>),</a>
+<a class="sourceLine" id="cb49-6" data-line-number="6">           <span class="dt">plot_default =</span> traits[[t]]<span class="op">$</span>default,</a>
+<a class="sourceLine" id="cb49-7" data-line-number="7">           <span class="dt">title =</span> <span class="kw">sprintf</span>(<span class="st">&quot;%s(%s):</span><span class="ch">\n</span><span class="st">%s(%.4f, %.4f)&quot;</span>, t_long, t, </a>
+<a class="sourceLine" id="cb49-8" data-line-number="8">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>distn, </a>
+<a class="sourceLine" id="cb49-9" data-line-number="9">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>parama,</a>
+<a class="sourceLine" id="cb49-10" data-line-number="10">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>paramb),</a>
+<a class="sourceLine" id="cb49-11" data-line-number="11">           <span class="dt">type =</span> <span class="st">&quot;mixed&quot;</span>)  </a></code></pre></div>
+<pre><code>## Warning: Removed 2500 rows containing non-finite values (stat_density).</code></pre>
+<p><img src="Final_Book_files/figure-html/plot%20leaf_water_cap-1.png" width="672" /></p>
+<hr />
+</div>
+</div>
+<div id="leaf_psi_min-leaf-minimum-water-potential" class="section level2 unnumbered">
+<h2><code>[leaf_psi_min]:</code> Leaf minimum water potential</h2>
+<p>This is calculated from <code>[leaf_rwc_min]:</code> Leaf minimum relative water content or leaf residual fraction, which I have not added to BETY.</p>
+<div id="ed-6" class="section level3 unnumbered">
+<h3>ED</h3>
+<ul>
+<li>ED variable name : <code>leaf_psi_min</code></li>
+<li>ED variable units: <code>m</code></li>
+</ul>
+</div>
+<div id="bety-6" class="section level3 unnumbered">
+<h3>BETY</h3>
+<ul>
+<li>Variable id: <code>1000000299</code></li>
+<li>Prior id: <code>1000000392</code></li>
+</ul>
+<p>NOTE!! The units are NEGATIVE in the database
+so we can calculate a distribution that is entirely negative.</p>
+</div>
+<div id="calculation-6" class="section level3 unnumbered">
+<h3>Calculation</h3>
+<div id="expert-elicitation-6" class="section level4 unnumbered">
+<h4>Expert elicitation</h4>
+<p>No expert elicitation provided by Brad Christoffersen.</p>
+<p>I will use the equation in ED to calcualte the prior and
+add min and max values to make sure the distribution
+does not predict values that are not biologically possible.</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" data-line-number="1">t =<span class="st"> &quot;leaf_psi_min&quot;</span></a>
+<a class="sourceLine" id="cb51-2" data-line-number="2">t_long =<span class="st"> &quot;Leaf minimum water potential &quot;</span></a>
+<a class="sourceLine" id="cb51-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb51-4" data-line-number="4">i &lt;-<span class="st"> </span><span class="kw">which</span>(priors<span class="op">$</span>ED_name <span class="op">==</span><span class="st"> &quot;leaf_psi_min&quot;</span>)</a>
+<a class="sourceLine" id="cb51-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb51-6" data-line-number="6"><span class="co"># Values added by Betsy and Felicien: c(-700, -0.1)</span></a>
+<a class="sourceLine" id="cb51-7" data-line-number="7">priors[i,<span class="kw">c</span>(<span class="st">&quot;theor.min&quot;</span>, <span class="st">&quot;theor.max&quot;</span>)] &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">0.1</span>,<span class="dv">700</span>)</a>
+<a class="sourceLine" id="cb51-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb51-9" data-line-number="9"><span class="co"># Did Felicien mean 70 ?????</span></a>
+<a class="sourceLine" id="cb51-10" data-line-number="10"><span class="co"># priors[which(priors$ED_name == &quot;leaf_psi_min&quot;),</span></a>
+<a class="sourceLine" id="cb51-11" data-line-number="11"><span class="co">#        c(&quot;theor.min&quot;, &quot;theor.max&quot;)] &lt;- c(0.1,70) ## </span></a>
+<a class="sourceLine" id="cb51-12" data-line-number="12"><span class="co"># No max value</span></a>
+<a class="sourceLine" id="cb51-13" data-line-number="13"><span class="co"># priors[which(priors$ED_name == &quot;leaf_psi_min&quot;),</span></a>
+<a class="sourceLine" id="cb51-14" data-line-number="14"><span class="co">#        c(&quot;theor.min&quot;, &quot;theor.max&quot;)] &lt;- c(0.1,NA) </span></a></code></pre></div>
+<p>Code copied from ED:</p>
+<pre><code>leaf_rwc_min = 0.01 * leaf_elastic_mod(ipft) + 0.17
+leaf_psi_min = (leaf_rwc_min(ipft) - 1.) * leaf_water_sat(ipft) / leaf_water_cap(ipft)</code></pre>
+</div>
+<div id="conversion-6" class="section level4 unnumbered">
+<h4>Conversion</h4>
+<p>None</p>
+</div>
+</div>
+<div id="code-6" class="section level3 unnumbered">
+<h3>Code</h3>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" data-line-number="1"><span class="co"># traits[[&quot;leaf_water_sat&quot;]]$prior</span></a>
+<a class="sourceLine" id="cb53-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb53-3" data-line-number="3">temp_leaf_rwc_min_samp =<span class="st"> </span><span class="fl">0.01</span> <span class="op">*</span><span class="st"> </span>traits[[<span class="st">&quot;leaf_elastic_mod&quot;</span>]]<span class="op">$</span>prior <span class="op">+</span><span class="st"> </span><span class="fl">0.17</span></a>
+<a class="sourceLine" id="cb53-4" data-line-number="4">temp_leaf_psi_min_samp =<span class="st"> </span>(temp_leaf_rwc_min_samp <span class="op">-</span><span class="st"> </span><span class="fl">1.</span>) <span class="op">*</span><span class="st"> </span>traits[[<span class="st">&quot;leaf_water_sat&quot;</span>]]<span class="op">$</span>prior <span class="op">/</span><span class="st"> </span>traits[[<span class="st">&quot;leaf_water_cap&quot;</span>]]<span class="op">$</span>prior</a>
+<a class="sourceLine" id="cb53-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb53-6" data-line-number="6"><span class="co"># Add in the max an min from the priors table</span></a>
+<a class="sourceLine" id="cb53-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb53-8" data-line-number="8">prior_in &lt;-<span class="st"> </span>priors[i,stats] <span class="op">*</span><span class="st"> </span>C<span class="op">$</span>MPa2m <span class="co"># Convert from MPa to m</span></a>
+<a class="sourceLine" id="cb53-9" data-line-number="9">prior_in &lt;-<span class="st"> </span><span class="kw">prior_add_samp_data</span>(prior_in, <span class="dt">samp =</span> <span class="op">-</span>temp_leaf_psi_min_samp)</a>
+<a class="sourceLine" id="cb53-10" data-line-number="10">prior_in[,stats] <span class="op">/</span><span class="st"> </span>C<span class="op">$</span>MPa2m</a></code></pre></div>
+<pre><code>##   theor.min     low.025      low.25        mean     upp.75    upp.975 theor.max
+## 1       0.1 1.008678842 3.798156813 7.595399409 15.1059874 55.4021743       700</code></pre>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" data-line-number="1">traits &lt;-<span class="st"> </span><span class="kw">fit_trait_dist</span>(bety, traits, t, prior_in, accepted_dists)</a></code></pre></div>
+<p><img src="Final_Book_files/figure-html/calc%20leaf_psi_min-1.png" width="672" /></p>
+<pre><code>## Entry with id = 1000000392 already exists.
+## Parameters look the saaaaame.
+## Old: lnorm(6.6500, 1.0200)
+## New: lnorm(6.6500, 1.0200)</code></pre>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" data-line-number="1">traits[[t]]<span class="op">$</span>prior =<span class="st"> </span><span class="dv">-1</span> <span class="op">*</span><span class="st"> </span><span class="kw">rdistn</span>(traits[[t]]<span class="op">$</span>fit) <span class="co"># Remember to flip back over for psi</span></a>
+<a class="sourceLine" id="cb57-2" data-line-number="2">traits[[t]]<span class="op">$</span>default =<span class="st"> </span><span class="kw">get_ED_default</span>(PFT3_defaults_history, t)</a>
+<a class="sourceLine" id="cb57-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb57-4" data-line-number="4"><span class="kw">prior_plot</span>(<span class="dt">prior =</span> traits[[t]]<span class="op">$</span>prior, </a>
+<a class="sourceLine" id="cb57-5" data-line-number="5">          <span class="dt">q =</span> <span class="kw">c</span>(.<span class="dv">025</span>,<span class="dv">1</span>),</a>
+<a class="sourceLine" id="cb57-6" data-line-number="6">           <span class="dt">plot_default =</span> traits[[t]]<span class="op">$</span>default,</a>
+<a class="sourceLine" id="cb57-7" data-line-number="7">           <span class="dt">title =</span> <span class="kw">sprintf</span>(<span class="st">&quot;%s(%s):</span><span class="ch">\n</span><span class="st">%s(%.4f, %.4f)&quot;</span>, t_long, t, </a>
+<a class="sourceLine" id="cb57-8" data-line-number="8">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>distn, </a>
+<a class="sourceLine" id="cb57-9" data-line-number="9">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>parama,</a>
+<a class="sourceLine" id="cb57-10" data-line-number="10">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>paramb),</a>
+<a class="sourceLine" id="cb57-11" data-line-number="11">           <span class="dt">type =</span> <span class="st">&quot;mixed&quot;</span>)</a></code></pre></div>
+<pre><code>## Warning: Removed 2500 rows containing non-finite values (stat_density).</code></pre>
+<p><img src="Final_Book_files/figure-html/plot%20leaf_psi_min-1.png" width="672" /></p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="respiration-and-turnover.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="hydraulic-wood-traits.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
