@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Setup | Calculating ED Hydro Parameter Priors</title>
   <meta name="description" content="ED Hydro Documentation" />
-  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Setup | Calculating ED Hydro Parameter Priors" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Betsy Cowdery" />
 
 
-<meta name="date" content="2020-06-17" />
+<meta name="date" content="2020-07-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -295,7 +295,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="setup" class="section level1 unnumbered">
 <h1>Setup</h1>
 <p><img src="ED_HYDRO.png" width="1607" /></p>
-<pre><code>## Warning: Unknown columns: `BETY_prior_id`</code></pre>
 <pre><code>## [1] &quot;leaf_psi_tlp&quot;   &quot;wood_psi_tlp&quot;   &quot;rwc_tlp_wood&quot;   &quot;leaf_density&quot;  
 ## [5] &quot;leaf_psi_min&quot;   &quot;leaf_water_cap&quot; &quot;wood_Kexp&quot;      &quot;wood_psi_min&quot;  
 ## [9] &quot;wood_water_cap&quot;</code></pre>
@@ -310,6 +309,9 @@ Christoffersen_name
 </th>
 <th style="text-align:right;">
 BETY_variable_id
+</th>
+<th style="text-align:left;">
+BETY_prior_id
 </th>
 <th style="text-align:left;">
 ED_units
@@ -354,6 +356,9 @@ NA
 NA
 </td>
 <td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
 MPa * 100
 </td>
 <td style="text-align:right;">
@@ -387,6 +392,9 @@ epsil_node
 </td>
 <td style="text-align:right;">
 1000000294
+</td>
+<td style="text-align:left;">
+NA
 </td>
 <td style="text-align:left;">
 MPa
@@ -424,6 +432,9 @@ wood_elastic_mod
 epsil_node
 </td>
 <td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
 NA
 </td>
 <td style="text-align:left;">
@@ -465,6 +476,9 @@ kmax_node
 1000000290
 </td>
 <td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
 kg H2O / m / s
 </td>
 <td style="text-align:left;">
@@ -501,6 +515,9 @@ p50_node
 </td>
 <td style="text-align:right;">
 1000000289
+</td>
+<td style="text-align:left;">
+NA
 </td>
 <td style="text-align:left;">
 m
@@ -541,6 +558,9 @@ pinot_node
 1000000295
 </td>
 <td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
 m
 </td>
 <td style="text-align:left;">
@@ -577,6 +597,9 @@ pinot_node
 </td>
 <td style="text-align:right;">
 1000000298
+</td>
+<td style="text-align:left;">
+NA
 </td>
 <td style="text-align:left;">
 m
@@ -617,6 +640,9 @@ pitlp_node
 1000000284
 </td>
 <td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
 m
 </td>
 <td style="text-align:left;">
@@ -653,6 +679,9 @@ pitlp_node
 </td>
 <td style="text-align:right;">
 1000000301
+</td>
+<td style="text-align:left;">
+NA
 </td>
 <td style="text-align:left;">
 m
@@ -693,6 +722,9 @@ rwctlp_node
 1000000296
 </td>
 <td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
 unitless
 </td>
 <td style="text-align:left;">
@@ -729,6 +761,9 @@ thetas_node
 </td>
 <td style="text-align:right;">
 1000000285
+</td>
+<td style="text-align:left;">
+NA
 </td>
 <td style="text-align:left;">
 kg H2O/kg biomass
@@ -769,6 +804,9 @@ thetas_node
 1000000286
 </td>
 <td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
 kg H2O/kg biomass
 </td>
 <td style="text-align:left;">
@@ -804,6 +842,9 @@ leaf_density
 NA
 </td>
 <td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
 NA
 </td>
 <td style="text-align:left;">
@@ -845,6 +886,9 @@ NA
 1000000299
 </td>
 <td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
 m
 </td>
 <td style="text-align:left;">
@@ -881,6 +925,9 @@ NA
 </td>
 <td style="text-align:right;">
 1000000287
+</td>
+<td style="text-align:left;">
+NA
 </td>
 <td style="text-align:left;">
 kg H2O/kg biomass/m
@@ -921,6 +968,9 @@ NA
 1000000305
 </td>
 <td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
 unitless
 </td>
 <td style="text-align:left;">
@@ -957,6 +1007,9 @@ NA
 </td>
 <td style="text-align:right;">
 1000000300
+</td>
+<td style="text-align:left;">
+NA
 </td>
 <td style="text-align:left;">
 m
@@ -997,6 +1050,9 @@ NA
 1000000288
 </td>
 <td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
 kg H2O/kg biomass/m
 </td>
 <td style="text-align:left;">
@@ -1026,7 +1082,7 @@ NA
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">traits &lt;-<span class="st"> </span><span class="kw">list</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">traits &lt;-<span class="st"> </span><span class="kw">list</span>()</a></code></pre></div>
 <div id="choosing-pfts" class="section level2 unnumbered">
 <h2>Choosing PFTs</h2>
 <ul>
@@ -1046,14 +1102,14 @@ NA
 <div id="pft-ed_tropical_hydro" class="section level2">
 <h2><span class="header-section-number">0.1</span> PFT: ED_Tropical_Hydro</h2>
 <p>ED id: 1000000131</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">pftid &lt;-<span class="st"> </span><span class="dv">1000000131</span></a>
-<a class="sourceLine" id="cb4-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb4-3" data-line-number="3">priorid &lt;-<span class="st"> </span><span class="kw">tbl</span>(bety, <span class="st">&quot;pfts_priors&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(pft_id <span class="op">==</span><span class="st"> </span>pftid) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(prior_id)</a>
-<a class="sourceLine" id="cb4-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb4-5" data-line-number="5">pfts_priors &lt;-<span class="st"> </span><span class="kw">tbl</span>(bety, <span class="st">&quot;priors&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(id <span class="op">%in%</span><span class="st"> </span>priorid) <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="kw">one_of</span>(<span class="st">&quot;id&quot;</span>, <span class="st">&quot;variable_id&quot;</span>, <span class="st">&quot;distn&quot;</span>, <span class="st">&quot;parama&quot;</span>, <span class="st">&quot;paramb&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb4-6" data-line-number="6"><span class="st">  </span><span class="kw">left_join</span>(<span class="kw">tbl</span>(bety, <span class="st">&quot;variables&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="st">&quot;id&quot;</span>, <span class="st">&quot;name&quot;</span>), <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;variable_id&quot;</span> =<span class="st"> &quot;id&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">collect</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">rename</span>(<span class="st">&quot;var_name&quot;</span> =<span class="st"> &quot;name&quot;</span>) </a>
-<a class="sourceLine" id="cb4-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb4-8" data-line-number="8"><span class="kw">kable</span>(pfts_priors)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">pftid &lt;-<span class="st"> </span><span class="dv">1000000131</span></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb3-3" data-line-number="3">priorid &lt;-<span class="st"> </span><span class="kw">tbl</span>(bety, <span class="st">&quot;pfts_priors&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(pft_id <span class="op">==</span><span class="st"> </span>pftid) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(prior_id)</a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb3-5" data-line-number="5">pfts_priors &lt;-<span class="st"> </span><span class="kw">tbl</span>(bety, <span class="st">&quot;priors&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(id <span class="op">%in%</span><span class="st"> </span>priorid) <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="kw">one_of</span>(<span class="st">&quot;id&quot;</span>, <span class="st">&quot;variable_id&quot;</span>, <span class="st">&quot;distn&quot;</span>, <span class="st">&quot;parama&quot;</span>, <span class="st">&quot;paramb&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="st">  </span><span class="kw">left_join</span>(<span class="kw">tbl</span>(bety, <span class="st">&quot;variables&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="st">&quot;id&quot;</span>, <span class="st">&quot;name&quot;</span>), <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;variable_id&quot;</span> =<span class="st"> &quot;id&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">collect</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">rename</span>(<span class="st">&quot;var_name&quot;</span> =<span class="st"> &quot;name&quot;</span>) </a>
+<a class="sourceLine" id="cb3-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="kw">kable</span>(pfts_priors)</a></code></pre></div>
 <table>
 <thead>
 <tr>
@@ -1269,10 +1325,10 @@ b1Rd
 lnorm
 </td>
 <td style="text-align:right;">
--0.2900
+-0.3200
 </td>
 <td style="text-align:right;">
-0.760
+0.750
 </td>
 <td style="text-align:left;">
 leaf_water_cap
@@ -1400,26 +1456,6 @@ wood_water_cap
 </tr>
 <tr>
 <td style="text-align:right;">
-1000000460
-</td>
-<td style="text-align:right;">
-1000000314
-</td>
-<td style="text-align:left;">
-unif
-</td>
-<td style="text-align:right;">
-1.0000
-</td>
-<td style="text-align:right;">
-5.000
-</td>
-<td style="text-align:left;">
-stoma_psi_c
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
 57
 </td>
 <td style="text-align:right;">
@@ -1436,6 +1472,26 @@ beta
 </td>
 <td style="text-align:left;">
 growth_resp_factor
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1000000460
+</td>
+<td style="text-align:right;">
+1000000314
+</td>
+<td style="text-align:left;">
+unif
+</td>
+<td style="text-align:right;">
+1.0000
+</td>
+<td style="text-align:right;">
+5.000
+</td>
+<td style="text-align:left;">
+stoma_psi_c
 </td>
 </tr>
 <tr>

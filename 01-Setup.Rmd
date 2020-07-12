@@ -23,6 +23,7 @@ stats <- c("theor.min",
            "theor.max")
 
 accepted_dists <- c("norm", "lnorm", "chisq", "beta", "poisson", "exp", "gamma","weibull", "unif" )
+
 priors <- prior_load_data(download = FALSE, subset = TRUE)
 
 kable(priors)

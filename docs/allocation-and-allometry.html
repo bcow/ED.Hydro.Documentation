@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Allocation and Allometry | Calculating ED Hydro Parameter Priors</title>
   <meta name="description" content="ED Hydro Documentation" />
-  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Allocation and Allometry | Calculating ED Hydro Parameter Priors" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Betsy Cowdery" />
 
 
-<meta name="date" content="2020-06-17" />
+<meta name="date" content="2020-07-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -303,26 +303,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>There are multiple priors available for SLA so we are explicitly choosing prior
 <code>142</code> (this was chosen by someone else when the PFT was created.)</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">t =<span class="st"> &quot;SLA&quot;</span></a>
-<a class="sourceLine" id="cb9-2" data-line-number="2">t_long =<span class="st"> &quot;Specific Leaf Area &quot;</span></a>
-<a class="sourceLine" id="cb9-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb9-4" data-line-number="4">traits[[t]] &lt;-<span class="st"> </span><span class="kw">list</span>(</a>
-<a class="sourceLine" id="cb9-5" data-line-number="5">  <span class="dt">variable_name =</span> t,</a>
-<a class="sourceLine" id="cb9-6" data-line-number="6">  <span class="dt">variable_id =</span>  pfts_priors <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(var_name <span class="op">==</span><span class="st"> </span>t) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(variable_id),</a>
-<a class="sourceLine" id="cb9-7" data-line-number="7">  <span class="dt">prior_id =</span> pfts_priors <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(var_name <span class="op">==</span><span class="st"> </span>t) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(id),</a>
-<a class="sourceLine" id="cb9-8" data-line-number="8">  <span class="dt">fit =</span> pfts_priors <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(var_name <span class="op">==</span><span class="st"> </span>t) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="st">&quot;distn&quot;</span>, <span class="st">&quot;parama&quot;</span>, <span class="st">&quot;paramb&quot;</span>)</a>
-<a class="sourceLine" id="cb9-9" data-line-number="9">)</a>
-<a class="sourceLine" id="cb9-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb9-11" data-line-number="11">traits[[t]]<span class="op">$</span>prior =<span class="st"> </span><span class="kw">rdistn</span>(traits[[t]]<span class="op">$</span>fit)</a>
-<a class="sourceLine" id="cb9-12" data-line-number="12">traits[[t]]<span class="op">$</span>default =<span class="st"> </span><span class="kw">get_ED_default</span>(PFT3_defaults_history, t)</a>
-<a class="sourceLine" id="cb9-13" data-line-number="13"></a>
-<a class="sourceLine" id="cb9-14" data-line-number="14"><span class="kw">prior_plot</span>(<span class="dt">prior =</span> traits[[t]]<span class="op">$</span>prior, </a>
-<a class="sourceLine" id="cb9-15" data-line-number="15">           <span class="dt">plot_default =</span> traits[[t]]<span class="op">$</span>default,</a>
-<a class="sourceLine" id="cb9-16" data-line-number="16">           <span class="dt">title =</span> <span class="kw">sprintf</span>(<span class="st">&quot;%s(%s):</span><span class="ch">\n</span><span class="st">%s(%.4f, %.4f)&quot;</span>, t_long, t, </a>
-<a class="sourceLine" id="cb9-17" data-line-number="17">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>distn, </a>
-<a class="sourceLine" id="cb9-18" data-line-number="18">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>parama,</a>
-<a class="sourceLine" id="cb9-19" data-line-number="19">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>paramb),</a>
-<a class="sourceLine" id="cb9-20" data-line-number="20">           <span class="dt">type =</span> <span class="st">&quot;prior&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">t =<span class="st"> &quot;SLA&quot;</span></a>
+<a class="sourceLine" id="cb8-2" data-line-number="2">t_long =<span class="st"> &quot;Specific Leaf Area &quot;</span></a>
+<a class="sourceLine" id="cb8-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb8-4" data-line-number="4">traits[[t]] &lt;-<span class="st"> </span><span class="kw">list</span>(</a>
+<a class="sourceLine" id="cb8-5" data-line-number="5">  <span class="dt">variable_name =</span> t,</a>
+<a class="sourceLine" id="cb8-6" data-line-number="6">  <span class="dt">variable_id =</span>  pfts_priors <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(var_name <span class="op">==</span><span class="st"> </span>t) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(variable_id),</a>
+<a class="sourceLine" id="cb8-7" data-line-number="7">  <span class="dt">prior_id =</span> pfts_priors <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(var_name <span class="op">==</span><span class="st"> </span>t) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(id),</a>
+<a class="sourceLine" id="cb8-8" data-line-number="8">  <span class="dt">fit =</span> pfts_priors <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(var_name <span class="op">==</span><span class="st"> </span>t) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="st">&quot;distn&quot;</span>, <span class="st">&quot;parama&quot;</span>, <span class="st">&quot;paramb&quot;</span>)</a>
+<a class="sourceLine" id="cb8-9" data-line-number="9">)</a>
+<a class="sourceLine" id="cb8-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb8-11" data-line-number="11">traits[[t]]<span class="op">$</span>prior =<span class="st"> </span><span class="kw">rdistn</span>(traits[[t]]<span class="op">$</span>fit)</a>
+<a class="sourceLine" id="cb8-12" data-line-number="12">traits[[t]]<span class="op">$</span>default =<span class="st"> </span><span class="kw">get_ED_default</span>(PFT3_defaults_history, t)</a>
+<a class="sourceLine" id="cb8-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb8-14" data-line-number="14"><span class="kw">prior_plot</span>(<span class="dt">prior =</span> traits[[t]]<span class="op">$</span>prior, </a>
+<a class="sourceLine" id="cb8-15" data-line-number="15">           <span class="dt">plot_default =</span> traits[[t]]<span class="op">$</span>default,</a>
+<a class="sourceLine" id="cb8-16" data-line-number="16">           <span class="dt">title =</span> <span class="kw">sprintf</span>(<span class="st">&quot;%s(%s):</span><span class="ch">\n</span><span class="st">%s(%.4f, %.4f)&quot;</span>, t_long, t, </a>
+<a class="sourceLine" id="cb8-17" data-line-number="17">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>distn, </a>
+<a class="sourceLine" id="cb8-18" data-line-number="18">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>parama,</a>
+<a class="sourceLine" id="cb8-19" data-line-number="19">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>paramb),</a>
+<a class="sourceLine" id="cb8-20" data-line-number="20">           <span class="dt">type =</span> <span class="st">&quot;prior&quot;</span>)</a></code></pre></div>
 <p><img src="Final_Book_files/figure-html/SLA-1.png" width="672" /></p>
 <hr />
 </div>
@@ -347,25 +347,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 So I’m assuming it can be directly mapped to our <code>wood_density</code> as such:</p>
 <p><span class="math display">\[\frac{WD (gcm^{-2})}{\rho_w(gcm^{-2})} * \rho_w(gcm^{-2}) =  \frac{WD (gcm^{-2})}{1(gcm^{-2})} * 1(gcm^{-2})\]</span>
 There are multiple priors available for wood density so we are explicitly choosing prior <code>1000000281</code> (this was chosen by someone else when the PFT was created.)</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">t =<span class="st"> &quot;wood_density&quot;</span></a>
-<a class="sourceLine" id="cb10-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb10-3" data-line-number="3">traits[[t]] &lt;-<span class="st"> </span><span class="kw">list</span>(</a>
-<a class="sourceLine" id="cb10-4" data-line-number="4">  <span class="dt">variable_name =</span> t,</a>
-<a class="sourceLine" id="cb10-5" data-line-number="5">  <span class="dt">variable_id =</span>  pfts_priors <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(var_name <span class="op">==</span><span class="st"> </span>t) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(variable_id),</a>
-<a class="sourceLine" id="cb10-6" data-line-number="6">  <span class="dt">prior_id =</span> pfts_priors <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(var_name <span class="op">==</span><span class="st"> </span>t) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(id),</a>
-<a class="sourceLine" id="cb10-7" data-line-number="7">  <span class="dt">fit =</span> pfts_priors <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(var_name <span class="op">==</span><span class="st"> </span>t) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="st">&quot;distn&quot;</span>, <span class="st">&quot;parama&quot;</span>, <span class="st">&quot;paramb&quot;</span>)</a>
-<a class="sourceLine" id="cb10-8" data-line-number="8">)</a>
-<a class="sourceLine" id="cb10-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb10-10" data-line-number="10">traits[[t]]<span class="op">$</span>prior =<span class="st"> </span><span class="kw">rdistn</span>(traits[[t]]<span class="op">$</span>fit)</a>
-<a class="sourceLine" id="cb10-11" data-line-number="11">traits[[t]]<span class="op">$</span>default =<span class="st"> </span><span class="kw">get_ED_default</span>(PFT3_defaults_history, <span class="st">&quot;rho&quot;</span>)</a>
-<a class="sourceLine" id="cb10-12" data-line-number="12"></a>
-<a class="sourceLine" id="cb10-13" data-line-number="13"><span class="kw">prior_plot</span>(<span class="dt">prior =</span> traits[[t]]<span class="op">$</span>prior, </a>
-<a class="sourceLine" id="cb10-14" data-line-number="14">           <span class="dt">plot_default =</span> traits[[t]]<span class="op">$</span>default,</a>
-<a class="sourceLine" id="cb10-15" data-line-number="15">           <span class="dt">title =</span> <span class="kw">sprintf</span>(<span class="st">&quot;%s:</span><span class="ch">\n</span><span class="st">(%s, %.4f, %.4f)&quot;</span>, t, </a>
-<a class="sourceLine" id="cb10-16" data-line-number="16">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>distn, </a>
-<a class="sourceLine" id="cb10-17" data-line-number="17">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>parama,</a>
-<a class="sourceLine" id="cb10-18" data-line-number="18">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>paramb),</a>
-<a class="sourceLine" id="cb10-19" data-line-number="19">           <span class="dt">type =</span> <span class="st">&quot;prior&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">t =<span class="st"> &quot;wood_density&quot;</span></a>
+<a class="sourceLine" id="cb9-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb9-3" data-line-number="3">traits[[t]] &lt;-<span class="st"> </span><span class="kw">list</span>(</a>
+<a class="sourceLine" id="cb9-4" data-line-number="4">  <span class="dt">variable_name =</span> t,</a>
+<a class="sourceLine" id="cb9-5" data-line-number="5">  <span class="dt">variable_id =</span>  pfts_priors <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(var_name <span class="op">==</span><span class="st"> </span>t) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(variable_id),</a>
+<a class="sourceLine" id="cb9-6" data-line-number="6">  <span class="dt">prior_id =</span> pfts_priors <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(var_name <span class="op">==</span><span class="st"> </span>t) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">pull</span>(id),</a>
+<a class="sourceLine" id="cb9-7" data-line-number="7">  <span class="dt">fit =</span> pfts_priors <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(var_name <span class="op">==</span><span class="st"> </span>t) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="st">&quot;distn&quot;</span>, <span class="st">&quot;parama&quot;</span>, <span class="st">&quot;paramb&quot;</span>)</a>
+<a class="sourceLine" id="cb9-8" data-line-number="8">)</a>
+<a class="sourceLine" id="cb9-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb9-10" data-line-number="10">traits[[t]]<span class="op">$</span>prior =<span class="st"> </span><span class="kw">rdistn</span>(traits[[t]]<span class="op">$</span>fit)</a>
+<a class="sourceLine" id="cb9-11" data-line-number="11">traits[[t]]<span class="op">$</span>default =<span class="st"> </span><span class="kw">get_ED_default</span>(PFT3_defaults_history, <span class="st">&quot;rho&quot;</span>)</a>
+<a class="sourceLine" id="cb9-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb9-13" data-line-number="13"><span class="kw">prior_plot</span>(<span class="dt">prior =</span> traits[[t]]<span class="op">$</span>prior, </a>
+<a class="sourceLine" id="cb9-14" data-line-number="14">           <span class="dt">plot_default =</span> traits[[t]]<span class="op">$</span>default,</a>
+<a class="sourceLine" id="cb9-15" data-line-number="15">           <span class="dt">title =</span> <span class="kw">sprintf</span>(<span class="st">&quot;%s:</span><span class="ch">\n</span><span class="st">(%s, %.4f, %.4f)&quot;</span>, t, </a>
+<a class="sourceLine" id="cb9-16" data-line-number="16">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>distn, </a>
+<a class="sourceLine" id="cb9-17" data-line-number="17">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>parama,</a>
+<a class="sourceLine" id="cb9-18" data-line-number="18">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>paramb),</a>
+<a class="sourceLine" id="cb9-19" data-line-number="19">           <span class="dt">type =</span> <span class="st">&quot;prior&quot;</span>)</a></code></pre></div>
 <p><img src="Final_Book_files/figure-html/wood_density-1.png" width="672" /></p>
 <hr />
 </div>

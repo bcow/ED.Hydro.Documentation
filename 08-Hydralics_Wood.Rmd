@@ -259,6 +259,14 @@ There is a FATES parameter but it is calculated from other parameters
 Constraints we added
 - `wood_psi_tlp > .1 MPa` (this was given as a boundary for other psi variables)
 
+Values added by Betsy and Felicien: 
+
+```
+# Wood_psi_tlp
+priors[which(priors$ED_name == "wood_psi_tlp"),
+       c("theor.min", "theor.max")] <- c(NA, -0.1)
+```
+
 #### Conversion  {-}
 
 - Calculated from other parameters: `wood_psi_osmotic` and `wood_elastic_mod`
@@ -342,6 +350,14 @@ No expert elicitation provided by Brad Christoffersen.
 Constraints we added
 - `wood_water_cap > 1e-07 kg H2O/kg biomass/m` 
 
+Values added by Betsy and Felicien: 
+
+```
+# Wood_water_cap
+priors[which(priors$ED_name == "wood_water_cap"),
+       c("theor.min", "theor.max")] <- c(1e-7, NA)
+```
+
 ### Code {-}
 
 ```{r calc wood_water_cap}
@@ -423,6 +439,14 @@ There are no FATES parameters
 
 Constraints we added
 - `wood_psi_min > .1 MPa` (this was given as a boundary for other psi variables)
+
+Values added by Betsy and Felicien: 
+
+```
+# Wood_psi_min
+priors[which(priors$ED_name == "wood_psi_min"),
+       c("theor.min", "theor.max")] <- c(NA, -0.1)
+```
 
 ### Code {-}
 

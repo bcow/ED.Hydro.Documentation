@@ -95,6 +95,7 @@ t_long = "Leaf bulk elastic modulus "
 
 i <- which(priors$ED_name == t)
 prior_in <- priors[i,]
+prior_in
 
 traits <- fit_trait_dist(bety, traits, t, prior_in, accepted_dists)
 
@@ -103,11 +104,11 @@ traits <- fit_trait_dist(bety, traits, t, prior_in, accepted_dists)
 
 ```{r plot leaf_elastic_mod}
 
-traits[[t]]$prior = rdistn(traits[[t]]$fit)
+traits[[t]]$prior = rdistn(traits[[t]]$fit,1e06)
 traits[[t]]$default = get_ED_default(PFT3_defaults_history, t)
 
 prior_plot(prior = traits[[t]]$prior, 
-           q = c(0,.999), 
+           # q = c(0,.999), 
            plot_default = traits[[t]]$default,
            title = sprintf("%s(%s):\n%s(%.4f, %.4f)", t_long, t, 
                            traits[[t]]$fit$distn, 
@@ -142,23 +143,21 @@ does not predict values that are not biologically possible.
 
 Copies directly from the ED code: `max(0.1 * 1.e3, (leaf_elastic_mod(ipft) - 2.03) / 25.4 * 1.e3)`
 
-But there is a key step here that we need to think about, which is that in the ED code, `0.1 * 1.e3` is the smallest possible value. I encorporate that information by setting `0.1 * 1.e3` as the min theoretical value when fitting the distribution (but remove the `max` from the equation when calculating the `leaf_density_sample`.)
+But there is a key step here that we need to think about, which is that in the ED code, `0.1 * 1.e3` is the smallest possible value.
+
+Trying to set `0.1 * 1.e3` as the min theoretical value when fitting the distribution (but remove the `max` from the equation when calculating the sample prior.) resulted in a poorly fitting distribution. 
+
+Thus I'm going to set 1e-07 as the theoretical minimum value, fit a distribution and then exclude values smaller than `0.1 * 1.e3` after sampling from the distribution.  
 
 `leaf_density_sample <- (leaf_elastic_mod_prior - 2.03) / 25.4 * 1.e3`
 
 Values added by Betsy and Felicien: 
-```{r}
-t = "leaf_density"
-t_long = "Density of leaf tissue "
 
-i <- which(priors$ED_name == "leaf_density")
-
+```
 # Leaf_density
-priors[i,c("theor.min", "theor.max")] <- c(1e-7, 2000)
+priors[which(priors$ED_name == "leaf_density"),
+       c("theor.min", "theor.max")] <- c(1e-7, 2000)
 
-# Does it make more sense to do what the ED code does??? 
-# Turns out it doesn't change the parameters ... so maybe I'll do that
-priors[i,c("theor.min", "theor.max")] <- c(1e-3, 2000)
 ```
 
 #### Conversion {-}
@@ -169,12 +168,24 @@ None
 
 ```{r calc leaf_density_sample}
 
+t = "leaf_density"
+t_long = "Density of leaf tissue "
+
+i <- which(priors$ED_name == "leaf_density")
+
 temp_leaf_density_sample <- (traits[["leaf_elastic_mod"]]$prior - 2.03) / 25.4 * 1.e3
 
 # Add in the max an min from the priors table
 prior_in <- priors[i,] # Note here I don't need to do any units conversion 
 prior_in <- prior_add_samp_data(prior_in, samp = temp_leaf_density_sample)
 prior_in[,stats]
+# # I think I fucked up the theoretical mean ... it should have been
+# prior_in[,"theor.min"] <- 0.1 * 1.e3
+prior_in[,"theor.min"] <- 1e-7
+prior_in[,"theor.max"] <- NA
+
+# prior_in[,stats]
+# prior_in[,stats]
 
 traits <- fit_trait_dist(bety, traits, t, prior_in, accepted_dists)
 
@@ -182,11 +193,14 @@ traits <- fit_trait_dist(bety, traits, t, prior_in, accepted_dists)
 
 ```{r plot leaf_density_sample}
 
-traits[[t]]$prior = rdistn(traits[[t]]$fit)
+traits[[t]]$prior = rdistn(traits[[t]]$fit, 1000000)
+# Here I actually I think I will 
+traits[[t]]$prior = sample(x = traits[[t]]$prior[which(traits[[t]]$prior > 100)], size = 1e5)
+
 traits[[t]]$default = (get_ED_default("/fs/data3/ecowdery/ED.Hydro/parameters/pft3_defaults_history.xml", "leaf_elastic_mod") - 2.03) / 25.4 * 1.e3
 
 prior_plot(prior = traits[[t]]$prior, 
-           q = c(0,.995), 
+           # q = c(0,.995), 
            plot_default = traits[[t]]$default,
            title = sprintf("%s(%s):\n%s(%.4f, %.4f)", t_long, t, 
                            traits[[t]]$fit$distn, 
@@ -322,18 +336,11 @@ add min and max values to make sure the distribution
 does not predict values that are not biologically possible. 
 
 Values added by Betsy and Felicien: 
-```{r}
-t = "leaf_psi_tlp"
-t_long = "Leaf water potential at turgor loss point "
-i <- which(priors$ED_name == t)
 
-priors[i, stats]
-
-# priors[which(priors$ED_name == "leaf_psi_tlp"),
-       # c("theor.min", "theor.max")] <- c(-6, -0.5)
-# priors[i,c("theor.min", "theor.max")] <- c(0.5, 6)
-
-
+```
+# Leaf_psi_tlp
+priors[which(priors$ED_name == "leaf_psi_tlp"),
+      c("theor.min", "theor.max")] <- c(-6, -0.5)
 ```
 
 Code directly from ED: `leaf_elastic_mod(ipft)  * (leaf_psi_osmotic(ipft) / C$MPa2m) / (leaf_elastic_mod(ipft) + leaf_psi_osmotic(ipft) / C$MPa2m) * C$MPa2m`
@@ -353,6 +360,9 @@ Remember that `leaf_elastic_mod` is `MPa`, where everything else is `m`!
 ### Code {-}
 
 ```{r calc leaf_psi_tlp}
+t = "leaf_psi_tlp"
+t_long = "Leaf water potential at turgor loss point "
+
 temp_leaf_psi_tlp_samp <-
 (traits[["leaf_psi_osmotic"]]$prior * (traits[["leaf_elastic_mod"]]$prior * C$MPa2m))/
 (traits[["leaf_psi_osmotic"]]$prior + (traits[["leaf_elastic_mod"]]$prior * C$MPa2m))
@@ -362,19 +372,6 @@ i <- which(priors$ED_name == t)
 prior_in <- priors[i,stats] * C$MPa2m # Convert from MPa to m
 prior_in <- prior_add_samp_data(prior_in, samp = -temp_leaf_psi_tlp_samp)
 prior_in[,stats]
-
-myfit <- prior_get_fit(prior_in, accepted_dists, plot = TRUE)
-
-variable_id.in <- tbl(bety,"variables") %>% 
-  filter(name == !!priors$ED_name[i]) %>% 
-  pull(id)
-phylogeny.in <- "plants"
-
-best.fit.name <- myfit$score$dist[which.min(myfit$score$RMSE)]
-best.fit.dat <- myfit$dists %>% 
-  select(one_of("Name", best.fit.name)) %>% 
-  rename(value := !!best.fit.name, params = Name)
-
 
 traits <- fit_trait_dist(bety, traits, t, prior_in, accepted_dists)
 ```
@@ -394,14 +391,14 @@ prior_plot(prior = traits[[t]]$prior,
                            traits[[t]]$fit$paramb),
            type = "mixed")
 
-prior_plot(prior = traits[[t]]$prior * (-1/C$MPa2m), 
-           q = c(0,.995),
-           plot_default = traits[[t]]$default * (-1/C$MPa2m),
-           title = sprintf("%s(%s):\n%s(%.4f, %.4f)", t_long, t, 
-                           traits[[t]]$fit$distn, 
-                           traits[[t]]$fit$parama,
-                           traits[[t]]$fit$paramb),
-           type = "mixed")
+# prior_plot(prior = traits[[t]]$prior * (-1/C$MPa2m), 
+#            q = c(0,.995),
+#            plot_default = traits[[t]]$default * (-1/C$MPa2m),
+#            title = sprintf("%s(%s):\n%s(%.4f, %.4f)", t_long, t, 
+#                            traits[[t]]$fit$distn, 
+#                            traits[[t]]$fit$parama,
+#                            traits[[t]]$fit$paramb),
+#            type = "mixed")
 
 ```
 
@@ -432,9 +429,8 @@ add min and max values to make sure the distribution
 does not predict values that are not biologically possible. 
 
 Values added by Betsy and Felicien: 
-```{r}
-t = "leaf_water_cap"
-t_long = "Leaf hydaulic capacitance "
+
+```
 priors[which(priors$ED_name == "leaf_water_cap"),
        c("theor.min", "theor.max")] <- c(1e-7, NA)
 ```
@@ -448,6 +444,8 @@ Don't forget about the switch from kg to g!
 ### Code {-}
 
 ```{r calc leaf_water_cap}
+t = "leaf_water_cap"
+t_long = "Leaf hydaulic capacitance "
 
 # leaf_water_cap_samp <- 
 #   1000 * (1 - leaf_psi_osmotic_prior / (4 * leaf_psi_tlp_prior)) * 
@@ -518,22 +516,12 @@ I will use the equation in ED to calcualte the prior and
 add min and max values to make sure the distribution 
 does not predict values that are not biologically possible. 
 
- 
-```{r}
-t = "leaf_psi_min"
-t_long = "Leaf minimum water potential "
+Values added by Betsy and Felicien: 
 
-i <- which(priors$ED_name == "leaf_psi_min")
-
-# Values added by Betsy and Felicien: c(-700, -0.1)
-priors[i,c("theor.min", "theor.max")] <- c(0.1,700)
-
-# Did Felicien mean 70 ?????
-# priors[which(priors$ED_name == "leaf_psi_min"),
-#        c("theor.min", "theor.max")] <- c(0.1,70) ## 
-# No max value
-# priors[which(priors$ED_name == "leaf_psi_min"),
-#        c("theor.min", "theor.max")] <- c(0.1,NA) 
+```
+# Leaf_psi_min
+priors[which(priors$ED_name == "leaf_psi_min"),
+       c("theor.min", "theor.max")] <- c(-700, -0.1) 
 ```
 
 Code copied from ED: 
@@ -550,13 +538,16 @@ None
 ### Code {-}
 
 ```{r calc leaf_psi_min}
+t = "leaf_psi_min"
+t_long = "Leaf minimum water potential "
+
 # traits[["leaf_water_sat"]]$prior
 
 temp_leaf_rwc_min_samp = 0.01 * traits[["leaf_elastic_mod"]]$prior + 0.17
 temp_leaf_psi_min_samp = (temp_leaf_rwc_min_samp - 1.) * traits[["leaf_water_sat"]]$prior / traits[["leaf_water_cap"]]$prior
 
 # Add in the max an min from the priors table
-
+i <- which(priors$ED_name == "leaf_psi_min")
 prior_in <- priors[i,stats] * C$MPa2m # Convert from MPa to m
 prior_in <- prior_add_samp_data(prior_in, samp = -temp_leaf_psi_min_samp)
 prior_in[,stats] / C$MPa2m

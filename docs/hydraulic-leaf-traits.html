@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Hydraulic Leaf Traits | Calculating ED Hydro Parameter Priors</title>
   <meta name="description" content="ED Hydro Documentation" />
-  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Hydraulic Leaf Traits | Calculating ED Hydro Parameter Priors" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Betsy Cowdery" />
 
 
-<meta name="date" content="2020-06-17" />
+<meta name="date" content="2020-07-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -329,28 +329,28 @@ so we can calculate a distribution that is entirely negative.</p>
 </div>
 <div id="code" class="section level3 unnumbered">
 <h3>Code</h3>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">t =<span class="st"> &quot;leaf_psi_osmotic&quot;</span></a>
-<a class="sourceLine" id="cb11-2" data-line-number="2">t_long =<span class="st"> &quot;Leaf osmotic water potential at saturation &quot;</span></a>
-<a class="sourceLine" id="cb11-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb11-4" data-line-number="4">i &lt;-<span class="st"> </span><span class="kw">which</span>(priors<span class="op">$</span>ED_name <span class="op">==</span><span class="st"> </span>t)</a>
-<a class="sourceLine" id="cb11-5" data-line-number="5">prior_in &lt;-<span class="st"> </span>priors[i, stats] <span class="op">*</span><span class="st"> </span>C<span class="op">$</span>MPa2m</a>
-<a class="sourceLine" id="cb11-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb11-7" data-line-number="7">traits &lt;-<span class="st"> </span><span class="kw">fit_trait_dist</span>(bety, traits, t, prior_in, accepted_dists)</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">t =<span class="st"> &quot;leaf_psi_osmotic&quot;</span></a>
+<a class="sourceLine" id="cb10-2" data-line-number="2">t_long =<span class="st"> &quot;Leaf osmotic water potential at saturation &quot;</span></a>
+<a class="sourceLine" id="cb10-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb10-4" data-line-number="4">i &lt;-<span class="st"> </span><span class="kw">which</span>(priors<span class="op">$</span>ED_name <span class="op">==</span><span class="st"> </span>t)</a>
+<a class="sourceLine" id="cb10-5" data-line-number="5">prior_in &lt;-<span class="st"> </span>priors[i, stats] <span class="op">*</span><span class="st"> </span>C<span class="op">$</span>MPa2m</a>
+<a class="sourceLine" id="cb10-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb10-7" data-line-number="7">traits &lt;-<span class="st"> </span><span class="kw">fit_trait_dist</span>(bety, traits, t, prior_in, accepted_dists)</a></code></pre></div>
 <p><img src="Final_Book_files/figure-html/calc%20leaf_psi_osmotic-1.png" width="672" /></p>
 <pre><code>## Entry with id = 1000000388 already exists.
 ## Parameters look the saaaaame.
 ## Old: weibull(2.4100, 237.4600)
 ## New: weibull(2.4100, 237.4600)</code></pre>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">traits[[t]]<span class="op">$</span>prior =<span class="st"> </span><span class="dv">-1</span> <span class="op">*</span><span class="st"> </span><span class="kw">rdistn</span>(traits[[t]]<span class="op">$</span>fit)</a>
-<a class="sourceLine" id="cb13-2" data-line-number="2">traits[[t]]<span class="op">$</span>default =<span class="st"> </span><span class="kw">get_ED_default</span>(PFT3_defaults_history, t)</a>
-<a class="sourceLine" id="cb13-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb13-4" data-line-number="4"><span class="kw">prior_plot</span>(<span class="dt">prior =</span> traits[[t]]<span class="op">$</span>prior, </a>
-<a class="sourceLine" id="cb13-5" data-line-number="5">           <span class="dt">plot_default =</span> traits[[t]]<span class="op">$</span>default,</a>
-<a class="sourceLine" id="cb13-6" data-line-number="6">           <span class="dt">title =</span> <span class="kw">sprintf</span>(<span class="st">&quot;%s(%s):</span><span class="ch">\n</span><span class="st">%s(%.4f, %.4f)&quot;</span>, t_long, t, </a>
-<a class="sourceLine" id="cb13-7" data-line-number="7">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>distn, </a>
-<a class="sourceLine" id="cb13-8" data-line-number="8">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>parama,</a>
-<a class="sourceLine" id="cb13-9" data-line-number="9">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>paramb),</a>
-<a class="sourceLine" id="cb13-10" data-line-number="10">           <span class="dt">type =</span> <span class="st">&quot;elic&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">traits[[t]]<span class="op">$</span>prior =<span class="st"> </span><span class="dv">-1</span> <span class="op">*</span><span class="st"> </span><span class="kw">rdistn</span>(traits[[t]]<span class="op">$</span>fit)</a>
+<a class="sourceLine" id="cb12-2" data-line-number="2">traits[[t]]<span class="op">$</span>default =<span class="st"> </span><span class="kw">get_ED_default</span>(PFT3_defaults_history, t)</a>
+<a class="sourceLine" id="cb12-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb12-4" data-line-number="4"><span class="kw">prior_plot</span>(<span class="dt">prior =</span> traits[[t]]<span class="op">$</span>prior, </a>
+<a class="sourceLine" id="cb12-5" data-line-number="5">           <span class="dt">plot_default =</span> traits[[t]]<span class="op">$</span>default,</a>
+<a class="sourceLine" id="cb12-6" data-line-number="6">           <span class="dt">title =</span> <span class="kw">sprintf</span>(<span class="st">&quot;%s(%s):</span><span class="ch">\n</span><span class="st">%s(%.4f, %.4f)&quot;</span>, t_long, t, </a>
+<a class="sourceLine" id="cb12-7" data-line-number="7">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>distn, </a>
+<a class="sourceLine" id="cb12-8" data-line-number="8">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>parama,</a>
+<a class="sourceLine" id="cb12-9" data-line-number="9">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>paramb),</a>
+<a class="sourceLine" id="cb12-10" data-line-number="10">           <span class="dt">type =</span> <span class="st">&quot;elic&quot;</span>)</a></code></pre></div>
 <p><img src="Final_Book_files/figure-html/plot%20leaf_psi_osmotic-1.png" width="672" /></p>
 <hr />
 </div>
@@ -388,30 +388,36 @@ so we can calculate a distribution that is entirely negative.</p>
 </div>
 <div id="code-1" class="section level3 unnumbered">
 <h3>Code</h3>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">t =<span class="st"> &quot;leaf_elastic_mod&quot;</span></a>
-<a class="sourceLine" id="cb14-2" data-line-number="2">t_long =<span class="st"> &quot;Leaf bulk elastic modulus &quot;</span></a>
-<a class="sourceLine" id="cb14-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb14-4" data-line-number="4">i &lt;-<span class="st"> </span><span class="kw">which</span>(priors<span class="op">$</span>ED_name <span class="op">==</span><span class="st"> </span>t)</a>
-<a class="sourceLine" id="cb14-5" data-line-number="5">prior_in &lt;-<span class="st"> </span>priors[i,]</a>
-<a class="sourceLine" id="cb14-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb14-7" data-line-number="7">traits &lt;-<span class="st"> </span><span class="kw">fit_trait_dist</span>(bety, traits, t, prior_in, accepted_dists)</a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">t =<span class="st"> &quot;leaf_elastic_mod&quot;</span></a>
+<a class="sourceLine" id="cb13-2" data-line-number="2">t_long =<span class="st"> &quot;Leaf bulk elastic modulus &quot;</span></a>
+<a class="sourceLine" id="cb13-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb13-4" data-line-number="4">i &lt;-<span class="st"> </span><span class="kw">which</span>(priors<span class="op">$</span>ED_name <span class="op">==</span><span class="st"> </span>t)</a>
+<a class="sourceLine" id="cb13-5" data-line-number="5">prior_in &lt;-<span class="st"> </span>priors[i,]</a>
+<a class="sourceLine" id="cb13-6" data-line-number="6">prior_in</a></code></pre></div>
+<pre><code>## # A tibble: 1 x 13
+##   ED_name Christoffersen_… BETY_variable_id BETY_prior_id ED_units
+##   &lt;chr&gt;   &lt;chr&gt;                       &lt;int&gt; &lt;lgl&gt;         &lt;chr&gt;   
+## 1 leaf_e… epsil_node             1000000294 NA            MPa     
+## # … with 8 more variables: Christoffersen_units &lt;chr&gt;, theor.min &lt;dbl&gt;,
+## #   low.025 &lt;dbl&gt;, low.25 &lt;dbl&gt;, mean &lt;dbl&gt;, upp.75 &lt;dbl&gt;, upp.975 &lt;dbl&gt;,
+## #   theor.max &lt;dbl&gt;</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">traits &lt;-<span class="st"> </span><span class="kw">fit_trait_dist</span>(bety, traits, t, prior_in, accepted_dists)</a></code></pre></div>
 <p><img src="Final_Book_files/figure-html/calc%20leaf_elastic_mod-1.png" width="672" /></p>
 <pre><code>## Entry with id = 1000000387 already exists.
 ## Parameters look the saaaaame.
 ## Old: gamma(3.4400, 0.1600)
 ## New: gamma(3.4400, 0.1600)</code></pre>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1">traits[[t]]<span class="op">$</span>prior =<span class="st"> </span><span class="kw">rdistn</span>(traits[[t]]<span class="op">$</span>fit)</a>
-<a class="sourceLine" id="cb16-2" data-line-number="2">traits[[t]]<span class="op">$</span>default =<span class="st"> </span><span class="kw">get_ED_default</span>(PFT3_defaults_history, t)</a>
-<a class="sourceLine" id="cb16-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb16-4" data-line-number="4"><span class="kw">prior_plot</span>(<span class="dt">prior =</span> traits[[t]]<span class="op">$</span>prior, </a>
-<a class="sourceLine" id="cb16-5" data-line-number="5">           <span class="dt">q =</span> <span class="kw">c</span>(<span class="dv">0</span>,.<span class="dv">999</span>), </a>
-<a class="sourceLine" id="cb16-6" data-line-number="6">           <span class="dt">plot_default =</span> traits[[t]]<span class="op">$</span>default,</a>
-<a class="sourceLine" id="cb16-7" data-line-number="7">           <span class="dt">title =</span> <span class="kw">sprintf</span>(<span class="st">&quot;%s(%s):</span><span class="ch">\n</span><span class="st">%s(%.4f, %.4f)&quot;</span>, t_long, t, </a>
-<a class="sourceLine" id="cb16-8" data-line-number="8">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>distn, </a>
-<a class="sourceLine" id="cb16-9" data-line-number="9">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>parama,</a>
-<a class="sourceLine" id="cb16-10" data-line-number="10">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>paramb),</a>
-<a class="sourceLine" id="cb16-11" data-line-number="11">           <span class="dt">type =</span> <span class="st">&quot;elic&quot;</span>)</a></code></pre></div>
-<pre><code>## Warning: Removed 100 rows containing non-finite values (stat_density).</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">traits[[t]]<span class="op">$</span>prior =<span class="st"> </span><span class="kw">rdistn</span>(traits[[t]]<span class="op">$</span>fit,<span class="fl">1e06</span>)</a>
+<a class="sourceLine" id="cb17-2" data-line-number="2">traits[[t]]<span class="op">$</span>default =<span class="st"> </span><span class="kw">get_ED_default</span>(PFT3_defaults_history, t)</a>
+<a class="sourceLine" id="cb17-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb17-4" data-line-number="4"><span class="kw">prior_plot</span>(<span class="dt">prior =</span> traits[[t]]<span class="op">$</span>prior, </a>
+<a class="sourceLine" id="cb17-5" data-line-number="5">           <span class="co"># q = c(0,.999), </span></a>
+<a class="sourceLine" id="cb17-6" data-line-number="6">           <span class="dt">plot_default =</span> traits[[t]]<span class="op">$</span>default,</a>
+<a class="sourceLine" id="cb17-7" data-line-number="7">           <span class="dt">title =</span> <span class="kw">sprintf</span>(<span class="st">&quot;%s(%s):</span><span class="ch">\n</span><span class="st">%s(%.4f, %.4f)&quot;</span>, t_long, t, </a>
+<a class="sourceLine" id="cb17-8" data-line-number="8">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>distn, </a>
+<a class="sourceLine" id="cb17-9" data-line-number="9">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>parama,</a>
+<a class="sourceLine" id="cb17-10" data-line-number="10">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>paramb),</a>
+<a class="sourceLine" id="cb17-11" data-line-number="11">           <span class="dt">type =</span> <span class="st">&quot;elic&quot;</span>)</a></code></pre></div>
 <p><img src="Final_Book_files/figure-html/plot%20leaf_elastic_mod-1.png" width="672" /></p>
 <hr />
 </div>
@@ -441,20 +447,15 @@ so we can calculate a distribution that is entirely negative.</p>
 add min and max values to make sure the distribution
 does not predict values that are not biologically possible.</p>
 <p>Copies directly from the ED code: <code>max(0.1 * 1.e3, (leaf_elastic_mod(ipft) - 2.03) / 25.4 * 1.e3)</code></p>
-<p>But there is a key step here that we need to think about, which is that in the ED code, <code>0.1 * 1.e3</code> is the smallest possible value. I encorporate that information by setting <code>0.1 * 1.e3</code> as the min theoretical value when fitting the distribution (but remove the <code>max</code> from the equation when calculating the <code>leaf_density_sample</code>.)</p>
+<p>But there is a key step here that we need to think about, which is that in the ED code, <code>0.1 * 1.e3</code> is the smallest possible value.</p>
+<p>Trying to set <code>0.1 * 1.e3</code> as the min theoretical value when fitting the distribution (but remove the <code>max</code> from the equation when calculating the sample prior.) resulted in a poorly fitting distribution.</p>
+<p>Thus I’m going to set 1e-07 as the theoretical minimum value, fit a distribution and then exclude values smaller than <code>0.1 * 1.e3</code> after sampling from the distribution.</p>
 <p><code>leaf_density_sample &lt;- (leaf_elastic_mod_prior - 2.03) / 25.4 * 1.e3</code></p>
 <p>Values added by Betsy and Felicien:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1">t =<span class="st"> &quot;leaf_density&quot;</span></a>
-<a class="sourceLine" id="cb18-2" data-line-number="2">t_long =<span class="st"> &quot;Density of leaf tissue &quot;</span></a>
-<a class="sourceLine" id="cb18-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb18-4" data-line-number="4">i &lt;-<span class="st"> </span><span class="kw">which</span>(priors<span class="op">$</span>ED_name <span class="op">==</span><span class="st"> &quot;leaf_density&quot;</span>)</a>
-<a class="sourceLine" id="cb18-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb18-6" data-line-number="6"><span class="co"># Leaf_density</span></a>
-<a class="sourceLine" id="cb18-7" data-line-number="7">priors[i,<span class="kw">c</span>(<span class="st">&quot;theor.min&quot;</span>, <span class="st">&quot;theor.max&quot;</span>)] &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">1e-7</span>, <span class="dv">2000</span>)</a>
-<a class="sourceLine" id="cb18-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb18-9" data-line-number="9"><span class="co"># Does it make more sense to do what the ED code does??? </span></a>
-<a class="sourceLine" id="cb18-10" data-line-number="10"><span class="co"># Turns out it doesn&#39;t change the parameters ... so maybe I&#39;ll do that</span></a>
-<a class="sourceLine" id="cb18-11" data-line-number="11">priors[i,<span class="kw">c</span>(<span class="st">&quot;theor.min&quot;</span>, <span class="st">&quot;theor.max&quot;</span>)] &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">1e-3</span>, <span class="dv">2000</span>)</a></code></pre></div>
+<pre><code># Leaf_density
+priors[which(priors$ED_name == &quot;leaf_density&quot;),
+       c(&quot;theor.min&quot;, &quot;theor.max&quot;)] &lt;- c(1e-7, 2000)
+</code></pre>
 </div>
 <div id="conversion-2" class="section level4 unnumbered">
 <h4>Conversion</h4>
@@ -463,34 +464,49 @@ does not predict values that are not biologically possible.</p>
 </div>
 <div id="code-2" class="section level3 unnumbered">
 <h3>Code</h3>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1">temp_leaf_density_sample &lt;-<span class="st"> </span>(traits[[<span class="st">&quot;leaf_elastic_mod&quot;</span>]]<span class="op">$</span>prior <span class="op">-</span><span class="st"> </span><span class="fl">2.03</span>) <span class="op">/</span><span class="st"> </span><span class="fl">25.4</span> <span class="op">*</span><span class="st"> </span><span class="dv">1</span>.e3</a>
-<a class="sourceLine" id="cb19-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb19-3" data-line-number="3"><span class="co"># Add in the max an min from the priors table</span></a>
-<a class="sourceLine" id="cb19-4" data-line-number="4">prior_in &lt;-<span class="st"> </span>priors[i,] <span class="co"># Note here I don&#39;t need to do any units conversion </span></a>
-<a class="sourceLine" id="cb19-5" data-line-number="5">prior_in &lt;-<span class="st"> </span><span class="kw">prior_add_samp_data</span>(prior_in, <span class="dt">samp =</span> temp_leaf_density_sample)</a>
-<a class="sourceLine" id="cb19-6" data-line-number="6">prior_in[,stats]</a></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1">t =<span class="st"> &quot;leaf_density&quot;</span></a>
+<a class="sourceLine" id="cb19-2" data-line-number="2">t_long =<span class="st"> &quot;Density of leaf tissue &quot;</span></a>
+<a class="sourceLine" id="cb19-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb19-4" data-line-number="4">i &lt;-<span class="st"> </span><span class="kw">which</span>(priors<span class="op">$</span>ED_name <span class="op">==</span><span class="st"> &quot;leaf_density&quot;</span>)</a>
+<a class="sourceLine" id="cb19-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb19-6" data-line-number="6">temp_leaf_density_sample &lt;-<span class="st"> </span>(traits[[<span class="st">&quot;leaf_elastic_mod&quot;</span>]]<span class="op">$</span>prior <span class="op">-</span><span class="st"> </span><span class="fl">2.03</span>) <span class="op">/</span><span class="st"> </span><span class="fl">25.4</span> <span class="op">*</span><span class="st"> </span><span class="dv">1</span>.e3</a>
+<a class="sourceLine" id="cb19-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb19-8" data-line-number="8"><span class="co"># Add in the max an min from the priors table</span></a>
+<a class="sourceLine" id="cb19-9" data-line-number="9">prior_in &lt;-<span class="st"> </span>priors[i,] <span class="co"># Note here I don&#39;t need to do any units conversion </span></a>
+<a class="sourceLine" id="cb19-10" data-line-number="10">prior_in &lt;-<span class="st"> </span><span class="kw">prior_add_samp_data</span>(prior_in, <span class="dt">samp =</span> temp_leaf_density_sample)</a>
+<a class="sourceLine" id="cb19-11" data-line-number="11">prior_in[,stats]</a></code></pre></div>
 <pre><code>## # A tibble: 1 x 7
 ##   theor.min low.025 low.25  mean upp.75 upp.975 theor.max
 ##       &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;
-## 1     0.001    121.   433.  685.  1011.   1862.      2000</code></pre>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1">traits &lt;-<span class="st"> </span><span class="kw">fit_trait_dist</span>(bety, traits, t, prior_in, accepted_dists)</a></code></pre></div>
+## 1 0.0000001    121.   431.  686.  1014.   1870.      2000</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="co"># # I think I fucked up the theoretical mean ... it should have been</span></a>
+<a class="sourceLine" id="cb21-2" data-line-number="2"><span class="co"># prior_in[,&quot;theor.min&quot;] &lt;- 0.1 * 1.e3</span></a>
+<a class="sourceLine" id="cb21-3" data-line-number="3">prior_in[,<span class="st">&quot;theor.min&quot;</span>] &lt;-<span class="st"> </span><span class="fl">1e-7</span></a>
+<a class="sourceLine" id="cb21-4" data-line-number="4">prior_in[,<span class="st">&quot;theor.max&quot;</span>] &lt;-<span class="st"> </span><span class="ot">NA</span></a>
+<a class="sourceLine" id="cb21-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb21-6" data-line-number="6"><span class="co"># prior_in[,stats]</span></a>
+<a class="sourceLine" id="cb21-7" data-line-number="7"><span class="co"># prior_in[,stats]</span></a>
+<a class="sourceLine" id="cb21-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb21-9" data-line-number="9">traits &lt;-<span class="st"> </span><span class="kw">fit_trait_dist</span>(bety, traits, t, prior_in, accepted_dists)</a></code></pre></div>
 <p><img src="Final_Book_files/figure-html/calc%20leaf_density_sample-1.png" width="672" /></p>
 <pre><code>## Entry with id = 1000000396 already exists.
 ## Parameters look different.
-## Old: weibull(1.8300, 845.2500)
-## New: weibull(1.8400, 843.8900)</code></pre>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1">traits[[t]]<span class="op">$</span>prior =<span class="st"> </span><span class="kw">rdistn</span>(traits[[t]]<span class="op">$</span>fit)</a>
-<a class="sourceLine" id="cb23-2" data-line-number="2">traits[[t]]<span class="op">$</span>default =<span class="st"> </span>(<span class="kw">get_ED_default</span>(<span class="st">&quot;/fs/data3/ecowdery/ED.Hydro/parameters/pft3_defaults_history.xml&quot;</span>, <span class="st">&quot;leaf_elastic_mod&quot;</span>) <span class="op">-</span><span class="st"> </span><span class="fl">2.03</span>) <span class="op">/</span><span class="st"> </span><span class="fl">25.4</span> <span class="op">*</span><span class="st"> </span><span class="dv">1</span>.e3</a>
-<a class="sourceLine" id="cb23-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb23-4" data-line-number="4"><span class="kw">prior_plot</span>(<span class="dt">prior =</span> traits[[t]]<span class="op">$</span>prior, </a>
-<a class="sourceLine" id="cb23-5" data-line-number="5">           <span class="dt">q =</span> <span class="kw">c</span>(<span class="dv">0</span>,.<span class="dv">995</span>), </a>
-<a class="sourceLine" id="cb23-6" data-line-number="6">           <span class="dt">plot_default =</span> traits[[t]]<span class="op">$</span>default,</a>
-<a class="sourceLine" id="cb23-7" data-line-number="7">           <span class="dt">title =</span> <span class="kw">sprintf</span>(<span class="st">&quot;%s(%s):</span><span class="ch">\n</span><span class="st">%s(%.4f, %.4f)&quot;</span>, t_long, t, </a>
-<a class="sourceLine" id="cb23-8" data-line-number="8">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>distn, </a>
-<a class="sourceLine" id="cb23-9" data-line-number="9">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>parama,</a>
-<a class="sourceLine" id="cb23-10" data-line-number="10">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>paramb),</a>
-<a class="sourceLine" id="cb23-11" data-line-number="11">           <span class="dt">type =</span> <span class="st">&quot;mixed&quot;</span>)</a></code></pre></div>
-<pre><code>## Warning: Removed 500 rows containing non-finite values (stat_density).</code></pre>
+## Old: weibull(1.8100, 846.1700)
+## New: weibull(1.8100, 846.6700)</code></pre>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1">traits[[t]]<span class="op">$</span>prior =<span class="st"> </span><span class="kw">rdistn</span>(traits[[t]]<span class="op">$</span>fit, <span class="dv">1000000</span>)</a>
+<a class="sourceLine" id="cb23-2" data-line-number="2"><span class="co"># Here I actually I think I will </span></a>
+<a class="sourceLine" id="cb23-3" data-line-number="3">traits[[t]]<span class="op">$</span>prior =<span class="st"> </span><span class="kw">sample</span>(<span class="dt">x =</span> traits[[t]]<span class="op">$</span>prior[<span class="kw">which</span>(traits[[t]]<span class="op">$</span>prior <span class="op">&gt;</span><span class="st"> </span><span class="dv">100</span>)], <span class="dt">size =</span> <span class="fl">1e5</span>)</a>
+<a class="sourceLine" id="cb23-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb23-5" data-line-number="5">traits[[t]]<span class="op">$</span>default =<span class="st"> </span>(<span class="kw">get_ED_default</span>(<span class="st">&quot;/fs/data3/ecowdery/ED.Hydro/parameters/pft3_defaults_history.xml&quot;</span>, <span class="st">&quot;leaf_elastic_mod&quot;</span>) <span class="op">-</span><span class="st"> </span><span class="fl">2.03</span>) <span class="op">/</span><span class="st"> </span><span class="fl">25.4</span> <span class="op">*</span><span class="st"> </span><span class="dv">1</span>.e3</a>
+<a class="sourceLine" id="cb23-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb23-7" data-line-number="7"><span class="kw">prior_plot</span>(<span class="dt">prior =</span> traits[[t]]<span class="op">$</span>prior, </a>
+<a class="sourceLine" id="cb23-8" data-line-number="8">           <span class="co"># q = c(0,.995), </span></a>
+<a class="sourceLine" id="cb23-9" data-line-number="9">           <span class="dt">plot_default =</span> traits[[t]]<span class="op">$</span>default,</a>
+<a class="sourceLine" id="cb23-10" data-line-number="10">           <span class="dt">title =</span> <span class="kw">sprintf</span>(<span class="st">&quot;%s(%s):</span><span class="ch">\n</span><span class="st">%s(%.4f, %.4f)&quot;</span>, t_long, t, </a>
+<a class="sourceLine" id="cb23-11" data-line-number="11">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>distn, </a>
+<a class="sourceLine" id="cb23-12" data-line-number="12">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>parama,</a>
+<a class="sourceLine" id="cb23-13" data-line-number="13">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>paramb),</a>
+<a class="sourceLine" id="cb23-14" data-line-number="14">           <span class="dt">type =</span> <span class="st">&quot;mixed&quot;</span>)</a></code></pre></div>
 <p><img src="Final_Book_files/figure-html/plot%20leaf_density_sample-1.png" width="672" /></p>
 <hr />
 </div>
@@ -545,47 +561,47 @@ in relation to the default value and the values that Felicien gave me.</p>
 </div>
 <div id="actual-code" class="section level4 unnumbered">
 <h4>Actual code</h4>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1">t =<span class="st"> &quot;leaf_water_sat&quot;</span></a>
-<a class="sourceLine" id="cb25-2" data-line-number="2">t_long =<span class="st"> &quot;Leaf water content at saturation &quot;</span></a>
-<a class="sourceLine" id="cb25-3" data-line-number="3">i &lt;-<span class="st"> </span><span class="kw">which</span>(priors<span class="op">$</span>ED_name <span class="op">==</span><span class="st"> </span>t)</a>
-<a class="sourceLine" id="cb25-4" data-line-number="4">temp_myfit_<span class="dv">0</span> &lt;-<span class="st"> </span><span class="kw">prior_get_fit</span>(priors[i,], accepted_dists, <span class="dt">plot =</span> <span class="ot">FALSE</span>)  </a>
-<a class="sourceLine" id="cb25-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb25-6" data-line-number="6">temp_myfit_<span class="dv">0</span><span class="op">$</span>score<span class="op">$</span>dist[<span class="kw">which.min</span>(temp_myfit_<span class="dv">0</span><span class="op">$</span>score<span class="op">$</span>RMSE)]</a></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1">t =<span class="st"> &quot;leaf_water_sat&quot;</span></a>
+<a class="sourceLine" id="cb24-2" data-line-number="2">t_long =<span class="st"> &quot;Leaf water content at saturation &quot;</span></a>
+<a class="sourceLine" id="cb24-3" data-line-number="3">i &lt;-<span class="st"> </span><span class="kw">which</span>(priors<span class="op">$</span>ED_name <span class="op">==</span><span class="st"> </span>t)</a>
+<a class="sourceLine" id="cb24-4" data-line-number="4">temp_myfit_<span class="dv">0</span> &lt;-<span class="st"> </span><span class="kw">prior_get_fit</span>(priors[i,], accepted_dists, <span class="dt">plot =</span> <span class="ot">FALSE</span>)  </a>
+<a class="sourceLine" id="cb24-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb24-6" data-line-number="6">temp_myfit_<span class="dv">0</span><span class="op">$</span>score<span class="op">$</span>dist[<span class="kw">which.min</span>(temp_myfit_<span class="dv">0</span><span class="op">$</span>score<span class="op">$</span>RMSE)]</a></code></pre></div>
 <pre><code>## [1] &quot;norm&quot;</code></pre>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1"><span class="co"># I&#39;m skipping steps here just for the sake of time &amp; sanity</span></a>
-<a class="sourceLine" id="cb27-2" data-line-number="2">temp_leaf_water_sat_prior_<span class="dv">0</span> &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100000</span>, temp_myfit_<span class="dv">0</span><span class="op">$</span>dists<span class="op">$</span>norm[<span class="dv">1</span>], temp_myfit_<span class="dv">0</span><span class="op">$</span>dists<span class="op">$</span>norm[<span class="dv">2</span>])</a>
-<a class="sourceLine" id="cb27-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb27-4" data-line-number="4">temp_leaf_water_sat_sample &lt;-<span class="st"> </span>temp_leaf_water_sat_prior_<span class="dv">0</span> <span class="op">*</span><span class="st"> </span>(C<span class="op">$</span>wdns<span class="op">/</span>(traits[[<span class="st">&quot;leaf_density&quot;</span>]]<span class="op">$</span>prior))</a>
-<a class="sourceLine" id="cb27-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb27-6" data-line-number="6"><span class="co"># plot(density(temp_leaf_water_sat_sample), main = &quot;leaf water sat sample without fitting&quot;)</span></a>
-<a class="sourceLine" id="cb27-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb27-8" data-line-number="8"><span class="co"># In this case I&#39;m not using the function I built because here it wouldn&#39;t make sense. </span></a>
-<a class="sourceLine" id="cb27-9" data-line-number="9">prior_in &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</a>
-<a class="sourceLine" id="cb27-10" data-line-number="10">  <span class="dt">theor.min =</span> <span class="ot">NA</span>,</a>
-<a class="sourceLine" id="cb27-11" data-line-number="11">  <span class="dt">low.025 =</span>  <span class="kw">quantile</span>(temp_leaf_water_sat_sample, <span class="kw">c</span>(.<span class="dv">025</span>), <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</a>
-<a class="sourceLine" id="cb27-12" data-line-number="12">  <span class="dt">low.25  =</span>  <span class="kw">quantile</span>(temp_leaf_water_sat_sample, <span class="kw">c</span>(.<span class="dv">25</span>), <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</a>
-<a class="sourceLine" id="cb27-13" data-line-number="13">  <span class="dt">mean    =</span>  <span class="kw">quantile</span>(temp_leaf_water_sat_sample, <span class="kw">c</span>(.<span class="dv">5</span>), <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), </a>
-<a class="sourceLine" id="cb27-14" data-line-number="14">  <span class="dt">upp.75  =</span>  <span class="kw">quantile</span>(temp_leaf_water_sat_sample, <span class="kw">c</span>(.<span class="dv">75</span>), <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), </a>
-<a class="sourceLine" id="cb27-15" data-line-number="15">  <span class="dt">upp.975 =</span>  <span class="kw">quantile</span>(temp_leaf_water_sat_sample, <span class="kw">c</span>(.<span class="dv">975</span>), <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</a>
-<a class="sourceLine" id="cb27-16" data-line-number="16">  <span class="dt">theor.max =</span> <span class="ot">NA</span>)</a>
-<a class="sourceLine" id="cb27-17" data-line-number="17"></a>
-<a class="sourceLine" id="cb27-18" data-line-number="18">traits &lt;-<span class="st"> </span><span class="kw">fit_trait_dist</span>(bety, traits, t, prior_in, accepted_dists)</a></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1"><span class="co"># I&#39;m skipping steps here just for the sake of time &amp; sanity</span></a>
+<a class="sourceLine" id="cb26-2" data-line-number="2">temp_leaf_water_sat_prior_<span class="dv">0</span> &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100000</span>, temp_myfit_<span class="dv">0</span><span class="op">$</span>dists<span class="op">$</span>norm[<span class="dv">1</span>], temp_myfit_<span class="dv">0</span><span class="op">$</span>dists<span class="op">$</span>norm[<span class="dv">2</span>])</a>
+<a class="sourceLine" id="cb26-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb26-4" data-line-number="4">temp_leaf_water_sat_sample &lt;-<span class="st"> </span>temp_leaf_water_sat_prior_<span class="dv">0</span> <span class="op">*</span><span class="st"> </span>(C<span class="op">$</span>wdns<span class="op">/</span>(traits[[<span class="st">&quot;leaf_density&quot;</span>]]<span class="op">$</span>prior))</a>
+<a class="sourceLine" id="cb26-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb26-6" data-line-number="6"><span class="co"># plot(density(temp_leaf_water_sat_sample), main = &quot;leaf water sat sample without fitting&quot;)</span></a>
+<a class="sourceLine" id="cb26-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb26-8" data-line-number="8"><span class="co"># In this case I&#39;m not using the function I built because here it wouldn&#39;t make sense. </span></a>
+<a class="sourceLine" id="cb26-9" data-line-number="9">prior_in &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</a>
+<a class="sourceLine" id="cb26-10" data-line-number="10">  <span class="dt">theor.min =</span> <span class="ot">NA</span>,</a>
+<a class="sourceLine" id="cb26-11" data-line-number="11">  <span class="dt">low.025 =</span>  <span class="kw">quantile</span>(temp_leaf_water_sat_sample, <span class="kw">c</span>(.<span class="dv">025</span>), <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</a>
+<a class="sourceLine" id="cb26-12" data-line-number="12">  <span class="dt">low.25  =</span>  <span class="kw">quantile</span>(temp_leaf_water_sat_sample, <span class="kw">c</span>(.<span class="dv">25</span>), <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</a>
+<a class="sourceLine" id="cb26-13" data-line-number="13">  <span class="dt">mean    =</span>  <span class="kw">quantile</span>(temp_leaf_water_sat_sample, <span class="kw">c</span>(.<span class="dv">5</span>), <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), </a>
+<a class="sourceLine" id="cb26-14" data-line-number="14">  <span class="dt">upp.75  =</span>  <span class="kw">quantile</span>(temp_leaf_water_sat_sample, <span class="kw">c</span>(.<span class="dv">75</span>), <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), </a>
+<a class="sourceLine" id="cb26-15" data-line-number="15">  <span class="dt">upp.975 =</span>  <span class="kw">quantile</span>(temp_leaf_water_sat_sample, <span class="kw">c</span>(.<span class="dv">975</span>), <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</a>
+<a class="sourceLine" id="cb26-16" data-line-number="16">  <span class="dt">theor.max =</span> <span class="ot">NA</span>)</a>
+<a class="sourceLine" id="cb26-17" data-line-number="17"></a>
+<a class="sourceLine" id="cb26-18" data-line-number="18">traits &lt;-<span class="st"> </span><span class="kw">fit_trait_dist</span>(bety, traits, t, prior_in, accepted_dists)</a></code></pre></div>
 <p><img src="Final_Book_files/figure-html/calc%20leaf_water_sat-1.png" width="672" /></p>
 <pre><code>## Entry with id = 1000000414 already exists.
 ## Parameters look the saaaaame.
-## Old: lnorm(-0.0400, 0.6400)
-## New: lnorm(-0.0400, 0.6400)</code></pre>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1">traits[[t]]<span class="op">$</span>prior =<span class="st"> </span><span class="kw">rdistn</span>(traits[[t]]<span class="op">$</span>fit)</a>
-<a class="sourceLine" id="cb29-2" data-line-number="2">traits[[t]]<span class="op">$</span>default =<span class="st"> </span><span class="kw">get_ED_default</span>(PFT3_defaults_history, t)</a>
-<a class="sourceLine" id="cb29-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb29-4" data-line-number="4"><span class="kw">prior_plot</span>(<span class="dt">prior =</span> traits[[t]]<span class="op">$</span>prior, </a>
-<a class="sourceLine" id="cb29-5" data-line-number="5">           <span class="dt">q =</span> <span class="kw">c</span>(<span class="dv">0</span>,.<span class="dv">995</span>), </a>
-<a class="sourceLine" id="cb29-6" data-line-number="6">           <span class="dt">plot_default =</span> traits[[t]]<span class="op">$</span>default,</a>
-<a class="sourceLine" id="cb29-7" data-line-number="7">           <span class="dt">title =</span> <span class="kw">sprintf</span>(<span class="st">&quot;%s(%s):</span><span class="ch">\n</span><span class="st">%s(%.4f, %.4f)&quot;</span>, t_long, t, </a>
-<a class="sourceLine" id="cb29-8" data-line-number="8">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>distn, </a>
-<a class="sourceLine" id="cb29-9" data-line-number="9">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>parama,</a>
-<a class="sourceLine" id="cb29-10" data-line-number="10">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>paramb),</a>
-<a class="sourceLine" id="cb29-11" data-line-number="11">           <span class="dt">type =</span> <span class="st">&quot;mixed&quot;</span>)</a></code></pre></div>
+## Old: lnorm(-0.0600, 0.6300)
+## New: lnorm(-0.0600, 0.6300)</code></pre>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1">traits[[t]]<span class="op">$</span>prior =<span class="st"> </span><span class="kw">rdistn</span>(traits[[t]]<span class="op">$</span>fit)</a>
+<a class="sourceLine" id="cb28-2" data-line-number="2">traits[[t]]<span class="op">$</span>default =<span class="st"> </span><span class="kw">get_ED_default</span>(PFT3_defaults_history, t)</a>
+<a class="sourceLine" id="cb28-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb28-4" data-line-number="4"><span class="kw">prior_plot</span>(<span class="dt">prior =</span> traits[[t]]<span class="op">$</span>prior, </a>
+<a class="sourceLine" id="cb28-5" data-line-number="5">           <span class="dt">q =</span> <span class="kw">c</span>(<span class="dv">0</span>,.<span class="dv">995</span>), </a>
+<a class="sourceLine" id="cb28-6" data-line-number="6">           <span class="dt">plot_default =</span> traits[[t]]<span class="op">$</span>default,</a>
+<a class="sourceLine" id="cb28-7" data-line-number="7">           <span class="dt">title =</span> <span class="kw">sprintf</span>(<span class="st">&quot;%s(%s):</span><span class="ch">\n</span><span class="st">%s(%.4f, %.4f)&quot;</span>, t_long, t, </a>
+<a class="sourceLine" id="cb28-8" data-line-number="8">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>distn, </a>
+<a class="sourceLine" id="cb28-9" data-line-number="9">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>parama,</a>
+<a class="sourceLine" id="cb28-10" data-line-number="10">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>paramb),</a>
+<a class="sourceLine" id="cb28-11" data-line-number="11">           <span class="dt">type =</span> <span class="st">&quot;mixed&quot;</span>)</a></code></pre></div>
 <pre><code>## Warning: Removed 500 rows containing non-finite values (stat_density).</code></pre>
 <p><img src="Final_Book_files/figure-html/plot%20leaf_water_sat-1.png" width="672" /></p>
 <hr />
@@ -619,18 +635,9 @@ so we can calculate a distribution that is entirely negative.</p>
 add min and max values to make sure the distribution
 does not predict values that are not biologically possible.</p>
 <p>Values added by Betsy and Felicien:</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1">t =<span class="st"> &quot;leaf_psi_tlp&quot;</span></a>
-<a class="sourceLine" id="cb31-2" data-line-number="2">t_long =<span class="st"> &quot;Leaf water potential at turgor loss point &quot;</span></a>
-<a class="sourceLine" id="cb31-3" data-line-number="3">i &lt;-<span class="st"> </span><span class="kw">which</span>(priors<span class="op">$</span>ED_name <span class="op">==</span><span class="st"> </span>t)</a>
-<a class="sourceLine" id="cb31-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb31-5" data-line-number="5">priors[i, stats]</a></code></pre></div>
-<pre><code>## # A tibble: 1 x 7
-##   theor.min low.025 low.25  mean upp.75 upp.975 theor.max
-##       &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;
-## 1       0.5      NA     NA    NA     NA      NA         6</code></pre>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1"><span class="co"># priors[which(priors$ED_name == &quot;leaf_psi_tlp&quot;),</span></a>
-<a class="sourceLine" id="cb33-2" data-line-number="2">       <span class="co"># c(&quot;theor.min&quot;, &quot;theor.max&quot;)] &lt;- c(-6, -0.5)</span></a>
-<a class="sourceLine" id="cb33-3" data-line-number="3"><span class="co"># priors[i,c(&quot;theor.min&quot;, &quot;theor.max&quot;)] &lt;- c(0.5, 6)</span></a></code></pre></div>
+<pre><code># Leaf_psi_tlp
+priors[which(priors$ED_name == &quot;leaf_psi_tlp&quot;),
+      c(&quot;theor.min&quot;, &quot;theor.max&quot;)] &lt;- c(-6, -0.5)</code></pre>
 <p>Code directly from ED: <code>leaf_elastic_mod(ipft)  * (leaf_psi_osmotic(ipft) / C$MPa2m) / (leaf_elastic_mod(ipft) + leaf_psi_osmotic(ipft) / C$MPa2m) * C$MPa2m</code></p>
 <p>Thus, <code>leaf_psi_tlp</code> is calculated purely from other parameters: <code>leaf_psi_osmotic</code> and <code>leaf_elastic_mod</code></p>
 <pre><code>temp_leaf_psi_tlp_samp &lt;- 
@@ -644,61 +651,47 @@ does not predict values that are not biologically possible.</p>
 </div>
 <div id="code-4" class="section level3 unnumbered">
 <h3>Code</h3>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1">temp_leaf_psi_tlp_samp &lt;-</a>
-<a class="sourceLine" id="cb35-2" data-line-number="2">(traits[[<span class="st">&quot;leaf_psi_osmotic&quot;</span>]]<span class="op">$</span>prior <span class="op">*</span><span class="st"> </span>(traits[[<span class="st">&quot;leaf_elastic_mod&quot;</span>]]<span class="op">$</span>prior <span class="op">*</span><span class="st"> </span>C<span class="op">$</span>MPa2m))<span class="op">/</span></a>
-<a class="sourceLine" id="cb35-3" data-line-number="3">(traits[[<span class="st">&quot;leaf_psi_osmotic&quot;</span>]]<span class="op">$</span>prior <span class="op">+</span><span class="st"> </span>(traits[[<span class="st">&quot;leaf_elastic_mod&quot;</span>]]<span class="op">$</span>prior <span class="op">*</span><span class="st"> </span>C<span class="op">$</span>MPa2m))</a>
-<a class="sourceLine" id="cb35-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb35-5" data-line-number="5"><span class="co"># Add in the max an min from the priors table</span></a>
-<a class="sourceLine" id="cb35-6" data-line-number="6">i &lt;-<span class="st"> </span><span class="kw">which</span>(priors<span class="op">$</span>ED_name <span class="op">==</span><span class="st"> </span>t)</a>
-<a class="sourceLine" id="cb35-7" data-line-number="7">prior_in &lt;-<span class="st"> </span>priors[i,stats] <span class="op">*</span><span class="st"> </span>C<span class="op">$</span>MPa2m <span class="co"># Convert from MPa to m</span></a>
-<a class="sourceLine" id="cb35-8" data-line-number="8">prior_in &lt;-<span class="st"> </span><span class="kw">prior_add_samp_data</span>(prior_in, <span class="dt">samp =</span> <span class="op">-</span>temp_leaf_psi_tlp_samp)</a>
-<a class="sourceLine" id="cb35-9" data-line-number="9">prior_in[,stats]</a></code></pre></div>
-<pre><code>##     theor.min     low.025      low.25        mean   upp.75     upp.975
-## 1 50.98581065 51.54306697 153.2210207 231.2432454 326.2985 608.4072799
-##     theor.max
-## 1 611.8297278</code></pre>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1">myfit &lt;-<span class="st"> </span><span class="kw">prior_get_fit</span>(prior_in, accepted_dists, <span class="dt">plot =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1">t =<span class="st"> &quot;leaf_psi_tlp&quot;</span></a>
+<a class="sourceLine" id="cb32-2" data-line-number="2">t_long =<span class="st"> &quot;Leaf water potential at turgor loss point &quot;</span></a>
+<a class="sourceLine" id="cb32-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb32-4" data-line-number="4">temp_leaf_psi_tlp_samp &lt;-</a>
+<a class="sourceLine" id="cb32-5" data-line-number="5">(traits[[<span class="st">&quot;leaf_psi_osmotic&quot;</span>]]<span class="op">$</span>prior <span class="op">*</span><span class="st"> </span>(traits[[<span class="st">&quot;leaf_elastic_mod&quot;</span>]]<span class="op">$</span>prior <span class="op">*</span><span class="st"> </span>C<span class="op">$</span>MPa2m))<span class="op">/</span></a>
+<a class="sourceLine" id="cb32-6" data-line-number="6">(traits[[<span class="st">&quot;leaf_psi_osmotic&quot;</span>]]<span class="op">$</span>prior <span class="op">+</span><span class="st"> </span>(traits[[<span class="st">&quot;leaf_elastic_mod&quot;</span>]]<span class="op">$</span>prior <span class="op">*</span><span class="st"> </span>C<span class="op">$</span>MPa2m))</a>
+<a class="sourceLine" id="cb32-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb32-8" data-line-number="8"><span class="co"># Add in the max an min from the priors table</span></a>
+<a class="sourceLine" id="cb32-9" data-line-number="9">i &lt;-<span class="st"> </span><span class="kw">which</span>(priors<span class="op">$</span>ED_name <span class="op">==</span><span class="st"> </span>t)</a>
+<a class="sourceLine" id="cb32-10" data-line-number="10">prior_in &lt;-<span class="st"> </span>priors[i,stats] <span class="op">*</span><span class="st"> </span>C<span class="op">$</span>MPa2m <span class="co"># Convert from MPa to m</span></a>
+<a class="sourceLine" id="cb32-11" data-line-number="11">prior_in &lt;-<span class="st"> </span><span class="kw">prior_add_samp_data</span>(prior_in, <span class="dt">samp =</span> <span class="op">-</span>temp_leaf_psi_tlp_samp)</a>
+<a class="sourceLine" id="cb32-12" data-line-number="12">prior_in[,stats]</a></code></pre></div>
+<pre><code>##     theor.min low.025      low.25        mean      upp.75 upp.975   theor.max
+## 1 50.98581065      NA 153.6069326 231.4730168 326.6591968      NA 611.8297278</code></pre>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1">traits &lt;-<span class="st"> </span><span class="kw">fit_trait_dist</span>(bety, traits, t, prior_in, accepted_dists)</a></code></pre></div>
 <p><img src="Final_Book_files/figure-html/calc%20leaf_psi_tlp-1.png" width="672" /></p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" data-line-number="1">variable_id.in &lt;-<span class="st"> </span><span class="kw">tbl</span>(bety,<span class="st">&quot;variables&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb38-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(name <span class="op">==</span><span class="st"> </span><span class="op">!!</span>priors<span class="op">$</span>ED_name[i]) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb38-3" data-line-number="3"><span class="st">  </span><span class="kw">pull</span>(id)</a>
-<a class="sourceLine" id="cb38-4" data-line-number="4">phylogeny.in &lt;-<span class="st"> &quot;plants&quot;</span></a>
-<a class="sourceLine" id="cb38-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb38-6" data-line-number="6">best.fit.name &lt;-<span class="st"> </span>myfit<span class="op">$</span>score<span class="op">$</span>dist[<span class="kw">which.min</span>(myfit<span class="op">$</span>score<span class="op">$</span>RMSE)]</a>
-<a class="sourceLine" id="cb38-7" data-line-number="7">best.fit.dat &lt;-<span class="st"> </span>myfit<span class="op">$</span>dists <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb38-8" data-line-number="8"><span class="st">  </span><span class="kw">select</span>(<span class="kw">one_of</span>(<span class="st">&quot;Name&quot;</span>, best.fit.name)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb38-9" data-line-number="9"><span class="st">  </span><span class="kw">rename</span>(value <span class="op">:</span><span class="er">=</span><span class="st"> </span><span class="op">!!</span>best.fit.name, <span class="dt">params =</span> Name)</a>
-<a class="sourceLine" id="cb38-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb38-11" data-line-number="11"></a>
-<a class="sourceLine" id="cb38-12" data-line-number="12">traits &lt;-<span class="st"> </span><span class="kw">fit_trait_dist</span>(bety, traits, t, prior_in, accepted_dists)</a></code></pre></div>
-<p><img src="Final_Book_files/figure-html/calc%20leaf_psi_tlp-2.png" width="672" /></p>
 <pre><code>## Entry with id = 1000000384 already exists.
 ## Parameters look different.
 ## Old: lnorm(5.4200, 0.5300)
 ## New: lnorm(5.4200, 0.5400)</code></pre>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" data-line-number="1">traits[[t]]<span class="op">$</span>prior =<span class="st"> </span><span class="dv">-1</span> <span class="op">*</span><span class="st"> </span><span class="kw">rdistn</span>(traits[[t]]<span class="op">$</span>fit) <span class="co"># Remember to flip back over for psi</span></a>
-<a class="sourceLine" id="cb40-2" data-line-number="2">traits[[t]]<span class="op">$</span>default =<span class="st"> </span><span class="kw">get_ED_default</span>(PFT3_defaults_history, t)</a>
-<a class="sourceLine" id="cb40-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb40-4" data-line-number="4"><span class="kw">prior_plot</span>(<span class="dt">prior =</span> traits[[t]]<span class="op">$</span>prior, </a>
-<a class="sourceLine" id="cb40-5" data-line-number="5">           <span class="dt">q =</span> <span class="kw">c</span>(.<span class="dv">005</span>,<span class="dv">1</span>),</a>
-<a class="sourceLine" id="cb40-6" data-line-number="6">           <span class="dt">plot_default =</span> traits[[t]]<span class="op">$</span>default,</a>
-<a class="sourceLine" id="cb40-7" data-line-number="7">           <span class="dt">title =</span> <span class="kw">sprintf</span>(<span class="st">&quot;%s(%s):</span><span class="ch">\n</span><span class="st">%s(%.4f, %.4f)&quot;</span>, t_long, t, </a>
-<a class="sourceLine" id="cb40-8" data-line-number="8">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>distn, </a>
-<a class="sourceLine" id="cb40-9" data-line-number="9">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>parama,</a>
-<a class="sourceLine" id="cb40-10" data-line-number="10">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>paramb),</a>
-<a class="sourceLine" id="cb40-11" data-line-number="11">           <span class="dt">type =</span> <span class="st">&quot;mixed&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" data-line-number="1">traits[[t]]<span class="op">$</span>prior =<span class="st"> </span><span class="dv">-1</span> <span class="op">*</span><span class="st"> </span><span class="kw">rdistn</span>(traits[[t]]<span class="op">$</span>fit) <span class="co"># Remember to flip back over for psi</span></a>
+<a class="sourceLine" id="cb36-2" data-line-number="2">traits[[t]]<span class="op">$</span>default =<span class="st"> </span><span class="kw">get_ED_default</span>(PFT3_defaults_history, t)</a>
+<a class="sourceLine" id="cb36-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb36-4" data-line-number="4"><span class="kw">prior_plot</span>(<span class="dt">prior =</span> traits[[t]]<span class="op">$</span>prior, </a>
+<a class="sourceLine" id="cb36-5" data-line-number="5">           <span class="dt">q =</span> <span class="kw">c</span>(.<span class="dv">005</span>,<span class="dv">1</span>),</a>
+<a class="sourceLine" id="cb36-6" data-line-number="6">           <span class="dt">plot_default =</span> traits[[t]]<span class="op">$</span>default,</a>
+<a class="sourceLine" id="cb36-7" data-line-number="7">           <span class="dt">title =</span> <span class="kw">sprintf</span>(<span class="st">&quot;%s(%s):</span><span class="ch">\n</span><span class="st">%s(%.4f, %.4f)&quot;</span>, t_long, t, </a>
+<a class="sourceLine" id="cb36-8" data-line-number="8">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>distn, </a>
+<a class="sourceLine" id="cb36-9" data-line-number="9">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>parama,</a>
+<a class="sourceLine" id="cb36-10" data-line-number="10">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>paramb),</a>
+<a class="sourceLine" id="cb36-11" data-line-number="11">           <span class="dt">type =</span> <span class="st">&quot;mixed&quot;</span>)</a></code></pre></div>
 <pre><code>## Warning: Removed 500 rows containing non-finite values (stat_density).</code></pre>
 <p><img src="Final_Book_files/figure-html/plot%20leaf_psi_tlp-1.png" width="672" /></p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" data-line-number="1"><span class="kw">prior_plot</span>(<span class="dt">prior =</span> traits[[t]]<span class="op">$</span>prior <span class="op">*</span><span class="st"> </span>(<span class="op">-</span><span class="dv">1</span><span class="op">/</span>C<span class="op">$</span>MPa2m), </a>
-<a class="sourceLine" id="cb42-2" data-line-number="2">           <span class="dt">q =</span> <span class="kw">c</span>(<span class="dv">0</span>,.<span class="dv">995</span>),</a>
-<a class="sourceLine" id="cb42-3" data-line-number="3">           <span class="dt">plot_default =</span> traits[[t]]<span class="op">$</span>default <span class="op">*</span><span class="st"> </span>(<span class="op">-</span><span class="dv">1</span><span class="op">/</span>C<span class="op">$</span>MPa2m),</a>
-<a class="sourceLine" id="cb42-4" data-line-number="4">           <span class="dt">title =</span> <span class="kw">sprintf</span>(<span class="st">&quot;%s(%s):</span><span class="ch">\n</span><span class="st">%s(%.4f, %.4f)&quot;</span>, t_long, t, </a>
-<a class="sourceLine" id="cb42-5" data-line-number="5">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>distn, </a>
-<a class="sourceLine" id="cb42-6" data-line-number="6">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>parama,</a>
-<a class="sourceLine" id="cb42-7" data-line-number="7">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>paramb),</a>
-<a class="sourceLine" id="cb42-8" data-line-number="8">           <span class="dt">type =</span> <span class="st">&quot;mixed&quot;</span>)</a></code></pre></div>
-<pre><code>## Warning: Removed 500 rows containing non-finite values (stat_density).</code></pre>
-<p><img src="Final_Book_files/figure-html/plot%20leaf_psi_tlp-2.png" width="672" /></p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" data-line-number="1"><span class="co"># prior_plot(prior = traits[[t]]$prior * (-1/C$MPa2m), </span></a>
+<a class="sourceLine" id="cb38-2" data-line-number="2"><span class="co">#            q = c(0,.995),</span></a>
+<a class="sourceLine" id="cb38-3" data-line-number="3"><span class="co">#            plot_default = traits[[t]]$default * (-1/C$MPa2m),</span></a>
+<a class="sourceLine" id="cb38-4" data-line-number="4"><span class="co">#            title = sprintf(&quot;%s(%s):\n%s(%.4f, %.4f)&quot;, t_long, t, </span></a>
+<a class="sourceLine" id="cb38-5" data-line-number="5"><span class="co">#                            traits[[t]]$fit$distn, </span></a>
+<a class="sourceLine" id="cb38-6" data-line-number="6"><span class="co">#                            traits[[t]]$fit$parama,</span></a>
+<a class="sourceLine" id="cb38-7" data-line-number="7"><span class="co">#                            traits[[t]]$fit$paramb),</span></a>
+<a class="sourceLine" id="cb38-8" data-line-number="8"><span class="co">#            type = &quot;mixed&quot;)</span></a></code></pre></div>
 <hr />
 </div>
 </div>
@@ -728,10 +721,8 @@ does not predict values that are not biologically possible.</p>
 add min and max values to make sure the distribution
 does not predict values that are not biologically possible.</p>
 <p>Values added by Betsy and Felicien:</p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" data-line-number="1">t =<span class="st"> &quot;leaf_water_cap&quot;</span></a>
-<a class="sourceLine" id="cb44-2" data-line-number="2">t_long =<span class="st"> &quot;Leaf hydaulic capacitance &quot;</span></a>
-<a class="sourceLine" id="cb44-3" data-line-number="3">priors[<span class="kw">which</span>(priors<span class="op">$</span>ED_name <span class="op">==</span><span class="st"> &quot;leaf_water_cap&quot;</span>),</a>
-<a class="sourceLine" id="cb44-4" data-line-number="4">       <span class="kw">c</span>(<span class="st">&quot;theor.min&quot;</span>, <span class="st">&quot;theor.max&quot;</span>)] &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">1e-7</span>, <span class="ot">NA</span>)</a></code></pre></div>
+<pre><code>priors[which(priors$ED_name == &quot;leaf_water_cap&quot;),
+       c(&quot;theor.min&quot;, &quot;theor.max&quot;)] &lt;- c(1e-7, NA)</code></pre>
 <p>Equation copied directly from ED: <code>(1. - leaf_psi_osmotic(ipft) / (4. * leaf_psi_tlp(ipft))) * leaf_water_sat(ipft) / (4. * abs(leaf_psi_tlp(ipft)))</code></p>
 </div>
 <div id="conversion-5" class="section level4 unnumbered">
@@ -741,47 +732,50 @@ does not predict values that are not biologically possible.</p>
 </div>
 <div id="code-5" class="section level3 unnumbered">
 <h3>Code</h3>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" data-line-number="1"><span class="co"># leaf_water_cap_samp &lt;- </span></a>
-<a class="sourceLine" id="cb45-2" data-line-number="2"><span class="co">#   1000 * (1 - leaf_psi_osmotic_prior / (4 * leaf_psi_tlp_prior)) * </span></a>
-<a class="sourceLine" id="cb45-3" data-line-number="3"><span class="co">#   (leaf_water_sat_prior / (4 * abs(leaf_psi_tlp_prior))) # * (C$wdns/leaf_density_prior)</span></a>
-<a class="sourceLine" id="cb45-4" data-line-number="4"><span class="co"># </span></a>
-<a class="sourceLine" id="cb45-5" data-line-number="5"><span class="co"># leaf_water_cap_samp &lt;- leaf_water_cap_samp[0 &lt; leaf_water_cap_samp]</span></a>
-<a class="sourceLine" id="cb45-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb45-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb45-8" data-line-number="8">temp_leaf_water_cap_samp &lt;-<span class="st"> </span></a>
-<a class="sourceLine" id="cb45-9" data-line-number="9"><span class="st">  </span><span class="dv">1000</span> <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>traits[[<span class="st">&quot;leaf_psi_osmotic&quot;</span>]]<span class="op">$</span>prior <span class="op">/</span><span class="st"> </span>(<span class="dv">4</span> <span class="op">*</span><span class="st"> </span>traits[[<span class="st">&quot;leaf_psi_tlp&quot;</span>]]<span class="op">$</span>prior)) <span class="op">*</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb45-10" data-line-number="10"><span class="st">  </span>(traits[[<span class="st">&quot;leaf_water_sat&quot;</span>]]<span class="op">$</span>prior <span class="op">/</span><span class="st"> </span>(<span class="dv">4</span> <span class="op">*</span><span class="st"> </span><span class="kw">abs</span>(traits[[<span class="st">&quot;leaf_psi_tlp&quot;</span>]]<span class="op">$</span>prior))) <span class="co"># * (C$wdns/traits[[&quot;leaf_density&quot;]]$prior)</span></a>
-<a class="sourceLine" id="cb45-11" data-line-number="11"></a>
-<a class="sourceLine" id="cb45-12" data-line-number="12">temp_leaf_water_cap_samp &lt;-<span class="st"> </span>temp_leaf_water_cap_samp[<span class="dv">0</span> <span class="op">&lt;</span><span class="st"> </span>temp_leaf_water_cap_samp]</a>
-<a class="sourceLine" id="cb45-13" data-line-number="13"></a>
-<a class="sourceLine" id="cb45-14" data-line-number="14"><span class="co"># Add in the max an min from the priors table</span></a>
-<a class="sourceLine" id="cb45-15" data-line-number="15">i &lt;-<span class="st"> </span><span class="kw">which</span>(priors<span class="op">$</span>ED_name <span class="op">==</span><span class="st"> &quot;leaf_water_cap&quot;</span>)</a>
-<a class="sourceLine" id="cb45-16" data-line-number="16">prior_in &lt;-<span class="st"> </span>priors[i,stats] </a>
-<a class="sourceLine" id="cb45-17" data-line-number="17">prior_in[,<span class="st">&quot;theor.min&quot;</span>] &lt;-<span class="st"> </span><span class="ot">NA</span></a>
-<a class="sourceLine" id="cb45-18" data-line-number="18"><span class="co"># prior_in[,&quot;theor.max&quot;] &lt;- max(.35 * (1/C$MPa2m) * (C$wdns/leaf_density_prior) )</span></a>
-<a class="sourceLine" id="cb45-19" data-line-number="19">prior_in &lt;-<span class="st"> </span><span class="kw">prior_add_samp_data</span>(prior_in, <span class="dt">samp =</span> temp_leaf_water_cap_samp)</a>
-<a class="sourceLine" id="cb45-20" data-line-number="20">prior_in[,stats]</a></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" data-line-number="1">t =<span class="st"> &quot;leaf_water_cap&quot;</span></a>
+<a class="sourceLine" id="cb40-2" data-line-number="2">t_long =<span class="st"> &quot;Leaf hydaulic capacitance &quot;</span></a>
+<a class="sourceLine" id="cb40-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb40-4" data-line-number="4"><span class="co"># leaf_water_cap_samp &lt;- </span></a>
+<a class="sourceLine" id="cb40-5" data-line-number="5"><span class="co">#   1000 * (1 - leaf_psi_osmotic_prior / (4 * leaf_psi_tlp_prior)) * </span></a>
+<a class="sourceLine" id="cb40-6" data-line-number="6"><span class="co">#   (leaf_water_sat_prior / (4 * abs(leaf_psi_tlp_prior))) # * (C$wdns/leaf_density_prior)</span></a>
+<a class="sourceLine" id="cb40-7" data-line-number="7"><span class="co"># </span></a>
+<a class="sourceLine" id="cb40-8" data-line-number="8"><span class="co"># leaf_water_cap_samp &lt;- leaf_water_cap_samp[0 &lt; leaf_water_cap_samp]</span></a>
+<a class="sourceLine" id="cb40-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb40-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb40-11" data-line-number="11">temp_leaf_water_cap_samp &lt;-<span class="st"> </span></a>
+<a class="sourceLine" id="cb40-12" data-line-number="12"><span class="st">  </span><span class="dv">1000</span> <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>traits[[<span class="st">&quot;leaf_psi_osmotic&quot;</span>]]<span class="op">$</span>prior <span class="op">/</span><span class="st"> </span>(<span class="dv">4</span> <span class="op">*</span><span class="st"> </span>traits[[<span class="st">&quot;leaf_psi_tlp&quot;</span>]]<span class="op">$</span>prior)) <span class="op">*</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb40-13" data-line-number="13"><span class="st">  </span>(traits[[<span class="st">&quot;leaf_water_sat&quot;</span>]]<span class="op">$</span>prior <span class="op">/</span><span class="st"> </span>(<span class="dv">4</span> <span class="op">*</span><span class="st"> </span><span class="kw">abs</span>(traits[[<span class="st">&quot;leaf_psi_tlp&quot;</span>]]<span class="op">$</span>prior))) <span class="co"># * (C$wdns/traits[[&quot;leaf_density&quot;]]$prior)</span></a>
+<a class="sourceLine" id="cb40-14" data-line-number="14"></a>
+<a class="sourceLine" id="cb40-15" data-line-number="15">temp_leaf_water_cap_samp &lt;-<span class="st"> </span>temp_leaf_water_cap_samp[<span class="dv">0</span> <span class="op">&lt;</span><span class="st"> </span>temp_leaf_water_cap_samp]</a>
+<a class="sourceLine" id="cb40-16" data-line-number="16"></a>
+<a class="sourceLine" id="cb40-17" data-line-number="17"><span class="co"># Add in the max an min from the priors table</span></a>
+<a class="sourceLine" id="cb40-18" data-line-number="18">i &lt;-<span class="st"> </span><span class="kw">which</span>(priors<span class="op">$</span>ED_name <span class="op">==</span><span class="st"> &quot;leaf_water_cap&quot;</span>)</a>
+<a class="sourceLine" id="cb40-19" data-line-number="19">prior_in &lt;-<span class="st"> </span>priors[i,stats] </a>
+<a class="sourceLine" id="cb40-20" data-line-number="20">prior_in[,<span class="st">&quot;theor.min&quot;</span>] &lt;-<span class="st"> </span><span class="ot">NA</span></a>
+<a class="sourceLine" id="cb40-21" data-line-number="21"><span class="co"># prior_in[,&quot;theor.max&quot;] &lt;- max(.35 * (1/C$MPa2m) * (C$wdns/leaf_density_prior) )</span></a>
+<a class="sourceLine" id="cb40-22" data-line-number="22">prior_in &lt;-<span class="st"> </span><span class="kw">prior_add_samp_data</span>(prior_in, <span class="dt">samp =</span> temp_leaf_water_cap_samp)</a>
+<a class="sourceLine" id="cb40-23" data-line-number="23">prior_in[,stats]</a></code></pre></div>
 <pre><code>## # A tibble: 1 x 7
 ##   theor.min low.025 low.25  mean upp.75 upp.975 theor.max
 ##   &lt;lgl&gt;       &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;
-## 1 NA          0.164  0.451 0.747   1.24    3.29        NA</code></pre>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" data-line-number="1">traits &lt;-<span class="st"> </span><span class="kw">fit_trait_dist</span>(bety, traits, t, prior_in, accepted_dists)</a></code></pre></div>
+## 1 NA          0.161  0.440 0.733   1.21    3.17        NA</code></pre>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" data-line-number="1">traits &lt;-<span class="st"> </span><span class="kw">fit_trait_dist</span>(bety, traits, t, prior_in, accepted_dists)</a></code></pre></div>
 <p><img src="Final_Book_files/figure-html/calc%20leaf_water_cap-1.png" width="672" /></p>
 <pre><code>## Entry with id = 1000000405 already exists.
 ## Parameters look different.
-## Old: lnorm(-0.2900, 0.7600)
-## New: lnorm(-0.2900, 0.7500)</code></pre>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" data-line-number="1">traits[[t]]<span class="op">$</span>prior =<span class="st"> </span><span class="kw">rdistn</span>(traits[[t]]<span class="op">$</span>fit) <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span><span class="op">/</span><span class="dv">1000</span>) <span class="co"># Convert back to kg</span></a>
-<a class="sourceLine" id="cb49-2" data-line-number="2">traits[[t]]<span class="op">$</span>default =<span class="st"> </span><span class="kw">get_ED_default</span>(PFT3_defaults_history, t)</a>
-<a class="sourceLine" id="cb49-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb49-4" data-line-number="4"><span class="kw">prior_plot</span>(<span class="dt">prior =</span> traits[[t]]<span class="op">$</span>prior, </a>
-<a class="sourceLine" id="cb49-5" data-line-number="5">           <span class="dt">q =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">.975</span>),</a>
-<a class="sourceLine" id="cb49-6" data-line-number="6">           <span class="dt">plot_default =</span> traits[[t]]<span class="op">$</span>default,</a>
-<a class="sourceLine" id="cb49-7" data-line-number="7">           <span class="dt">title =</span> <span class="kw">sprintf</span>(<span class="st">&quot;%s(%s):</span><span class="ch">\n</span><span class="st">%s(%.4f, %.4f)&quot;</span>, t_long, t, </a>
-<a class="sourceLine" id="cb49-8" data-line-number="8">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>distn, </a>
-<a class="sourceLine" id="cb49-9" data-line-number="9">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>parama,</a>
-<a class="sourceLine" id="cb49-10" data-line-number="10">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>paramb),</a>
-<a class="sourceLine" id="cb49-11" data-line-number="11">           <span class="dt">type =</span> <span class="st">&quot;mixed&quot;</span>)  </a></code></pre></div>
+## Old: lnorm(-0.3200, 0.7500)
+## New: lnorm(-0.3100, 0.7500)</code></pre>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" data-line-number="1">traits[[t]]<span class="op">$</span>prior =<span class="st"> </span><span class="kw">rdistn</span>(traits[[t]]<span class="op">$</span>fit) <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span><span class="op">/</span><span class="dv">1000</span>) <span class="co"># Convert back to kg</span></a>
+<a class="sourceLine" id="cb44-2" data-line-number="2">traits[[t]]<span class="op">$</span>default =<span class="st"> </span><span class="kw">get_ED_default</span>(PFT3_defaults_history, t)</a>
+<a class="sourceLine" id="cb44-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb44-4" data-line-number="4"><span class="kw">prior_plot</span>(<span class="dt">prior =</span> traits[[t]]<span class="op">$</span>prior, </a>
+<a class="sourceLine" id="cb44-5" data-line-number="5">           <span class="dt">q =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">.975</span>),</a>
+<a class="sourceLine" id="cb44-6" data-line-number="6">           <span class="dt">plot_default =</span> traits[[t]]<span class="op">$</span>default,</a>
+<a class="sourceLine" id="cb44-7" data-line-number="7">           <span class="dt">title =</span> <span class="kw">sprintf</span>(<span class="st">&quot;%s(%s):</span><span class="ch">\n</span><span class="st">%s(%.4f, %.4f)&quot;</span>, t_long, t, </a>
+<a class="sourceLine" id="cb44-8" data-line-number="8">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>distn, </a>
+<a class="sourceLine" id="cb44-9" data-line-number="9">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>parama,</a>
+<a class="sourceLine" id="cb44-10" data-line-number="10">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>paramb),</a>
+<a class="sourceLine" id="cb44-11" data-line-number="11">           <span class="dt">type =</span> <span class="st">&quot;mixed&quot;</span>)  </a></code></pre></div>
 <pre><code>## Warning: Removed 2500 rows containing non-finite values (stat_density).</code></pre>
 <p><img src="Final_Book_files/figure-html/plot%20leaf_water_cap-1.png" width="672" /></p>
 <hr />
@@ -814,20 +808,10 @@ so we can calculate a distribution that is entirely negative.</p>
 <p>I will use the equation in ED to calcualte the prior and
 add min and max values to make sure the distribution
 does not predict values that are not biologically possible.</p>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" data-line-number="1">t =<span class="st"> &quot;leaf_psi_min&quot;</span></a>
-<a class="sourceLine" id="cb51-2" data-line-number="2">t_long =<span class="st"> &quot;Leaf minimum water potential &quot;</span></a>
-<a class="sourceLine" id="cb51-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb51-4" data-line-number="4">i &lt;-<span class="st"> </span><span class="kw">which</span>(priors<span class="op">$</span>ED_name <span class="op">==</span><span class="st"> &quot;leaf_psi_min&quot;</span>)</a>
-<a class="sourceLine" id="cb51-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb51-6" data-line-number="6"><span class="co"># Values added by Betsy and Felicien: c(-700, -0.1)</span></a>
-<a class="sourceLine" id="cb51-7" data-line-number="7">priors[i,<span class="kw">c</span>(<span class="st">&quot;theor.min&quot;</span>, <span class="st">&quot;theor.max&quot;</span>)] &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">0.1</span>,<span class="dv">700</span>)</a>
-<a class="sourceLine" id="cb51-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb51-9" data-line-number="9"><span class="co"># Did Felicien mean 70 ?????</span></a>
-<a class="sourceLine" id="cb51-10" data-line-number="10"><span class="co"># priors[which(priors$ED_name == &quot;leaf_psi_min&quot;),</span></a>
-<a class="sourceLine" id="cb51-11" data-line-number="11"><span class="co">#        c(&quot;theor.min&quot;, &quot;theor.max&quot;)] &lt;- c(0.1,70) ## </span></a>
-<a class="sourceLine" id="cb51-12" data-line-number="12"><span class="co"># No max value</span></a>
-<a class="sourceLine" id="cb51-13" data-line-number="13"><span class="co"># priors[which(priors$ED_name == &quot;leaf_psi_min&quot;),</span></a>
-<a class="sourceLine" id="cb51-14" data-line-number="14"><span class="co">#        c(&quot;theor.min&quot;, &quot;theor.max&quot;)] &lt;- c(0.1,NA) </span></a></code></pre></div>
+<p>Values added by Betsy and Felicien:</p>
+<pre><code># Leaf_psi_min
+priors[which(priors$ED_name == &quot;leaf_psi_min&quot;),
+       c(&quot;theor.min&quot;, &quot;theor.max&quot;)] &lt;- c(-700, -0.1) </code></pre>
 <p>Code copied from ED:</p>
 <pre><code>leaf_rwc_min = 0.01 * leaf_elastic_mod(ipft) + 0.17
 leaf_psi_min = (leaf_rwc_min(ipft) - 1.) * leaf_water_sat(ipft) / leaf_water_cap(ipft)</code></pre>
@@ -839,35 +823,40 @@ leaf_psi_min = (leaf_rwc_min(ipft) - 1.) * leaf_water_sat(ipft) / leaf_water_cap
 </div>
 <div id="code-6" class="section level3 unnumbered">
 <h3>Code</h3>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" data-line-number="1"><span class="co"># traits[[&quot;leaf_water_sat&quot;]]$prior</span></a>
-<a class="sourceLine" id="cb53-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb53-3" data-line-number="3">temp_leaf_rwc_min_samp =<span class="st"> </span><span class="fl">0.01</span> <span class="op">*</span><span class="st"> </span>traits[[<span class="st">&quot;leaf_elastic_mod&quot;</span>]]<span class="op">$</span>prior <span class="op">+</span><span class="st"> </span><span class="fl">0.17</span></a>
-<a class="sourceLine" id="cb53-4" data-line-number="4">temp_leaf_psi_min_samp =<span class="st"> </span>(temp_leaf_rwc_min_samp <span class="op">-</span><span class="st"> </span><span class="fl">1.</span>) <span class="op">*</span><span class="st"> </span>traits[[<span class="st">&quot;leaf_water_sat&quot;</span>]]<span class="op">$</span>prior <span class="op">/</span><span class="st"> </span>traits[[<span class="st">&quot;leaf_water_cap&quot;</span>]]<span class="op">$</span>prior</a>
-<a class="sourceLine" id="cb53-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb53-6" data-line-number="6"><span class="co"># Add in the max an min from the priors table</span></a>
-<a class="sourceLine" id="cb53-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb53-8" data-line-number="8">prior_in &lt;-<span class="st"> </span>priors[i,stats] <span class="op">*</span><span class="st"> </span>C<span class="op">$</span>MPa2m <span class="co"># Convert from MPa to m</span></a>
-<a class="sourceLine" id="cb53-9" data-line-number="9">prior_in &lt;-<span class="st"> </span><span class="kw">prior_add_samp_data</span>(prior_in, <span class="dt">samp =</span> <span class="op">-</span>temp_leaf_psi_min_samp)</a>
-<a class="sourceLine" id="cb53-10" data-line-number="10">prior_in[,stats] <span class="op">/</span><span class="st"> </span>C<span class="op">$</span>MPa2m</a></code></pre></div>
-<pre><code>##   theor.min     low.025      low.25        mean     upp.75    upp.975 theor.max
-## 1       0.1 1.008678842 3.798156813 7.595399409 15.1059874 55.4021743       700</code></pre>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" data-line-number="1">traits &lt;-<span class="st"> </span><span class="kw">fit_trait_dist</span>(bety, traits, t, prior_in, accepted_dists)</a></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" data-line-number="1">t =<span class="st"> &quot;leaf_psi_min&quot;</span></a>
+<a class="sourceLine" id="cb48-2" data-line-number="2">t_long =<span class="st"> &quot;Leaf minimum water potential &quot;</span></a>
+<a class="sourceLine" id="cb48-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb48-4" data-line-number="4"><span class="co"># traits[[&quot;leaf_water_sat&quot;]]$prior</span></a>
+<a class="sourceLine" id="cb48-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb48-6" data-line-number="6">temp_leaf_rwc_min_samp =<span class="st"> </span><span class="fl">0.01</span> <span class="op">*</span><span class="st"> </span>traits[[<span class="st">&quot;leaf_elastic_mod&quot;</span>]]<span class="op">$</span>prior <span class="op">+</span><span class="st"> </span><span class="fl">0.17</span></a>
+<a class="sourceLine" id="cb48-7" data-line-number="7">temp_leaf_psi_min_samp =<span class="st"> </span>(temp_leaf_rwc_min_samp <span class="op">-</span><span class="st"> </span><span class="fl">1.</span>) <span class="op">*</span><span class="st"> </span>traits[[<span class="st">&quot;leaf_water_sat&quot;</span>]]<span class="op">$</span>prior <span class="op">/</span><span class="st"> </span>traits[[<span class="st">&quot;leaf_water_cap&quot;</span>]]<span class="op">$</span>prior</a>
+<a class="sourceLine" id="cb48-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb48-9" data-line-number="9"><span class="co"># Add in the max an min from the priors table</span></a>
+<a class="sourceLine" id="cb48-10" data-line-number="10">i &lt;-<span class="st"> </span><span class="kw">which</span>(priors<span class="op">$</span>ED_name <span class="op">==</span><span class="st"> &quot;leaf_psi_min&quot;</span>)</a>
+<a class="sourceLine" id="cb48-11" data-line-number="11">prior_in &lt;-<span class="st"> </span>priors[i,stats] <span class="op">*</span><span class="st"> </span>C<span class="op">$</span>MPa2m <span class="co"># Convert from MPa to m</span></a>
+<a class="sourceLine" id="cb48-12" data-line-number="12">prior_in &lt;-<span class="st"> </span><span class="kw">prior_add_samp_data</span>(prior_in, <span class="dt">samp =</span> <span class="op">-</span>temp_leaf_psi_min_samp)</a>
+<a class="sourceLine" id="cb48-13" data-line-number="13">prior_in[,stats] <span class="op">/</span><span class="st"> </span>C<span class="op">$</span>MPa2m</a></code></pre></div>
+<pre><code>##   theor.min     low.025      low.25        mean      upp.75     upp.975
+## 1       0.1 1.043146107 3.886821358 7.661027813 15.14447805 54.68967478
+##   theor.max
+## 1       700</code></pre>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" data-line-number="1">traits &lt;-<span class="st"> </span><span class="kw">fit_trait_dist</span>(bety, traits, t, prior_in, accepted_dists)</a></code></pre></div>
 <p><img src="Final_Book_files/figure-html/calc%20leaf_psi_min-1.png" width="672" /></p>
 <pre><code>## Entry with id = 1000000392 already exists.
 ## Parameters look the saaaaame.
-## Old: lnorm(6.6500, 1.0200)
-## New: lnorm(6.6500, 1.0200)</code></pre>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" data-line-number="1">traits[[t]]<span class="op">$</span>prior =<span class="st"> </span><span class="dv">-1</span> <span class="op">*</span><span class="st"> </span><span class="kw">rdistn</span>(traits[[t]]<span class="op">$</span>fit) <span class="co"># Remember to flip back over for psi</span></a>
-<a class="sourceLine" id="cb57-2" data-line-number="2">traits[[t]]<span class="op">$</span>default =<span class="st"> </span><span class="kw">get_ED_default</span>(PFT3_defaults_history, t)</a>
-<a class="sourceLine" id="cb57-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb57-4" data-line-number="4"><span class="kw">prior_plot</span>(<span class="dt">prior =</span> traits[[t]]<span class="op">$</span>prior, </a>
-<a class="sourceLine" id="cb57-5" data-line-number="5">          <span class="dt">q =</span> <span class="kw">c</span>(.<span class="dv">025</span>,<span class="dv">1</span>),</a>
-<a class="sourceLine" id="cb57-6" data-line-number="6">           <span class="dt">plot_default =</span> traits[[t]]<span class="op">$</span>default,</a>
-<a class="sourceLine" id="cb57-7" data-line-number="7">           <span class="dt">title =</span> <span class="kw">sprintf</span>(<span class="st">&quot;%s(%s):</span><span class="ch">\n</span><span class="st">%s(%.4f, %.4f)&quot;</span>, t_long, t, </a>
-<a class="sourceLine" id="cb57-8" data-line-number="8">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>distn, </a>
-<a class="sourceLine" id="cb57-9" data-line-number="9">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>parama,</a>
-<a class="sourceLine" id="cb57-10" data-line-number="10">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>paramb),</a>
-<a class="sourceLine" id="cb57-11" data-line-number="11">           <span class="dt">type =</span> <span class="st">&quot;mixed&quot;</span>)</a></code></pre></div>
+## Old: lnorm(6.6600, 1.0100)
+## New: lnorm(6.6600, 1.0100)</code></pre>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" data-line-number="1">traits[[t]]<span class="op">$</span>prior =<span class="st"> </span><span class="dv">-1</span> <span class="op">*</span><span class="st"> </span><span class="kw">rdistn</span>(traits[[t]]<span class="op">$</span>fit) <span class="co"># Remember to flip back over for psi</span></a>
+<a class="sourceLine" id="cb52-2" data-line-number="2">traits[[t]]<span class="op">$</span>default =<span class="st"> </span><span class="kw">get_ED_default</span>(PFT3_defaults_history, t)</a>
+<a class="sourceLine" id="cb52-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb52-4" data-line-number="4"><span class="kw">prior_plot</span>(<span class="dt">prior =</span> traits[[t]]<span class="op">$</span>prior, </a>
+<a class="sourceLine" id="cb52-5" data-line-number="5">          <span class="dt">q =</span> <span class="kw">c</span>(.<span class="dv">025</span>,<span class="dv">1</span>),</a>
+<a class="sourceLine" id="cb52-6" data-line-number="6">           <span class="dt">plot_default =</span> traits[[t]]<span class="op">$</span>default,</a>
+<a class="sourceLine" id="cb52-7" data-line-number="7">           <span class="dt">title =</span> <span class="kw">sprintf</span>(<span class="st">&quot;%s(%s):</span><span class="ch">\n</span><span class="st">%s(%.4f, %.4f)&quot;</span>, t_long, t, </a>
+<a class="sourceLine" id="cb52-8" data-line-number="8">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>distn, </a>
+<a class="sourceLine" id="cb52-9" data-line-number="9">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>parama,</a>
+<a class="sourceLine" id="cb52-10" data-line-number="10">                           traits[[t]]<span class="op">$</span>fit<span class="op">$</span>paramb),</a>
+<a class="sourceLine" id="cb52-11" data-line-number="11">           <span class="dt">type =</span> <span class="st">&quot;mixed&quot;</span>)</a></code></pre></div>
 <pre><code>## Warning: Removed 2500 rows containing non-finite values (stat_density).</code></pre>
 <p><img src="Final_Book_files/figure-html/plot%20leaf_psi_min-1.png" width="672" /></p>
 
