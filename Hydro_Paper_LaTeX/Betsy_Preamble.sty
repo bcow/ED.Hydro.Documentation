@@ -108,5 +108,9 @@
 \usepackage{todonotes}
 \newcommand{\todoc}[1]{\todo[color = red!20, size = \footnotesize]{#1}} % citation
 \newcommand{\todoa}[1]{\todo[color = green!20, size = \footnotesize]{#1}} % action item
-\newcommand{\todoq}[1]{\todo[color = blue!20, inline]{#1}} % question or note
+
+% Question or a note
+\newcommand{\todoql}[1]{\todo[color = blue!20, size = \footnotesize]{#1}} % to the left
+\newcommand{\todoq}[1]{\todo[color = blue!20, inline]{#1}} % inline on a new line
+\newcommand{\todoqi}[1]{\todo[color = blue!20, inline, noinlinepar]{#1}} % inline in text
 \reversemarginpar % I probably would not have to use this if I didn't use geometry to define my margins
