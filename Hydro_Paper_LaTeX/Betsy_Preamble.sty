@@ -1,13 +1,15 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Load Packages
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\PassOptionsToPackage{dvipsnames,}{xcolor}
+
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
 
 \usepackage{latexsym, amssymb, amsmath}
 \usepackage{chemformula} % for chemistry
-% \usepackage{xcolor} % for colors!
-\usepackage{graphicx} % for importing images
+\usepackage[dvipsnames]{xcolor}
+\usepackage{graphicx}
 \usepackage{wrapfig}  % for wrapping figures
 \usepackage{caption} % for captioning figures I would assume
 \usepackage{subcaption} % for subcaptions and the subfigure environment
@@ -55,10 +57,10 @@
 \usepackage{hyperref} % for customizing reference links
 \hypersetup{ % I like custom colors
     colorlinks = true,
-    linkcolor = blue,
+    linkcolor = RoyalPurple,
     filecolor = cyan,      
-    urlcolor = blue,
-    citecolor = magenta
+    urlcolor = RoyalPurple,
+    citecolor = RedViolet
 }
 \urlstyle{same}
 
@@ -106,11 +108,11 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \usepackage{todonotes}
-\newcommand{\todoc}[1]{\todo[color = red!20, size = \footnotesize]{#1}} % citation
-\newcommand{\todoa}[1]{\todo[color = green!20, size = \footnotesize]{#1}} % action item
+\newcommand{\todoc}[1]{\todo[color = RedViolet!20, size = \footnotesize]{#1}} % citation
+\newcommand{\todoa}[1]{\todo[color = ForestGreen!20, size = \footnotesize]{#1}} % action item
 
 % Question or a note
 \newcommand{\todoql}[1]{\todo[color = blue!20, size = \footnotesize]{#1}} % to the left
-\newcommand{\todoq}[1]{\todo[color = blue!20, inline]{#1}} % inline on a new line
+\newcommand{\todoq}[1]{\todo[color = NavyBlue!20, inline]{#1}} % inline on a new line
 \newcommand{\todoqi}[1]{\todo[color = blue!20, inline, noinlinepar]{#1}} % inline in text
 \reversemarginpar % I probably would not have to use this if I didn't use geometry to define my margins

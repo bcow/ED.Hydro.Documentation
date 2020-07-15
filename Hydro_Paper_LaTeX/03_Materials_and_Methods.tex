@@ -14,7 +14,6 @@
     \item mean annual precipitation of $2662 \pm 479$ (SD) mm yr$^{(-1)}$ and a 4-month dry season ($<$ 100 mm per month)  
     \item average annual rainfall of about 2640 mm (Detto et al.,
 2018) and a well-marked dry season (total rainfall between late-December and mid-April is about 175 mm on average). 
-    \item Why is BCI a good choice for this study?
 \end{itemize}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \phantomsection
@@ -35,38 +34,29 @@ Soil data?
 
 \input{Hydro_Paper_LaTeX/Hydro_Paper_Figures/precip_figure}
 
-
- Meteorological data of the simulated years were available at hourly resolution for air temperature, wind speed, specific humidity, precipitation rate, short- and longwave radiation, and were hence used as ecosystem upper boundary condition. 
+For this study we used meteorological seven-year record (2008-2014) of meteorological observations from BCI prepared by \citep{powell_2019}. Data were available at hourly resolution for air temperature, wind speed, specific humidity, precipitation rate, short- and longwave radiation. Because we were focused on processes that took place over a short time scale, we decided to limit runs to one year in length. Two years (\ref{fig:precip}) were chosen to represent climatic extremes in the available data: the shortest and wettest dry season (2005) and the longest and driest dry season (2012). 
  
- Two years were chosen to represent the two extremes in the avaialable data: the shortest and wetest dry season and the longest and dryest dry season, which  
- 
- % I should ask Felicien about CO2 ... To exclude CO2 fertilization effects and keep the same meteorological drivers as in our previous study (di Porcia e Brugnera et al., 2019), the atmospheric concentration of CO2 was fixed at a constant value of 370 ppm, which corresponds to initial concentrations measured by the flux towers.
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \addcontentsline{toc}{subsection}{Ecosystem Demography Model Version 2.2}
 \subsection*{Ecosystem Demography Model (Version 2.2)}
 
 \input{Hydro_Paper_LaTeX/Hydro_Paper_Figures/ED_versions_figure}
 
-Because ED2 is a DGVM, it uses the dynmaics of PFTs. Thus we need to talk about how we define PFTs. 
+ED2 simulates fast time-scale vegetation dynamics using integrated submodels of plant growth and mortality, phenology, disturbance, biodiversity, hydrology, and soil biogeochemistry. In addition, ED2 has been formulated at the scale of individual plants, using a system of size and age structured partial differential equations to dynamically track the behavior of a vertically stratified, spatially distributed ensemble  of individual plants within each climatological grid cell. Because the scope of this study is to focus on the propagation of parameter uncertainly over fast timescale processes, competition between PFTs was not included.
 
-\begin{itemize}
-    \item In this case, plant functional types (PFTs) are defined as a collection of species. 
-    \item These species are cross-listed with a database of plant traits. 
-    \item This data can then be used to constrain probability distributions that define our apriori knowledge of the parameter values for the plant traits in question. 
-    \item To initialize parameter values for a model run in ED, a Bayesian meta-analysis is performed in which posterior distributions are calculated for each model parameter value included in the analysis, and then values are randomly selected from the distribution. Note that the current meta-analys system does not allow for joint distribution sampling. 
-    \item The scope of this study is to focus on the propagation of parameter uncertainly over small timescale processes, competition between PFTs was not included. Thus, the PFT used is a general tropical PFT, consisting of the combination of early, mid and late species.
-\end{itemize}
 
-\begin{itemize}
-    \item ED2-hydro Tropical PFT: http://psql-pecan.bu.edu/bety/pfts/1000000131
-    \item ED2 TropicalPFT: http://psql-pecan.bu.edu/bety/pfts/1000000132
-    \item The PFTs are based on clones of a FATES prior, and then species were added in during the meta-analysis. Should I discuss this process?
-\end{itemize}
+
+% \begin{itemize}
+%     \item 
+%     \item ED2-hydro Tropical PFT: http://psql-pecan.bu.edu/bety/pfts/1000000131
+%     \item ED2 TropicalPFT: http://psql-pecan.bu.edu/bety/pfts/1000000132
+%     \item The PFTs are based on clones of a FATES prior, and then species were added in during the meta-analysis. Should I discuss this process?
+% \end{itemize}
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newpage
 \addcontentsline{toc}{subsection}{Attributing Uncertainty to Ecological Processes}
 \subsection*{Attributing Uncertainty to Ecological Processes}
 
@@ -74,40 +64,40 @@ Because ED2 is a DGVM, it uses the dynmaics of PFTs. Thus we need to talk about 
 \addcontentsline{toc}{subsubsection}{The Predictive Ecosystem Analyser}
 \subsubsection*{PEcAn}
 
-- What are the most current PEcAn papers for describing the uncertaintly analysis workflow? Add Lebauer to the bib!
+\begin{itemize}
+    \item For the purposes of this study, we approach Plant Functional Types (PFTs) by first defining a collection of species. 
+    \item These species are cross-listed with a trait database. 
+    \item The resulting data can be used to constrain probability distributions that describe our apriori knowledge of the model parameter values for the plant traits in question.
+    \item To initialize parameter values for a model run in ED2, a Bayesian meta-analysis is performed in which posterior distributions are calculated for each model parameter  included in the analysis, initial values are randomly selected from the distribution. Note that the out current meta-analyse workflow does not allow for joint distribution sampling. 
+    \item One of the benefits of the Bayesian approach to data synthesis is that the posterior distribution can be updated each time new data becomes available. 
+    \item This encourages an iterative approach to model-data synthesis in which model uncertainty analysis informs targeted field research which in turn produces data that will be incorporated back in to the Bayesian meta-analysis. \todoc{Davidson 2012? The thesis? This is what Raczka cites when introducing this loop.}
+\end{itemize}
+ 
+The Predictive Ecosystem Analyser (PEcAn, \hyperlink{pecanproject.org}{https://pecanproject.github.io/})
+is a set of workflows and tools designed to facilitate the full process of interfacing with the Biofuel Ecophysiological Traits and Yield database, or ingesting your own observational data, creating priors, running a Bayesian meta-analysis to produce posterior predictive parameter distributions, sampling from parameter distributions and preparing other model data constraints, running models, processing outputs, validating, benchmarking and running uncertainty analyses. 
 
-
-\addcontentsline{toc}{subsubsection}{Calculating Parameter Uncertainty}
-\subsubsection*{Calculating Parameter Uncertainty}
-
-Look how mike explains his uncertainty analysis in his papers. Also the author that starts with Z 2015, Also Felicien's paper, also Koven 2020. 
+\todoq{ \citep{lebauer_2013, raczka_2018, dietze_2017a} all do a very through job of describing how PEcAn calculates parameter uncertainty. It may make sense for me to actually write it down in my own words for the dissertation, but it doesn't really seem necessary for this as a paper.}\todoc{Felicien's paper in review, Dietze 2014}
 
 \paragraph{Meta Analysis}
 
+I started with traits for which I had summary statistics based on expert elicitation (How do I cite that FATES spreadsheet?) Fro each set of data points I found a best fitting distribution from a selection (normal, log normal, Chi Squared, Beta, Poisson, Exponential, Weibull and Uniform,) and entering the priors in to the database.With the priors I constructed using apriori knowledge and I was able to use the process functions from the ED2 hydraulics module to probability density distributions for the remaining hydraulic traits. 
+
+
+\todoq{
+\hyperlink{ED HYDRO DOCUMENTAT}{https://bcow.github.io/ED.Hydro.Documentation}
+
+I have up to date documentation detailing the process of defining the hydraulic trait priors. Not sure how much of this I should include, but it's all there (at least for the hydraulic traits, the rest need to be updated).}
+
+Meta-Analysis Data:
 \begin{itemize}
-    \item Non-hydraulic trait data: BETY database 
-    \item Hydraulic trait data: Felicien's paper  
-    \item Leaf biomass allometry trait data: BAAD database
-    \item root data from authors I need to add
-    \item check for additional data I need to add to data list
-    \item BETYdb citation
+    \item Non-hydraulic trait data: BETYdb \citep{lebauer_2017}
+    \item Hydraulic trait data: Verbeek lab paper(s) \todoc{hydraulic meta-analysis which papers?}
+    \item Leaf biomass allometry trait data: BAAD database \citep{falster_2015}
+    \item Fine root allocation: FRED \citep{iversen_2017}
+    \item Root depth allometry \citep{smithmartin_2020}
 \end{itemize}
 
-% \begin{itemize}
-%     \item Parameter
-%     \item Prior
-%     \item a
-%     \item b
-%     \item Prior meadian
-%     \item ED2 defaulthttps://www.overleaf.com/project/5ecf1a2873cb7e00019c95ab
-%     \item Posterior median
-%     \item N (sample size)
-%     \item $\text{CV}_{\text{p,posterior}}/\text{CV}_{\text{p,prior}}$
-% \end{itemize}
-
 \input{Hydro_Paper_LaTeX/Hydro_Paper_Tables/Parameters_Table}
-
-\input{Hydro_Paper_LaTeX/Hydro_Paper_Figures/hydraulic_traits_figure}
 
 
 \addcontentsline{toc}{subsubsection}{Calculating Parameter Sensitivity and Contribution to Model Uncertainty}

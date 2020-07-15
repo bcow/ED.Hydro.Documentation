@@ -6,43 +6,45 @@
 
 %If the table is too wide, replace \begin{table}[!htp]...\end{table} with
 %\begin{adjustwidth}{-2.5 cm}{-2.5 cm}\centering\begin{threeparttable}[!htb]...\end{threeparttable}\end{adjustwidth}
-\begin{table}[!htp]\centering
-\caption{Table of Parameters (Do we want this table to also include distributions?)}\label{tab:params}
+\begin{table}[!htp]
+\centering
+\caption[Parameters]{Table of Parameters}
+\label{tab:params}
 \scriptsize
-\begin{tabular}{lrrcc|rrrr}\toprule
-Trait &Proccess(es) &Units &ED2 &ED2-hydro &Prior distribution &Param a &Param b \\\midrule
-Leaf Turgor Loss Point &Hydraulics & &- &+ & & & \\
-Leaf Water Cap &Hydraulics & &- &+ & & & \\
-Root Beta &Hydraulics & &- &+ & & & \\
-Specific Root Area &Hydraulics & &- &+ & & & \\
-stoma_psi_c &Hydraulics & &- &+ & & & \\
-Kexp &Hydraulics & &- &+ & & & \\
-Kmax &Hydraulics & &- &+ & & & \\
-Wood Turgor Loss Point &Hydraulics & &- &+ & & & \\
-p50 &Hydraulics & &- &+ & & & \\
-Wood Water Cap &Hydraulics & &- &+ & & & \\
-Water Cond. &Hydraulics & &+ &- & & & \\
-Abvgnd \% Struc. Biomass &Allocation \& Allometry & &+ &+ & & & \\
-Leaf Biomass Allom. Int. &Allocation \& Allometry & &+ &+ & & & \\
-Root Depth Allom. Int. &Allocation \& Allometry & &+ &+ & & & \\
-Leaf Biomass Allom. Slope &Allocation \& Allometry & &+ &+ & & & \\
-Root Depth Allom. Slope &Allocation \& Allometry & &+ &+ & & & \\
-Fine Root Allocation &Allocation \& Allometry & &+ &+ & & & \\
-Specific Leaf Area &Allocation \& Allometry & &+ &+ & & & \\
-Wood Density &Allocation \& Allometry & &+ &+ & & & \\
-Quantum Efficiency &Photosynthesis \& Stomatal Cond. & &+ &+ & & & \\
-Stomatal Slope &Photosynthesis \& Stomatal Cond. & &+ &+ & & & \\
-Vcmax &Photosynthesis \& Stomatal Cond. & &+ &+ & & & \\
-Leaf NIR reflectance &Radiation & &+ &+ & & & \\
-Leaf VIS reflectance &Radiation & &+ &+ & & & \\
-Leaf NIR transmittance &Radiation & &+ &+ & & & \\
-Leaf VIS transmittance &Radiation & &+ &+ & & & \\
-Leaf orientation &Radiation & &+ &+ & & & \\
-Growth Respiration &Respiration \& Turnover & &+ &+ & & & \\
-Leaf Respiration Rate &Respiration \& Turnover & &+ &+ & & & \\
-Leaf Turnover Rate &Respiration \& Turnover & &+ &+ & & & \\
-Root Turnover Rate &Respiration \& Turnover & &+ &+ & & & \\
-Veg. Resp. Q10 &Respiration \& Turnover & &+ &+ & & & \\
+\begin{tabular}{lrrcc}\toprule
+Trait &Proccess(es) &Units &ED2 &ED2-hydro \\\midrule
+Leaf Turgor Loss Point &Hydraulics & &- &+ \\
+Leaf Water Cap &Hydraulics & &- &+ \\
+Root Beta &Hydraulics & &- &+ \\
+Specific Root Area &Hydraulics & &- &+ \\
+stoma psi c &Hydraulics & &- &+ \\
+Kexp &Hydraulics & &- &+ \\
+Kmax &Hydraulics & &- &+ \\
+Wood Turgor Loss Point &Hydraulics & &- &+ \\
+p50 &Hydraulics & &- &+ \\
+Wood Water Cap &Hydraulics & &- &+ \\
+Water Cond. &Hydraulics & &+ &- \\
+Abvgnd \% Struc. Biomass &Allocation \& Allometry & &+ &+ \\
+Leaf Biomass Allom. Int. &Allocation \& Allometry & &+ &+ \\
+Root Depth Allom. Int. &Allocation \& Allometry & &+ &+ \\
+Leaf Biomass Allom. Slope &Allocation \& Allometry & &+ &+ \\
+Root Depth Allom. Slope &Allocation \& Allometry & &+ &+ \\
+Fine Root Allocation &Allocation \& Allometry & &+ &+ \\
+Specific Leaf Area &Allocation \& Allometry & &+ &+ \\
+Wood Density &Allocation \& Allometry & &+ &+ \\
+Quantum Efficiency &Photosynthesis \& Stomatal Cond. & &+ &+ \\
+Stomatal Slope &Photosynthesis \& Stomatal Cond. & &+ &+ \\
+Vcmax &Photosynthesis \& Stomatal Cond. & &+ &+ \\
+Leaf NIR reflectance &Radiation & &+ &+ \\
+Leaf VIS reflectance &Radiation & &+ &+ \\
+Leaf NIR transmittance &Radiation & &+ &+ \\
+Leaf VIS transmittance &Radiation & &+ &+ \\
+Leaf orientation &Radiation & &+ &+ \\
+Growth Respiration &Respiration \& Turnover & &+ &+ \\
+Leaf Respiration Rate &Respiration \& Turnover & &+ &+ \\
+Leaf Turnover Rate &Respiration \& Turnover & &+ &+ \\
+Root Turnover Rate &Respiration \& Turnover & &+ &+ \\
+Veg. Resp. Q10 &Respiration \& Turnover & &+ &+ \\
 \bottomrule
 \end{tabular}
 \end{table}

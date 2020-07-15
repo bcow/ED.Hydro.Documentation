@@ -23,9 +23,10 @@ The majority of TBMs use variants of the Ball-Berry model: a coupled relationshi
 
 \paragraph{Soil moisture supply}
 
-To account for the effect of root water supply, photosynthesis is downregulated via an empirical factor (often denoted $\beta$) driven by soil moisture availability \citep{rogers_2017}. Specific formulation of the $\beta-$factor response to soil water content differs between models, but the relation remains empirical, and thus a large contributor to predictive uncertainty across models. 
+To account for the effect of root water supply, photosynthesis is downregulated via an empirical factor (often denoted $\beta$) driven by soil moisture availability \citep{rogers_2017}. Specific formulation of the $\beta-$factor response to soil water content differs between models, but the relation remains empirical, and thus a large contributor to predictive variability across models. 
  
-Models formulated in this way have been shown to reasonably predict ecosystem carbon fluxes in the tropics under present climate conditions, however, they fail to do  so under extreme drought scenarios \citep{powell_2013, zhang_2015}. A model intercomparison project testing the ability of 10 TBMs to reproduce the observed sensitivity of ecosystem productivity to reduced precipitation found that the modelled sensitivities of vegetation dynamics to be highly uncertain. Furthermore, predictions of vegetation productivity at rainfall exclusion experiments that did agree did not appear to arrive at the same results for for the same reason \citep{paschalis_2020}.
+Models formulated in this way have been shown to reasonably predict ecosystem carbon fluxes in the tropics under present climate conditions, however, they fail to do  so under extreme drought scenarios \todoc{Key findings of Powell 2013: 1. predicted dec in autotrophic respiration under prolonged drought in contrast to measured inc at one of the sites. 
+3. unrealistic diurnal and seasonal responses to drought.} \citep{powell_2013, zhang_2015}. A model intercomparison project testing the ability of 10 TBMs to reproduce the observed sensitivity of ecosystem productivity to reduced precipitation found that the modelled sensitivities of vegetation dynamics to be highly uncertain. Furthermore, predictions of vegetation productivity at rainfall exclusion experiments that did agree did not appear to arrive at the same results for for the same reason \citep{paschalis_2020}.
 
 With no ability to constrain the empirical formulation of water stress, the feasibility of using these models to predict tropical forest response to extreme climate events is low.  
 
@@ -43,7 +44,7 @@ ED-hydro: \citep{xu_2016, powell_2018, longo_2019}
 
 \todoc{Missing Longo 2019 Part 2}
 
-\todoq{I could expand to other model specific citations I haven't found a review paper about benchmarking hydraulic models (ie the hydraulic version of \citep{paschalis_2020})
+\todoq{I could expand to other model specific citations I haven't found a mip of hydraulic models (ie the hydraulic version of \citep{paschalis_2020} - seems too early for that.)
 
 * \citep{fisher_2007}  SPA \\
 * Christofersen 2016  FATES (also Koven 2020) \\
@@ -65,10 +66,10 @@ By definition, parameter should have probability density functions. Is that true
 
 % given that they are based on either empirical values or derived from observations (CITE?)
 
-Parameter uncertainty propagates through a model and has the potential to contribute a significant amount to the total model predictive uncertainty. It is therefore essential to quantify the uncertainty surrounding parameter estimates to properly quantify total model predictive uncertainty \citep{dietze_2017, dietze_2017a}. 
+Parameter uncertainty propagates through a model and has the potential to contribute a significant amount to the total model predictive variability. It is therefore essential to quantify the uncertainty surrounding parameter estimates to properly quantify total model predictive variability \citep{dietze_2017, dietze_2017a}. 
 
-Mechanistic hydraulic models bring with them a substantial increase in the number of processes, parameters and subsequently, predictive uncertainty. Furthermore, the sensitivity of a mechanistic hydraulic models to their parameters may not be the same under all climactic conditions. It is most likely that the models will have increased sensitivity to hydraulic parameters under water limiting conditions, which would result in increased predictive uncertainty as well.
+Mechanistic hydraulic models bring with them a substantial increase in the number of processes, parameters and subsequently, predictive variability. Furthermore, the sensitivity of a mechanistic hydraulic models to their parameters may not be the same under all climactic conditions. It is most likely that the models will have increased sensitivity to hydraulic parameters under water limiting conditions, which would result in increased predictive variability as well.
 
 \todoc{NEEDS TO REFERENCE \citep{fisher_2020} which has a section addressing model complexity!!!}
 
-Unfortunately, hydraulic trait databases are more sparse than for other areas such as foliar traits and collection can be challenging and expensive \citep{choat_2018}. Consequently, there does not currently exist a large amount of data to constrain hydraulic model parameter estimates. \todoc{Maybe Felicien meta analysis?} Thus, despite the potential that mechanistic hydraulic models have to improve predictive performance, there is an inherent risk of increased predictive uncertainty as a trade off.
+Unfortunately, hydraulic trait databases are more sparse than for other areas such as foliar traits and collection can be challenging and expensive \citep{choat_2018}. Consequently, there does not currently exist a large amount of data to constrain hydraulic model parameter estimates. \todoc{Maybe Felicien meta analysis?} Thus, despite the potential that mechanistic hydraulic models have to improve predictive performance, there is an inherent risk of increased predictive variability as a trade off.

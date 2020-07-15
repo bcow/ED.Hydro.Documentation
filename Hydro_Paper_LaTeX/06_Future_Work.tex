@@ -1,0 +1,29 @@
+\addcontentsline{toc}{section}{Future Work}
+\section*{Future Work}
+
+\begin{itemize}
+    \item Multivariate analysis - it is clear that many of these traits co-vary and should be sampled jointly. This is a feature that we need to implement in our workflow. \todoc{Alexey meta analysis}
+    
+    \item Predicting traits from traits. (And knowing when that is not the same as covarrying traits...)
+        \begin{itemize}
+            \item My understanding is that the real problem is in the way that we initialize parameters in models such as ED2
+            \item If a value for a parameter has been written in a configuration file, that value will be used to initialize the model, regardless of whatever values had previously been calculated and could be used to calculate the parameter in question. 
+            \item If we were calculating probability distributions for each parameter, then residual parameter uncertainty would be lost when the new value is written in.
+            \item However, we aren't calculating probability distributions, we are only calculating single values. 
+            \item So the problem is twofold, 1) Probability distributions should be calculated through the entire parameter initialization workflow and 2) nothing should be overwritten, data should be synthesized in to the workflow to constrain the probability density functions. 
+        \end{itemize}
+        
+    \item The definition of PFTs: The advantages and disadvantages of using only one PFT.
+        \begin{itemize}
+            \item ED2 has three tropical PFTs (defined as early-, mid- and lat-successional tree species) that differ in that the default parameter values pertaining to photosynthesis, water use efficiency, energy exchange, carbon allocation, and mortality are all unique. 
+            \item However, these default values would be overwritten if we were to attempt a similar meta-analysis and we do not yet have different priors for hydraulic traits in different PFTs (at least I am not aware that we do.) In addition, the current priors are wide and or uninformative. 
+            \item By dividing up the data in to three PFTs (early, mid, late) ability to constrain parameters will be reduced significantly and the results of the analyses may be completely different. 
+        \end{itemize}
+        
+    \item The advantages and disadvantages of only running a simulation for one year.
+        \begin{itemize}
+            \item We were able to focus on fine-scale processes.
+            \item Didn't have to worry about vegetation dynamics.
+            \item The effects of stress do not only show up in the short term and it is important to think about the long term effects of the changing climate.
+        \end{itemize}
+\end{itemize}
