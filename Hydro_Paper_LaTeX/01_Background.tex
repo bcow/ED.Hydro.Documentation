@@ -1,0 +1,50 @@
+\newpage
+\addcontentsline{toc}{section}{Background}
+\section*{Background}
+
+\phantomsection
+\addcontentsline{toc}{subsection}{Tropical forests under climate change}
+\subsection*{Tropical forests under climate change}
+
+Tropical forests play an integral part in the terrestrial carbon cycle. The terrestrial biosphere is responsible for the uptake of 29\% of \ch{CO2} emissions \citep{friedlingstein_2019}, accounting for approximately 45\% of terrestrial carbon stocks \citep{bonan_2008}. Tropical forests comprise the highest percentage area of global forest biomes \citep{pan_2011} and the Amazon rainforest, the largest continuous tropical forest in the world, \citep{malhi_2008} alone stores an estimated 120 billion tons of carbon \citep{phillips_2009} and accounts for 15\% of terrestrial productivity \citep{field_1998}.
+
+However, under climate change, the role of tropical forests in the terrestrial carbon cycle remains unclear. Climate change projections include predictions of increased variability in global climate conditions, resulting in increased frequency of extreme events such as early and late heat waves, droughts and floods \citep{ipcc_2015}.  A range of global climate model predictions (GCMs) have predicted significant shifts in temperature and precipitation patterns for the tropics \citep{maloney_2014}. In the Amazon region, a range of GCM projections have been shown to predict increased intensity of wet and dry seasons \citep{lintner_2012} as well as extended dry season length \citep{malhi_2009, malhi_2008}, effectively increasing both the frequency and amplitude of stressful conditions for tropical forests.
+
+The combination of reduced precipitation and subsequent reduction in soil moisture with increased temperatures and evaporative demand from the atmosphere causes plant water stress \citep{choat_2018}, one of the main drivers of tree mortality in tropical forests \citep{rowland_2015,mcdowell_2018}. Studies from precipitation throughfall experiments \citep{nepstad_2007} \todoc{Meir, 2015} as well as  naturally occurring drought events \citep{lewis_2011,phillips_2009} have shown that tropical forest are vulnerable to water stress and the effects of long term stress could have adverse impacts on the global carbon cycle. Therefore, to confidently predict the state of the future terrestrial carbon sink, we must first be able to predict tropical forest responses to climate change.
+
+\addcontentsline{toc}{subsection}{Modeling Plant Response to Water Stress}
+\subsection*{Modeling Plant Response to Water Stress}
+
+All plants are subject to the fundamental tradeoff between obtaining carbon and losing water \citep{bonan_2014}. However, our understanding of the mechanisms that govern species responses to water stress are still limited. Traditionally terrestrial biosphere models (TBMs) represent water stress driven by (1) atmospheric water demand and (2) root water supply.
+
+\phantomsection
+\addcontentsline{toc}{subsubsection}{Atmospheric demand}
+\subsection*{Atmospheric demand}
+
+The majority of TBMs use variants of the Ball-Berry model: a coupled relationship of stomatal conductance with \ch{CO2} assimilation that varies with atmospheric (or leaf-surface) \ch{CO2} concentration, and some measure of atmospheric humidity (Farquhar 1980, Ball 1987, Leuning 1995, Medlyn 2011). 
+
+\addcontentsline{toc}{subsubsection}{Soil moisture supply}
+\subsection*{Soil moisture supply}
+
+To account for the effect of root water supply, photosynthesis is downregulated via an empirical factor (often denoted $\beta$) driven by soil moisture availability \citep{rogers_2017}. Specific formulation of the $\beta-$factor response to soil water content differs between models, but the relation remains empirical, and thus a large contributor to predictive uncertainty across models.
+ 
+Models formulated in this way have been shown to reasonably predict ecosystem carbon fluxes under present climate conditions, however, but they fail to do so under extreme drought scenarios \citep{powell_2013, zhang_2015, paschalis_2020}.
+
+\addcontentsline{toc}{subsubsection}{Mechanistic Hydraulic models}
+\subsection*{Mechanistic Hydraulic models}
+
+A growing body of research recommend mechanistic hydraulic models based on cohesion-tension theory to model plant water stress \citep{rogers_2017,fisher_2018}. These models link stomatal function with soil water potential, tracking water flow along the soil-plant-atmosphere continuum based on hydraulic laws \citep{sperry_2015, williams_1996}. Unlike the empirical $\beta-$factor approach, hydraulic model parameters can be derived directly from empirical measurements \citep{choat_2018}.
+
+
+Implementations of mechanistic hydaulic schemes in TBMs have improved predictive performance at tropical sites \citep{xu_2016, powell_2018, longo_2019, fisher_2007, fauset_2019, choat_2018} \todoa{need to expand on these citations}.
+
+\todoq{So far these citations are really only related to ED, but I could expand to include FATES citations as well \citep{Koven_2020}}
+
+\addcontentsline{toc}{subsection}{The Downsides of Model Complexity}
+\subsection*{The Downsides of Model Complexity}
+
+In most cases it is impossible to know the exact values for the  parameters that are used in TBMs given that they are based on either empirical values or observations (CITE?). Parameter uncertainty propagates through a model and has the potential to contribute a significant amount to the total model predictive uncertainty. It is therefore essential to quantify the uncertainty surrounding parameter estimates to properly quantify total model predictive uncertainty \citep{dietze_2017, dietze_2017a}. \todoc{NEEDS TO REFERENCE \citep{fisher_2020} which has a section addressing model complexity!!!}
+
+Mechanistic hydraulic models bring with them a substantial increase in the number of processes, parameters and subsequently, predictive uncertainty. Furthermore, the sensitivity of a mechanistic hydraulic models to their parameters may not be the same under all climactic conditions. It is most likely that the models will have increased sensitivity to hydraulic parameters under water limiting conditions, which would result in increased predictive uncertainty as well.
+
+Unfortunately, hydraulic trait databases are more sparse than for other areas such as foliar traits and collection can be challenging and expensive \citep{choat_2018}. Consequently, there does not currently exist a large amount of data to constrain hydraulic model parameter estimates. Thus, despite the potential that the mechanistic hydraulic models have for better predictive performance, there is an inherent risk of increased predictive uncertainty as a trade off.

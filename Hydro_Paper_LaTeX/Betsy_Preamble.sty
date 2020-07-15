@@ -1,0 +1,112 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Load Packages
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+
+\usepackage{latexsym, amssymb, amsmath}
+\usepackage{chemformula} % for chemistry
+% \usepackage{xcolor} % for colors!
+\usepackage{graphicx} % for importing images
+\usepackage{wrapfig}  % for wrapping figures
+\usepackage{caption} % for captioning figures I would assume
+\usepackage{subcaption} % for subcaptions and the subfigure environment
+
+
+% Setup tables  
+\usepackage{siunitx} % Required for alignment
+\sisetup{
+  round-mode          = places, % Rounds numbers
+  round-precision     = 2, % to 2 places
+}
+\usepackage{multirow} % Required for multirows
+\usepackage{booktabs} % for borders and merged ranges
+\usepackage{soul}% for underlines
+\usepackage{changepage,threeparttable} % for wide tables
+
+%% Formatting Page margins
+\usepackage{flowchart}
+\usepackage[
+    paperheight=11.0in,
+    paperwidth=8.5in,
+    left=1.1in,
+    right=1.0in,
+    top=1.0in,
+    bottom=1.0in,
+    headheight=1in]{geometry}
+
+%% Set Depths for Nested Lists
+\usepackage{enumitem} % for customizing lists
+\setitemize{noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt}
+\setlength{\parskip}{\baselineskip} % Vertical space between paragraphs
+    % \baselineskip - normal vertical distance between lines in a paragraph
+    % \baselinestretch - multiplies \baselineskip
+\setlength{\parindent}{0pt} % Paragraph indentation
+
+\usepackage{titlesec} % set the distance after a section header 
+\titlespacing\section{0pt}{10pt plus 4pt minus 2pt}{0pt plus 2pt minus 2pt}
+\titlespacing\subsection{0pt}{10pt plus 4pt minus 2pt}{0pt plus 2pt minus 2pt}
+\titlespacing\subsubsection{0pt}{10pt plus 4pt minus 2pt}{0pt plus 2pt minus 2pt}
+
+%% Something about tifs and pngs??? This is from my old docs ... 
+\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
+
+% Need to make sure I know what I'm doing with hyperref and bibliography because they can conflict
+\usepackage{hyperref} % for customizing reference links
+\hypersetup{ % I like custom colors
+    colorlinks = true,
+    linkcolor = blue,
+    filecolor = cyan,      
+    urlcolor = blue,
+    citecolor = magenta
+}
+\urlstyle{same}
+
+% Setting up the table of contents
+\usepackage[toc,lof,lot]{multitoc}
+\renewcommand*{\multicolumntoc}{2}
+\setlength{\columnseprule}{0.5pt}
+% Setting up the table of figures and tables
+\renewcommand*{\multicolumnlof}{2}
+\renewcommand*{\multicolumnlot}{2}
+
+\usepackage{setspace} % set spacing between lines
+
+\usepackage{authblk} % for setting author affiliations
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% User Defined Commands 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% I want to experiment with setting up acronyms 
+% and then having an acronym table 
+
+% \begin{acronyms}
+%     \acro{ED2}{Ecosystem Demography Model version 2.2}
+%     \acro{TBM}{Terrestrial Biosphere Model}
+% \end{acronyms}
+
+% A command I found online for making supplemental materials
+\newcommand{\beginsupplement}{%
+        \setcounter{table}{0}
+        \renewcommand{\thetable}{S\arabic{table}}%
+        \setcounter{figure}{0}
+        \renewcommand{\thefigure}{S\arabic{figure}}%
+     }
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  User defined commands
+
+% setup bibliography
+\usepackage[round, comma, authoryear, sort]{natbib}
+% \newcommand{\ctp}[1]{\citep{#1}} % Parentheses around reference
+% \newcommand{\TODOCITE{{\color{Red} CITE }} % Alert that citation is needed
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{todonotes}
+\newcommand{\todoc}[1]{\todo[color = red!20, size = \footnotesize]{#1}} % citation
+\newcommand{\todoa}[1]{\todo[color = green!20, size = \footnotesize]{#1}} % action item
+\newcommand{\todoq}[1]{\todo[color = blue!20, inline]{#1}} % question or note
+\reversemarginpar % I probably would not have to use this if I didn't use geometry to define my margins

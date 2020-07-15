@@ -53,7 +53,7 @@ output: html_document
    * Despite the progress that has been made toward finding biological meaning for parameters in the original Ball-Berry-Leuning stomatal conductance model in (Medlyn et al. 2011), there still exist parameters that have no grounding in reality. As a result, the physical mechanisms behind the seemingly inverse relationship between gs and VPD are still debated (CITE). 
    * On the other hand, the “supply” models based on maintaining water potentials throughout the plant to prevent cavitation, are mechanistic models based on cohesion-theory which in turn is built from physical understanding of intermolecular attraction and the flow of water against gravity (CITE). While various models differ in their choices of parameters, in general, parameters are physical properties of plants that can be measured.  
 
-### New mechanistic hydauics models have downsides: complexity! {-}
+### New mechanistic hydraulics models have downsides: complexity! {-}
 
 * Mo' parameters, mo' problems! 
 * In most cases it in impossible to know the exact value of a model parameter and thus simply increasing the number of parameters in a model increases the amount of total parametric uncertainty that should be considered when calculating model predictive uncertainty. 
